@@ -1,0 +1,22 @@
+package by.asushenya.total.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.sun.xml.internal.ws.spi.db.DatabindingException;
+
+import by.asushenya.total.bean.Game;
+import by.asushenya.total.bean.Rate;
+import by.asushenya.total.bean.User;
+import by.asushenya.total.bean.util.GameKind;
+import by.asushenya.total.dao.exception.DAOException;
+
+public interface UserDAO {
+	void registeredNewUser(User user) 	 throws DAOException;
+	User findUserByLogin  (String login) throws DAOException;
+	User findUserByEmail  (String email) throws DAOException;
+	List<Rate> getAllUserRates(User user) throws DAOException;
+	List<Game> getGamesByType(GameKind game_type) throws DAOException;
+	boolean makeRate(Rate rate) throws DAOException;
+
+}
