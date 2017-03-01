@@ -3,6 +3,7 @@ package by.asushenya.total.logic.impl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.logic.CommandException;
 import by.asushenya.total.logic.ICommand;
 
@@ -21,16 +22,16 @@ public class MakeRateInitCommand implements ICommand{
 		session.setAttribute("game_kind", request.getParameter("game_king"));
 
 	if( request.getParameter("game_kind").equals("football")){
-		return "redirectToIndexWithFootballGame";
+		return JspPageName.REDIRECT_TO_INDEX_WITH_FOOTBALL_GAME;
 	}
 	if( request.getParameter("game_kind").equals("basketball")){
-		return "redirectToIndexWithBasketballGame";
+		return JspPageName.REDIRECT_TO_INDEX_WITH_BASKETBALL_GAME;
 	}
 	if( request.getParameter("game_kind").equals("hockey")){
-		return "redirectToIndexWithHockeyGame";
+		return JspPageName.REDIRECT_TO_INDEX_WITH_HOCKEY_GAME;
 	}
 	
-	return "redirectToIndexPage";
+	return JspPageName.REDIRECT_TO_INDEX_PAGE;
 }
 	
 }

@@ -29,7 +29,7 @@ public class MakeRateCommand implements ICommand {
 		
 		String game_id = request.getParameter("game_id");
 		String rate_money = request.getParameter("rate_money");
-		String rate_koefficient = request.getParameter("rate_koefficient");
+		String rate_coefficient = request.getParameter("rate_koefficient");
 		String choice = request.getParameter("choice");
 		String gameKind = request.getParameter("game_kind");
 				
@@ -49,7 +49,7 @@ public class MakeRateCommand implements ICommand {
 		User user =(User) request.getSession(true).getAttribute("user");		
 		
 		if(user == null){
-			request.setAttribute("makeRateError", "emptyuser");	
+			session.setAttribute("makeRateError", "emptyuser");	
 			String goToPage = getRedirectPageByGameKind(gameKind);
 			return goToPage;
 		}
@@ -57,34 +57,51 @@ public class MakeRateCommand implements ICommand {
 		rate.setUser(user);
 		
 		if(rate_money == null || rate_money.isEmpty()){
-			request.setAttribute("makeRateError", "emptyrate");	
+			session.setAttribute("makeRateError", "emptyrate");	
 			String goToPage = getRedirectPageByGameKind(gameKind);
 			return goToPage;			
 		}
 		
-		double rateValue = 0;
-		try{
-			rateValue= Double.parseDouble(rate_money);
-		} catch (NumberFormatException e){
-			//log
-			e.printStackTrace();
-			
-			request.setAttribute("makeRateError", "ratenotanumber");	// очень плохой кусок кода, надо придумать что-нибудь получше
+		Double rateValue = null;
+		rateValue = Double.parseDouble(rate_money);
+		
+		if(rateValue == null){			
+			session.setAttribute("makeRateError", "ratenotanumber");	
 			String goToPage = getRedirectPageByGameKind(gameKind);
 			return goToPage;
 		}
 		
 		if(rateValue > user.getCash()){
-			request.setAttribute("makeRateError", "nomoney");	
+			session.setAttribute("makeRateError", "nomoney");	
 			String goToPage = getRedirectPageByGameKind(gameKind);
 			return goToPage;	
 		}		
 		
+		if(rateValue <= 0){
+			session.setAttribute("makeRateError", "unknownerror");	
+			String goToPage = getRedirectPageByGameKind(gameKind);
+			return goToPage;	
+		}
+		
 		rate.setMoney(rateValue);
 		
+		if(!choice.equals("t1") && !choice.equals("x") && !choice.equals("t2")){//если выбор не t1 не x и не t2 то ошибка
+			session.setAttribute("makeRateError", "unknownerror");	
+			String goToPage = getRedirectPageByGameKind(gameKind);
+			return goToPage;	
+		}
+		
 		rate.setChoice(choice);
-		rate.setGameCoefficient(Double.parseDouble(rate_koefficient));
-		System.out.println("Пользователь : " + user.getId());
+		
+		double rateCoefficientValue = Double.parseDouble(rate_coefficient);
+		if(rateCoefficientValue <= 0){			
+			session.setAttribute("makeRateError", "ratenotanumber");	
+			String goToPage = getRedirectPageByGameKind(gameKind);
+			return goToPage;
+		}		
+		
+		rate.setGameCoefficient(rateCoefficientValue);
+
 		
 		try {
 			DAOFactory.getInstance().getUserDAO().makeRate(rate);
@@ -92,9 +109,10 @@ public class MakeRateCommand implements ICommand {
 			
 			e.printStackTrace();
 		}
+		session.removeAttribute("makeRateError");
+		session.setAttribute("makeRateSuccess", "betisplaced");	
 		
-		request.removeAttribute("makeRateError");
-		return "redirectToIndexPage";
+		return JspPageName.REDIRECT_TO_INDEX_PAGE;
 	}
 	
 	private String getRedirectPageByGameKind(String gameKind){

@@ -25,6 +25,8 @@ public class GetAllGamesCommand implements ICommand{
 		 games = DAOFactory.getInstance().getBookMakerDAO().getAllGames();
 		 System.out.println(games.get(0).getFirstTeam());
 		 System.out.println("ratest count" + games.size());
+		 
+		 
 		
 		} catch (DAOException e) {
 			

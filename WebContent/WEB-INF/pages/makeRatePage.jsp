@@ -24,49 +24,9 @@
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
   
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
+  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
   
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-  <fmt:message bundle="${loc}" key="local.signinbutton" var="signinbutton"/>
-  <fmt:message bundle="${loc}" key="local.signupbutton" var="signupbutton"/>
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
   
-  <fmt:message bundle="${loc}" key="local.placeholder.login" var="login"/>
-  <fmt:message bundle="${loc}" key="local.placeholder.password" var="password"/>
-  
-  <fmt:message bundle="${loc}" key="local.game.football" var="football"/>
-  <fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
-  <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
-  <fmt:message bundle="${loc}" key="local.game.gamekind" var="gamekind"/> 
-  <fmt:message bundle="${loc}" key="local.table.game.addnewgame" var="addnewgame"/>
-  <fmt:message bundle="${loc}" key="local.table.game.firstteam" var="firstteam"/>
-  <fmt:message bundle="${loc}" key="local.table.game.secondteam" var="secondteam"/>
-   <fmt:message bundle="${loc}" key="local.game.newgameadding" var="newgameadding"/>
-  
-  <fmt:message bundle="${loc}" key="local.table.game.time" var="time"/>
-  <fmt:message bundle="${loc}" key="local.table.game.event" var="event"/>
-  <fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
-  <fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
-  <fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
-  
-
-   <fmt:message bundle="${loc}" key="local.addgameerror.firstequalstwo" var="firstequalstwo"/>
-   <fmt:message bundle="${loc}" key="local.addgameerror.badtime" var="badtime"/>
-   <fmt:message bundle="${loc}" key="local.addgameerror.littletime" var="littletime"/>
-   
-    <fmt:message bundle="${loc}" key="local.addgameerror.k1isstring" var="k1isstring"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.k1islittle" var="k1islittle"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.kxisstring" var="kxisstring"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.kxislittle" var="kxislittle"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.k2isstring" var="k2isstring"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.k2islittle" var="k2islittle"/>
- 	<fmt:message bundle="${loc}" key="local.addgameerror.k1isempty" var="k1isempty"/>
- 	<fmt:message bundle="${loc}" key="local.addgameerror.kxisempty" var="kxisempty"/>
- 	<fmt:message bundle="${loc}" key="local.addgameerror.k2isempty" var="k2isempty"/>
   </head> 
 
   <body>   

@@ -24,14 +24,7 @@
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
 
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
-  
- 	<fmt:message bundle="${loc}" key="local.userregistration.emptylogin" var="emptylogin"/>
-	<fmt:message bundle="${loc}" key="local.userregistration.emptyemail" var="emptyemail"/>
-	<fmt:message bundle="${loc}" key="local.userregistration.emptypassword" var="emptypassword"/>
-	<fmt:message bundle="${loc}" key="local.userregistration.loginalreadyexists" var="loginalreadyexists"/>
-	<fmt:message bundle="${loc}" key="local.userregistration.emailalreadyexists" var="emailalreadyexists"/>
+   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
 
   </head>
   <body>  

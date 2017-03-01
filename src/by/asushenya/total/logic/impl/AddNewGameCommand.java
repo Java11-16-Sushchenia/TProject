@@ -21,14 +21,15 @@ public class AddNewGameCommand implements ICommand {
 	@Override 
 	public String execute(HttpServletRequest request) throws CommandException{
 	
+		HttpSession session = request.getSession(true);
 		Game game = new Game();
 		
 		game.setGameKind(request.getParameter("game_kind"));//стоит ли проверять select'ы
 		game.setFirstTeam(request.getParameter("team_1"));
 		game.setSecondTeam(request.getParameter("team_2"));
-		
+																																							
 		if(game.getFirstTeam().equals(game.getSecondTeam())){
-			request.getSession(true).setAttribute("add_game_error", "firstequalstwo");
+			session.setAttribute("add_game_error", "firstequalstwo");
 			return "redirectToAddNewGamePage";
 		}
 		
@@ -41,66 +42,66 @@ public class AddNewGameCommand implements ICommand {
 			date = Timestamp.valueOf(datetimeLocal.replace("T", " "));
 			
 		} catch(IllegalArgumentException e){
-			request.getSession(true).setAttribute("add_game_error", "badtime");
+			session.setAttribute("add_game_error", "badtime");
 			return "redirectToAddNewGamePage"; 
 		}
 
 		if(date.compareTo(new java.util.Date()) <=0){
-			request.getSession(true).setAttribute("add_game_error", "littletime");
+			session.setAttribute("add_game_error", "littletime");
 			return "redirectToAddNewGamePage"; 
 		}		
 		game.setDate(date);		
 		
 		String k1Buffer =request.getParameter("k1");		
 		if(k1Buffer.isEmpty()){
-			request.getSession(true).setAttribute("add_game_error", "k1isempty");
+			session.setAttribute("add_game_error", "k1isempty");
 			return "redirectToAddNewGamePage"; 
 		}		
 		double k1;
 		try{
 			 k1 = Double.parseDouble(k1Buffer);
 		} catch(NumberFormatException e){
-			request.getSession(true).setAttribute("add_game_error", "k1isstring");
+			session.setAttribute("add_game_error", "k1isstring");
 			return "redirectToAddNewGamePage"; 
 		}		
 		if(k1 < 1.1D){
-			request.getSession(true).setAttribute("add_game_error", "k1islittle");
+			session.setAttribute("add_game_error", "k1islittle");
 			return "redirectToAddNewGamePage"; 
 		}
 		game.setK1(k1);
 		
 		String kxBuffer =request.getParameter("kx");		
 		if(kxBuffer.isEmpty()){
-			request.getSession(true).setAttribute("add_game_error", "kxisempty");
+			session.setAttribute("add_game_error", "kxisempty");
 			return "redirectToAddNewGamePage"; 
 		}
 		double kx;
 		try{
 			 kx = Double.parseDouble(kxBuffer);
 		} catch(NumberFormatException e){
-			request.getSession(true).setAttribute("add_game_error", "kxisstring");
+			session.setAttribute("add_game_error", "kxisstring");
 			return "redirectToAddNewGamePage"; 
 		}		
 		if(kx < 1.1D){
-			request.getSession(true).setAttribute("add_game_error", "kxislittle");
+			session.setAttribute("add_game_error", "kxislittle");
 			return "redirectToAddNewGamePage"; 
 		}	
 		game.setKx(kx);
 		
 		String k2Buffer =request.getParameter("k2");		
 		if(k1Buffer.isEmpty()){
-			request.getSession(true).setAttribute("add_game_error", "k2isempty");
+			session.setAttribute("add_game_error", "k2isempty");
 			return "redirectToAddNewGamePage"; 
 		}
 		double k2;
 		try{
 			 k2 = Double.parseDouble(k2Buffer);
 		} catch(NumberFormatException e){
-			request.getSession(true).setAttribute("add_game_error", "k2isstring");
+			session.setAttribute("add_game_error", "k2isstring");
 			return "redirectToAddNewGamePage"; 
 		}		
 		if(k2 < 1.1D){
-			request.getSession(true).setAttribute("add_game_error", "k2islittle");
+			session.setAttribute("add_game_error", "k2islittle");
 			return "redirectToAddNewGamePage"; 
 		}	
 		game.setKx(k2);

@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" 
@@ -24,29 +25,8 @@
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
     	  
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
+  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
   
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
-  
-  <fmt:message bundle="${loc}" key="local.game.football" var="soccer"/>
-  <fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
-  <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
-  <fmt:message bundle="${loc}" key="local.game.allgames" var="allgames"/>
-  <fmt:message bundle="${loc}" key="local.table.game.addnewgame" var="addnewgame"/>
-  
-  <fmt:message bundle="${loc}" key="local.table.game.time" var="time"/>
-  <fmt:message bundle="${loc}" key="local.table.game.event" var="event"/>
-  <fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
-  <fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
-  <fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
-  <fmt:message bundle="${loc}" key="local.table.game.firstteam" var="firstteam"/>
-  <fmt:message bundle="${loc}" key="local.table.game.secondteam" var="secondteam"/>
-  <fmt:message bundle="${loc}" key="local.table.game.gameid" var="gameid"/>
   </head>
   <body>    
   
@@ -139,30 +119,30 @@
 		</tr>
 	</thead>
 		<c:forEach var="game" items="${games}" >	 		
-				<tr>
-				  <td class="success">
-				  			<c:out value="${game.id}"></c:out>
-				  </td>
-				  
+				<tr>			
+					  <td class="success">
+					  <div class="col-md-2">
+					  		${game.id}
+					  </div>
+					  </td>				  
 				  <td >
-				  			<c:out value="${game.firstTeam}"></c:out>
-				  </td>
-				  
+				  			<input type="text" value="${game.firstTeam}"/>	
+				  </td>				  
 				  <td>
-				  			<c:out value="${game.secondTeam}"></c:out><br>
+				  			<input type="text" value="${game.secondTeam}"/>
+				  </td>				  
+				  <td>				  			 
+				  			<input type="datetime-local" value="<fmt:formatDate type="both" 
+            value="${game.date}" />"/>
 				  </td>
-				  
 				  <td>
-				  			<c:out value="${game.date}"></c:out>
+				  		    ${game.k1}
 				  </td>
-				    <td>
-				  			<c:out value="${game.k1}"></c:out>
+				  <td>
+				  			${game.kx}
 				  </td>
-				    <td>
-				  			<c:out value="${game.kx}"></c:out>
-				  </td>
-				    <td>
-				  			<c:out value="${game.k2}"></c:out>
+				  <td>
+				  			${game.k2}
 				  </td>
 				</tr>			
 		</c:forEach>

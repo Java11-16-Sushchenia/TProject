@@ -10,10 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:redirect url="/makeRatePage">
-				
+	<c:redirect url="/makeRatePage">				
 		<c:param name="go_to_page" value="addMakeRatePage"/>
-		<c:param name="first_team" value="${first_team}"/>
 	</c:redirect>
 </body>
 </html>

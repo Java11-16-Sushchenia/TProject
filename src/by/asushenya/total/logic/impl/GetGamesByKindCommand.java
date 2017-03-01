@@ -32,9 +32,7 @@ public class GetGamesByKindCommand implements ICommand{
 			e.printStackTrace();
 		}				
 		request.setAttribute("games", games);	
-		request.setAttribute("game_kind", request.getParameter("game_kind").toUpperCase());
-		request.setAttribute("makeRateError", request.getParameter("makeRateError"));
-		
+		request.setAttribute("game_kind", request.getParameter("game_kind").toUpperCase());		
 		return request.getParameter("go_to_page");
 	}
 

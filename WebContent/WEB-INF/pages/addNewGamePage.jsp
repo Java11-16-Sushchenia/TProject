@@ -21,52 +21,10 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
-    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
-  
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
-  
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-  <fmt:message bundle="${loc}" key="local.signinbutton" var="signinbutton"/>
-  <fmt:message bundle="${loc}" key="local.signupbutton" var="signupbutton"/>
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
-  
-  <fmt:message bundle="${loc}" key="local.placeholder.login" var="login"/>
-  <fmt:message bundle="${loc}" key="local.placeholder.password" var="password"/>
-  
-  <fmt:message bundle="${loc}" key="local.game.football" var="football"/>
-  <fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
-  <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
-  <fmt:message bundle="${loc}" key="local.game.gamekind" var="gamekind"/> 
-  <fmt:message bundle="${loc}" key="local.table.game.addnewgame" var="addnewgame"/>
-  <fmt:message bundle="${loc}" key="local.table.game.firstteam" var="firstteam"/>
-  <fmt:message bundle="${loc}" key="local.table.game.secondteam" var="secondteam"/>
-   <fmt:message bundle="${loc}" key="local.game.newgameadding" var="newgameadding"/>
-  
-  <fmt:message bundle="${loc}" key="local.table.game.time" var="time"/>
-  <fmt:message bundle="${loc}" key="local.table.game.event" var="event"/>
-  <fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
-  <fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
-  <fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
-  
-
-   <fmt:message bundle="${loc}" key="local.addgameerror.firstequalstwo" var="firstequalstwo"/>
-   <fmt:message bundle="${loc}" key="local.addgameerror.badtime" var="badtime"/>
-   <fmt:message bundle="${loc}" key="local.addgameerror.littletime" var="littletime"/>
-   
-    <fmt:message bundle="${loc}" key="local.addgameerror.k1isstring" var="k1isstring"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.k1islittle" var="k1islittle"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.kxisstring" var="kxisstring"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.kxislittle" var="kxislittle"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.k2isstring" var="k2isstring"/>
-    <fmt:message bundle="${loc}" key="local.addgameerror.k2islittle" var="k2islittle"/>
- 	<fmt:message bundle="${loc}" key="local.addgameerror.k1isempty" var="k1isempty"/>
- 	<fmt:message bundle="${loc}" key="local.addgameerror.kxisempty" var="kxisempty"/>
- 	<fmt:message bundle="${loc}" key="local.addgameerror.k2isempty" var="k2isempty"/>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> 
+ 
+ 	   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
+ 
   </head> 
 
   <body>   
@@ -75,40 +33,97 @@
     <nav class="navbar navbar-default">
     
    <c:if test="${add_game_error == 'firstequalstwo'}">          
- 		 <span class="col-md-12 label label-danger">${firstequalstwo}</span>    
+ 		<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${firstequalstwo}
+		    </div>
+		</div>		    
    </c:if> 
     <c:if test="${add_game_error == 'badtime'}">          
-	 <span class="col-md-12 label label-danger">${badtime}</span>    
- </c:if>
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${badtime}
+		    </div>
+		</div>   
+  </c:if>
   <c:if test="${add_game_error == 'k1isstring'}">          
-	 <span class="col-md-12 label label-danger">${k1isstring}</span>    
+		 <div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k1isstring}
+		    </div>
+		</div>      
  </c:if> 
  <c:if test="${add_game_error == 'k1islittle'}">          
-	 <span class="col-md-12 label label-danger">${k1islittle}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k1islittle}
+		    </div>
+		</div>   
  </c:if> 
    <c:if test="${add_game_error == 'k2isstring'}">          
-	 <span class="col-md-12 label label-danger">${k2isstring}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k2isstring}
+		    </div>
+		</div>     
  </c:if> 
  <c:if test="${add_game_error == 'k2islittle'}">          
-	 <span class="col-md-12 label label-danger">${k2islittle}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k2islittle}
+		    </div>
+		</div>     
  </c:if> 
    <c:if test="${add_game_error == 'k3isstring'}">          
-	 <span class="col-md-12 label label-danger">${k3isstring}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k3isstring}
+		    </div>
+		</div>   
  </c:if> 
  <c:if test="${add_game_error == 'k3islittle'}">          
-	 <span class="col-md-12 label label-danger">${k3islittle}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k3islittle}
+		    </div>
+		</div>   
  </c:if> 
   <c:if test="${add_game_error == 'k1isempty'}">          
-	 <span class="col-md-12 label label-danger">${k1isempty}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k1isempty}
+		    </div>
+		</div>     
  </c:if> 
    <c:if test="${add_game_error == 'kxisempty'}">          
-	 <span class="col-md-12 label label-danger">${kxisempty}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${kxisempty}
+		    </div>
+		</div>   
  </c:if> 
    <c:if test="${add_game_error == 'k2isempty'}">          
-	 <span class="col-md-12 label label-danger">${k2isempty}</span>    
+	  	<div class="bs-example">
+		    <div class="alert alert-danger fade in">
+		        <a href="#" class="close" data-dismiss="alert">×</a>
+		        <strong>${addgameerror}!</strong> ${k2isempty}
+		    </div>
+		</div>    
  </c:if> 
 	    
-	    
+	    <c:if test="${add_game_error != null}">
+	    	 <c:remove var="add_game_error" scope="session" />		
+	    </c:if>
 	    
 	    
   <div class="container-fluid">
@@ -236,7 +251,7 @@
         <p>Empty</p>
       </div>
       <div class="well">
-        <p>Empty</p>
+    
       </div>
     </div>
   </div>

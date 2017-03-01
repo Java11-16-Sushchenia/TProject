@@ -25,37 +25,8 @@
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
-  
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-  <fmt:message bundle="${loc}" key="local.signinbutton" var="signinbutton"/>
-  <fmt:message bundle="${loc}" key="local.signupbutton" var="signupbutton"/>
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
-  
-  <fmt:message bundle="${loc}" key="local.placeholder.login" var="login"/>
-  <fmt:message bundle="${loc}" key="local.placeholder.password" var="password"/>
-  
-  <fmt:message bundle="${loc}" key="local.game.football" var="soccer"/>
-  <fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
-  <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
-  <fmt:message bundle="${loc}" key="local.game.allgames" var="allgames"/>
 
-  
-  <fmt:message bundle="${loc}" key="local.table.game.time" var="time"/>
-  <fmt:message bundle="${loc}" key="local.table.game.event" var="event"/>
-  <fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
-  <fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
-  <fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
-  
-  <fmt:message bundle="${loc}" key="local.makerate.emptyuser" var="emptyuser"/>
-  <fmt:message bundle="${loc}" key="local.makerate.nomoney" var="nomoney"/>
-  <fmt:message bundle="${loc}" key="local.unknownerror" var="unknownerror"/>
-  <fmt:message bundle="${loc}" key="local.makerate.emptyrate" var="emptyrate"/>
-   <fmt:message bundle="${loc}" key="local.makerate.ratenotanumber" var="ratenotanumber"/>
+   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
   
   
   </head> 
@@ -63,6 +34,15 @@
   <body>  
     <!--  New navigation bar testing -->
    <nav class="navbar navbar-default">
+                <c:if test="${makeRateSuccess == 'betisplaced'}"> 	 		
+		 		 <div class="bs-example">
+				    <div class="alert alert-success fade in">
+				        <a href="#" class="close" data-dismiss="alert">×</a>
+				        <strong>${makeratesuccess}!</strong>
+				    </div>
+				</div>	
+				<c:remove var="makeRateSuccess" scope="session" /> 				 	
+		   	 </c:if>
         <c:if test="${userAuthorizationError != null}">          
 	   		 <span class="col-md-12 label label-danger"><c:out value="${userAuthorizationError}"></c:out></span>    
 	    </c:if> 
@@ -96,7 +76,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-      
+		
               <c:if test="${user == null }">
           <form action="Controller" method="get" class="navbar-form navbar-left">
 	            <div class="form-group">
@@ -125,6 +105,7 @@
    	    </c:if>
       
         <li><a href="#">Link</a></li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${language} <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -191,8 +172,7 @@
 				  <td>
 				  		${game.firstTeam} -	${game.secondTeam}
 				  </td>	 
-
-				    <td>
+				  <td>
 				  	<form action="Controller">
 			  			<input type="hidden" name="command" value="MAKE_RATE_INIT_COMMAND"/>
 			  			<input type="hidden" name="game_id" value="${game.id}"/>
@@ -246,27 +226,53 @@
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
+
        <c:if test="${choice != null}">
       	 <form action="Controller">  
      		
-              <c:if test="${makeRateError == 'emptyuser'}">          
-		 		
-		 			<b><p style="color:red;">  ${emptyuser}</p></b>
-		 	
+              <c:if test="${makeRateError == 'emptyuser'}"> 	 		
+		 		 <div class="bs-example">
+				    <div class="alert alert-danger fade in">
+				        <a href="#" class="close" data-dismiss="alert">×</a>
+				        <strong>${makerateerror}!</strong> ${emptyuser}
+				    </div>
+				</div>						 	
 		   	 </c:if>
 		
-		   	  <c:if test="${makeRateError == 'nomoney'}">          
-		 		<b><p style="color:red;"> ${nomoney}</p></b>  
+		   	  <c:if test="${makeRateError == 'nomoney'}">   
+ 				<div class="bs-example">
+				    <div class="alert alert-danger fade in">
+				        <a href="#" class="close" data-dismiss="alert">×</a>
+				        <strong>${makerateerror}!</strong> ${nomoney}
+				    </div>
+				</div>		 	
 		   	 </c:if>
+		   	 
 		   	 <c:if test="${makeRateError == 'emptyrate'}">          
-				<b><p style="color:red;"> ${emptyrate}</p></b>   
+ 				<div class="bs-example">
+				    <div class="alert alert-danger fade in">
+				        <a href="#" class="close" data-dismiss="alert">×</a>
+				        <strong>${makerateerror}!</strong> ${emptyrate}
+				    </div>
+				</div> 
 			</c:if>
 			<c:if test="${makeRateError == 'ratenotanumber'}">          
-				<b><p style="color:red;"> ${ratenotanumber}</p></b>   
+ 				<div class="bs-example">
+				    <div class="alert alert-danger fade in">
+				        <a href="#" class="close" data-dismiss="alert">×</a>
+				        <strong>${makerateerror}!</strong> ${ratenotanumber}
+				    </div>
+				</div>			 			
 			</c:if>			
 			<c:if test="${makeRateError == 'unknownerror'}">          
-				<b><p style="color:red;"> ${unknownerror}</p></b>   
-			</c:if> 
+ 				<div class="bs-example">
+				    <div class="alert alert-danger fade in">
+				        <a href="#" class="close" data-dismiss="alert">×</a>
+				        <strong>${makerateerror}!</strong> ${unknownerror}
+				    </div>
+				</div>		 	
+			</c:if>         
+			 
 	         
 	        <p>${first_team} - ${second_team}</p>        
 	        <p>${choice}</p>
@@ -280,6 +286,7 @@
 	        
 	        <input type="submit" value="Поставить"/>        
 	    </form>
+	     <c:remove var="makeRateError" scope="session" />		
      </c:if>
       </div>
       <div class="well">

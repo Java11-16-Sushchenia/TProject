@@ -24,42 +24,29 @@
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
     	
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
-  
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
-  <fmt:message bundle="${loc}" key="local.userpage.yourrates"  var="yourrates"/>
-  <fmt:message bundle="${loc}" key="local.userpage.norates"  var="norates"/>
-  <fmt:message bundle="${loc}" key="local.userpage.usercashinfo"  var="usercashinfo"/>
-  <fmt:message bundle="${loc}" key="local.userpage.currentcashstate"  var="currentcashstate"/>
-  <fmt:message bundle="${loc}" key="local.userpage.closemodal"  var="closemodal"/>
+  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
 
   </head>
   <body>   
    <nav class="navbar navbar-default">
-  <div class="container-fluid">
+ 	 <div class="container-fluid">
   
-     <c:if test="${userAuthorizationError != null}">          
-   		 <span class="col-md-12 label label-danger"><c:out value="${userAuthorizationError}"></c:out></span>    
-    </c:if> 
+	     <c:if test="${userAuthorizationError != null}">          
+	   		 <span class="col-md-12 label label-danger"><c:out value="${userAuthorizationError}"></c:out></span>    
+	     </c:if> 
 
     
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
-    </div>
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
+	    </div>
  
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   	 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    
       <ul class="nav navbar-nav navbar-right">
       
@@ -75,7 +62,7 @@
      	<li>   <a href="redirectToPersonalPage"><span class="label label-primary form-control">${user.email}</span></a></li>		
    		<li>   			   			 
 <!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fade">Large modal</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fade">Large modal</button>
 
 		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
 		  <div class="modal-dialog" role="document">
@@ -167,16 +154,16 @@
 					  <td>
 					  		<c:out value="${rate.date}"></c:out>
 					  </td>		
-					    <td>
+					  <td>
 					  		<c:out value="${rate.money}"></c:out>
 					  </td>	
 					  <td>
 					  		<c:out value="${rate.choice}"></c:out>
 					  </td>		 
-					    <td>
+					  <td>
 					  		<c:out value="${rate.gameCoefficient}"></c:out>
 					  </td>	
-					   <td>
+					 <td>
 					  		<c:out value="${rate.profit}"></c:out>
 					  </td>	
 					   <td>

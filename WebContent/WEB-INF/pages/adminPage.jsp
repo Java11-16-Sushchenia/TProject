@@ -24,14 +24,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
 
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
-
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
+  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
   
   </head>
   <body>  
@@ -56,7 +49,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
    			  <form action="Controller" method="get" class="navbar-form navbar-left"> 
    			      <input type="hidden" name="command" value="log_out_command"/>
    			  	  <input class="navbar-form navbar-right" type="submit" value="${signoutbutton}" /> 
-   			      <a href="redirectToPersonalPage"><span class="label label-primary navbar-form navbar-left">${user.email}</span></a>    	   
+   			      <a href="redirectToPersonalPage"><span class="label label-success navbar-form navbar-left">${user.email}</span></a>    	   
    			  </form>
    	    </c:if>
   
