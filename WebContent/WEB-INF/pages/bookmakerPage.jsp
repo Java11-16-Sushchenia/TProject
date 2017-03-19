@@ -29,55 +29,29 @@
   </head>
   <body>    
   
-   <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <nav class="navbar navbar-default">
+  	<div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
+	    </div>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
-    </div>
-     
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav navbar-right">      
-     
-     	<c:if test="${user != null }">   			
-   			  <form action="Controller" method="get" class="navbar-form navbar-left"> 
-   			   <input type="hidden" name="command" value="log_out_command"/>
-   			  		<input class="navbar-form navbar-right" type="submit" value="${signoutbutton}" /> 
-   			          <a href="redirectToPersonalPage"><span class="label label-primary navbar-form navbar-left">${user.email}</span></a>    	   
-   			  </form>
-   	    </c:if>
-  
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${language} <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-      		 <li>
-             	<form action="Controller">             	 	
-             	 	<input type="hidden" name="go_to_page" value="redirectToBookmakerPage"/>   
-             	 	<input type="hidden" name="command" value="LOCALIZATION_COMMAND"/>          		
-             		<input type="hidden" name="local" value="en"/>
-             		<input type="submit" class="btn btn-default btn-xs form-control" value="${englishLanguage}"/>
-             	</form>
-             </li>
-              <li>
-             	<form action="Controller">             	 	
-             	 	<input type="hidden" name="go_to_page" value="redirectToBookmakerPage"/>   
-             	 	<input type="hidden" name="command" value="LOCALIZATION_COMMAND"/>          		
-             		<input type="hidden" name="local" value="ru"/>
-             		<input type="submit" class="btn btn-default btn-xs form-control" value="${russianLanguage}"/>
-             	</form>
-             </li>
-          </ul>
-        </li>        
-      </ul>
-    </div>
-  </div>
+		<c:if test="${user != null }">   			
+ 			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
+ 			 	    <input type="hidden" name="command" value="log_out_command"/>
+ 			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
+ 			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
+ 			  	<div class="form-group">
+		 	       <div class="dropdown">
+			           <button class="button dropbtn">${language}</button>
+			           <div class="dropdown-content">		           		
+			                <a href="#" onclick="setLanguage('redirectToIndexPage','ru');">${russianLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToIndexPage','en');">${englishLanguage}</a>
+			          </div>
+				 </div>  
+	  		  </div>  
+ 			 </form>
+ 	    </c:if>
+	</div>	
 </nav>
 
     <!-- Content -->
@@ -163,14 +137,20 @@
 				  </td>
 				  <td class="col-sm-2">
 					  	<div >
-					  		<input type="text" value="${game.k1}">
+					  		<input id="k1-${game.id}" onchange="changeButtonColor(this);" type="number" min="1.1" value="${game.k1}">
 					   </div>
 				  </td>
 				  <td class="col-sm-2">
-				  			<input type="text" value="${game.kx}">
+				  			<input  id="kx-${game.id}" onchange="changeButtonColor(this);" type="number" min="1.1" value="${game.kx}">
 				  </td>
 				  <td class="col-sm-2">
-				  			<input type="text" value="${game.k2}">
+				  			<input  id="k2-${game.id}" onchange="changeButtonColor(this);" type="number" min="1.1" value="${game.k2}">
+				  </td>
+				  <td>
+				  	 	<button onclick="commitChanges(this);" id="saveButton-${game.id}" type="submit" class="button signinbutton">Сохранить</button>
+				  </td>
+				  <td>
+				  	 	<button onclick="commitChanges(this);" id="saveButton-${game.id}" type="submit" class="button signщгеbutton">Удалить</button>
 				  </td>
 				</tr>			
 		</c:forEach>
@@ -233,12 +213,29 @@
 		</nav>
 	</div>	
 
-        <p><a href="redirectToAddNewGamePage" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-plus"/>${addnewgame}</a></p>
+
       </div>     
     </div>
    </div>
     <footer class="container-fluid text-center">
 	  <p>Epam 2017</p>
 	</footer>
+	
+	<script>
+		function changeButtonColor(inputObject){
+			var changedGameId = inputObject.id.split("-")[1];			
+			var changeButtonId = "#saveButton-"+changedGameId;
+			$(changeButtonId).removeClass('signinbutton').addClass('commitbtn');
+		}
+		
+		function commitChanges(buttonObject){
+			var changedGameId = buttonObject.id.split("-")[1];
+			
+			var k1Value = $("#k1-"+changedGameId).val();
+			var kxValue = $("#kx-"+changedGameId).val();
+			var k2Value = $("#k2-"+changedGameId).val();
+			debugger;
+		}
+	</script>
   </body>
 </html>

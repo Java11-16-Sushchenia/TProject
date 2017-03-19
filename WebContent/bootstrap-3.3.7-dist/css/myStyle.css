@@ -33,7 +33,7 @@
 .ul-nav li a {
     display: block;
     color: #000;
-    padding: 16px 16px;
+    padding: 14px 10px;
     text-decoration: none;
     text-align: center;
     font-family: 'MV Boli', cursive;
@@ -43,25 +43,25 @@
 .ul-nav li a:hover {
     background-color: #45a049;
     color: white;
-        transition-duration: 0.1s;
-        border-radius:8px;
+    transition-duration: 0.1s;
+    border-radius:8px;
 }
 
 .ul-nav li+li a:hover {
     background-color: #bc1339;
     color: #fff;
-        transition-duration: 0.1s;
+    transition-duration: 0.1s;
 }
 
 .ul-nav li+li+li a:hover {
     background-color: #5166cc;
     color: #fff;
-        transition-duration: 0.1s;
+    transition-duration: 0.1s;
 }
 .ul-nav li+li+li+li a:hover {
     background-color: #b3bc20;
     color: #fff;
-        transition-duration: 0.1s;
+    transition-duration: 0.1s;
 }
 
 
@@ -114,6 +114,20 @@
 .signupbutton:hover {
     background-color: #f00;
     color: white;
+}
+
+.commitbtn {
+	width:100%;
+    background-color: #337ab7; 
+    color: black; 
+    border: 2px solid #337ab7;
+     color: white;
+}
+
+.commitbtn:hover {
+    background-color: #fff;
+     color: black;
+   
 }
 
 .dropbtn {
@@ -201,12 +215,25 @@ input[type=email]:focus {
     border: 1px solid #45a049;
 }
 
+input[type=number] {
+    width: 100%;
+    padding: 7px 1xpx;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-family: 'Inconsolata', monospace;
+    text-align: center;
+}
+input[type=number]:focus {
+    border: 1px solid #45a049;
+}
+
 .ul-pagination {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #999;
+    border-radius:10px;
 }
 
 .ul-pagination li {
@@ -217,12 +244,14 @@ input[type=email]:focus {
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding: 10px;
+    border-radius:5px;
     text-decoration: none;
 }
 
 .ul-pagination li a:hover {
-    background-color: #111111;
+    background-color: #747474;
+    border-radius:2px;
 }
 
     

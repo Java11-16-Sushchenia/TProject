@@ -30,9 +30,10 @@
   <body>   
   
     <!--  New navigation bar testing -->
-    <nav class="navbar navbar-default">
+  
     
-   <c:if test="${add_game_error == 'firstequalstwo'}">          
+  <%-- this in nav bar
+    <c:if test="${add_game_error == 'firstequalstwo'}">          
  		<div class="bs-example">
 		    <div class="alert alert-danger fade in">
 		        <a href="#" class="close" data-dismiss="alert">×</a>
@@ -138,40 +139,32 @@
       <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
     </div>
  
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-    
-     	<c:if test="${user != null }">   			
-   			  <form action="Controller" method="get" class="navbar-form navbar-left"> 
-   			   <input type="hidden" name="command" value="log_out_command"/>
-   			  		<input class="navbar-form navbar-right" type="submit" value="${signoutbutton}" /> 
-   			          <a href="redirectToPersonalPage"><span class="label label-default navbar-form">${user.email}</span></a>    	   
-   			  </form>
-   	    </c:if>  
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${language} <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-      		 <li>
-             	<form action="Controller">             	 	
-             	 	<input type="hidden" name="go_to_page" value="redirectToAddNewGamePage"/>   
-             	 	<input type="hidden" name="command" value="LOCALIZATION_COMMAND"/>          		
-             		<input type="hidden" name="local" value="en"/>
-             		<input type="submit" class="btn btn-default btn-xs form-control" value="${englishLanguage}"/>
-             	</form>
-             </li>
-              <li>
-             	<form action="Controller">             	 	
-             	 	<input type="hidden" name="go_to_page" value="redirectToAddNewGamePage"/>   
-             	 	<input type="hidden" name="command" value="LOCALIZATION_COMMAND"/>          		
-             		<input type="hidden" name="local" value="ru"/>
-             		<input type="submit" class="btn btn-default btn-xs form-control" value="${russianLanguage}"/>
-             	</form>
-             </li>
-          </ul>
-        </li>        
-      </ul>
-    </div>
-  </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> --%>
+
+
+  <nav class="navbar navbar-default">
+  	<div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
+	    </div>
+
+		<c:if test="${user != null }">   			
+ 			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
+ 			 	    <input type="hidden" name="command" value="log_out_command"/>
+ 			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">totalizator cash:${user.cash}</span></button>
+ 			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
+ 			  	<div class="form-group">
+		 	       <div class="dropdown">
+			           <button class="button dropbtn">${language}</button>
+			           <div class="dropdown-content">		           		
+			                <a href="#" onclick="setLanguage('redirectToIndexPage','ru');">${russianLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToIndexPage','en');">${englishLanguage}</a>
+			          </div>
+				 </div>  
+	  		  </div>  
+ 			 </form>
+ 	    </c:if>
+	</div>	
 </nav>
 
     <!--  Content -->
