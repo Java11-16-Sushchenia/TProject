@@ -34,6 +34,8 @@ public class UserDAOImpl implements UserDAO{
 	private static final String getAllUserRateQuerry = "select rate.id, (select name from team where team.id = game.team_1) `team_1`, (select name from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = '";
 	private static final String getGamesByTypeQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game ";
 	private static final String makeRateQuerry = "insert into rate (user_id, game_id, money, choice, game_coefficient) values(?,?,?,?,?)";
+	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game";
+	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game";
 	
 	public User findUserByEmail(String email) throws DAOException{
 		Connection con = null;
@@ -240,4 +242,84 @@ public class UserDAOImpl implements UserDAO{
 		return true;
 	}
 
+
+	public List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind) throws DAOException {
+		
+		 Connection con = null;
+		 Statement st = null;
+		 ResultSet rs = null;
+		 StringBuilder getPartOfGamesByType = new StringBuilder();
+		 getPartOfGamesByType.append(getAllGamesQuerry);
+		 
+		 if(gameKind != null){
+			 getPartOfGamesByType.append(" where game_kind = '"+gameKind.toString()+"'");
+		 }		 
+		 
+		 getPartOfGamesByType.append(" limit "+ offset + ", " + noOfRecords);	
+		 
+
+	
+		List<Game> list = new ArrayList<Game>();		
+		
+		try {
+			con = ConnectionManager.getDBTotalizatorConnection();
+			st = con.createStatement();
+			 rs = st.executeQuery(getPartOfGamesByType.toString());
+			while (rs.next()) {
+				Game game = new Game();
+				game.setId(rs.getInt("id"));
+	            game.setGameKind(rs.getString("game_kind"));
+	            game.setFirstTeam(rs.getString("team_1"));
+	            game.setSecondTeam(rs.getString("team_2"));
+	            game.setDate(rs.getTimestamp("date"));
+	            game.setK1(rs.getDouble("k1"));
+	            game.setKx(rs.getDouble("kx"));
+	            game.setK2(rs.getDouble("k2"));
+	            list.add(game);
+			}
+			rs.close();
+			
+			rs = st.executeQuery("SELECT FOUND_ROWS()");
+			if(rs.next())
+				noOfRecords = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally
+		{
+			ConnectionManager.disconnectFromDB(rs,st ,con);
+		}
+		return list;
+
+	}
+
+	public int getGamesRecordsByGameKindCount(GameKind gameKind) throws DAOException {
+		 Connection con = null;
+		 Statement st = null;
+		 ResultSet rs = null;
+		 
+		 int gamesCount =0;
+		 
+			try {
+				con = ConnectionManager.getDBTotalizatorConnection();
+				st = con.createStatement();
+				
+				if(gameKind != null){
+					 rs = st.executeQuery(getAllGamesCountQuerry+" where game_kind = '"+gameKind.toString()+"'");
+				}else{
+					rs = st.executeQuery(getAllGamesCountQuerry);
+				}
+				
+				while (rs.next()) {					
+					gamesCount = rs.getInt("games_count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("can't get games count",e);
+				
+			}finally
+			{
+				ConnectionManager.disconnectFromDB(rs,st ,con);
+			}
+			return gamesCount;		
+	}
 }

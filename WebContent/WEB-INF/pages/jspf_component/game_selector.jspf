@@ -6,16 +6,16 @@
 			 <input type="hidden" name="command" value="GET_ALL_GAMES_COMMAND"/>		 
 			 <input type="hidden" name="go_to_page" value="index"/> <%--//использовать id  map с синтетическими id --%>
 				<img src="images/football_ball.png" alt="${allgames}"/> 
-				<input class="navbar-form" type="submit" value="${allgames}" /> 	 	   
+				<input type="submit" value="${allgames}" /> 	 	   
 	</form> <br>  
         
 	<form action="Controller" method="get" class="navbar-form"> 
 	  <input type="hidden" name="command" value="GET_GAMES_BY_KIND_COMMAND"/>
 	  <input type="hidden" name="game_kind" value="football"/>
-	  <input type="hidden" name="go_to_page" value="index"/> <%--//использовать id  map с синтетическими id --%>
+	  <input type="hidden" name="go_to_page" value="index"/> 
 	 	<img src="images/football_ball.png" alt="${football}"/> 
-	 		<input class="navbar-form" type="submit" value="${soccer}" /> 	 	   
-	</form> <br>
+	 		<button type="submit">${soccer}</button>  	   
+	</form>  <br>
 	
 		<form action="Controller" method="get" class="navbar-form"> 
 	  <input type="hidden" name="command" value="GET_GAMES_BY_KIND_COMMAND"/>

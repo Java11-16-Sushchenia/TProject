@@ -1,0 +1,20 @@
+input:valid{
+	background-color: #C6F1C1;
+	border: 0px;
+}
+input:invalid{
+	background-color: #fff;	
+	border: 1px solid #ff2800;
+}
+
+input:valid + span::after{
+	content: "";
+}
+input:invalid + span::after{
+	content: "*";
+	color: red;
+}
+
+.validation-error-span{
+	color: red;
+}

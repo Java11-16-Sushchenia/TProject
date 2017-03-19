@@ -15,8 +15,7 @@ public class DAOFactory {
 	private static final Logger log = Logger.getLogger(DAOFactory.class);
 	
 	private static final DAOFactory daoFactory = new DAOFactory();
-	
-	
+		
 	static{
 		 try {
 			

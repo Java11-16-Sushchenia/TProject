@@ -1,6 +1,7 @@
 package by.asushenya.total.logic.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.asushenya.total.bean.User;
 import by.asushenya.total.controller.JspPageName;
@@ -13,7 +14,7 @@ import by.asushenya.total.logic.util.Encryptor;
 public class RegistrationUserCommand implements ICommand {
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 			
 		User user = new User();
 		
@@ -61,7 +62,7 @@ public class RegistrationUserCommand implements ICommand {
 
 		user.setLogin(login);
 		user.setEmail(email);
-		user.setPassword(Encryptor.getMD5(password));
+		user.setPassword(Encryptor.getMD5Hash(password));
 		
 		
 		

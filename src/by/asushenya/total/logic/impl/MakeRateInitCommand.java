@@ -1,6 +1,7 @@
 package by.asushenya.total.logic.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.asushenya.total.controller.JspPageName;
@@ -10,7 +11,7 @@ import by.asushenya.total.logic.ICommand;
 public class MakeRateInitCommand implements ICommand{
 
 
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		
 		HttpSession session = request.getSession();
 

@@ -18,5 +18,7 @@ public interface UserDAO {
 	List<Rate> getAllUserRates(User user) throws DAOException;
 	List<Game> getGamesByType(GameKind game_type) throws DAOException;
 	boolean makeRate(Rate rate) throws DAOException;
+	List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind) throws DAOException;
+	int getGamesRecordsByGameKindCount(GameKind gameKind)throws DAOException;
 
 }

@@ -1,7 +1,8 @@
 package by.asushenya.total.logic;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public interface ICommand {
-	public String execute(HttpServletRequest request) throws CommandException;
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException;
 }

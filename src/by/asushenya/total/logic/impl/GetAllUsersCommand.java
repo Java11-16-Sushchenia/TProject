@@ -3,6 +3,7 @@ package by.asushenya.total.logic.impl;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.asushenya.total.bean.User;
 import by.asushenya.total.dao.exception.DAOException;
@@ -13,7 +14,7 @@ import by.asushenya.total.logic.ICommand;
 public class GetAllUsersCommand implements ICommand{
 
 	@Override
-	public String execute(HttpServletRequest request) throws CommandException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		List<User> users = null;
 		

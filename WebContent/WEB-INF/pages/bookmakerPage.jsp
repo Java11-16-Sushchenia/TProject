@@ -19,14 +19,13 @@
  
     <script src="bootstrap-3.3.7-dist/jquery/jquery-3.1.1.js"></script>   
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
     	  
-  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
-  
+ 		 <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
+
   </head>
   <body>    
   
@@ -85,8 +84,40 @@
   <div class="container-fluid text-center">  
    <div class="row content">
       <div class="col-sm-2 sidenav">     
- 			<%@ include file="/WEB-INF/pages/jspf_component/bookmaker_game_selector.jspf" %>
-    </div>
+ 			<ul class="pagination ul-nav">
+			  <li>
+				  <form action="Controller" method="get">
+				  	  <input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>
+					  <input type="hidden" name="go_to_page" value="bookmakerPage"/>  
+				  	  <a href="#" onclick="$(this).closest('form').submit();">${allgames}</a>
+				  </form>
+			  </li>
+			  <li >
+		  		  <form action="Controller" method="get">
+					  <input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>
+					  <input type="hidden" name="gameKind" value="football"/>
+					  <input type="hidden" name="go_to_page" value="bookmakerPage"/> 
+				  	<a href="#" onclick="$(this).closest('form').submit();">${football}</a>
+				  </form>
+			  </li>
+			  <li>
+		  		  <form action="Controller" method="get">
+					  <input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>
+					  <input type="hidden" name="gameKind" value="basketball"/>
+					  <input type="hidden" name="go_to_page" value="bookmakerPage"/> 
+					  	<a href="#" onclick="$(this).closest('form').submit();">${basketball}</a>
+				  </form>
+			</li>
+			  <li>
+	  	  		  <form action="Controller" method="get">
+					  <input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>
+					  <input type="hidden" name="gameKind" value="hockey"/>
+					  <input type="hidden" name="go_to_page" value="bookmakerPage"/> 
+					  	<a href="#" onclick="$(this).closest('form').submit();">${hockey}</a>
+				  </form>
+			  </li>
+			</ul>
+     </div>
   
       <div class="col-sm-8 text-left">
       <c:if test="${ game_kind == 'FOOTBALL' }">
@@ -110,8 +141,7 @@
 	<thead>
 		<tr>
 			<td class="success">${gameid}</td>
-			<td>${firstteam}</td>
-			<td>${secondteam}</td>
+			<td>${event}</td>
 			<td>${time}</td>
 			<td>${home}</td>
 			<td>${draw}</td>
@@ -126,27 +156,81 @@
 					  </div>
 					  </td>				  
 				  <td >
-				  			<input type="text" value="${game.firstTeam}"/>	
+				  			${game.firstTeam} - ${game.secondTeam}
 				  </td>				  
 				  <td>
-				  			<input type="text" value="${game.secondTeam}"/>
-				  </td>				  
-				  <td>				  			 
-				  			<input type="datetime-local" value="<fmt:formatDate type="both" 
-            value="${game.date}" />"/>
+				            ${game.date}
 				  </td>
-				  <td>
-				  		    ${game.k1}
+				  <td class="col-sm-2">
+					  	<div >
+					  		<input type="text" value="${game.k1}">
+					   </div>
 				  </td>
-				  <td>
-				  			${game.kx}
+				  <td class="col-sm-2">
+				  			<input type="text" value="${game.kx}">
 				  </td>
-				  <td>
-				  			${game.k2}
+				  <td class="col-sm-2">
+				  			<input type="text" value="${game.k2}">
 				  </td>
 				</tr>			
 		</c:forEach>
 		</table> 
+		<nav>
+		  <ul class="pagination ul-pagination">  
+		  	 <c:if test="${currentPage != 1}">
+   				<li>
+					<form action="Controller">
+						<input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>
+					    <input type="hidden" name="gameKind" value="${gameKind}"/>		
+						<input type="hidden" name="go_to_page" value="bookmakerPage"/>		
+						<input type="hidden" name="pageNumber" value="${currentPage - 1}"/>
+						<a href="#" onclick="$(this).closest('form').submit();">Previous</a>
+					</form>
+				</li>
+			</c:if>
+		    <c:if test="${currentPage == 1}">
+   				<li class="disabled">
+					<a href="#">Previous</a>
+				</li>
+			</c:if>
+				
+				<c:forEach begin="1" end="${noOfPages}" var="i">
+					 <c:choose>
+						<c:when test="${currentPage eq i}">
+							 <li class="active"><a href="#">${i}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<form action="Controller">
+									<input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>
+									<input type="hidden" name="pageNumber" value="${i}"/>	
+									<input type="hidden" name="go_to_page" value="bookmakerPage"/>		
+									<input type="hidden" name="gameKind" value="${gameKind}"/>							
+									<a href="#" onclick="$(this).closest('form').submit();">${i}</a>
+								</form>
+							</li>
+						</c:otherwise>
+					</c:choose> 	
+				</c:forEach>
+			    	
+			  <c:if test="${currentPage != noOfPages}">		    
+   				<li>
+					<form action="Controller">
+						<input type="hidden" name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>	
+						<input type="hidden" name="go_to_page" value="bookmakerPage"/>	
+						<input type="hidden" name="pageNumber" value="${currentPage + 1}"/>
+					    <input type="hidden" name="gameKind" value="${gameKind}"/>	
+						<a href="#" onclick="$(this).closest('form').submit();">Next</a>
+					</form>
+				</li>
+				</c:if>
+			  <c:if test="${currentPage == noOfPages}">		    
+   				<li class="disabled">
+						<a href="#">Next</a>
+				</li>
+				</c:if>
+		  </ul>
+		</nav>
 	</div>	
 
         <p><a href="redirectToAddNewGamePage" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-plus"/>${addnewgame}</a></p>

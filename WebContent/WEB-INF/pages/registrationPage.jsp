@@ -1,106 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-   <%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>
-  <%@ taglib prefix="fmt" 
-    uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>User Page</title>
+    <title>Registration</title>
 
-    <!-- Bootstrap core CSS -->
- 
-    <script src="bootstrap-3.3.7-dist/jquery/jquery-3.1.1.js"></script>   
+    <script src="bootstrap-3.3.7-dist/jquery/jquery-3.1.1.js"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    
-    	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
-
-   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
-
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/validationStyles.css">
   </head>
-  <body>  
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    
-        <c:if test="${userRegistrationError == 'emptylogin'}">          
- 		 <span class="col-md-12 label label-danger">${emptylogin}</span>    
-   		</c:if> 
-   		<c:if test="${userRegistrationError == 'emptyemail'}">          
- 		 <span class="col-md-12 label label-danger">${emptyemail}</span>    
-   		</c:if> 
-   		 <c:if test="${userRegistrationError == 'emptypassword'}">          
- 		 <span class="col-md-12 label label-danger">${emptypassword}</span>    
-   		</c:if> 
-   		 <c:if test="${userRegistrationError == 'loginalreadyexists'}">          
- 		 <span class="col-md-12 label label-danger">${loginalreadyexists}</span>    
-   		</c:if> 
-   		 <c:if test="${userRegistrationError == 'emailalreadyexists'}">          
- 		 <span class="col-md-12 label label-danger">${emailalreadyexists}</span>    
-   		</c:if>
 
-   		
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-           <a class="navbar-brand" href="redirectToIndexPage">На главную</a>
-          <a class="navbar-brand" href="#">Регистрация нового пользователя</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <form action="Controller" method="get"  class="navbar-form navbar-right">       
+  <body>
 
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
+    <nav class="navbar navbar-default">
+	  	<div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="redirectToIndexPage">Totalizator</a>
+		    </div>
+		</div>
+	</nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h2>Заполните информацию о себе</h2>
-        
-		    <div class="container">
-		        <form action="Controller" method="get" >
-				<div class="form-group row">
-				  <input type="hidden" name="command" value="registration_user_command"/>
-				  <label for="example-text-input" class="col-2 col-form-label">Логин</label>
-				  <div class="col-10">
-				    <input name="login" class="form-control" type="text" placeholder="Введите логин" id="example-text-input">
-				  </div>
-				</div>
-		
-				<div class="form-group row">
-				  <label for="example-email-input" class="col-2 col-form-label">Электронная почта</label>
-				  <div class="col-10">
-				    <input name="email" class="form-control" type="email" placeholder="asuschenya@gmail.com" id="example-email-input">
-				  </div>
-				</div>
-			
-				<div class="form-group row">
-				  <label for="example-password-input" class="col-2 col-form-label">Password</label>
-				  <div class="col-10">
-				    <input name="password" class="form-control" type="password" placeholder="password" id="example-password-input">
-				  </div>
-				</div>
-				  <button type="submit" class="btn btn-success">Зарегистрироваться</button>
-				</form>
-			</div>       
-       
-         
-      </div>
-    </div>
-    
+	<div class="container-fluid text-center">
+	  <div class="row content">
+	      <div class="col-sm-2 sidenav">
+			<h3>Left Side</h3>
+	  	 </div>
+	    <div class="col-sm-10 text-left">
+			<div class="container">
+			  <h2>Registration</h2>
+			  <form class="form-horizontal"  onsubmit="return validateForm();" name="registrationForm">
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="login">Login:</label>
+			      <div class="col-sm-10">
+		      		  <input type="text" name="login" class="form-control" id="login" placeholder="Enter Login" pattern="^[a-zA-Z][a-z0-9_]{5,15}$" title="More than 6 symbols (Letters, numbers or _)" required>
+		      		  <span class="validation-error-span"></span>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="email">Email:</label>
+			      <div class="col-sm-9">
+			        <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" required>
+			        <span id="myForm" ></span>
+			      </div>
+			      <div class="col-sm-1">
+			      	<button type="button"class="button signinbutton" onclick="addEmailFunction();"><span class="glyphicon glyphicon-plus"></span></button>
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="pwd">Password:</label>
+			      <div class="col-sm-10">
+			        <input type="password" name="password" class="form-control" id="pwd" placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" title="More tham 6 symbols" required>
+			        <span></span>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="confirmpwd">Confirm Password:</label>
+			      <div class="col-sm-10">
+			        <input type="password" name="confirmPassword" class="form-control" id="confirmpwd" placeholder="Confirm password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" title="Confirm title" required>
+			        <span class="validation-error-span" id="passwordError"></span>
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="age">Age:</label>
+			      <div class="col-sm-5">
+			        <input type="number" name="age" class="form-control" id="age" placeholder="Age" min="7" max="120" required>
+			        <span></span>
+			      </div>
+			    </div>
+
+			    <div class="form-group">
+			      <div class="col-sm-offset-2 col-sm-8">
+			        <button type="submit" class="btn btn-default">Submit</button>
+			      </div>
+			    </div>
+			  </form>
+			</div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<footer class="container-fluid text-center">
+	  <p>Footer Text</p>
+	</footer>
+
+	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/validation.js"></script>
   </body>
 </html>

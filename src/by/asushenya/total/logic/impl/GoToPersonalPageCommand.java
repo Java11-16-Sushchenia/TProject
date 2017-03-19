@@ -1,6 +1,7 @@
 package by.asushenya.total.logic.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.asushenya.total.bean.User;
@@ -14,7 +15,7 @@ import by.asushenya.total.logic.util.Encryptor;
 public class GoToPersonalPageCommand implements ICommand {
 
 	@Override 
-	public String execute(HttpServletRequest request) throws CommandException{
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
 
 			
 		return null;

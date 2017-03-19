@@ -11,8 +11,8 @@
 </head>
 <body>
 	<c:redirect url="/Controller">
-		<c:param name="command" value="GET_GAMES_BY_KIND_COMMAND"/>		
-		<c:param name="game_kind" value="FOOTBALL"/>				
+		<c:param name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>		
+		<c:param name="page" value="1"/>				
 		<c:param name="go_to_page" value="index"/>
 	</c:redirect>
 </body>

@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encryptor {
-	public static String getMD5(String st) {
+	public static String getMD5Hash(String st) {
 	    MessageDigest messageDigest = null;
 	    byte[] digest = new byte[0];
 	 

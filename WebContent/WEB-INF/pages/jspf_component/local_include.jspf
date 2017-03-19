@@ -29,13 +29,17 @@
   <fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
   <fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
   
-  <fmt:message bundle="${loc}" key="local.makerate.emptyuser" var="emptyuser"/>
-  <fmt:message bundle="${loc}" key="local.makerate.nomoney" var="nomoney"/>
-  <fmt:message bundle="${loc}" key="local.unknownerror" var="unknownerror"/>
-  <fmt:message bundle="${loc}" key="local.makerate.emptyrate" var="emptyrate"/>
-  <fmt:message bundle="${loc}" key="local.makerate.ratenotanumber" var="ratenotanumber"/>
+  <%-- Make Rate errors --%>
   <fmt:message bundle="${loc}" key="local.makerateerror" var="makerateerror"/>
   <fmt:message bundle="${loc}" key="local.makeratesuccess" var="makeratesuccess"/>
+  <fmt:message bundle="${loc}" key="local.makerate.emptyuser" var="emptyuser"/>
+  <fmt:message bundle="${loc}" key="local.makerate.nomoney" var="nomoney"/>
+  <fmt:message bundle="${loc}" key="local.makerate.lessthanzero" var="lessthanzero"/>
+  <fmt:message bundle="${loc}" key="local.unknownerror" var="unknownerror"/>
+  <fmt:message bundle="${loc}" key="local.makerate.emptyrate" var="emptyrate"/>
+  <fmt:message bundle="${loc}" key="local.makerate.emptygame" var="emptygame"/>
+  <fmt:message bundle="${loc}" key="local.makerate.ratenotanumber" var="ratenotanumber"/>
+
   
   <%-- addNewGamePage --%>
   
@@ -62,4 +66,10 @@
   <fmt:message bundle="${loc}" key="local.table.game.firstteam" var="firstteam"/>
   <fmt:message bundle="${loc}" key="local.table.game.secondteam" var="secondteam"/>
   <fmt:message bundle="${loc}" key="local.game.newgameadding" var="newgameadding"/>
+  
+   <fmt:message bundle="${loc}" key="local.authorization.error" var="authorizationerror"/>
+   <fmt:message bundle="${loc}" key="local.authorization.invalidlogin" var="invalidpassword"/>
+   <fmt:message bundle="${loc}" key="local.authorization.notregistred" var="notregistred"/>
+
+  
   

@@ -21,8 +21,7 @@ public class Controller extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		doPost(request,response);
 	}
 
@@ -38,7 +37,7 @@ public class Controller extends HttpServlet {
 		String page = null;
 		
 		try{
-			page = command.execute(request);
+			page = command.execute(request,response);
 		} catch(CommandException e){
 			page = JspPageName.ERROR_PAGE;
 			e.printStackTrace();

@@ -1,8 +1,11 @@
 package by.asushenya.total.logic.impl;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.sun.media.sound.SoftTuning;
@@ -20,12 +23,14 @@ import by.asushenya.total.logic.ICommand;
 import by.asushenya.total.logic.util.Encryptor;
 import by.asushenya.total.logic.util.PersonalPagesHelper;
 
+import org.json.simple.JSONObject;
+
 public class MakeRateCommand implements ICommand {
 
 	@Override 
-	public String execute(HttpServletRequest request) throws CommandException{
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
 	
-		HttpSession session = request.getSession(true);
+	/*	HttpSession session = request.getSession(true);
 		
 		String game_id = request.getParameter("game_id");
 		String rate_money = request.getParameter("rate_money");
@@ -128,8 +133,22 @@ public class MakeRateCommand implements ICommand {
 		}
 		if(kindOfSelectedGame == GameKind.HOCKEY){
 			return JspPageName.REDIRECT_TO_INDEX_WITH_HOCKEY_GAME;
+		}*/
+		
+		JSONObject obj = new JSONObject();
+		obj.put("errorMessage", "some error Message");
+		PrintWriter out = null;
+		response.setContentType("application/json");
+		try {
+			out = response.getWriter();
+			out.print(obj);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
 		}
 		
+		
+	
 		return JspPageName.REDIRECT_TO_INDEX_PAGE;
 	}
 }

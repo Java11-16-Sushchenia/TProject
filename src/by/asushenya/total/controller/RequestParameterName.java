@@ -7,4 +7,21 @@ public class RequestParameterName {
 	public static final String SIMPLE_INFO = "simpleinfo";
 	public static final String FILE_NAME = "filename";
 	
+	public static final String USER = "user";
+	
+	// make rate ajax command
+	public static final String GAME_ID = "gameId";
+	public static final String RATE_COEFFICIENT = "rateCoefficient";
+	public static final String CHOICE = "choice";
+	public static final String RATE_MONEY = "rateMoney";
+	
+	//authorize ajax command
+	public static final String LOGIN = "login";
+	public static final String PASSWORD = "password";
+	
+	public static final String PAGE_NUMBER = "pageNumber";
+	public static final String GAME_KIND = "gameKind";
+	
+	
+
 }

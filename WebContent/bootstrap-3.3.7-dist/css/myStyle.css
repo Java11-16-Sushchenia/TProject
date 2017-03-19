@@ -20,12 +20,218 @@
       color: white;
       padding: 15px;
     }
+
+    
+.ul-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+}
+
+.ul-nav li a {
+    display: block;
+    color: #000;
+    padding: 16px 16px;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'MV Boli', cursive;
+    transition-duration: 0.5s;
+}
+
+.ul-nav li a:hover {
+    background-color: #45a049;
+    color: white;
+        transition-duration: 0.1s;
+        border-radius:8px;
+}
+
+.ul-nav li+li a:hover {
+    background-color: #bc1339;
+    color: #fff;
+        transition-duration: 0.1s;
+}
+
+.ul-nav li+li+li a:hover {
+    background-color: #5166cc;
+    color: #fff;
+        transition-duration: 0.1s;
+}
+.ul-nav li+li+li+li a:hover {
+    background-color: #b3bc20;
+    color: #fff;
+        transition-duration: 0.1s;
+}
+
+
+.hidden-make-rate{
+	visibility: hidden;
+}
+
+.authorization-error-modal{
+	display: none;	
+	text-align: center;
+}
+.authorization-success-modal{
+	display: none;	
+}
+
+.button {
+    width: 100%;
+    background-color: #45a049; 
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 4px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.signinbutton {
+	width: 100%;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #45a049;
+}
+
+.signinbutton:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+.signupbutton {
+	width:100%;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f00;
+}
+
+.signupbutton:hover {
+    background-color: #f00;
+    color: white;
+}
+
+.dropbtn {
+    width: 100%;
+    border: 2px solid #ffa500;
+    background-color: #fff;
+    color:#000; 
+}
+
+.dropbtn:hover {
+      background-color: #ffa500;
+      color:#000; 
+  }
+
+.dropdown {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 98px;
+    box-shadow: 0px 5px 5px 0px #ffa500;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 10;
+    width:100%;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+
+  background-color: #ffa500;
+     border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 8px 8px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+}
+
+input[type=text]:focus {
+    border: 1px solid #45a049;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 8px 8px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+}
+
+input[type=password]:focus {
+    border: 1px solid #ff0000;
+}
+
+input[type=email] {
+    width: 100%;
+    padding: 8px 8px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inconsolata', monospace;
+}
+input[type=email]:focus {
+    border: 1px solid #45a049;
+}
+
+.ul-pagination {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #999;
+}
+
+.ul-pagination li {
+    float: left;
+}
+
+.ul-pagination li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.ul-pagination li a:hover {
+    background-color: #111111;
+}
+
     
     /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 880px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
       .row.content {height:auto;} 
     }
+    
