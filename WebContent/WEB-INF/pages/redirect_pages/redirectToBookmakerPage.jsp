@@ -11,8 +11,8 @@
 </head>
 <body>
 	<c:redirect url="/Controller">
-		<c:param name="command" value="GET_ALL_GAMES_COMMAND"/>	
-		<c:param name="go_to_page" value="bookmakerPage"/>			
+		<c:param name="command" value="GET_PAGE_WITH_GAMES_COMMAND"/>	
+		<c:param name="go_to_page" value="bookmakerPage"/>	
 	</c:redirect>
 </body>
 </html>

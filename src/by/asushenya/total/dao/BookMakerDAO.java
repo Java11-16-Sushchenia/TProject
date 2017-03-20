@@ -7,7 +7,7 @@ import by.asushenya.total.bean.Team;
 import by.asushenya.total.dao.exception.DAOException;
 
 public interface BookMakerDAO {
-	List<Game> getAllGames() throws DAOException;
+	List<Game> getAllGames(String local) throws DAOException;
 	void addGame(Game game) throws DAOException;
 	List<Team> getAllTeams() throws DAOException;
 	void setNewGameRates(int gameId, double k1, double kx, double k2)throws DAOException;

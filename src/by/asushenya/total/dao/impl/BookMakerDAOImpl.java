@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Team;
+import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.dao.BookMakerDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.util.ConnectionManager;
@@ -54,7 +55,7 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 		}			
 	}
 	
-	public List<Game> getAllGames() throws DAOException {
+	public List<Game> getAllGames(String local) throws DAOException {
 		
 	    Connection con = null;
 	    Statement st = null;
@@ -65,7 +66,12 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 	    	    	  	
 	        con = ConnectionManager.getDBTotalizatorConnection();
 	        st = con.createStatement();
-	        rs = st.executeQuery(getAllGamesQuerry);
+	        
+	        if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
+	        	rs = st.executeQuery(getAllGamesQuerry);
+	        } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
+	        	rs = st.executeQuery(getAllGamesQuerry);
+	        }
 	        
 	        while (rs.next()) {
 	            Game game = new Game();

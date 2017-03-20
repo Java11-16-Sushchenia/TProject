@@ -94,21 +94,21 @@
      </div>
   
       <div class="col-sm-8 text-left">
-      <c:if test="${ game_kind == 'FOOTBALL' }">
-      	<h2>${ soccer }</h2>
-      </c:if>
-      
-      <c:if test="${ game_kind == 'BASKETBALL' }">
-		<h2>${ basketball }</h2>
-	</c:if>
-	
-	 <c:if test="${ game_kind == 'HOCKEY' }">
-		<h2>${ hockey }</h2>
-	</c:if>
-	
-      <c:if test="${ game_kind == null }">
-		<h2>${allgames}</h2>
-	</c:if>        
+	     <c:if test="${ gameKind == 'FOOTBALL' }">
+	      	<h2>${ soccer }</h2>
+	      </c:if>
+	      
+	      <c:if test="${ gameKind == 'BASKETBALL' }">
+			<h2>${ basketball }</h2>
+		</c:if>
+		
+		 <c:if test="${ gameKind == 'HOCKEY' }">
+			<h2>${ hockey }</h2>
+		</c:if>
+		
+	      <c:if test="${ gameKind == null }">
+			<h2>${allgames}</h2>
+		</c:if>       
         
      <div class="container">
 	<table class="table table-striped table-hover table-bordered">

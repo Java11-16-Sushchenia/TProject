@@ -14,7 +14,7 @@ import by.asushenya.total.bean.Rate;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.UserRole;
-
+import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.util.ConnectionManager;
@@ -33,9 +33,11 @@ public class UserDAOImpl implements UserDAO{
 	private static final String findUserByEmail = "select id, login,email, password , role, cash from user where email = '";
 	private static final String getAllUserRateQuerry = "select rate.id, (select name from team where team.id = game.team_1) `team_1`, (select name from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = '";
 	private static final String getGamesByTypeQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
+	private static final String getGamesByTypeEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String makeRateQuerry = "insert into rate (user_id, game_id, money, choice, game_coefficient) values(?,?,?,?,?)";
 	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game where is_visible = true";
 	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
+	private static final String getAllGamesEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	
 	public User findUserByEmail(String email) throws DAOException{
 		Connection con = null;
@@ -243,13 +245,19 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 
-	public List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind) throws DAOException {
+	public List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind, String local) throws DAOException {
 		
 		 Connection con = null;
 		 Statement st = null;
 		 ResultSet rs = null;
 		 StringBuilder getPartOfGamesByType = new StringBuilder();
-		 getPartOfGamesByType.append(getAllGamesQuerry);
+		 
+		 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
+			 getPartOfGamesByType.append(getAllGamesQuerry);
+		 } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
+			 getPartOfGamesByType.append(getAllGamesEnQuerry);
+		 }
+		 
 		 
 		 if(gameKind != null){
 			 getPartOfGamesByType.append(" and game_kind = '"+gameKind.toString()+"'");

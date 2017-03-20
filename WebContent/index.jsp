@@ -144,9 +144,9 @@
 		
 	      <c:if test="${ gameKind == null }">
 			<h2>${allgames}</h2>
-		</c:if>        
+		</c:if>    
+		    
       <div>
-
 	 <table class="table table-striped table-hover table-bordered">
 		<thead>
 			<td>${time }</td>

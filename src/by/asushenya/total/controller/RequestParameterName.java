@@ -18,6 +18,10 @@ public class RequestParameterName {
 	public static final String KX = "kx";
 	public static final String K2 = "k2";
 	
+	// session local
+	
+	public static final String SESSION_LOCAL_RU = "ru";
+	public static final String SESSION_LOCAL_EN = "en";
 	
 	//authorize ajax command
 	public static final String LOGIN = "login";

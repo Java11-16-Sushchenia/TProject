@@ -25,8 +25,14 @@ public class GetPageWithGamesCommand implements ICommand{
 		int recordsPerPage = 5;
 		int noOfRecords = 0;
 		GameKind gameKind =  null;
+		String local = (String)request.getSession(true).getAttribute("local");
+		
 		
 		List<Game> list = null;
+		
+		if(local == null){
+			local = RequestParameterName.SESSION_LOCAL_RU;
+		}
 		
 		if(request.getParameter(RequestParameterName.PAGE_NUMBER) != null){
 			page = Integer.parseInt(request.getParameter(
@@ -46,7 +52,8 @@ public class GetPageWithGamesCommand implements ICommand{
 		try{
 			 list = userDAO.getGamesForPage((page-1)*recordsPerPage,
 					 						 recordsPerPage,
-					 						 gameKind);
+					 						 gameKind,
+					 						 local);
 
 			 noOfRecords = userDAO.getGamesRecordsByGameKindCount(gameKind);
 		} catch(DAOException e){
