@@ -4,12 +4,14 @@ package by.asushenya.total.bean;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import by.asushenya.total.bean.util.GameKind;
+
 public class Game implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private String gameKind;
+	private GameKind gameKind;
 	private String firstTeam;
 	private String secondTeam;
 	private Timestamp date;
@@ -20,10 +22,10 @@ public class Game implements Serializable{
 
 	public Game(){}
 
-	public String getGameKind() {
+	public GameKind getGameKind() {
 		return gameKind;
 	}
-	public void setGameKind(String gameKind) {
+	public void setGameKind(GameKind gameKind) {
 		this.gameKind = gameKind;
 	}
 	

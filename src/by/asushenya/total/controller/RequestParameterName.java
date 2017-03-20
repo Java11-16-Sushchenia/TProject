@@ -17,6 +17,9 @@ public class RequestParameterName {
 	public static final String K1 = "k1";
 	public static final String KX = "kx";
 	public static final String K2 = "k2";
+	public static final String FIRST_TEAM = "firstTeam";
+	public static final String SECOND_TEAM = "secondTeam";
+	public static final String GAME_DATE = "gameDate";
 	
 	// session local
 	

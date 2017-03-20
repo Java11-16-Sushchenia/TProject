@@ -17,12 +17,12 @@ import by.asushenya.total.logic.ICommand;
 import by.asushenya.total.logic.util.Encryptor;
 import by.asushenya.total.logic.util.PersonalPagesHelper;
 
-public class AddNewGameCommand implements ICommand {
+public class AddNewGameCommand {
 
-	@Override 
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException{
-	
-		HttpSession session = request.getSession(true);
+	 
+	public String execute(HttpServletRequest request, HttpServletResponse response){
+	return null;
+		/*HttpSession session = request.getSession(true);
 		Game game = new Game();
 		
 		game.setGameKind(request.getParameter("game_kind"));//стоит ли проверять select'ы
@@ -115,5 +115,6 @@ public class AddNewGameCommand implements ICommand {
 		}		
 		
 		return "redirectToBookmakerPage";
+	}*/
 	}
 }

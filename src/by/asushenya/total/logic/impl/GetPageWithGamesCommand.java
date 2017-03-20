@@ -42,8 +42,9 @@ public class GetPageWithGamesCommand implements ICommand{
 		if(request.getParameter(RequestParameterName.GAME_KIND) != null && 
 			!request.getParameter(RequestParameterName.GAME_KIND).isEmpty()	){
 			
-			gameKind = GameKind.valueOf(request.getParameter(
-							RequestParameterName.GAME_KIND).toUpperCase());
+			String gameKindInString = request.getParameter(RequestParameterName.GAME_KIND);
+			gameKind = GameKind.valueOf(gameKindInString.toUpperCase());
+			System.out.println(gameKind);
 		}
 		
 		DAOFactory daoFactory = DAOFactory.getInstance();

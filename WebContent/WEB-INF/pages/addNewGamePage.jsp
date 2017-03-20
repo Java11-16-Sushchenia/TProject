@@ -179,7 +179,7 @@
       <h1>${newgameadding}</h1>
             
       <div>
-      		<form action="Controller" method="get">
+      		<form action="Controller" method="get" class="addNewGameForm">
       		<div class="row">
       			<div class="col-xs-4">
       			<label for="game-kind-select">${gamekind}</label>
@@ -220,20 +220,20 @@
 			<div class="row">
 			  <div class="col-xs-2">
 			  <label for="game-koefficient-k1">${home}</label>
-			    <input id="game-koefficient-k1" name="k1" type="text" class="form-control" placeholder="k1">
+			    <input id="game-koefficient-k1" name="k1" type="number" min="1.1" class="form-control" placeholder="k1">
 			  </div>
 			  <div class="col-xs-2">
 			   <label for="game-koefficient-kx">${draw}</label>
-			    <input id="game-koefficient-kx" name="kx" type="text" class="form-control" placeholder="kx">
+			    <input id="game-koefficient-kx" name="kx" type="number" min="1.1"  class="form-control" placeholder="kx">
 			  </div>
 			  <div class="col-xs-2">
 			   <label for="game-koefficient-k2">${away}</label>
-			    <input id="game-koefficient-k2" name="k2" type="text" class="form-control" placeholder="k2">
+			    <input id="game-koefficient-k2" name="k2" type="number" min="1.1"  class="form-control" placeholder="k2">
 			  </div>
 			</div>	
 			<div>			
 			   <input type="hidden" name="command" value="ADD_NEW_GAME_COMMAND"/>
-          			  		<input class="btn" type="submit" value="${addnewgame}" />
+          			  		<input class="btn signinbutton" type="submit" value="${addnewgame}" />
 			</div>			
 			</form>		
       </div>      
@@ -254,5 +254,44 @@
   <p>Epam 2017  </p>
 </footer>
     <!-- Main jumbotron for a primary marketing message or call to action -->
+    
+    <script>
+    	$(".addNewGameForm").submit(function(event){
+    		 
+    		var command = event.currentTarget['command'].value;
+    		var gameKind = event.currentTarget['game_kind'].value;
+    		var firstTeam = event.currentTarget['team_1'].value;
+    		var secondTeam = event.currentTarget['team_2'].value;
+    		var gameDate = event.currentTarget['date'].value;
+    		var k1 = event.currentTarget['k1'].value;
+    		var kx = event.currentTarget['kx'].value;
+    		var k2 = event.currentTarget['k2'].value;
+    		
+    		var timeStampGameDate = gameDate.concat(":00").replace("T"," ");
+    		
+			$.ajax({
+				type:"POST",
+				data:{
+						command:"ADD_NEW_GAME_AJAX_COMMAND",
+						gameKind:gameKind,
+						firstTeam:firstTeam,
+						secondTeam:secondTeam,
+						gameDate:timeStampGameDate,
+						k1:k1,
+						kx:kx,
+						k2:k2
+					 },
+				url:"AJAXController",
+	            success : function(data) {
+	            	var json = JSON.parse(data);
+	            	
+	            	var successMessage = json["success"];
+	            	alert(successMessage);
+	            }
+			});
+    		
+    		event.preventDefault(); 
+    	})	;
+    </script>
 </body>
 </html>

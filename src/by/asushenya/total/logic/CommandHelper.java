@@ -29,7 +29,7 @@ public final class CommandHelper {
 		commands.put(CommandName.GET_ALL_USERS_COMMAND, new GetAllUsersCommand());
 		commands.put(CommandName.GET_ALL_GAMES_COMMAND, new GetAllGamesCommand());
 		commands.put(CommandName.GET_ALL_TEAMS_COMMAND, new GetAllTeamsCommand());
-		commands.put(CommandName.ADD_NEW_GAME_COMMAND, new AddNewGameCommand());
+		//commands.put(CommandName.ADD_NEW_GAME_COMMAND, new AddNewGameCommand());
 		commands.put(CommandName.GET_PAGE_WITH_GAMES_COMMAND, new GetPageWithGamesCommand());
 		commands.put(CommandName.MAKE_RATE_COMMAND, new MakeRateCommand());
 		commands.put(CommandName.MAKE_RATE_INIT_COMMAND, new MakeRateInitCommand());

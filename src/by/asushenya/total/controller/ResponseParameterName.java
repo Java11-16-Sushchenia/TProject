@@ -4,6 +4,8 @@ public class ResponseParameterName {
 
 	public final static String ERROR_TYPE = "errorType";
 	public final static String ERROR_MSSAGE = "errorMessage";
+	public final static String SUCCESS = "success";
+	public final static String SUCCESS_MESSAGE = "successMessage";
 	
 	
 	// make rate ajax command

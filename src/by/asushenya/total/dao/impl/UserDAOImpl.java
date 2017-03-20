@@ -192,7 +192,8 @@ public class UserDAOImpl implements UserDAO{
 	            Game game = new Game();
 	            
 	            game.setId(rs.getInt("id"));
-	            game.setGameKind(rs.getString("game_kind"));
+	            game.setGameKind(GameKind.valueOf(
+	            				rs.getString("game_kind").toUpperCase()));
 	            game.setFirstTeam(rs.getString("team_1"));
 	            game.setSecondTeam(rs.getString("team_2"));
 	            game.setDate(rs.getTimestamp("date"));
@@ -260,7 +261,7 @@ public class UserDAOImpl implements UserDAO{
 		 
 		 
 		 if(gameKind != null){
-			 getPartOfGamesByType.append(" and game_kind = '"+gameKind.toString()+"'");
+			 getPartOfGamesByType.append(" and game_kind = '"+gameKind.toString().toLowerCase()+"'");
 		 }		 
 		 
 		 getPartOfGamesByType.append(" limit "+ offset + ", " + noOfRecords);	
@@ -276,7 +277,7 @@ public class UserDAOImpl implements UserDAO{
 			while (rs.next()) {
 				Game game = new Game();
 				game.setId(rs.getInt("id"));
-	            game.setGameKind(rs.getString("game_kind"));
+	            game.setGameKind(GameKind.valueOf(rs.getString("game_kind").toUpperCase()));
 	            game.setFirstTeam(rs.getString("team_1"));
 	            game.setSecondTeam(rs.getString("team_2"));
 	            game.setDate(rs.getTimestamp("date"));

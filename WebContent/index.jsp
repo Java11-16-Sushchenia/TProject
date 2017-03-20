@@ -176,12 +176,13 @@
 			  		</form>
 				  </td>
 				    <td>
-				    <c:if test="${game.gameKind == 'basketball'}">
+				    <c:set var="currentGameKind">${game.gameKind}</c:set>
+				    <c:if test="${currentGameKind == 'BASKETBALL'}">
 				    <form>
 				    	<button type="button" class="btn btn-link">-</button>
 				    </form>
 				    </c:if>
-				    <c:if test="${game.gameKind != 'basketball'}">
+				    <c:if test="${currentGameKind != 'BASKETBALL'}">
 				  	<form class="init-form">
 			  			<input type="hidden" name="command" value="MAKE_RATE_INIT_COMMAND"/>
 			  			<input type="hidden" name="game_id" value="${game.id}"/>
@@ -193,6 +194,7 @@
 			  			<button type="submit" class="btn btn-link">${game.kx}</button>
 			  		</form>
 			  		</c:if>
+			  		<c:remove var="currentGameKind"/>
 				  </td>
 				    <td>
 				  	<form class="init-form">
@@ -378,7 +380,6 @@ $(".authorize-user-form").submit(function(event){
 });
 
 $(".init-form").submit(function(event) {
-  console.log(event.currentTarget);
   var command		  = event.currentTarget['command'].value;
   var game_id 		  = event.currentTarget['game_id'].value;     
   var first_team 	  = event.currentTarget['first_team'].value;      
