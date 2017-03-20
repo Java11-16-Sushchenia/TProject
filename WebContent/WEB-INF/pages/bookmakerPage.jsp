@@ -123,7 +123,7 @@
 		</tr>
 	</thead>
 		<c:forEach var="game" items="${games}" >	 		
-				<tr>			
+				<tr id="gameRow-${game.id}">			
 					  <td class="success">
 					  <div class="col-md-2">
 					  		${game.id}
@@ -137,20 +137,20 @@
 				  </td>
 				  <td class="col-sm-2">
 					  	<div >
-					  		<input id="k1-${game.id}" onchange="changeButtonColor(this);" type="number" min="1.1" value="${game.k1}">
+					  		<input id="k1-${game.id}" onchange="changeButtonColorCommitable(this);" type="number" min="1.1" value="${game.k1}">
 					   </div>
 				  </td>
 				  <td class="col-sm-2">
-				  			<input  id="kx-${game.id}" onchange="changeButtonColor(this);" type="number" min="1.1" value="${game.kx}">
+				  			<input  id="kx-${game.id}" onchange="changeButtonColorCommitable(this);" type="number" min="1.1" value="${game.kx}">
 				  </td>
 				  <td class="col-sm-2">
-				  			<input  id="k2-${game.id}" onchange="changeButtonColor(this);" type="number" min="1.1" value="${game.k2}">
+				  			<input  id="k2-${game.id}" onchange="changeButtonColorCommitable(this);" type="number" min="1.1" value="${game.k2}">
 				  </td>
 				  <td>
 				  	 	<button onclick="commitChanges(this);" id="saveButton-${game.id}" type="submit" class="button signinbutton">Сохранить</button>
 				  </td>
 				  <td>
-				  	 	<button onclick="commitChanges(this);" id="saveButton-${game.id}" type="submit" class="button signщгеbutton">Удалить</button>
+				  	 	<button onclick="removeTableRowWithGame(this);" id="saveButton-${game.id}" type="submit" class="button signupbutton">Удалить</button>
 				  </td>
 				</tr>			
 		</c:forEach>
@@ -222,20 +222,59 @@
 	</footer>
 	
 	<script>
-		function changeButtonColor(inputObject){
+		function changeButtonColorCommitable(inputObject){
 			var changedGameId = inputObject.id.split("-")[1];			
 			var changeButtonId = "#saveButton-"+changedGameId;
 			$(changeButtonId).removeClass('signinbutton').addClass('commitbtn');
 		}
 		
+		function changeButtonColorUnCommitable(inputObject){
+			var changedGameId = inputObject.id.split("-")[1];			
+			var changeButtonId = "#saveButton-"+changedGameId;
+			$(changeButtonId).removeClass('commitbtn').addClass('signinbutton');
+		}
+		
 		function commitChanges(buttonObject){
+			
 			var changedGameId = buttonObject.id.split("-")[1];
 			
 			var k1Value = $("#k1-"+changedGameId).val();
 			var kxValue = $("#kx-"+changedGameId).val();
 			var k2Value = $("#k2-"+changedGameId).val();
-			debugger;
+			
+
+			$.ajax({
+				type:"POST",
+				data:{command:"SET_NEW_GAME_RATES_AJAX_COMMAND",
+					  gameId:changedGameId,
+					  k1:k1Value,
+					  kx:kxValue,
+					  k2:k2Value,
+					 },
+				url:"AJAXController",
+	            success : function(data) {
+	            	changeButtonColorUnCommitable(buttonObject);
+	            }
+			});
 		}
+		
+		function removeTableRowWithGame(buttonObject){
+			var changedGameId = buttonObject.id.split("-")[1];	
+			
+			
+			$.ajax({
+				type:"POST",
+				data:{
+						command:"MAKE_GAME_INVISIBLE_AJAX_COMMAND",
+						gameId:changedGameId
+					 },
+				url:"AJAXController",
+	            success : function(data) {
+	            	$("#gameRow-"+changedGameId).hide();
+	            }
+			});
+		}
+		
 	</script>
   </body>
 </html>

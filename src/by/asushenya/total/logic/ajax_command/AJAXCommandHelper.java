@@ -5,7 +5,9 @@ import java.util.Map;
 
 import by.asushenya.total.logic.CommandName;
 import by.asushenya.total.logic.ajax_command.impl.MakeRateAJAXCommand;
+import by.asushenya.total.logic.ajax_command.impl.SetNewGameRatesAJAXCommand;
 import by.asushenya.total.logic.ajax_command.impl.AuthorizationUserAJAXCommand;
+import by.asushenya.total.logic.ajax_command.impl.MakeGameInvisibleAJAXCommand;
 
 
 public final class AJAXCommandHelper {
@@ -17,6 +19,8 @@ public final class AJAXCommandHelper {
 	public AJAXCommandHelper(){
 		commands.put(CommandName.MAKE_RATE_COMMAND, new MakeRateAJAXCommand());
 		commands.put(CommandName.AUTHORIZATION_USER_COMMAND, new AuthorizationUserAJAXCommand());
+		commands.put(CommandName.SET_NEW_GAME_RATES_AJAX_COMMAND, new SetNewGameRatesAJAXCommand());
+		commands.put(CommandName.MAKE_GAME_INVISIBLE_AJAX_COMMAND, new MakeGameInvisibleAJAXCommand());
 	}
 	
 	public static AJAXCommandHelper getInstance(){

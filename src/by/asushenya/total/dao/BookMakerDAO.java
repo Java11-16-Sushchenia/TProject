@@ -10,4 +10,6 @@ public interface BookMakerDAO {
 	List<Game> getAllGames() throws DAOException;
 	void addGame(Game game) throws DAOException;
 	List<Team> getAllTeams() throws DAOException;
+	void setNewGameRates(int gameId, double k1, double kx, double k2)throws DAOException;
+	void makeGameInvisible(int gameId) throws DAOException;
 }

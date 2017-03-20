@@ -21,9 +21,11 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 	private static final Logger log = Logger.getLogger(UserDAOImpl.class);
 
 	private static final String getAllTeamsQuerry = "select id, name from team";
-	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game;";
+	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String addNewGameQuerry =  "insert into game (game_kind, team_1, team_2, date, k1,kx,k2) values(?,?,?,?,?,?,?)";
 	private static final String getTeamIdByName = "select team.id from team where team.name = '";
+	private static final String setNewGameRatesQuerry = "update game set k1 = ?, kx = ?, k2 = ? where game.id = ?";
+	private static final String makeGameInvisibleQuerry = "update game set is_visible = false where game.id = ?";
 	
 	public void addGame(Game game) throws DAOException {
 		Connection con = null;
@@ -145,5 +147,51 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 		    	ConnectionManager.disconnectFromDB(rs, st, con);
 		    }		
 		return teams;
+	}
+
+	public void setNewGameRates(int gameId, double k1, double kx, double k2) throws DAOException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{						
+			con = ConnectionManager.getDBTotalizatorConnection();
+			ps = con.prepareStatement(setNewGameRatesQuerry);
+			
+			ps.setDouble(1, k1);
+			ps.setDouble(2, kx);
+			ps.setDouble(3, k2);
+			ps.setInt   (4, gameId);
+		
+			ps.executeUpdate();
+		} catch (SQLException e){
+			
+			throw new DAOException ("DAOException addEquipment: "+e.getMessage());
+			
+		} finally{	
+			
+				ConnectionManager.disconnectFromDB(ps, con);		
+		}			
+	}
+
+	
+	public void makeGameInvisible(int gameId) throws DAOException {
+	
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{						
+			con = ConnectionManager.getDBTotalizatorConnection();
+			ps = con.prepareStatement(makeGameInvisibleQuerry);
+			
+			ps.setInt(1, gameId);
+		
+			ps.executeUpdate();
+		} catch (SQLException e){
+			
+			throw new DAOException ("DAOException addEquipment: "+e.getMessage());
+			
+		} finally{				
+				ConnectionManager.disconnectFromDB(ps, con);		
+		}	
 	}
 }

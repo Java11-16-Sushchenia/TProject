@@ -14,6 +14,10 @@ public class RequestParameterName {
 	public static final String RATE_COEFFICIENT = "rateCoefficient";
 	public static final String CHOICE = "choice";
 	public static final String RATE_MONEY = "rateMoney";
+	public static final String K1 = "k1";
+	public static final String KX = "kx";
+	public static final String K2 = "k2";
+	
 	
 	//authorize ajax command
 	public static final String LOGIN = "login";

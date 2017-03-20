@@ -32,10 +32,10 @@ public class UserDAOImpl implements UserDAO{
 	private static final String findUserByLogin = "select id, login,email, password , role, cash from user where login = '";
 	private static final String findUserByEmail = "select id, login,email, password , role, cash from user where email = '";
 	private static final String getAllUserRateQuerry = "select rate.id, (select name from team where team.id = game.team_1) `team_1`, (select name from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = '";
-	private static final String getGamesByTypeQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game ";
+	private static final String getGamesByTypeQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String makeRateQuerry = "insert into rate (user_id, game_id, money, choice, game_coefficient) values(?,?,?,?,?)";
-	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game";
-	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game";
+	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game where is_visible = true";
+	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	
 	public User findUserByEmail(String email) throws DAOException{
 		Connection con = null;
@@ -184,7 +184,7 @@ public class UserDAOImpl implements UserDAO{
 	        con = ConnectionManager.getDBTotalizatorConnection();
 	        st = con.createStatement();
 	        
-	        rs = st.executeQuery(getGamesByTypeQuerry + "where game_kind = '"+gameKind.toString().toLowerCase()+"'");
+	        rs = st.executeQuery(getGamesByTypeQuerry + "and game_kind = '"+gameKind.toString().toLowerCase()+"'");
 	        
 	        while (rs.next()) {
 	            Game game = new Game();
@@ -252,7 +252,7 @@ public class UserDAOImpl implements UserDAO{
 		 getPartOfGamesByType.append(getAllGamesQuerry);
 		 
 		 if(gameKind != null){
-			 getPartOfGamesByType.append(" where game_kind = '"+gameKind.toString()+"'");
+			 getPartOfGamesByType.append(" and game_kind = '"+gameKind.toString()+"'");
 		 }		 
 		 
 		 getPartOfGamesByType.append(" limit "+ offset + ", " + noOfRecords);	
@@ -304,7 +304,7 @@ public class UserDAOImpl implements UserDAO{
 				st = con.createStatement();
 				
 				if(gameKind != null){
-					 rs = st.executeQuery(getAllGamesCountQuerry+" where game_kind = '"+gameKind.toString()+"'");
+					 rs = st.executeQuery(getAllGamesCountQuerry+" and game_kind = '"+gameKind.toString()+"'");
 				}else{
 					rs = st.executeQuery(getAllGamesCountQuerry);
 				}
