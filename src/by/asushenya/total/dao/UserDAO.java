@@ -1,12 +1,10 @@
 package by.asushenya.total.dao;
 
-import java.sql.SQLException;
 import java.util.List;
-
-import com.sun.xml.internal.ws.spi.db.DatabindingException;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Rate;
+import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.dao.exception.DAOException;
@@ -20,5 +18,6 @@ public interface UserDAO {
 	boolean makeRate(Rate rate) throws DAOException;
 	List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind, String local) throws DAOException;
 	int getGamesRecordsByGameKindCount(GameKind gameKind)throws DAOException;
+	List<Team> getTeamsByGameKind(GameKind gameKind, String local)throws DAOException;
 
 }

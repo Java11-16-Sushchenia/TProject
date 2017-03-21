@@ -11,6 +11,7 @@ import java.util.List;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Rate;
+import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.UserRole;
@@ -38,6 +39,9 @@ public class UserDAOImpl implements UserDAO{
 	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game where is_visible = true";
 	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String getAllGamesEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
+	
+	private static final String getAllTeamsQuerry = "select id, name as `name` from team";
+	private static final String getAllTeamsEnQuerry = "select id, name_en `name` from team";
 	
 	public User findUserByEmail(String email) throws DAOException{
 		Connection con = null;
@@ -330,5 +334,50 @@ public class UserDAOImpl implements UserDAO{
 				ConnectionManager.disconnectFromDB(rs,st ,con);
 			}
 			return gamesCount;		
+	}
+
+
+	public List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException {
+		
+		 Connection con = null;
+		 Statement st = null;
+		 ResultSet rs = null;
+		 List<Team> teamsOfSomeGameKind = new ArrayList<Team>();
+		 StringBuilder executedQuerry = new StringBuilder();
+		 
+		 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
+			 executedQuerry.append(getAllTeamsQuerry);
+		 } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
+			 executedQuerry.append(getAllTeamsEnQuerry);
+		 }
+		 
+		 if(gameKind != null){
+			 executedQuerry.append(" where game_kind = '")
+			 			   .append(gameKind.toString().toLowerCase())
+			 			   .append("'");
+		 }
+		 
+			try {
+				con = ConnectionManager.getDBTotalizatorConnection();
+				st = con.createStatement();
+				rs = st.executeQuery(executedQuerry.toString());
+				
+				while (rs.next()) {					
+					Team team = new Team();
+					
+					team.setId(rs.getInt("id"));
+					team.setName(rs.getString("name"));
+					
+					teamsOfSomeGameKind.add(team);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DAOException("can't get teams",e);
+				
+			}finally
+			{
+				ConnectionManager.disconnectFromDB(rs,st ,con);
+			}
+			return teamsOfSomeGameKind;	
 	}
 }

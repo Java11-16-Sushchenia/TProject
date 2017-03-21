@@ -8,6 +8,7 @@ import by.asushenya.total.logic.ajax_command.impl.MakeRateAJAXCommand;
 import by.asushenya.total.logic.ajax_command.impl.SetNewGameRatesAJAXCommand;
 import by.asushenya.total.logic.ajax_command.impl.AddNewGameAJAXCommand;
 import by.asushenya.total.logic.ajax_command.impl.AuthorizationUserAJAXCommand;
+import by.asushenya.total.logic.ajax_command.impl.GetTeamsOfSomeGameKindAJAXCommand;
 import by.asushenya.total.logic.ajax_command.impl.MakeGameInvisibleAJAXCommand;
 
 
@@ -23,6 +24,7 @@ public final class AJAXCommandHelper {
 		commands.put(CommandName.SET_NEW_GAME_RATES_AJAX_COMMAND, new SetNewGameRatesAJAXCommand());
 		commands.put(CommandName.MAKE_GAME_INVISIBLE_AJAX_COMMAND, new MakeGameInvisibleAJAXCommand());
 		commands.put(CommandName.ADD_NEW_GAME_AJAX_COMMAND, new AddNewGameAJAXCommand());
+		commands.put(CommandName.GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND, new GetTeamsOfSomeGameKindAJAXCommand());
 	}
 	
 	public static AJAXCommandHelper getInstance(){

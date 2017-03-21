@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+  					     pageEncoding="utf-8"%>
    <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
       <%@ taglib prefix="fmt" 
            uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="authorr" content="">
+    <meta name="authorr" content=""> -->
     <title>Add New Game</title>
 
     <!-- Bootstrap core CSS -->
@@ -179,11 +179,11 @@
       <h1>${newgameadding}</h1>
             
       <div>
-      		<form action="Controller" method="get" class="addNewGameForm">
+      		<form method="get" class="addNewGameForm">
       		<div class="row">
       			<div class="col-xs-4">
       			<label for="game-kind-select">${gamekind}</label>
-      				<select class="form-control" name="game_kind" id="game-kind-select">
+      				<select id="gameKindSelect" class="form-control" name="game_kind">
 					  <option value="football">${football}</option>
 					  <option value="basketball">${basketball}</option>
 					  <option value="hockey">${hockey}</option>
@@ -193,7 +193,7 @@
       		<div class="row">
       			<div class="col-xs-4">
       				<label for="game-first-team">${firstteam}</label>
-      				<select id="game-first-team" name="team_1" class="form-control" >
+      				<select id="game-first-team" name="team_1" class="form-control">
       					<c:forEach var="team" items="${teams}" >      						
 					 		 <option>${team.name}</option>
 					 	 </c:forEach>					 
@@ -291,7 +291,43 @@
 			});
     		
     		event.preventDefault(); 
-    	})	;
+    	});
+    	
+    	$("#gameKindSelect").change(function(element){
+    		var gameKind = $("#gameKindSelect").val();
+
+    		
+    		$.ajax({
+				type:"POST",
+				data:{
+						command:"GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND",
+						gameKind:gameKind						
+					 },
+				url:"AJAXController",
+	            success : function(data) {
+	            	var json = JSON.parse(data);
+	            	debugger;
+	            	
+	        		var firstTeamsSelect  = $("#game-first-team");
+	            	var secondTeamsSelect = $("#game-second-team");
+	            	
+	            	var teams = json["teamsArray"];
+	            	
+	            	firstTeamsSelect.empty();
+	            	secondTeamsSelect.empty();
+	        		
+	        		for(i = 0;i<teams.length;i++){
+	        			firstTeamsSelect.append("<option>"+json["teamsArray"][i]+"</option>");
+	        			secondTeamsSelect.append("<option>"+json["teamsArray"][i]+"</option>");
+	        		}
+	        	
+	            	
+	            }
+			});
+
+    	});
+    	    		
+    	
     </script>
 </body>
 </html>

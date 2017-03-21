@@ -29,6 +29,9 @@ public class ResponseParameterName {
 	
 	public final static String GAME_KIND = "gameKind";
 	
+	// GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND
+	public final static String TEAMS_ARRAY = "teamsArray";	
+	
 	
 	
 	
