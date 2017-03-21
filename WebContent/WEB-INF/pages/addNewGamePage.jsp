@@ -24,7 +24,11 @@
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> 
  
  	   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
- 
+ <style type="text/css">
+ 	.success-modal{
+ 		display:none;
+ 	}
+ </style>
   </head> 
 
   <body>   
@@ -143,6 +147,13 @@
 
 
   <nav class="navbar navbar-default">
+	<div class="success-modal">
+		<div class="alert alert-success fade in">
+		    <a href="#" class="close" data-dismiss="alert">x</a>
+		    <strong class="successType"></strong>
+		</div>
+	</div>	
+  
   	<div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
@@ -283,10 +294,16 @@
 					 },
 				url:"AJAXController",
 	            success : function(data) {
+	            
 	            	var json = JSON.parse(data);
 	            	
 	            	var successMessage = json["success"];
-	            	alert(successMessage);
+	            	
+	            	 $(".successType").text("Game is added");
+	            	 $(".success-modal").css("display","block");
+	            	setTimeout(function() {
+	            		window.location.replace("redirectToIndexPage");
+	            		}, 3000);
 	            }
 			});
     		
@@ -319,9 +336,7 @@
 	        		for(i = 0;i<teams.length;i++){
 	        			firstTeamsSelect.append("<option>"+json["teamsArray"][i]+"</option>");
 	        			secondTeamsSelect.append("<option>"+json["teamsArray"][i]+"</option>");
-	        		}
-	        	
-	            	
+	        		}            	
 	            }
 			});
 

@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.UserRole;
+import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.dao.AdminDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.util.ConnectionManager;
@@ -21,22 +22,22 @@ public class AdminDAOImpl implements AdminDAO{
 	
 	private static final Logger log = Logger.getLogger(AdminDAOImpl.class);
 	
-	private final static String getAllUsersQuerry = "select id, login, password, email, role, cash from user";
-	private static final String addNewGameQuerry =  "insert into game (game_kind, team_1, team_2, date, k1,kx,k2) values(?,?,?,?,?,?,?)";
-	private static final String getTeamIdByNameQuerry = "select team.id from team where team.name = '";
+	private final static String getAllUsersQuerry       = "select id, login, password, email, role, cash from user";
+	private static final String addNewGameQuerry        = "insert into game (game_kind, team_1, team_2, date, k1,kx,k2) values(?,?,?,?,?,?,?)";
+	private static final String getTeamIdByNameQuerry   = "select team.id from team where team.name = '";
+	private static final String getTeamIdByNameEnQuerry = "select team.id from team where team.name_en = '";
 	
-	public void addGame(Game game) throws DAOException {
+	public void addGame(Game game, String local) throws DAOException {
 		Connection con = null;
-		PreparedStatement ps = null;
-		
+		PreparedStatement ps = null;		
 		
 		try{
 			con = ConnectionManager.getDBTotalizatorConnection();
 			ps = con.prepareStatement(addNewGameQuerry);	
 			
 			ps.setString(1, game.getGameKind().toString().toLowerCase());
-			ps.setInt(2, getTeamIdByName(game.getFirstTeam()));
-			ps.setInt(3, getTeamIdByName(game.getSecondTeam()));
+			ps.setInt(2, getTeamIdByName(game.getFirstTeam(),  local));
+			ps.setInt(3, getTeamIdByName(game.getSecondTeam(), local));
 			ps.setTimestamp(4, game.getDate());
 			ps.setDouble(5,game.getK1());
 			ps.setDouble(6,game.getKx());
@@ -52,17 +53,26 @@ public class AdminDAOImpl implements AdminDAO{
 		}			
 	}
 	
-	private int getTeamIdByName(String teamName) throws DAOException{
+	private int getTeamIdByName(String teamName, String local) throws DAOException{
 		
 		Connection con = null;
 	    Statement st = null;
-	    ResultSet rs = null;	    
+	    ResultSet rs = null;	  
+	    StringBuilder executedQuerry = new StringBuilder();
+	    
+	    if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
+	    	executedQuerry.append(getTeamIdByNameQuerry);
+	    } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
+	    	executedQuerry.append(getTeamIdByNameEnQuerry);
+	    }
 	 
 	    int teamId = 1;
+	    
 	    try {  		    	    	  	
 	        con = ConnectionManager.getDBTotalizatorConnection();
 	        st = con.createStatement();
-	        rs = st.executeQuery(getTeamIdByNameQuerry.concat(teamName).concat("'"));	       
+	        executedQuerry.append(teamName).append("'");
+	        rs = st.executeQuery(executedQuerry.toString());	       
 	        
 	        while (rs.next()) {	            
 	            teamId = rs.getInt("id");           

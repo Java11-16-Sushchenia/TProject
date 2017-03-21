@@ -25,6 +25,7 @@ public class AddNewGameAJAXCommand implements IAJAXCommand{
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
 		
+		String local = (String)request.getSession(true).getAttribute("local");
 		BuildGameDirector director = new BuildGameDirector();
 		director.setBuilder(new RealGameBuilder(request, response));
 		Game game = null;
@@ -39,10 +40,12 @@ public class AddNewGameAJAXCommand implements IAJAXCommand{
 		AdminDAO adminDAO = daoFactory.getAdminDAO();
 		
 		try{
-			adminDAO.addGame(game);
+			adminDAO.addGame(game, local);
 		} catch(DAOException e){
 			// log error
 		}
+		
+		returnSuccessToClient(response);
 	}
 	
 	private static void returnSuccessToClient(HttpServletResponse response){

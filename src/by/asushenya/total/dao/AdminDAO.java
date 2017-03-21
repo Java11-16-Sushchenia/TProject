@@ -8,5 +8,5 @@ import by.asushenya.total.dao.exception.DAOException;
 
 public interface AdminDAO {
 	List<User> getAllUsers() throws DAOException;
-	void addGame(Game game) throws DAOException;
+	void addGame(Game game, String local) throws DAOException;
 }
