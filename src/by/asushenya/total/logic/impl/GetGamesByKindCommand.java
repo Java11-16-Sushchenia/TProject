@@ -18,12 +18,13 @@ public class GetGamesByKindCommand implements ICommand{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-				
-		List<Game> games = null;
+				return null;
+	/*	List<Game> games = null;
 			
 		try {
-			System.out.println("Game kind "+ request.getParameter("game_kind"));
-		GameKind gameType =GameKind.valueOf(request.getParameter("game_kind").toUpperCase());		
+		GameKind gameType =GameKind.valueOf(
+							request.getParameter("game_kind")
+							.toUpperCase());		
 			
 		 games = DAOFactory.getInstance().getUserDAO().getGamesByType(gameType);
 		
@@ -33,8 +34,9 @@ public class GetGamesByKindCommand implements ICommand{
 			e.printStackTrace();
 		}				
 		request.setAttribute("games", games);	
-		request.setAttribute("game_kind", request.getParameter("game_kind").toUpperCase());		
-		return request.getParameter("go_to_page");
+		request.setAttribute("game_kind", 
+				request.getParameter("game_kind").toUpperCase());		
+		return request.getParameter("go_to_page");*/
 	}
 
 }

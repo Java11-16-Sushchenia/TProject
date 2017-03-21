@@ -49,12 +49,15 @@ public class UserDAOImpl implements UserDAO{
 		  ResultSet rs = null;
 		  
 		  User user = null;
-		  try {  
-	    	  	
-		        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/totalizator","root","1111");
+		  try {  	    	  	
+		        con = DriverManager.getConnection(
+		        		"jdbc:mysql://127.0.0.1/totalizator","root","1111");
+		        
 		        st = con.createStatement();	        
 		        
-		        rs = st.executeQuery(findUserByEmail.concat(email).concat("'"));
+		        rs = st.executeQuery(findUserByEmail
+		        					.concat(email)
+		        					.concat("'"));
 		        
 		        while (rs.next()) {
 		            user = new User();
@@ -62,17 +65,18 @@ public class UserDAOImpl implements UserDAO{
 		        	user.setLogin(rs.getString("login"));
 		        	user.setEmail(rs.getString("email"));
 		        	user.setPassword(rs.getString("password"));
-		        	user.setRole(UserRole.valueOf(rs.getString("role").toUpperCase()) );
+		        	user.setRole(UserRole.valueOf(rs.getString("role").
+		        											toUpperCase()));
 		        	user.setCash(rs.getFloat("cash")); 		        	
 		        }
 		       } catch(SQLException e){
+		    	   log.error("can't find user by email",e);
 		    	   throw new DAOException("user finding problem",e);
 		       }
 		    finally {		       
 		        ConnectionManager.disconnectFromDB(rs, st, con);
 		    }
-		    return user;
-		
+		    return user;		
 	}
 	
 	public void registeredNewUser(User user) throws DAOException{
@@ -80,7 +84,8 @@ public class UserDAOImpl implements UserDAO{
 		 PreparedStatement st = null;
 			
 			try{
-				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/totalizator","root","1111");
+				con = DriverManager.getConnection(
+						"jdbc:mysql://127.0.0.1/totalizator","root","1111");
 				
 				PreparedStatement ps = con.prepareStatement(insertIntoUser);
 				
@@ -93,8 +98,9 @@ public class UserDAOImpl implements UserDAO{
 				ps.executeUpdate();			
 				
 			} catch (SQLException e){		
-		
-				throw new DAOException ("DAOException registeredNewUser: "+e.getMessage());
+				log.error("can't register new user",e);
+				throw new DAOException ("DAOException registeredNewUser: "
+										+e.getMessage());
 				
 				} finally{
 					ConnectionManager.disconnectFromDB(st, con);
@@ -108,9 +114,9 @@ public class UserDAOImpl implements UserDAO{
 		  ResultSet rs = null;
 		  
 		  User user = null;
-		  try {  
-	    	  	
-		        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/totalizator","root","1111");
+		  try {  	    	  	
+		        con = DriverManager.getConnection(
+		        		"jdbc:mysql://127.0.0.1/totalizator","root","1111");
 		        st = con.createStatement();	        
 		        
 		        rs = st.executeQuery(findUserByLogin+userLogin+"'");
@@ -121,12 +127,14 @@ public class UserDAOImpl implements UserDAO{
 		        	user.setLogin(rs.getString("login"));
 		        	user.setEmail(rs.getString("email"));
 		        	user.setPassword(rs.getString("password"));
-		        	user.setRole(UserRole.valueOf(rs.getString("role").toUpperCase()) );
+		        	user.setRole(UserRole.valueOf(rs.getString("role")
+		        										.toUpperCase()) );
 		        	user.setCash(rs.getFloat("cash")); 		        	
 		        }
-		       } catch(SQLException e){
-		    	   throw new DAOException("user finding problem",e);
-		       }
+	        } catch(SQLException e){
+	    	   log.error("can't find user by login",e);
+	    	   throw new DAOException("user finding problem",e);
+	        }
 		    finally {		       
 		        ConnectionManager.disconnectFromDB(rs, st, con);
 		    }
@@ -168,8 +176,8 @@ public class UserDAOImpl implements UserDAO{
 	        }
 	        
 	    }catch(SQLException e){	 
-	    	log.error(e);
-	        
+	    	log.error("can't get all user rates",e);
+	    	throw new DAOException("can't get all user rates",e);	        
 	    }
 	    finally {
 	    	ConnectionManager.disconnectFromDB(rs, st, con);
@@ -178,15 +186,15 @@ public class UserDAOImpl implements UserDAO{
 	
 	}
 
-	public List<Game> getGamesByType(GameKind gameKind) throws DAOException {
-	
-		Connection con = null;
+	public List<Game> getGamesByType(GameKind gameKind) 
+										throws DAOException {
+	return null;
+		/*Connection con = null;
 	    Statement st = null;
 	    ResultSet rs = null;
 	    List<Game> games = new ArrayList<Game>();
-	    
-
-	    
+	    StringBuilder executedQuerry = new StringBuilder();
+	    	    
 	    try {  
 	    	    	  	
 	        con = ConnectionManager.getDBTotalizatorConnection();
@@ -218,7 +226,7 @@ public class UserDAOImpl implements UserDAO{
 	    	ConnectionManager.disconnectFromDB(rs, st, con);
 	    }
 	    System.out.println(games.size());
-	    return games;
+	    return games;*/
 	}
 
 	@Override
@@ -228,12 +236,13 @@ public class UserDAOImpl implements UserDAO{
 		 PreparedStatement st = null;
 			
 			try{
-				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/totalizator","root","1111");
+				con = DriverManager.getConnection(
+						"jdbc:mysql://127.0.0.1/totalizator","root","1111");
 				
 				PreparedStatement ps = con.prepareStatement(makeRateQuerry);
 				
-				ps.setInt(1, rate.getUser().getId());
-				ps.setInt(2, rate.getGame().getId());
+				ps.setInt(1, 	rate.getUser().getId());
+				ps.setInt(2, 	rate.getGame().getId());
 				ps.setDouble(3, rate.getMoney());
 				ps.setString(4, rate.getChoice());
 				ps.setDouble(5, rate.getGameCoefficient());
@@ -241,43 +250,42 @@ public class UserDAOImpl implements UserDAO{
 				ps.executeUpdate();			
 				
 			} catch (SQLException e){		
-		
-				throw new DAOException ("DAOException registeredNewUser: "+e.getMessage());
-				
+				log.error("can't make rate",e);
+				throw new DAOException ("DAOException registeredNewUser: "
+										+e.getMessage());				
 				} finally{
 					ConnectionManager.disconnectFromDB(st, con);
-			}    
-		
+			}    		
 		return true;
 	}
 
 
-	public List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind, String local) throws DAOException {
+	public List<Game> getGamesForPage(int offset, 
+									  int noOfRecords, 
+									  GameKind gameKind, 
+									  String local) 
+											  throws DAOException {
 		
 		 Connection con = null;
 		 Statement st = null;
 		 ResultSet rs = null;
 		 StringBuilder getPartOfGamesByType = new StringBuilder();
-		 
-		    System.out.println("---logging--start---");
-		    log.fatal("Hello from fatal log4j logger");
-		    System.out.println("---logging--end---");
-		 
+
+		 /*!!!!!! слишком много кода на проверку loca !!!!!!!!!!!!!!*/
 		 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
 			 getPartOfGamesByType.append(getAllGamesQuerry);
 		 } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
 			 getPartOfGamesByType.append(getAllGamesEnQuerry);
-		 }
-		 
-		 
-		 if(gameKind != null){
-			 getPartOfGamesByType.append(" and game_kind = '"+gameKind.toString().toLowerCase()+"'");
 		 }		 
 		 
-		 getPartOfGamesByType.append(" limit "+ offset + ", " + noOfRecords);	
+		 if(gameKind != null){
+			 getPartOfGamesByType.append(" and game_kind = '"
+					 					 +gameKind.toString().toLowerCase()					 				
+					 					 +"'");
+		 }		 
 		 
-
-	
+		 getPartOfGamesByType.append(" limit "+ offset + ", " + noOfRecords);
+		 
 		List<Game> list = new ArrayList<Game>();		
 		
 		try {
@@ -287,7 +295,9 @@ public class UserDAOImpl implements UserDAO{
 			while (rs.next()) {
 				Game game = new Game();
 				game.setId(rs.getInt("id"));
-	            game.setGameKind(GameKind.valueOf(rs.getString("game_kind").toUpperCase()));
+	            game.setGameKind(GameKind.valueOf(
+	            		rs.getString("game_kind").toUpperCase()));
+	            
 	            game.setFirstTeam(rs.getString("team_1"));
 	            game.setSecondTeam(rs.getString("team_2"));
 	            game.setDate(rs.getTimestamp("date"));
@@ -302,13 +312,12 @@ public class UserDAOImpl implements UserDAO{
 			if(rs.next())
 				noOfRecords = rs.getInt(1);
 		} catch (SQLException e) {
+			log.error("can't get games for page",e);
 			e.printStackTrace();
-		}finally
-		{
+		}finally {
 			ConnectionManager.disconnectFromDB(rs,st ,con);
 		}
 		return list;
-
 	}
 
 	public int getGamesRecordsByGameKindCount(GameKind gameKind) throws DAOException {
@@ -323,7 +332,10 @@ public class UserDAOImpl implements UserDAO{
 				st = con.createStatement();
 				
 				if(gameKind != null){
-					 rs = st.executeQuery(getAllGamesCountQuerry+" and game_kind = '"+gameKind.toString()+"'");
+					 rs = st.executeQuery(getAllGamesCountQuerry
+							 			 +" and game_kind = '"
+							 			 +gameKind.toString()
+							 			 +"'");
 				}else{
 					rs = st.executeQuery(getAllGamesCountQuerry);
 				}
@@ -332,18 +344,18 @@ public class UserDAOImpl implements UserDAO{
 					gamesCount = rs.getInt("games_count");
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("can't get games count by game kind",e);
 				throw new DAOException("can't get games count",e);
 				
-			}finally
-			{
+			}finally {
 				ConnectionManager.disconnectFromDB(rs,st ,con);
 			}
 			return gamesCount;		
 	}
 
 
-	public List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException {
+	public List<Team> getTeamsByGameKind(GameKind gameKind, String local)
+													throws DAOException {
 		
 		 Connection con = null;
 		 Statement st = null;
@@ -377,7 +389,7 @@ public class UserDAOImpl implements UserDAO{
 					teamsOfSomeGameKind.add(team);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				log.error("can't get teams by game kind",e);
 				throw new DAOException("can't get teams",e);
 				
 			}finally

@@ -32,7 +32,7 @@ public final class CommandHelper {
 		commands.put(CommandName.MAKE_RATE_COMMAND, new MakeRateCommand());
 		commands.put(CommandName.MAKE_RATE_INIT_COMMAND, new MakeRateInitCommand());
 		commands.put(CommandName.GET_PERSONAL_PAGE_COMMAND, new GetPersonalPageCommand());
-		commands.put(CommandName.GET_GAMES_BY_KIND_COMMAND, new GetGamesByKindCommand());
+		//commands.put(CommandName.GET_GAMES_BY_KIND_COMMAND, new GetGamesByKindCommand());
 		commands.put(CommandName.LOCALIZATION_COMMAND, new LocalizationCommand());
 		commands.put(CommandName.LOG_OUT_COMMAND, new LogOutCommand());
 	}
