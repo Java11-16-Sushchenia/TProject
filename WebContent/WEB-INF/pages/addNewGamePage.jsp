@@ -25,9 +25,7 @@
  
  	   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
  <style type="text/css">
- 	.success-modal{
- 		display:none;
- 	}
+
  </style>
   </head> 
 

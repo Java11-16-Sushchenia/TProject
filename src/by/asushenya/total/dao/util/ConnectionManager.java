@@ -23,6 +23,7 @@ public class ConnectionManager {
 			
 			log.error("Driver is not found",e);
 		}		
+		log.error("hello from ConnectionManager Error");
 	}
 	
 	public static Connection getDBTotalizatorConnection() throws SQLException{

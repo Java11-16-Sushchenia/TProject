@@ -185,6 +185,8 @@ public class UserDAOImpl implements UserDAO{
 	    ResultSet rs = null;
 	    List<Game> games = new ArrayList<Game>();
 	    
+
+	    
 	    try {  
 	    	    	  	
 	        con = ConnectionManager.getDBTotalizatorConnection();
@@ -256,6 +258,10 @@ public class UserDAOImpl implements UserDAO{
 		 Statement st = null;
 		 ResultSet rs = null;
 		 StringBuilder getPartOfGamesByType = new StringBuilder();
+		 
+		    System.out.println("---logging--start---");
+		    log.fatal("Hello from fatal log4j logger");
+		    System.out.println("---logging--end---");
 		 
 		 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
 			 getPartOfGamesByType.append(getAllGamesQuerry);
