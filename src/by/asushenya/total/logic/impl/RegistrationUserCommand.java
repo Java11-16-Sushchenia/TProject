@@ -15,8 +15,8 @@ public class RegistrationUserCommand implements ICommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-			
-		User user = new User();
+			return null;
+		/*User user = new User();
 		
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
@@ -74,6 +74,8 @@ public class RegistrationUserCommand implements ICommand {
 		}
 		System.out.println("registration successful");		
 		
-		return JspPageName.REDIRECT_TO_INDEX_PAGE;
+		return JspPageName.REDIRECT_TO_INDEX_PAGE;*/
+		
+		
 	}
 }

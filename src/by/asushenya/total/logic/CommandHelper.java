@@ -23,7 +23,7 @@ public final class CommandHelper {
 	
 	public CommandHelper(){
 
-		commands.put(CommandName.REGISTRATION_USER_COMMAND,  new RegistrationUserCommand());
+		//commands.put(CommandName.REGISTRATION_USER_COMMAND,  new RegistrationUserCommand());
 		commands.put(CommandName.GET_ALL_USER_RATES_COMMAND, new GetAllUserRatesCommand());
 		commands.put(CommandName.GET_ALL_USERS_COMMAND, new GetAllUsersCommand());
 		commands.put(CommandName.GET_ALL_GAMES_COMMAND, new GetAllGamesCommand());

@@ -27,6 +27,10 @@ public class ResponseParameterName {
 	public final static String NOT_REGISTRED = "notregistred";
 	public final static String USER_ROLE = "userRole";
 	
+	//registrate ajax command
+	public final static String USER_EXISTS = "userexists";
+	public final static String USER_EMAIL_EXISTS = "emailexists";
+	
 	public final static String GAME_KIND = "gameKind";
 	
 	// GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND

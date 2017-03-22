@@ -30,7 +30,7 @@
 	    <div class="col-sm-10 text-left">
 			<div class="container">
 			  <h2>Registration</h2>
-			  <form class="form-horizontal"  onsubmit="return validateForm();" name="registrationForm">
+			  <form class="form-horizontal" <%--   onsubmit="return validateForm();"--%> id="registrationForm" name="registrationForm">
 			    <div class="form-group">
 			      <label class="control-label col-sm-2" for="login">Login:</label>
 			      <div class="col-sm-10">
@@ -89,5 +89,36 @@
 	</footer>
 
 	<script type="text/javascript" src="bootstrap-3.3.7-dist/js/validation.js"></script>
+	<script>
+		$("#registrationForm").submit(function(event){
+			if(validateForm() === true){
+				var registrationData = event.currentTarget;
+
+				var login = registrationData["login"].value;
+				var email = registrationData["email"].value;
+				var password = registrationData["pwd"].value;
+				debugger;
+				$.ajax({
+					type:"POST",
+					data:{
+						command:"REGISTRATION_USER_AJAX_COMMAND",
+						login:login,
+						email:email,
+						password:password
+					},
+					url:"AJAXController",
+					success:function(data){
+			               var json = JSON.parse(data);
+			               alert("registration ok");
+			               
+		            	setTimeout(function() {
+		            		  window.location.replace("redirectToIndexPage");
+		            		}, 3000);			
+					}				
+				});
+			}
+			event.preventDefault(); 	
+		});			
+	</script>
   </body>
 </html>

@@ -56,7 +56,7 @@
 		      	<button type="submit" class="button signinbutton">${signinbutton}</button>
 		      </div>
 		     <div class="form-group">
-		      <button class="button signupbutton go-to-registration-page"><span class="glyphicon glyphicon-log-in"></span>${signupbutton}</button>
+		      <button onclick="redirectToRegistrationPage();" class="button signupbutton"><span class="glyphicon glyphicon-log-in"></span>${signupbutton}</button>
 		      </div>  
 		      
 		       	<div class="form-group">
@@ -321,9 +321,11 @@
 <script type="text/javascript">
 
 
-$(".go-to-registration-page").click(function(){
+ var redirectToRegistrationPage = function(){
 	 window.location.replace("registrationPage");
-});
+};
+
+
 
 $(".authorize-user-form").submit(function(event){		
 	var command  = event.currentTarget['command'].value;

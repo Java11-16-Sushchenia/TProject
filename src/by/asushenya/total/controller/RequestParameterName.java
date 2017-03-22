@@ -21,6 +21,9 @@ public class RequestParameterName {
 	public static final String SECOND_TEAM = "secondTeam";
 	public static final String GAME_DATE = "gameDate";
 	
+	//register ajax command
+	public static final String USER_EMAIL = "email";
+	
 	// session local
 	
 	public static final String SESSION_LOCAL_RU = "ru";

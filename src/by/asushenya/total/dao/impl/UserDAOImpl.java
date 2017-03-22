@@ -45,8 +45,8 @@ public class UserDAOImpl implements UserDAO{
 	
 	public User findUserByEmail(String email) throws DAOException{
 		Connection con = null;
-		  Statement st = null;
-		  ResultSet rs = null;
+	  Statement st = null;
+	  ResultSet rs = null;
 		  
 		  User user = null;
 		  try {  	    	  	
@@ -251,7 +251,7 @@ public class UserDAOImpl implements UserDAO{
 				
 			} catch (SQLException e){		
 				log.error("can't make rate",e);
-				throw new DAOException ("DAOException registeredNewUser: "
+				throw new DAOException ("DAOException cant make rate: "
 										+e.getMessage());				
 				} finally{
 					ConnectionManager.disconnectFromDB(st, con);

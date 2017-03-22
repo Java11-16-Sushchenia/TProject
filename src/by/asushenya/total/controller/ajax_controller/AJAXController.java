@@ -12,16 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.controller.RequestParameterName;
-import by.asushenya.total.logic.CommandException;
-import by.asushenya.total.logic.CommandHelper;
-import by.asushenya.total.logic.ICommand;
 import by.asushenya.total.logic.ajax_command.AJAXCommandException;
 import by.asushenya.total.logic.ajax_command.AJAXCommandHelper;
 import by.asushenya.total.logic.ajax_command.IAJAXCommand;
 
-@WebServlet("/AJAXController")
+@WebServlet("/AJAXController")// перененсти в web.xml
 public class AJAXController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

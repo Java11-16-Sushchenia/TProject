@@ -61,8 +61,8 @@ public class GetTeamsOfSomeGameKindAJAXCommand implements IAJAXCommand{
 			JSONObject json = new JSONObject();
 			json.put(ResponseParameterName.TEAMS_ARRAY, teams);
 			
-			System.out.println(json.toString());
-			
+			//System.out.println(json.toString());
+			response.setCharacterEncoding("utf-8");
 			PrintWriter pw = null;
 			try {
 				pw = response.getWriter();

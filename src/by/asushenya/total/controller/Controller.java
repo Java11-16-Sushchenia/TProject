@@ -54,7 +54,8 @@ public class Controller extends HttpServlet {
 			
 		}		
 	}
-	private void errorMessageDireclyFromresponse(HttpServletResponse response) throws IOException{
+	private void errorMessageDireclyFromresponse(HttpServletResponse response) 
+														throws IOException{
 		response.setContentType("text/html");
 		response.getWriter().println("ERROR");
 	}

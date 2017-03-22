@@ -11,42 +11,45 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
 import by.asushenya.total.bean.User;
-import by.asushenya.total.bean.util.UserRole;
-import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
+import by.asushenya.total.dao.impl.UserDAOImpl;
 import by.asushenya.total.exception.ProjectException;
-import by.asushenya.total.logic.CommandException;
-import by.asushenya.total.logic.ICommand;
 import by.asushenya.total.logic.ajax_command.AJAXCommandException;
 import by.asushenya.total.logic.ajax_command.IAJAXCommand;
 import by.asushenya.total.logic.util.Encryptor;
-import by.asushenya.total.logic.util.PersonalPagesHelper;
 
-public class AuthorizationUserAJAXCommand implements IAJAXCommand {
-	
-	private static final Logger log = Logger.getLogger(AuthorizationUserAJAXCommand.class);
+public class RegistrateUserAJAXCommand implements IAJAXCommand{
 
-	@Override 
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException{
-		
+	private static final Logger log = Logger.getLogger(RegistrateUserAJAXCommand.class);
+
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
+		System.out.println("start registration");
 		Director director = new Director();
 		director.setBuilder(new RealUserBuilder(request, response));
 		User user = null;
 		
 		try{
 			user = director.buildUser();
-		} catch(AuthorizeUserAJAXException e){
+		} catch(RegistrateUserAJAXException e){
 			log.error("can't authorize user",e);
 			return;
 		}
 		
-		request.getSession(true).setAttribute("user", user);
-		returnSuccessToClient(response,user.getRole().toString());
-
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO userDAO = daoFactory.getUserDAO();
+		try{
+			userDAO.registeredNewUser(user);
+		} catch(DAOException e){
+			log.error("can't registrate user",e);
+			throw new AJAXCommandException("can't registrate user",e);
+		}	
+		
+		returnSuccessToClient(response);
+		System.out.println("user us registred");
 	}
 	
 	private static void returnErrorToClient(HttpServletResponse response,
@@ -69,10 +72,10 @@ public class AuthorizationUserAJAXCommand implements IAJAXCommand {
 			pw.close();
 	}
 
-	private static void returnSuccessToClient(HttpServletResponse response,String userRole){
+	private static void returnSuccessToClient(HttpServletResponse response){
 		JSONObject json = new JSONObject();
 		json.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.OK);
-		json.put(ResponseParameterName.USER_ROLE, userRole);
+		
 		System.out.println(json.toString());
 		PrintWriter pw = null;
 		
@@ -86,22 +89,22 @@ public class AuthorizationUserAJAXCommand implements IAJAXCommand {
 		pw.close();
 	}
 	
-	public class AuthorizeUserAJAXException extends ProjectException{
+	public class RegistrateUserAJAXException extends ProjectException{
 		private static final long serialVersionUID = 1L;
 		
-		public AuthorizeUserAJAXException(){
+		public RegistrateUserAJAXException(){
 			super();
 		}
 		
-		public AuthorizeUserAJAXException(String message){
+		public RegistrateUserAJAXException(String message){
 			super(message);
 		}
 		
-		public AuthorizeUserAJAXException(Exception e){
+		public RegistrateUserAJAXException(Exception e){
 			super(e);
 		}
 		
-		public AuthorizeUserAJAXException(String message, Exception e){
+		public RegistrateUserAJAXException(String message, Exception e){
 			super (message, e);
 		}
 	}
@@ -112,8 +115,9 @@ public class AuthorizationUserAJAXCommand implements IAJAXCommand {
 			user = new User();
 		}
 		
-		abstract void buildLogin() throws AuthorizeUserAJAXException;
-		abstract void buildPassword() throws AuthorizeUserAJAXException;
+		abstract void buildLogin() throws RegistrateUserAJAXException;
+		abstract void buildEmail() throws RegistrateUserAJAXException;
+		abstract void buildPassword() throws RegistrateUserAJAXException;
 		
 		User getUser(){
 			return user;
@@ -132,36 +136,59 @@ public class AuthorizationUserAJAXCommand implements IAJAXCommand {
 			this.response = response;
 		}
 
-		void buildLogin() throws AuthorizeUserAJAXException {	
+		void buildLogin() throws RegistrateUserAJAXException {	
 			String login = request.getParameter(RequestParameterName.LOGIN);
+			User testUser = null;
 			
-				DAOFactory daoFactory = DAOFactory.getInstance();
-				UserDAO userDAO = daoFactory.getUserDAO();
-				
-				try {
-					this.user = userDAO.findUserByLogin(login);					
-				} catch (DAOException e) {					
-					e.printStackTrace();
-				}
-				
-				if(this.user == null){
-					returnErrorToClient(response,
-							ResponseParameterName.NOT_REGISTRED);
-					throw new AuthorizeUserAJAXException("user is not registered");
-				}				
+			DAOFactory daoFactory = DAOFactory.getInstance();
+			UserDAO userDAO = daoFactory.getUserDAO();
+			
+			try {
+				testUser = userDAO.findUserByLogin(login);					
+			} catch (DAOException e) {					
+				log.error("can't find user by login",e);
+				throw new RegistrateUserAJAXException("cant registrate new user",e);
+			}
+			
+			if(testUser != null){
+				returnErrorToClient(response,
+						ResponseParameterName.USER_EXISTS);
+				throw new RegistrateUserAJAXException("user is always exists");
+			}	
+			
+			user.setLogin(login);
+		}
+		
+		void buildEmail() throws RegistrateUserAJAXException{
+			String newUserEmail = request.getParameter(
+							RequestParameterName.USER_EMAIL);
+			User testUser = null;
+			
+			DAOFactory daoFactory = DAOFactory.getInstance();
+			UserDAO userDAO = daoFactory.getUserDAO();
+			
+			try {
+				testUser = userDAO.findUserByEmail(newUserEmail);				
+			} catch (DAOException e) {					
+				log.error("can't find user by email",e);
+				throw new RegistrateUserAJAXException("cant registrate new user",e);
+			}
+			
+			if(testUser != null){
+				returnErrorToClient(response,
+						ResponseParameterName.USER_EXISTS);
+				throw new RegistrateUserAJAXException("user is always exists");
+			}	
+			
+			user.setEmail(newUserEmail);
 		}
 
 	
-		void buildPassword() throws AuthorizeUserAJAXException {
-			String enteredPasswordHash = Encryptor.getMD5Hash(
+		void buildPassword() throws RegistrateUserAJAXException {
+			String newUserPasswordHash = Encryptor.getMD5Hash(
 					request.getParameter(RequestParameterName.PASSWORD));
 			
-			if(!this.user.getPassword().equals(enteredPasswordHash)){
-				returnErrorToClient(response, 
-									ResponseParameterName.INVALID_PASSWORD);
-				
-				throw new AuthorizeUserAJAXException("password is incorrect");			
-			}
+			user.setPassword(newUserPasswordHash);
 		}		
 	}
 	
@@ -172,12 +199,14 @@ public class AuthorizationUserAJAXCommand implements IAJAXCommand {
 			this.builder = builder;
 		}
 		
-		User buildUser() throws AuthorizeUserAJAXException{
+		User buildUser() throws RegistrateUserAJAXException{
 			builder.createUser();
 			builder.buildLogin();
+			builder.buildEmail();
 			builder.buildPassword();
 			User user = builder.getUser();
 			return user;
 		}
 	}
+
 }

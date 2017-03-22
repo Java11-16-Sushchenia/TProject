@@ -1,6 +1,6 @@
 package by.asushenya.total.controller;
 
-public class JspPageName {
+public final class JspPageName {
 	private JspPageName(){};
 	
 	public static final String USER_PAGE = "jsp/userPage.jsp";
