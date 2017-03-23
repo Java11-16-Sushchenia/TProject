@@ -20,7 +20,7 @@ public class GetAllTeamsCommand implements ICommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 				
-		List<Team> teams = null;
+	/*	List<Team> teams = null;
 			
 		try {
 						
@@ -32,7 +32,7 @@ public class GetAllTeamsCommand implements ICommand{
 			
 			e.printStackTrace();
 		}		
-		request.setAttribute("teams", teams);	
+		request.setAttribute("teams", teams);	*/
 		
 		return request.getParameter("go_to_page");
 	}

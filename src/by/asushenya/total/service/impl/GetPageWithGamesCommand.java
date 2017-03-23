@@ -24,6 +24,7 @@ public class GetPageWithGamesCommand implements ICommand{
 		int recordsPerPage = 5;
 		int noOfRecords = 0;
 		GameKind gameKind =  null;
+		//заменить на всртоенный класс Local
 		String local = (String)request.getSession(true).getAttribute("local");
 		
 		
@@ -72,9 +73,8 @@ public class GetPageWithGamesCommand implements ICommand{
 			request.setAttribute(RequestParameterName.GAME_KIND,
 					 gameKind.toString());
 		}
-		
 
-		return request.getParameter("go_to_page");
+		return request.getParameter(RequestParameterName.GO_TO_PAGE);
 	}
 
 }

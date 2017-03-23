@@ -20,19 +20,19 @@ public class GetAllGamesCommand implements ICommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 				
-		List<Game> games = null;
+		/*List<Game> games = null;
 			
 		try {
 						
 		 games = DAOFactory.getInstance().getBookMakerDAO().getAllGames(RequestParameterName.SESSION_LOCAL_EN);
 		 System.out.println(games.get(0).getFirstTeam());
-		 System.out.println("ratest count" + games.size());	 
+		 System.out.println("ratest count" + games.size());	
 		
 		} catch (DAOException e) {
 			
 			e.printStackTrace();
 		}		
-		request.setAttribute("games", games);	
+		request.setAttribute("games", games);	*/ 
 		
 		return request.getParameter(RequestParameterName.GO_TO_PAGE);
 	}

@@ -240,8 +240,7 @@
 			
 			var k1Value = $("#k1-"+changedGameId).val();
 			var kxValue = $("#kx-"+changedGameId).val();
-			var k2Value = $("#k2-"+changedGameId).val();
-			
+			var k2Value = $("#k2-"+changedGameId).val();			
 
 			$.ajax({
 				type:"POST",
@@ -259,22 +258,22 @@
 		}
 		
 		function removeTableRowWithGame(buttonObject){
-			var changedGameId = buttonObject.id.split("-")[1];	
-			
-			
-			$.ajax({
-				type:"POST",
-				data:{
-						command:"MAKE_GAME_INVISIBLE_AJAX_COMMAND",
-						gameId:changedGameId
-					 },
-				url:"AJAXController",
-	            success : function(data) {
-	            	$("#gameRow-"+changedGameId).hide();
-	            }
-			});
-		}
-		
+			if(confirm("Are you realy want to remove game?")){				
+				var changedGameId = buttonObject.id.split("-")[1];		
+				
+				$.ajax({
+					type:"POST",
+					data:{
+							command:"MAKE_GAME_INVISIBLE_AJAX_COMMAND",
+							gameId:changedGameId
+						 },
+					url:"AJAXController",
+		            success : function(data) {
+		            	$("#gameRow-"+changedGameId).hide();
+		            }
+				});
+			}
+		}		
 	</script>
   </body>
 </html>

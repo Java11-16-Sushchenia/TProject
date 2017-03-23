@@ -278,33 +278,36 @@
     		
     		var timeStampGameDate = gameDate.concat(":00").replace("T"," ");
     		
-			$.ajax({
-				type:"POST",
-				data:{
-						command:"ADD_NEW_GAME_AJAX_COMMAND",
-						gameKind:gameKind,
-						firstTeam:firstTeam,
-						secondTeam:secondTeam,
-						gameDate:timeStampGameDate,
-						k1:k1,
-						kx:kx,
-						k2:k2
-					 },
-				url:"AJAXController",
-	            success : function(data) {
-	            
-	            	var json = JSON.parse(data);
-	            	
-	            	var successMessage = json["success"];
-	            	
-	            	 $(".successType").text("Game is added");
-	            	 $(".success-modal").css("display","block");
-	            	setTimeout(function() {
-	            		window.location.replace("redirectToIndexPage");
-	            		}, 3000);
-	            }
-			});
-    		
+    		if(firstTeam === secondTeam){
+    			alert("first and second teams equals")
+    		} else{
+				$.ajax({
+					type:"POST",
+					data:{
+							command:"ADD_NEW_GAME_AJAX_COMMAND",
+							gameKind:gameKind,
+							firstTeam:firstTeam,
+							secondTeam:secondTeam,
+							gameDate:timeStampGameDate,
+							k1:k1,
+							kx:kx,
+							k2:k2
+						 },
+					url:"AJAXController",
+		            success : function(data) {
+		            
+		            	var json = JSON.parse(data);
+		            	
+		            	var successMessage = json["success"];
+		            	
+		            	 $(".successType").text("Game is added");
+		            	 $(".success-modal").css("display","block");
+		            	setTimeout(function() {
+		            		window.location.replace("redirectToIndexPage");
+		            		}, 3000);
+		            }
+				});
+    		}
     		event.preventDefault(); 
     	});
     	
