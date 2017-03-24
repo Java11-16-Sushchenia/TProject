@@ -3,6 +3,8 @@ package by.asushenya.total.service.ajax_command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.asushenya.total.controller.ajax_controller.AJAXCommandException;
+
 
 
 public interface IAJAXCommand {

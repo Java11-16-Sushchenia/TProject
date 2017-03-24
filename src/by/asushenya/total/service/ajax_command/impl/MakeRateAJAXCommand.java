@@ -17,11 +17,11 @@ import by.asushenya.total.bean.User;
 import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
+import by.asushenya.total.controller.ajax_controller.AJAXCommandException;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.exception.ProjectException;
-import by.asushenya.total.service.ajax_command.AJAXCommandException;
 import by.asushenya.total.service.ajax_command.IAJAXCommand;
 import by.asushenya.total.service.util.Validator;
 

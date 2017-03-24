@@ -26,6 +26,7 @@ public class ResponseParameterName {
 	public final static String EMPTY_PASSWORD = "emptypassword";
 	public final static String NOT_REGISTRED = "notregistred";
 	public final static String USER_ROLE = "userRole";
+	public final static String SIGN_IN_ERROR = "signinerror";
 	
 	//registrate ajax command
 	public final static String USER_EXISTS = "userexists";

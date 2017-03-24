@@ -13,8 +13,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import by.asushenya.total.controller.RequestParameterName;
-import by.asushenya.total.service.ajax_command.AJAXCommandException;
-import by.asushenya.total.service.ajax_command.AJAXCommandHelper;
 import by.asushenya.total.service.ajax_command.IAJAXCommand;
 
 @WebServlet("/AJAXController")// перененсти в web.xml

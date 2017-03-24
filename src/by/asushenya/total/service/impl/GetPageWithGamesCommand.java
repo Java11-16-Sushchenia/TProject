@@ -5,22 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.asushenya.total.bean.Game;
-import by.asushenya.total.bean.util.GameKind;
-import by.asushenya.total.controller.JspPageName;
-import by.asushenya.total.controller.RequestParameterName;
-import by.asushenya.total.dao.UserDAO;
-import by.asushenya.total.dao.exception.DAOException;
-import by.asushenya.total.dao.factory.DAOFactory;
-import by.asushenya.total.service.CommandException;
-import by.asushenya.total.service.ICommand;
 
-public class GetPageWithGamesCommand implements ICommand{
+public class GetPageWithGamesCommand {
 
-
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		
-		int page = 1;
+	public String execute(HttpServletRequest request, 
+						  HttpServletResponse response) 
+								  {
+		/*--------Depricated----------*/
+		/*int page = 1;
 		int recordsPerPage = 5;
 		int noOfRecords = 0;
 		GameKind gameKind =  null;
@@ -72,9 +64,9 @@ public class GetPageWithGamesCommand implements ICommand{
 		}else{
 			request.setAttribute(RequestParameterName.GAME_KIND,
 					 gameKind.toString());
-		}
+		}*/
 
-		return request.getParameter(RequestParameterName.GO_TO_PAGE);
+		return null;
 	}
 
 }

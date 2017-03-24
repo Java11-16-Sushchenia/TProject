@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.asushenya.total.service.CommandException;
-import by.asushenya.total.service.CommandHelper;
-import by.asushenya.total.service.ICommand;
 
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,14 +16,19 @@ public class Controller extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, 
+						 HttpServletResponse response) 
+								 	throws ServletException, IOException {
 
 		doPost(request,response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, 
+						  HttpServletResponse response) 
+								  	throws ServletException, IOException {
 
-		String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
+		String commandName = request.getParameter(
+									RequestParameterName.COMMAND_NAME);
 		
 		System.out.println("Имя команды: "+commandName);
 		
