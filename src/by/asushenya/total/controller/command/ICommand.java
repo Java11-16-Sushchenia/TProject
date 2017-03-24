@@ -1,4 +1,4 @@
-package by.asushenya.total.controller;
+package by.asushenya.total.controller.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -47,7 +47,7 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 
 	@Override
 	public String signOut() throws ServiceException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

@@ -3,15 +3,20 @@ package by.asushenya.total.controller.command.impl.authorization;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
-import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
+import by.asushenya.total.controller.command.CommandException;
+import by.asushenya.total.controller.command.ICommand;
+import by.asushenya.total.controller.JspPageName;
 
-public class SignOut implements IAJAXCommand{
+public class SignOut implements ICommand{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
+	public String execute(HttpServletRequest request, 
+						HttpServletResponse response) 
+									throws CommandException {
 		
+		request.getSession(true).removeAttribute("user");
 		
+		return JspPageName.REDIRECT_TO_INDEX_PAGE;		
 	}
 
 }
