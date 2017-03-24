@@ -5,6 +5,8 @@ import java.util.Map;
 
 import by.asushenya.total.controller.command.impl.GetAllUserRatesCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithGamesCommand;
+import by.asushenya.total.controller.command.impl.GetPersonalPageCommand;
+import by.asushenya.total.controller.command.ICommand;
 
 
 public final class CommandHelper {
@@ -13,7 +15,7 @@ public final class CommandHelper {
 	private Map<CommandName, ICommand> commands = new HashMap<>();
 	
 	public CommandHelper(){
-	  /*
+	  /*depricated
 	    commands.put(CommandName.GET_ALL_USER_RATES_COMMAND, new GetAllUserRatesCommand());
 		commands.put(CommandName.GET_ALL_USERS_COMMAND, new GetAllUsersCommand());
 		commands.put(CommandName.GET_PAGE_WITH_GAMES_COMMAND, new GetPageWithGamesCommand());
@@ -24,6 +26,7 @@ public final class CommandHelper {
 		
 		commands.put(CommandName.GET_ALL_USER_RATES_COMMAND, new GetAllUserRatesCommand());
 		commands.put(CommandName.GET_PAGE_WITH_GAMES_COMMAND, new GetPageWithGamesCommand());
+		commands.put(CommandName.GET_PERSONAL_PAGE_COMMAND, new GetPersonalPageCommand());
 	}
 	
 	public static CommandHelper getInstance(){

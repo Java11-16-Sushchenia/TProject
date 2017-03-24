@@ -16,5 +16,6 @@ public interface UserService {
 						   GameKind gameKind,
 						   String local)
 										  throws ServiceException;
+	
 										
 }

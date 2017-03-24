@@ -9,9 +9,9 @@ import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.Rate;
 import by.asushenya.total.bean.User;
-import by.asushenya.total.controller.CommandException;
-import by.asushenya.total.controller.ICommand;
+import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.controller.SessionParameterName;
+import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
