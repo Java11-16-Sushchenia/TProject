@@ -45,12 +45,6 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 		return user;		
 	}
 
-	@Override
-	public String signOut() throws ServiceException {
-		
-		return null;
-	}
-	
 	/*public class SignInUserServiceException extends ServiceException{
 		private static final long serialVersionUID = 1L;
 		
