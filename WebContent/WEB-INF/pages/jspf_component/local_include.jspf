@@ -68,7 +68,7 @@
   <fmt:message bundle="${loc}" key="local.game.newgameadding" var="newgameadding"/>
   
    <fmt:message bundle="${loc}" key="local.authorization.error" var="authorizationerror"/>
-   <fmt:message bundle="${loc}" key="local.authorization.invalidlogin" var="invalidpassword"/>
+   <fmt:message bundle="${loc}" key="local.authorization.invalidpassword" var="invalidpassword"/>
    <fmt:message bundle="${loc}" key="local.authorization.notregistred" var="notregistred"/>
 
   

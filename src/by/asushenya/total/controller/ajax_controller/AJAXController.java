@@ -13,7 +13,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import by.asushenya.total.controller.RequestParameterName;
-import by.asushenya.total.service.ajax_command.IAJAXCommand;
+import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
+import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
+import by.asushenya.total.service.exception.ServiceException;;
 
 @WebServlet("/AJAXController")// перененсти в web.xml
 public class AJAXController extends HttpServlet {

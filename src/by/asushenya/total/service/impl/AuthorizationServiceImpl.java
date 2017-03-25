@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
 import by.asushenya.total.bean.User;
+import by.asushenya.total.bean.util.UserServiceObject;
 import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
@@ -17,13 +18,14 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 	private static final Logger log = Logger.getLogger(
 											 AuthorizationServiceImpl.class);
 
-	@Override
-	public User singIn(String login, String password) 
+	public UserServiceObject singIn(String login, String password) 
 										throws ServiceException {
 		
 		User user = null;
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
+		UserServiceObject userServiceObject = new UserServiceObject();
+		JSONObject jsonWithAuthorizationInfo = new JSONObject();
 		
 		try {
 			user = userDAO.findUserByLogin(login);					
@@ -32,17 +34,35 @@ public class AuthorizationServiceImpl implements AuthorizationService{
 		}
 		
 		if(user == null){
-			/*return returnAuthorizationError(
-						ResponseParameterName.NOT_REGISTRED);*/
+			
+			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE, 
+										  ResponseParameterName.AUTHORIZATION_ERROR);
+			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_MSSAGE, 
+										  ResponseParameterName.NOT_REGISTRED);			
+			userServiceObject.setJsonWithErrors(jsonWithAuthorizationInfo.toString());			
+			return userServiceObject;
 		}	
 		
 		String enteredPasswordHash = Encryptor.getMD5Hash(password);
 		
 		if(!user.getPassword().equals(enteredPasswordHash)){
-		/*	return returnAuthorizationError(
-						ResponseParameterName.INVALID_PASSWORD);*/
+			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE, 
+										  ResponseParameterName.AUTHORIZATION_ERROR);
+			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_MSSAGE, 
+										  ResponseParameterName.INVALID_PASSWORD);			
+			userServiceObject.setJsonWithErrors(jsonWithAuthorizationInfo.toString());
+			return userServiceObject;	
 		}		
-		return user;		
+		
+		
+		userServiceObject.setUser(user);
+		jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE,
+									  ResponseParameterName.SUCCESS);
+		jsonWithAuthorizationInfo.put(ResponseParameterName.USER_ROLE,
+				  					  user.getRole().toString());
+		userServiceObject.setJsonWithSuccess(jsonWithAuthorizationInfo.toString());
+		return userServiceObject;			
+		
 	}
 
 	/*public class SignInUserServiceException extends ServiceException{

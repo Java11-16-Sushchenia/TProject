@@ -48,7 +48,7 @@
    	
 	     <c:if test="${user == null }">
 		    <form class="navbar-form navbar-right authorize-user-form">
-		     <input type="hidden" name="command" value="authorization_user_command"/>	     
+		     <input type="hidden" name="command" value="AUTHORIZATION_SIGN_IN_AJAX_COMMAND"/>	     
 		     <input name="login" required type="text" placeholder="${login}" class="form-control">	      
 		 	 <input name="password" required type="password" placeholder="${password}" class="form-control">	
 		    
@@ -72,7 +72,7 @@
 		   </c:if>
 		<c:if test="${user != null }">   			
  			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
- 			 	    <input type="hidden" name="command" value="log_out_command"/>
+ 			 	    <input type="hidden" name="command" value="AUTHORIZATION_USER_SIGN_OUT_COMMAND"/>
  			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
  			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
  			  	<div class="form-group">
@@ -345,7 +345,7 @@ $(".authorize-user-form").submit(function(event){
             	
                var errorType = json["errorType"];
                var errorMessage = json["errorMessage"];  
-               
+               debugger;
                if(errorType === "authorizationerror"){
             	   
             	   errorType = "${authorizationerror}";
@@ -364,8 +364,8 @@ $(".authorize-user-form").submit(function(event){
             	setTimeout(function() {
             		  $(".authorization-error-modal").css("display","none");
             		}, 3000);
-               }else if (errorType === "ok"){
-            	   
+               }else if (errorType === "success"){
+            	  
             	   if(json["userRole"] === "ADMIN"){
             		   window.location.replace("redirectToAdminPage");
             	   }

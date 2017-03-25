@@ -16,7 +16,8 @@ public class GetAllUsersCommand implements ICommand{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
-		List<User> users = null;
+		/*Необходим аналон пагинации, как игр*/
+		/*List<User> users = null;
 		
 		try {
 			users = DAOFactory.getInstance().getAdminDAO().getAllUsers();
@@ -25,7 +26,7 @@ public class GetAllUsersCommand implements ICommand{
 		} catch (DAOException e) {
 			//log.error("getting users exception",e);
 			e.printStackTrace();
-		}
+		}*/
 		
 		return "adminPage";
 	}
