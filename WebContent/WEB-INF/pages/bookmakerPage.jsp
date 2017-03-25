@@ -244,7 +244,7 @@
 
 			$.ajax({
 				type:"POST",
-				data:{command:"SET_NEW_GAME_RATES_AJAX_COMMAND",
+				data:{command:"SET_NEW_GAME_COEFFICIENTS_AJAX_COMMAND",
 					  gameId:changedGameId,
 					  k1:k1Value,
 					  kx:kxValue,

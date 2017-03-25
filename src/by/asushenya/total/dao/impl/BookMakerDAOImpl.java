@@ -14,13 +14,15 @@ import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.controller.RequestParameterName;
+import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SetNewGameCoefficientsAJAXCommand;
 import by.asushenya.total.dao.BookMakerDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.util.ConnectionManager;
 
 public class BookMakerDAOImpl implements BookMakerDAO{
 	
-
+	private static final Logger log = Logger.getLogger(
+										BookMakerDAOImpl.class);
 
 	private static final String getAllTeamsQuerry = "select id, name from team";
 	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
@@ -78,7 +80,7 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 	
 	public List<Team> getAllTeams() throws DAOException {
 	
-			Connection con = null;
+			/*Connection con = null;
 		    Statement st = null;
 		    ResultSet rs = null;
 		    
@@ -99,15 +101,19 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 		        }
 		        
 		    }catch(SQLException e){	 
-		    	//log.error(e);		        
+		    	log.error("can't return all games");	        
 		    }
 		    finally {
 		    	ConnectionManager.disconnectFromDB(rs, st, con);
-		    }		
-		return teams;
+		    }		*/
+		return null;
 	}
 
-	public void setNewGameRates(int gameId, double k1, double kx, double k2) throws DAOException {
+	public void setNewGameRates(int gameId, 
+								double k1, 
+								double kx, 
+								double k2) 
+										throws DAOException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
@@ -121,12 +127,11 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 			ps.setInt   (4, gameId);
 		
 			ps.executeUpdate();
-		} catch (SQLException e){
-			
-			throw new DAOException ("DAOException addEquipment: "+e.getMessage());
-			
-		} finally{	
-			
+		} catch (SQLException e){			
+			log.error("DAOException: can't set new game coefficients",e);
+			throw new DAOException ("DAOException: can't set new game coefficients",e);
+	
+		} finally{				
 				ConnectionManager.disconnectFromDB(ps, con);		
 		}			
 	}

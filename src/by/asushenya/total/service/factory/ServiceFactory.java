@@ -5,6 +5,7 @@ import by.asushenya.total.service.AuthorizationService;
 import by.asushenya.total.service.BookMakerService;
 import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.impl.AuthorizationServiceImpl;
+import by.asushenya.total.service.impl.BookMakerServiceImpl;
 import by.asushenya.total.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -13,7 +14,7 @@ public class ServiceFactory {
 	private ServiceFactory(){}
 	
 	private UserService userService = new UserServiceImpl();
-	private BookMakerService bookMakerService = null;
+	private BookMakerService bookMakerService = new BookMakerServiceImpl();
 	private AdminService adminService = null;
 	private AuthorizationService authorizationService = new AuthorizationServiceImpl();
 	
@@ -23,6 +24,10 @@ public class ServiceFactory {
 	
 	public UserService getUserService(){
 		return userService;
+	}
+	
+	public BookMakerService getBookMakerService(){
+		return bookMakerService;
 	}
 	
 	public static ServiceFactory getInstance(){

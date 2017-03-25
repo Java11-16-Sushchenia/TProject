@@ -190,6 +190,7 @@ public class UserDAOImpl implements UserDAO{
 	public List<Game> getGamesByType(GameKind gameKind) 
 										throws DAOException {
 	return null;
+	/*Depricated*/
 		/*Connection con = null;
 	    Statement st = null;
 	    ResultSet rs = null;
