@@ -16,6 +16,12 @@ public interface UserService {
 						   GameKind gameKind,
 						   String local)
 										  throws ServiceException;
+	String makeRate(int gameId,
+					User user,
+					String choice,
+					double rateCoefficient,
+					double rateMoney)
+										  throws ServiceException;
 	
 										
 }

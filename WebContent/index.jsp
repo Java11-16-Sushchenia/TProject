@@ -444,7 +444,7 @@ $(".sendRateToController").submit(function(event) {
 	} else{				 
 		$.ajax({
 			type:"POST",
-			data:{command:"MAKE_RATE_COMMAND",
+			data:{command:"MAKE_RATE_AJAX_COMMAND",
 				  choice:choice,
 				  gameId:gameId,
 				  rateCoefficient:rateCoefficient,
@@ -456,7 +456,7 @@ $(".sendRateToController").submit(function(event) {
             	
                var errorType = json["errorType"];
                var errorMessage = json["errorMessage"];  				
-				 
+				
                if(errorType === "makerateerror"){
             	   errorType = "${makerateerror}";
             	   

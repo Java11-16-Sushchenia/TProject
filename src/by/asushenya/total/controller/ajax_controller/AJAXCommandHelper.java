@@ -15,6 +15,7 @@ import by.asushenya.total.service.ajax_command.impl.MakeGameInvisibleAJAXCommand
 
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.AJAXCommandName;
+import by.asushenya.total.controller.ajax_controller.ajax_command.impl.MakeRateAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SignInAJAXCommand;
 
 
@@ -34,7 +35,7 @@ public final class AJAXCommandHelper {
 		commands.put(CommandName.REGISTRATION_USER_AJAX_COMMAND, new RegistrateUserAJAXCommand());*/
 		
 		commands.put(AJAXCommandName.AUTHORIZATION_SIGN_IN_AJAX_COMMAND, new SignInAJAXCommand());
-		
+		commands.put(AJAXCommandName.MAKE_RATE_AJAX_COMMAND, new MakeRateAJAXCommand());
 		
 	}
 	

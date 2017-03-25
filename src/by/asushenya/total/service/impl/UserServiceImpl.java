@@ -3,6 +3,7 @@ package by.asushenya.total.service.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.GamesPage;
@@ -10,6 +11,7 @@ import by.asushenya.total.bean.Rate;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.controller.RequestParameterName;
+import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
@@ -78,6 +80,26 @@ public class UserServiceImpl implements UserService{
 		gamesPage.setNumberOfPages(noOfPages);
 		
 		return gamesPage;
+	}
+
+
+	public String makeRate(int gameId, 
+						   User user,
+						   String choice, 
+						   double rateCoefficient, 
+						   double rateMoney)
+								   	throws ServiceException {
+		System.out.println(user.getCash());
+		if(user.getCash() < rateMoney){
+			JSONObject makeRateError = new JSONObject();
+			makeRateError.put(ResponseParameterName.ERROR_TYPE, 
+							  ResponseParameterName.MAKE_RATE_ERROR);
+			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, 
+					  ResponseParameterName.NO_MONEY);
+			return makeRateError.toString();
+		}
+		
+		return null;
 	}
 
 }
