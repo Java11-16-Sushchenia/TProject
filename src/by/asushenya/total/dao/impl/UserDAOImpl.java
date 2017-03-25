@@ -14,6 +14,7 @@ import by.asushenya.total.bean.Rate;
 import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
+import by.asushenya.total.bean.util.RateChoice;
 import by.asushenya.total.bean.util.UserRole;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.dao.UserDAO;
@@ -167,7 +168,7 @@ public class UserDAOImpl implements UserDAO{
 	            rate.setDate(rs.getTimestamp("date"));
 	            
 	            rate.setMoney(rs.getDouble("money"));
-	            rate.setChoice(rs.getString("choice"));
+	            rate.setChoice(RateChoice.valueOf(rs.getString("choice")));
 	            rate.setGameCoefficient(rs.getDouble("game_coefficient"));
 	            rate.setProfit(rs.getDouble("profit"));
 	            rate.setisSuccess(rs.getBoolean("is_success"));
@@ -244,7 +245,7 @@ public class UserDAOImpl implements UserDAO{
 				ps.setInt(1, 	rate.getUser().getId());
 				ps.setInt(2, 	rate.getGame().getId());
 				ps.setDouble(3, rate.getMoney());
-				ps.setString(4, rate.getChoice());
+				ps.setString(4, rate.getChoice().toString());
 				ps.setDouble(5, rate.getGameCoefficient());
 			
 				ps.executeUpdate();			

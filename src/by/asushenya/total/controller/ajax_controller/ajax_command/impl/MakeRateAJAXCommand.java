@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
+import by.asushenya.total.bean.util.RateChoice;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.SessionParameterName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
@@ -31,8 +32,8 @@ public class MakeRateAJAXCommand implements IAJAXCommand{
 										RequestParameterName.GAME_ID));
 		User user = (User)request.getSession(true).getAttribute(
 										SessionParameterName.SESSION_USER);		
-		String choice = request.getParameter(
-										RequestParameterName.CHOICE);
+		RateChoice choice = RateChoice.valueOf(request.getParameter(
+										RequestParameterName.CHOICE));
 		double rateCoefficient = Double.parseDouble(request.getParameter(
 										RequestParameterName.RATE_COEFFICIENT));
 		double rateMoney = Double.parseDouble(request.getParameter(
@@ -41,6 +42,7 @@ public class MakeRateAJAXCommand implements IAJAXCommand{
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		UserService userService = serviceFactory.getUserService();
 		String serviceResponse = null;
+		
 		try{
 			serviceResponse = userService.makeRate(gameId, 
 													 user,

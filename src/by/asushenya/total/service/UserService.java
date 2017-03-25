@@ -7,6 +7,7 @@ import by.asushenya.total.bean.GamesPage;
 import by.asushenya.total.bean.Rate;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
+import by.asushenya.total.bean.util.RateChoice;
 import by.asushenya.total.service.exception.ServiceException;
 
 public interface UserService {
@@ -18,7 +19,7 @@ public interface UserService {
 										  throws ServiceException;
 	String makeRate(int gameId,
 					User user,
-					String choice,
+					RateChoice choice,
 					double rateCoefficient,
 					double rateMoney)
 										  throws ServiceException;

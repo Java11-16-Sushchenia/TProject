@@ -1,6 +1,8 @@
 package by.asushenya.total.bean;
 
 import java.sql.Timestamp;
+
+import by.asushenya.total.bean.util.RateChoice;
 public class Rate {
 
 	private int id;
@@ -8,7 +10,7 @@ public class Rate {
 	private Game game;
 	private Timestamp date;
 	private double money;
-	private String choice;
+	private RateChoice choice;
 	private double gameCoefficient;
 	private double profit;
 	private boolean isSuccess;
@@ -55,11 +57,11 @@ public class Rate {
 		this.money = money;
 	}
 
-	public String getChoice() {
+	public RateChoice getChoice() {
 		return choice;
 	}
 
-	public void setChoice(String choice) {
+	public void setChoice(RateChoice choice) {
 		this.choice = choice;
 	}
 

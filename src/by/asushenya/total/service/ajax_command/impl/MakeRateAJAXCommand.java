@@ -22,17 +22,14 @@ import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.exception.ProjectException;
-import by.asushenya.total.service.ajax_command.IAJAXCommand;
 import by.asushenya.total.service.util.Validator;
 
-public class MakeRateAJAXCommand implements IAJAXCommand{
+public class MakeRateAJAXCommand{
 
 	
-	@Override	
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-													throws AJAXCommandException {
-	
-		Director director = new Director();
+		
+	public void execute(){
+		/*Director director = new Director();
 		director.setBuilder(new RealRateBuilder(request,response));
 		Rate rate = null;
 		try{
@@ -187,7 +184,7 @@ public class MakeRateAJAXCommand implements IAJAXCommand{
 			}
 		}
 
-		void buildChoice() throws MakeRateAJAXException {
+		void buildChoice() {
 			String choice = request.getParameter(RequestParameterName.CHOICE);
 			if(choice.equals("t1") ||
 			   choice.equals("x")  ||
@@ -200,7 +197,7 @@ public class MakeRateAJAXCommand implements IAJAXCommand{
 			}
 		}
 
-		void buildGameCoefficient() throws MakeRateAJAXException{
+		void buildGameCoefficient(){
 			double coefficient;
 
 				coefficient = Double.parseDouble(request.getParameter(
@@ -225,6 +222,6 @@ public class MakeRateAJAXCommand implements IAJAXCommand{
 			builder.buildMoney();
 			Rate rate = builder.getRate();
 			return rate;
-		}
+		}*/
 	}
 }
