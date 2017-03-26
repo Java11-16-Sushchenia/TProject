@@ -315,7 +315,6 @@ public class UserDAOImpl implements UserDAO{
 				noOfRecords = rs.getInt(1);
 		} catch (SQLException e) {
 			log.error("can't get games for page",e);
-			e.printStackTrace();
 		}finally {
 			ConnectionManager.disconnectFromDB(rs,st ,con);
 		}

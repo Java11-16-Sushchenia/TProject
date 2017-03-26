@@ -12,4 +12,5 @@ public interface BookMakerService {
 	void makeGameInvisible(int gameId) 
 									throws ServiceException;
 	
+	
 }

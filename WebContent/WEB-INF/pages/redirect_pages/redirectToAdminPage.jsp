@@ -11,7 +11,7 @@
 </head>
 <body>
 	<c:redirect url="/Controller">
-		<c:param name="command" value="GET_ALL_USERS_COMMAND"/>		
+		<c:param name="command" value="GET_PAGE_WITH_USERS_COMMAND"/>		
 	</c:redirect>
 </body>
 </html>

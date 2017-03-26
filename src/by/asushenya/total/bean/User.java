@@ -9,7 +9,9 @@ public class User {
 	private String email;
 	private UserRole role;
 	private float cash;
+	private int isVisible;
 	
+
 	public User(){}
 
 	public int getId() {
@@ -60,5 +62,13 @@ public class User {
 		this.cash = cash;
 	}
 	
+	public int getIsVisible() {
+		return isVisible;
+	}
+
+	public void setIsVisible(int isVisible) {
+		this.isVisible = isVisible;
+	}
+
 	
 }

@@ -1,13 +1,10 @@
 package by.asushenya.total.controller.command.impl;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-
-import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.GamesPage;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.controller.command.ICommand;

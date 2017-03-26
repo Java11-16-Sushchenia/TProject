@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.User;
+import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.UserRole;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.dao.AdminDAO;
@@ -26,6 +27,7 @@ public class AdminDAOImpl implements AdminDAO{
 	private static final String addNewGameQuerry        = "insert into game (game_kind, team_1, team_2, date, k1,kx,k2) values(?,?,?,?,?,?,?)";
 	private static final String getTeamIdByNameQuerry   = "select team.id from team where team.name = '";
 	private static final String getTeamIdByNameEnQuerry = "select team.id from team where team.name_en = '";
+	private static final String getAllUsersCountQuerry = "select count(*) `users_count` from user";
 	
 	public void addGame(Game game, String local) throws DAOException {
 		Connection con = null;
@@ -122,6 +124,77 @@ public class AdminDAOImpl implements AdminDAO{
 	    	ConnectionManager.disconnectFromDB(rs, st, con);
 	    }
 	    return users;
+	}
+
+	
+	public List<User> getUsersForPage(int page, 
+									  int usersPerPage) 
+											  throws DAOException {
+		 Connection con = null;
+		 Statement st = null;
+		 ResultSet rs = null;
+		 //int noOfRecords;
+		 StringBuilder getPartOfUsersQuerry = new StringBuilder();
+		 getPartOfUsersQuerry.append(getAllUsersQuerry);
+		 
+		 getPartOfUsersQuerry.append(" limit "+ page + ", " + usersPerPage);
+		 
+		List<User> list = new ArrayList<User>();		
+		
+		try {
+			con = ConnectionManager.getDBTotalizatorConnection();
+			st = con.createStatement();
+			 rs = st.executeQuery(getPartOfUsersQuerry.toString());
+			while (rs.next()) {
+				User user = new User();
+
+				user.setId(rs.getInt("id"));
+				user.setLogin(rs.getString("login"));
+				user.setPassword(rs.getString("password"));
+				user.setEmail(rs.getString("email"));				
+				user.setRole(UserRole.valueOf(rs.getString("role")));
+				user.setCash(rs.getFloat("cash"));
+				list.add(user);
+			}
+			rs.close();
+			
+			/*rs = st.executeQuery("SELECT FOUND_ROWS()");
+			if(rs.next())
+				noOfRecords = rs.getInt(1);*/
+		} catch (SQLException e) {
+			log.error("can't get users for page",e);
+		}finally {
+			ConnectionManager.disconnectFromDB(rs,st ,con);
+		}
+		return list;
+	}
+
+	
+	public int getUsersRecordsCount() throws DAOException {
+		
+		 Connection con = null;
+		 Statement st = null;
+		 ResultSet rs = null;
+		 
+		 int usersCount =0;
+		 
+			try {
+				con = ConnectionManager.getDBTotalizatorConnection();
+				st = con.createStatement();
+
+				rs = st.executeQuery(getAllUsersCountQuerry);				
+				
+				while (rs.next()) {					
+					usersCount = rs.getInt("users_count");
+				}
+			} catch (SQLException e) {
+				log.error("can't get users count",e);
+				throw new DAOException("can't get users count",e);
+				
+			}finally {
+				ConnectionManager.disconnectFromDB(rs,st ,con);
+			}
+			return usersCount;	
 	}
 
 }
