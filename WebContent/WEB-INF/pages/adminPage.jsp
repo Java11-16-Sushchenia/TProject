@@ -1,9 +1,10 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" 
         uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" 
-uri="http://java.sun.com/jsp/jstl/fmt" %>
+  uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,16 +19,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
  
     <script src="bootstrap-3.3.7-dist/jquery/jquery-3.1.1.js"></script>   
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
+    	  
+ 		 <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
 
-  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
-  
   </head>
-  <body>  
+  <body>    
+  
   <nav class="navbar navbar-default">
   	<div class="container-fluid">
 	    <div class="navbar-header">
@@ -37,7 +38,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<c:if test="${user != null }">   			
  			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
  			 	    <input type="hidden" name="command" value="log_out_command"/>
- 			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">totalizator cash:${user.cash}</span></button>
+ 			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
  			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
  			  	<div class="form-group">
 		 	       <div class="dropdown">
@@ -56,58 +57,207 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <!-- Content -->
   <div class="container-fluid text-center">  
    <div class="row content">
-         <div class="col-sm-2 sidenav">     
-	 			Some content
-	    </div>   
-        <h2>Все пользователи</h2>
-        
-    <div class="col-sm-8 text-left">
+      <div class="col-sm-2 sidenav">     
+ 			<ul class="pagination ul-nav">
+			  <li>
+				  <form action="Controller" method="get">
+				  	 
+				  	  <a href="#">${allgames}</a>
+				  </form>
+			  </li>
+			  <li >
+		  		  <form action="Controller" method="get">
+					 
+				  	<a href="#" >${football}</a>
+				  </form>
+			  </li>
+			  <li>
+		  		  <form action="Controller" method="get">
+					
+					  	<a href="#" >${basketball}</a>
+				  </form>
+			</li>
+			  <li>
+	  	  		  <form action="Controller" method="get">
+					
+					  	<a href="#">${hockey}</a>
+				  </form>
+			  </li>
+			</ul>
+     </div>
+  
+      <div class="col-sm-8 text-left">
+	   
+     <div class="container">
 	<table class="table table-striped table-hover table-bordered">
-		<thead>
-			<tr>
-				<td>ID</td>
-				<td>Логин</td>
-				<td>Почта</td>
-				<td>Роль</td>
-				<td>Счет</td>
-			</tr>		
-		</thead>
-			<c:forEach var="user" items="${users}" >
-				<tr>	
-    					<c:if test="${user.role == 'ADMIN' }">
-    						<tr class="danger">			
-    					</c:if>
-    					<c:if test="${user.role == 'BOOKMAKER' }">
-    						<tr class="warning">			
-    					</c:if>
-    					<c:if test="${user.role == 'USER' }">
-    						<tr class="success">			
-    					</c:if>
-  				
-  					  <td class="success">
-  					  		${user.id}
-  					  </td>					  
-  					  <td >
-  					  			${user.login}
-  					  </td>					  
-  					  <td>
-  					  			${user.email}
-  					  </td>					  
-  					  <td>
-  					  			${user.role}
-  					  </td>					  
-  					  <td>
-  					  			${user.cash}
-  					  </td>				  
-					</tr>			
-			</c:forEach>
+	<thead>
+		<tr>
+			<td class="success">${id}</td>
+			<td>${login}</td>
+			<td>${email}</td>
+			<td>${role}</td>
+			<td>${cash}</td>
+		</tr>
+	</thead>
+		<c:forEach var="user" items="${users}" >	 		
+				<tr id="gameRow-${user.id}">			
+					  <td class="success">
+					  <div class="col-md-2">
+					  		${user.id}
+					  </div>
+					  </td>				  
+				  <td >
+				  			${user.login}
+				  </td>				  
+				  <td>
+				            ${user.email}
+				  </td>
+				  	<td>
+				            ${user.role}
+				  </td>
+				   <td>
+				            ${user.cash}
+				  </td>
+
+				  <td>
+				  	 	<button onclick="commitChanges(this);" id="saveButton-${user.id}" type="submit" class="button signinbutton">Сохранить</button>
+				  </td>
+				  <td>
+				  	 	<button onclick="removeTableRowWithGame(this);" id="saveButton-${user.id}" type="submit" class="button signupbutton">Удалить</button>
+				  </td>
+				</tr>			
+		</c:forEach>
 		</table> 
-	</div>
-	        <p><a href="redirectToAddNewGamePage" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-plus"/>${addnewgame}</a></p>	   
- </div>
- </div>
-      <footer class="container-fluid text-center">
-	  	 <p>Footer Text</p>
-	  </footer>
+		<nav>
+		  <ul class="pagination ul-pagination">  
+		  	 <c:if test="${currentPage != 1}">
+   				<li>
+					<form action="Controller">
+						<input type="hidden" name="command" value="GET_PAGE_WITH_USERS_COMMAND"/>
+						<input type="hidden" name="go_to_page" value="adminPage"/>		
+						<input type="hidden" name="pageNumber" value="${currentPage - 1}"/>
+						<a href="#" onclick="$(this).closest('form').submit();">Previous</a>
+					</form>
+				</li>
+			</c:if>
+		    <c:if test="${currentPage == 1}">
+   				<li class="disabled">
+					<a href="#">Previous</a>
+				</li>
+			</c:if>
+				
+				<c:forEach begin="1" end="${noOfPages}" var="i">
+					 <c:choose>
+						<c:when test="${currentPage eq i}">
+							 <li class="active"><a href="#">${i}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<form action="Controller">
+									<input type="hidden" name="command" value="GET_PAGE_WITH_USERS_COMMAND"/>
+									<input type="hidden" name="pageNumber" value="${i}"/>	
+									<input type="hidden" name="go_to_page" value="adminPage"/>								
+									<a href="#" onclick="$(this).closest('form').submit();">${i}</a>
+								</form>
+							</li>
+						</c:otherwise>
+					</c:choose> 	
+				</c:forEach>
+			    	
+			  <c:if test="${currentPage != noOfPages}">		    
+   				<li>
+					<form action="Controller">
+						<input type="hidden" name="command" value="GET_PAGE_WITH_USERS_COMMAND"/>	
+						<input type="hidden" name="go_to_page" value="adminPage"/>	
+						<input type="hidden" name="pageNumber" value="${currentPage + 1}"/>
+						<a href="#" onclick="$(this).closest('form').submit();">Next</a>
+					</form>
+				</li>
+				</c:if>
+			  <c:if test="${currentPage == noOfPages}">		    
+   				<li class="disabled">
+						<a href="#">Next</a>
+				</li>
+				</c:if>
+		  </ul>
+		</nav>
+	</div>	
+
+
+      </div>     
+    </div>
+   </div>
+    <footer class="container-fluid text-center">
+	  <p>Epam 2017</p>
+	</footer>
+	
+	<script>
+		function changeButtonColorCommitable(inputObject){
+			var changedGameId = inputObject.id.split("-")[1];			
+			var changeButtonId = "#saveButton-"+changedGameId;
+			$(changeButtonId).removeClass('signinbutton').addClass('commitbtn');
+		}
+		
+		function changeButtonColorUnCommitable(inputObject){
+			var changedGameId = inputObject.id.split("-")[1];			
+			var changeButtonId = "#saveButton-"+changedGameId;
+			$(changeButtonId).removeClass('commitbtn').addClass('signinbutton');
+		}
+		
+		function commitChanges(buttonObject){
+			
+			var changedGameId = buttonObject.id.split("-")[1];
+			
+			var k1Value = $("#k1-"+changedGameId).val();
+			var kxValue = $("#kx-"+changedGameId).val();
+			var k2Value = $("#k2-"+changedGameId).val();			
+
+			$.ajax({
+				type:"POST",
+				data:{command:"SET_NEW_GAME_COEFFICIENTS_AJAX_COMMAND",
+					  gameId:changedGameId,
+					  k1:k1Value,
+					  kx:kxValue,
+					  k2:k2Value,
+					 },
+				url:"AJAXController",
+	            success : function(data) {
+	            	changeButtonColorUnCommitable(buttonObject);
+	            }
+			});
+		}
+		
+		function removeTableRowWithGame(buttonObject){
+			if(confirm("Are you realy want to remove game?")){				
+				var changedGameId = buttonObject.id.split("-")[1];		
+				
+				$.ajax({
+					type:"POST",
+					data:{
+							command:"MAKE_GAME_INVISIBLE_AJAX_COMMAND",
+							gameId:changedGameId
+						 },
+					url:"AJAXController",
+		            success : function(data) {
+		            	$("#gameRow-"+changedGameId).hide();
+		            }
+				});
+			}
+		}
+		
+		function setLanguage(goToPage,local){		
+			$.get(
+				    "Controller",
+				    {
+				    	 command : "CHANGE_LOCALIZATION_COMMAND",			    
+					     go_to_page : goToPage,
+					     local:local			    
+				    },
+				    function(data) {
+				       window.location.replace(goToPage);
+				    }
+				);
+		}
+	</script>
   </body>
 </html>

@@ -6,6 +6,7 @@ import java.util.Map;
 import by.asushenya.total.controller.command.impl.ChangeLocalizationCommand;
 import by.asushenya.total.controller.command.impl.GetAllUserRatesCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithGamesCommand;
+import by.asushenya.total.controller.command.impl.GetPageWithUsersCommand;
 import by.asushenya.total.controller.command.impl.GetPersonalPageCommand;
 import by.asushenya.total.controller.command.impl.authorization.SignOut;
 import by.asushenya.total.controller.command.ICommand;
@@ -31,6 +32,7 @@ public final class CommandHelper {
 		commands.put(CommandName.GET_PERSONAL_PAGE_COMMAND, new GetPersonalPageCommand());
 		commands.put(CommandName.AUTHORIZATION_USER_SIGN_OUT_COMMAND, new SignOut());
 		commands.put(CommandName.CHANGE_LOCALIZATION_COMMAND, new ChangeLocalizationCommand());
+		commands.put(CommandName.GET_PAGE_WITH_USERS_COMMAND, new GetPageWithUsersCommand());
 	}
 	
 	public static CommandHelper getInstance(){

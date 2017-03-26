@@ -3,50 +3,50 @@
       <%@ taglib prefix="fmt" 
            uri="http://java.sun.com/jsp/jstl/fmt" %>
   
-  <fmt:setLocale value="${sessionScope.local}"/>
-  <fmt:setBundle basename="localization.local" var="loc"/>
-  
-  <fmt:message bundle="${loc}" key="local.title" var="title"/>
-  <fmt:message bundle="${loc}" key="local.signinbutton" var="signinbutton"/>
-  <fmt:message bundle="${loc}" key="local.signupbutton" var="signupbutton"/>
-  <fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
-  <fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
-  <fmt:message bundle="${loc}" key="local.language"  var="language"/>
-  
-  <fmt:message bundle="${loc}" key="local.placeholder.login" var="login"/>
-  <fmt:message bundle="${loc}" key="local.placeholder.password" var="password"/>
-  
-  <fmt:message bundle="${loc}" key="local.game.football" var="soccer"/>
-  <fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
-  <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
-  <fmt:message bundle="${loc}" key="local.game.allgames" var="allgames"/>
-
-  
-  <fmt:message bundle="${loc}" key="local.table.game.time" var="time"/>
-  <fmt:message bundle="${loc}" key="local.table.game.event" var="event"/>
-  <fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
-  <fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
-  <fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
+	<fmt:setLocale value="${sessionScope.local}"/>
+	<fmt:setBundle basename="localization.local" var="loc"/>
+	
+	<fmt:message bundle="${loc}" key="local.title" var="title"/>
+	<fmt:message bundle="${loc}" key="local.signinbutton" var="signinbutton"/>
+	<fmt:message bundle="${loc}" key="local.signupbutton" var="signupbutton"/>
+	<fmt:message bundle="${loc}" key="local.signoutbutton" var="signoutbutton"/>
+	<fmt:message bundle="${loc}" key="local.language.ru"  var="russianLanguage"/>
+	<fmt:message bundle="${loc}" key="local.language.en"  var="englishLanguage"/>
+	<fmt:message bundle="${loc}" key="local.language"  var="language"/>
+	
+	<fmt:message bundle="${loc}" key="local.placeholder.login" var="login"/>
+	<fmt:message bundle="${loc}" key="local.placeholder.password" var="password"/>
+	
+	<fmt:message bundle="${loc}" key="local.game.football" var="soccer"/>
+	<fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
+	<fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
+	<fmt:message bundle="${loc}" key="local.game.allgames" var="allgames"/>
+	
+	
+	<fmt:message bundle="${loc}" key="local.table.game.time" var="time"/>
+	<fmt:message bundle="${loc}" key="local.table.game.event" var="event"/>
+	<fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
+	<fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
+	<fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
   
   <%-- Make Rate errors --%>
-  <fmt:message bundle="${loc}" key="local.makerateerror" var="makerateerror"/>
-  <fmt:message bundle="${loc}" key="local.makeratesuccess" var="makeratesuccess"/>
-  <fmt:message bundle="${loc}" key="local.makerate.emptyuser" var="emptyuser"/>
-  <fmt:message bundle="${loc}" key="local.makerate.nomoney" var="nomoney"/>
-  <fmt:message bundle="${loc}" key="local.makerate.lessthanzero" var="lessthanzero"/>
-  <fmt:message bundle="${loc}" key="local.unknownerror" var="unknownerror"/>
-  <fmt:message bundle="${loc}" key="local.makerate.emptyrate" var="emptyrate"/>
-  <fmt:message bundle="${loc}" key="local.makerate.emptygame" var="emptygame"/>
-  <fmt:message bundle="${loc}" key="local.makerate.ratenotanumber" var="ratenotanumber"/>
+	<fmt:message bundle="${loc}" key="local.makerateerror" var="makerateerror"/>
+	<fmt:message bundle="${loc}" key="local.makeratesuccess" var="makeratesuccess"/>
+	<fmt:message bundle="${loc}" key="local.makerate.emptyuser" var="emptyuser"/>
+	<fmt:message bundle="${loc}" key="local.makerate.nomoney" var="nomoney"/>
+	<fmt:message bundle="${loc}" key="local.makerate.lessthanzero" var="lessthanzero"/>
+	<fmt:message bundle="${loc}" key="local.unknownerror" var="unknownerror"/>
+	<fmt:message bundle="${loc}" key="local.makerate.emptyrate" var="emptyrate"/>
+	<fmt:message bundle="${loc}" key="local.makerate.emptygame" var="emptygame"/>
+	<fmt:message bundle="${loc}" key="local.makerate.ratenotanumber" var="ratenotanumber"/>
 
   
   <%-- addNewGamePage --%>
   
-  <fmt:message bundle="${loc}" key="local.addgameerror" var="addgameerror"/>
-  <fmt:message bundle="${loc}" key="local.addgameerror.firstequalstwo" var="firstequalstwo"/>
-   <fmt:message bundle="${loc}" key="local.addgameerror.badtime" var="badtime"/>
-   <fmt:message bundle="${loc}" key="local.addgameerror.littletime" var="littletime"/>
+	<fmt:message bundle="${loc}" key="local.addgameerror" var="addgameerror"/>
+	<fmt:message bundle="${loc}" key="local.addgameerror.firstequalstwo" var="firstequalstwo"/>
+	<fmt:message bundle="${loc}" key="local.addgameerror.badtime" var="badtime"/>
+	<fmt:message bundle="${loc}" key="local.addgameerror.littletime" var="littletime"/>
    
     <fmt:message bundle="${loc}" key="local.addgameerror.k1isstring" var="k1isstring"/>
     <fmt:message bundle="${loc}" key="local.addgameerror.k1islittle" var="k1islittle"/>
@@ -58,18 +58,24 @@
  	<fmt:message bundle="${loc}" key="local.addgameerror.kxisempty" var="kxisempty"/>
  	<fmt:message bundle="${loc}" key="local.addgameerror.k2isempty" var="k2isempty"/>
  	
-  <fmt:message bundle="${loc}" key="local.game.football" var="football"/>
-  <fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
-  <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
-  <fmt:message bundle="${loc}" key="local.game.gamekind" var="gamekind"/> 
-  <fmt:message bundle="${loc}" key="local.table.game.addnewgame" var="addnewgame"/>
-  <fmt:message bundle="${loc}" key="local.table.game.firstteam" var="firstteam"/>
-  <fmt:message bundle="${loc}" key="local.table.game.secondteam" var="secondteam"/>
-  <fmt:message bundle="${loc}" key="local.game.newgameadding" var="newgameadding"/>
+	<fmt:message bundle="${loc}" key="local.game.football" var="football"/>
+	<fmt:message bundle="${loc}" key="local.game.basketball" var="basketball"/>
+	<fmt:message bundle="${loc}" key="local.game.hockey" var="hockey"/>
+	<fmt:message bundle="${loc}" key="local.game.gamekind" var="gamekind"/> 
+	<fmt:message bundle="${loc}" key="local.table.game.addnewgame" var="addnewgame"/>
+	<fmt:message bundle="${loc}" key="local.table.game.firstteam" var="firstteam"/>
+	<fmt:message bundle="${loc}" key="local.table.game.secondteam" var="secondteam"/>
+	<fmt:message bundle="${loc}" key="local.game.newgameadding" var="newgameadding"/>
   
-   <fmt:message bundle="${loc}" key="local.authorization.error" var="authorizationerror"/>
-   <fmt:message bundle="${loc}" key="local.authorization.invalidpassword" var="invalidpassword"/>
-   <fmt:message bundle="${loc}" key="local.authorization.notregistred" var="notregistred"/>
+	<fmt:message bundle="${loc}" key="local.authorization.error" var="authorizationerror"/>
+	<fmt:message bundle="${loc}" key="local.authorization.invalidpassword" var="invalidpassword"/>
+	<fmt:message bundle="${loc}" key="local.authorization.notregistred" var="notregistred"/>
+   
+	<fmt:message bundle="${loc}" key="local.admin.id" var="id"/>
+	<fmt:message bundle="${loc}" key="local.admin.login" var="login"/>
+	<fmt:message bundle="${loc}" key="local.admin.email" var="email"/>
+	<fmt:message bundle="${loc}" key="local.admin.role" var="role"/>
+	<fmt:message bundle="${loc}" key="local.admin.cash" var="cash"/>
 
   
   

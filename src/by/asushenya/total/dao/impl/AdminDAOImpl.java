@@ -133,7 +133,6 @@ public class AdminDAOImpl implements AdminDAO{
 		 Connection con = null;
 		 Statement st = null;
 		 ResultSet rs = null;
-		 //int noOfRecords;
 		 StringBuilder getPartOfUsersQuerry = new StringBuilder();
 		 getPartOfUsersQuerry.append(getAllUsersQuerry);
 		 
@@ -152,7 +151,7 @@ public class AdminDAOImpl implements AdminDAO{
 				user.setLogin(rs.getString("login"));
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));				
-				user.setRole(UserRole.valueOf(rs.getString("role")));
+				user.setRole(UserRole.valueOf(rs.getString("role").toUpperCase()));
 				user.setCash(rs.getFloat("cash"));
 				list.add(user);
 			}

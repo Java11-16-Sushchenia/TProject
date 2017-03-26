@@ -61,8 +61,7 @@ public class UserServiceImpl implements UserService{
 		
 		if(local == null){
 			local = RequestParameterName.SESSION_LOCAL_RU;
-		}
-		
+		}		
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();

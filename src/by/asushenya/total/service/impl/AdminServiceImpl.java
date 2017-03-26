@@ -29,7 +29,8 @@ public class AdminServiceImpl implements AdminService{
 		AdminDAO adminDAO = daoFactory.getAdminDAO();
 		
 		try{
-			usersList = adminDAO.getUsersForPage(page, usersPerPage);
+			usersList = adminDAO.getUsersForPage((page-1)*usersPerPage, 
+												usersPerPage);
 
 			 noOfRecords = adminDAO.getUsersRecordsCount();
 		} catch(DAOException e){
