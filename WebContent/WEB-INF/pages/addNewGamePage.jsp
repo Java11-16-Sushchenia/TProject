@@ -318,7 +318,7 @@
     		$.ajax({
 				type:"POST",
 				data:{
-						command:"GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND",
+						command:"GET_TEAMS_BY_GAME_KIND_AJAX_COMMAND",
 						gameKind:gameKind						
 					 },
 				url:"AJAXController",

@@ -71,11 +71,10 @@
 	<fmt:message bundle="${loc}" key="local.authorization.invalidpassword" var="invalidpassword"/>
 	<fmt:message bundle="${loc}" key="local.authorization.notregistred" var="notregistred"/>
    
-	<fmt:message bundle="${loc}" key="local.admin.id" var="id"/>
-	<fmt:message bundle="${loc}" key="local.admin.login" var="login"/>
-	<fmt:message bundle="${loc}" key="local.admin.email" var="email"/>
-	<fmt:message bundle="${loc}" key="local.admin.role" var="role"/>
-	<fmt:message bundle="${loc}" key="local.admin.cash" var="cash"/>
+	<fmt:message bundle="${loc}" key="local.adminpage.id" var="id"/>
+	<fmt:message bundle="${loc}" key="local.adminpage.email" var="email"/>
+	<fmt:message bundle="${loc}" key="local.adminpage.role" var="role"/>
+	<fmt:message bundle="${loc}" key="local.adminpage.cash" var="cash"/>
 
   
   

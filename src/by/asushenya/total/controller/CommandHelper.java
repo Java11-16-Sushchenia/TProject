@@ -8,6 +8,7 @@ import by.asushenya.total.controller.command.impl.GetAllUserRatesCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithGamesCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithUsersCommand;
 import by.asushenya.total.controller.command.impl.GetPersonalPageCommand;
+import by.asushenya.total.controller.command.impl.InitializeAddNewGamePageCommand;
 import by.asushenya.total.controller.command.impl.authorization.SignOut;
 import by.asushenya.total.controller.command.ICommand;
 
@@ -33,6 +34,7 @@ public final class CommandHelper {
 		commands.put(CommandName.AUTHORIZATION_USER_SIGN_OUT_COMMAND, new SignOut());
 		commands.put(CommandName.CHANGE_LOCALIZATION_COMMAND, new ChangeLocalizationCommand());
 		commands.put(CommandName.GET_PAGE_WITH_USERS_COMMAND, new GetPageWithUsersCommand());
+		commands.put(CommandName.INITIALIZE_ADD_NEW_GAME_PAGE_COMMAND, new InitializeAddNewGamePageCommand());
 	}
 	
 	public static CommandHelper getInstance(){

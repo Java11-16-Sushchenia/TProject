@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
+import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.UsersPage;
 import by.asushenya.total.dao.AdminDAO;
+import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.AdminService;
@@ -45,6 +48,25 @@ public class AdminServiceImpl implements AdminService{
 		usersPage.setNumberOfPages(noOfPages);
 		
 		return usersPage;
+	}
+	
+	
+	public List<Team> getTeamsByGameKind(GameKind gameKind, 
+										 String local) 
+												throws ServiceException {
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO userDAO = daoFactory.getUserDAO();
+		List<Team> listOfTeams = null;
+		
+		try{
+			listOfTeams = userDAO.getTeamsByGameKind(gameKind, local);
+			
+		} catch(DAOException e){
+			log.error("can't get list of teams",e);
+			throw new ServiceException("can't get list of teams",e);
+		}
+		
+		return listOfTeams;
 	}
 
 }

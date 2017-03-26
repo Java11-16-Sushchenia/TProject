@@ -11,7 +11,7 @@
 </head>
 <body>
 	<c:redirect url="/Controller">
-		<c:param name="command" value="GET_ALL_TEAMS_COMMAND"/>			
+		<c:param name="command" value="INITIALIZE_ADD_NEW_GAME_PAGE_COMMAND"/>			
 		<c:param name="go_to_page" value="addNewGamePage"/>
 	</c:redirect>
 </body>

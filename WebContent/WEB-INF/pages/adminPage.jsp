@@ -180,13 +180,15 @@
 				</li>
 				</c:if>
 		  </ul>
+		  <button class="button signinbutton" onclick="window.location.replace('redirectToAddNewGamePage');">add new game</button>
 		</nav>
 	</div>	
+	      </div>
 
-
-      </div>     
     </div>
    </div>
+   
+
     <footer class="container-fluid text-center">
 	  <p>Epam 2017</p>
 	</footer>
