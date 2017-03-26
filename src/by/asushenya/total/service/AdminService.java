@@ -1,5 +1,6 @@
 package by.asushenya.total.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import by.asushenya.total.bean.Team;
@@ -13,5 +14,14 @@ public interface AdminService{
 						   int usersPerPage)
 								throws ServiceException;
 	List<Team> getTeamsByGameKind(GameKind gameKind, String local)
+								throws ServiceException;
+	String addNewGame(GameKind gameKind,
+					  String firstTeamName,
+					  String secondTeamName,
+					  Timestamp gameDate,
+					  double k1, 
+					  double kx, 
+					  double k2,
+					  String local)
 								throws ServiceException;
 }

@@ -21,6 +21,7 @@ import by.asushenya.total.controller.ajax_controller.ajax_command.impl.MakeRateA
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SetNewGameCoefficientsAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SignInAJAXCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithGamesCommand;
+import by.asushenya.total.controller.ajax_controller.ajax_command.impl.AddNewGameAJAXCommand;
 
 
 public final class AJAXCommandHelper {
@@ -43,6 +44,7 @@ public final class AJAXCommandHelper {
 		commands.put(AJAXCommandName.SET_NEW_GAME_COEFFICIENTS_AJAX_COMMAND, new SetNewGameCoefficientsAJAXCommand());
 		commands.put(AJAXCommandName.MAKE_GAME_INVISIBLE_AJAX_COMMAND, new MakeGameInvisibleAJAXCommand());
 		commands.put(AJAXCommandName.GET_TEAMS_BY_GAME_KIND_AJAX_COMMAND, new GetTeamsByGameKindAJAXCommand());
+		commands.put(AJAXCommandName.ADD_NEW_GAME_AJAX_COMMAND, new AddNewGameAJAXCommand());
 		
 	}
 	

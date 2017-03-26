@@ -1,13 +1,22 @@
 package by.asushenya.total.service.impl;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+
+import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.UsersPage;
+import by.asushenya.total.controller.RequestParameterName;
+import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.dao.AdminDAO;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
@@ -67,6 +76,48 @@ public class AdminServiceImpl implements AdminService{
 		}
 		
 		return listOfTeams;
+	}
+
+
+	
+	public String addNewGame(GameKind gameKind, 
+							 String firstTeamName, 
+							 String secondTeamName,
+							 Timestamp gameDate, 
+							 double k1, 
+							 double kx,
+							 double k2,
+							 String local) 
+									 throws ServiceException {
+		Game newGame = new Game();
+		newGame.setGameKind(gameKind);
+		newGame.setFirstTeam(firstTeamName);
+		newGame.setSecondTeam(secondTeamName);
+		newGame.setDate(gameDate);
+		newGame.setK1(k1);
+		newGame.setKx(kx);
+		newGame.setK2(k2);
+		
+		if(local == null){
+			local = RequestParameterName.SESSION_LOCAL_RU;
+		}
+		
+		
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		AdminDAO adminDAO = daoFactory.getAdminDAO();
+		
+		try{
+			adminDAO.addGame(newGame, local);
+		} catch(DAOException e){
+			log.error("can't add new game",e);
+			throw new ServiceException("can't add new game",e);
+		}		
+		
+		JSONObject json = new JSONObject();
+		json.put(ResponseParameterName.SUCCESS, 
+				 ResponseParameterName.OK);	
+			
+	    return json.toString();		
 	}
 
 }
