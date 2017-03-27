@@ -29,7 +29,7 @@ public class ResponseParameterName {
 	public final static String SIGN_IN_ERROR = "signinerror";
 	
 	//registrate ajax command
-	public final static String REGISTRATION_ERROR = "userexists";
+	public final static String REGISTRATION_ERROR = "registrationerror";
 	public final static String USER_EXISTS = "userexists";
 	public final static String USER_EMAIL_EXISTS = "emailexists";
 	

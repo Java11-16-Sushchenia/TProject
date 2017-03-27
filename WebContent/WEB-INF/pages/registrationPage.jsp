@@ -109,11 +109,18 @@
 					url:"AJAXController",
 					success:function(data){
 			               var json = JSON.parse(data);
-			               alert("registration ok");
+			            	debugger;
+			               var errorType = json["errorType"];
+			               var errorMessage = json["errorMessage"];
 			               
-		            	setTimeout(function() {
-		            		  window.location.replace("redirectToIndexPage");
-		            		}, 3000);			
+			               if(errorType === "registrationerror"){
+			            	   alert(errorMessage);
+			               }
+			               else if (errorType === "success"){
+				            	setTimeout(function() {
+				            		  window.location.replace("redirectToIndexPage");
+				            		}, 3000);		
+			               }
 					}				
 				});
 			}

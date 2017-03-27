@@ -31,23 +31,14 @@ public final class AJAXCommandHelper {
 	private Map<AJAXCommandName,IAJAXCommand> commands = new HashMap<AJAXCommandName,IAJAXCommand>();
 
 	
-	public AJAXCommandHelper(){
-		/*commands.put(CommandName.MAKE_RATE_COMMAND, new MakeRateAJAXCommand());
-		commands.put(CommandName.AUTHORIZATION_USER_COMMAND, new AuthorizationUserAJAXCommand());
-		commands.put(CommandName.SET_NEW_GAME_RATES_AJAX_COMMAND, new SetNewGameRatesAJAXCommand());
-		commands.put(CommandName.MAKE_GAME_INVISIBLE_AJAX_COMMAND, new MakeGameInvisibleAJAXCommand());
-		commands.put(CommandName.ADD_NEW_GAME_AJAX_COMMAND, new AddNewGameAJAXCommand());
-		commands.put(CommandName.GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND, new GetTeamsOfSomeGameKindAJAXCommand());
-		commands.put(CommandName.REGISTRATION_USER_AJAX_COMMAND, new RegistrateUserAJAXCommand());*/
-		
+	public AJAXCommandHelper(){		
 		commands.put(AJAXCommandName.REGISTRATION_USER_AJAX_COMMAND, new RegistrationUserAJAXCommand());
 		commands.put(AJAXCommandName.AUTHORIZATION_SIGN_IN_AJAX_COMMAND, new SignInAJAXCommand());
 		commands.put(AJAXCommandName.MAKE_RATE_AJAX_COMMAND, new MakeRateAJAXCommand());
 		commands.put(AJAXCommandName.SET_NEW_GAME_COEFFICIENTS_AJAX_COMMAND, new SetNewGameCoefficientsAJAXCommand());
 		commands.put(AJAXCommandName.MAKE_GAME_INVISIBLE_AJAX_COMMAND, new MakeGameInvisibleAJAXCommand());
 		commands.put(AJAXCommandName.GET_TEAMS_BY_GAME_KIND_AJAX_COMMAND, new GetTeamsByGameKindAJAXCommand());
-		commands.put(AJAXCommandName.ADD_NEW_GAME_AJAX_COMMAND, new AddNewGameAJAXCommand());
-		
+		commands.put(AJAXCommandName.ADD_NEW_GAME_AJAX_COMMAND, new AddNewGameAJAXCommand());		
 	}
 	
 	public static AJAXCommandHelper getInstance(){

@@ -29,7 +29,7 @@ public class GetAllUserRatesCommand implements ICommand{
 										  SessionParameterName.SESSION_USER);
 		List<Rate> rates = null;
 		
-		System.out.println("Получение ставок пользователя"+user.getLogin());
+		//System.out.println("Получение ставок пользователя"+user.getLogin());
 		
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		UserService userService = serviceFactory.getUserService();

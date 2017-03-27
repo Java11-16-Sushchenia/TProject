@@ -37,7 +37,7 @@ public class RegistrationUserAJAXCommand implements IAJAXCommand{
 		String serviceResponse = null;		
 		
 		try{
-			serviceResponse = userService.RegistrationUser(login, 
+			serviceResponse = userService.registrationUser(login, 
 														   email, 
 														   Encryptor.getMD5Hash(password));
 					

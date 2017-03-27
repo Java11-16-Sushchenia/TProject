@@ -211,7 +211,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	
-	public String RegistrationUser(String login, 
+	public String registrationUser(String login, 
 								   String email, 
 								   String password) 
 										   throws ServiceException {

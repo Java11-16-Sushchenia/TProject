@@ -11,7 +11,7 @@ import by.asushenya.total.bean.util.RateChoice;
 import by.asushenya.total.service.exception.ServiceException;
 
 public interface UserService {
-	String RegistrationUser(String login, 
+	String registrationUser(String login, 
 							String email, 
 							String password) 
 										  throws ServiceException;
