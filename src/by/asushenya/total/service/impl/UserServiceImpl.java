@@ -210,4 +210,62 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	
+	public String RegistrationUser(String login, 
+								   String email, 
+								   String password) 
+										   throws ServiceException {
+
+		JSONObject jsonWithRegistrationInfo = new JSONObject();
+		
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO userDAO = daoFactory.getUserDAO();
+		
+		try{
+			if(userDAO.findUserByLogin(login) != null){
+				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_TYPE,
+											 ResponseParameterName.REGISTRATION_ERROR);
+			
+				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_MSSAGE,
+											 ResponseParameterName.USER_EXISTS);
+				return jsonWithRegistrationInfo.toString();
+			}
+		} catch(DAOException e){
+			log.error("can't find user by login",e);
+			throw new ServiceException();
+		}
+		
+		try{
+			if(userDAO.findUserByEmail(email) != null){
+				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_TYPE,
+											 ResponseParameterName.REGISTRATION_ERROR);
+			
+				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_MSSAGE,
+											 ResponseParameterName.USER_EMAIL_EXISTS);
+				return jsonWithRegistrationInfo.toString();
+			}
+		} catch(DAOException e){
+			log.error("can't find user by email",e);
+			throw new ServiceException();
+		}
+		
+		User user = new User();
+		user.setLogin(login);
+		user.setEmail(email);
+		user.setPassword(password);
+		
+		try{
+			userDAO.registeredNewUser(user);
+		}  catch(DAOException e){
+			log.error("can't register user",e);
+			throw new ServiceException("can't register user",e);
+		}
+		
+		jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_TYPE,
+									 ResponseParameterName.SUCCESS);
+		
+		
+		return jsonWithRegistrationInfo.toString();
+	}
+
 }
