@@ -24,7 +24,7 @@
     
     	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
     	
-  <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
+ 	<%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
 
   </head>
   <body>   
@@ -37,7 +37,7 @@
 
 		<c:if test="${user != null }">   			
  			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
- 			 	    <input type="hidden" name="command" value="log_out_command"/>
+ 			 	    <input type="hidden" name="command" value="AUTHORIZATION_USER_SIGN_OUT_COMMAND"/>
  			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
  			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
  			  	<div class="form-group">

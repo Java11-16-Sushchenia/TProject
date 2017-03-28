@@ -399,4 +399,10 @@ public class UserDAOImpl implements UserDAO{
 			}
 			return teamsOfSomeGameKind;	
 	}
+
+	@Override
+	public List<Rate> getRatesForPage(int page,
+									  int ratesPerPage) throws DAOException {
+		return null;
+	}
 }

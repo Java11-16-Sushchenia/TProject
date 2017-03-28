@@ -1,6 +1,7 @@
 package by.asushenya.total.service;
 
 import java.util.List;
+import java.util.Locale;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.GamesPage;

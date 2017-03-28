@@ -45,12 +45,12 @@
     <url-pattern>/addNewGamePage</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>makeRatePage</servlet-name>
-    <jsp-file>/WEB-INF/pages/makeRatePage.jsp</jsp-file>
+    <servlet-name>404</servlet-name>
+    <jsp-file>/WEB-INF/pages/404.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-    <servlet-name>makeRatePage</servlet-name>
-    <url-pattern>/makeRatePage</url-pattern>
+    <servlet-name>404</servlet-name>
+    <url-pattern>/404</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>registrationPage</servlet-name>

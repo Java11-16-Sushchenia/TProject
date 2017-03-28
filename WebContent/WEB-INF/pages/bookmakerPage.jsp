@@ -37,15 +37,15 @@
 
 		<c:if test="${user != null }">   			
  			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
- 			 	    <input type="hidden" name="command" value="log_out_command"/>
+ 			 	    <input type="hidden" name="command" value="AUTHORIZATION_USER_SIGN_OUT_COMMAND"/>
  			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
  			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
  			  	<div class="form-group">
 		 	       <div class="dropdown">
 			           <button class="button dropbtn">${language}</button>
 			           <div class="dropdown-content">		           		
-			                <a href="#" onclick="setLanguage('redirectToIndexPage','ru');">${russianLanguage}</a>
-			                <a href="#" onclick="setLanguage('redirectToIndexPage','en');">${englishLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToBookmakerPage','ru');">${russianLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToBookmakerPage','en');">${englishLanguage}</a>
 			          </div>
 				 </div>  
 	  		  </div>  
@@ -275,5 +275,6 @@
 			}
 		}		
 	</script>
+	    <script src="bootstrap-3.3.7-dist/js/myScripts.js"></script>    
   </body>
 </html>

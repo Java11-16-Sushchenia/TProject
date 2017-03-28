@@ -28,6 +28,8 @@
 	<fmt:message bundle="${loc}" key="local.table.game.home" var="home"/>
 	<fmt:message bundle="${loc}" key="local.table.game.draw" var="draw"/>
 	<fmt:message bundle="${loc}" key="local.table.game.away" var="away"/>
+	<fmt:message bundle="${loc}" key="local.table.game.commit" var="commit"/>
+	<fmt:message bundle="${loc}" key="local.table.game.remove" var="remove"/>
   
   <%-- Make Rate errors --%>
 	<fmt:message bundle="${loc}" key="local.makerateerror" var="makerateerror"/>

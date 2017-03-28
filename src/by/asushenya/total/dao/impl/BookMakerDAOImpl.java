@@ -67,7 +67,7 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 	        }
 	        
 	    }catch(SQLException e){	 
-	    	//log.error(e);
+	    	log.error("can't get all games",e);
 	        
 	    }
 	    finally {
@@ -76,38 +76,6 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 	    return games;
 	}
 	
-
-	
-	public List<Team> getAllTeams() throws DAOException {
-	
-			/*Connection con = null;
-		    Statement st = null;
-		    ResultSet rs = null;
-		    
-		    List<Team> teams = new ArrayList<Team>();
-		    
-		    try {  		    	    	  	
-		        con = ConnectionManager.getDBTotalizatorConnection();
-		        st = con.createStatement();
-		        rs = st.executeQuery(getAllTeamsQuerry);
-		        
-		        while (rs.next()) {
-		            Team team = new Team();
-		            
-		            team.setId(rs.getInt("id"));
-		            team.setName(rs.getString("name"));
-		            
-		            teams.add(team);	            
-		        }
-		        
-		    }catch(SQLException e){	 
-		    	log.error("can't return all games");	        
-		    }
-		    finally {
-		    	ConnectionManager.disconnectFromDB(rs, st, con);
-		    }		*/
-		return null;
-	}
 
 	public void setNewGameRates(int gameId, 
 								double k1, 

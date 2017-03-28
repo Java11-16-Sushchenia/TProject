@@ -116,6 +116,18 @@
     color: white;
 }
 
+.infobutton {
+	width:100%;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #c60da2;    
+}
+
+.infobutton:hover {
+    background-color: #c60da2;
+    color: white;
+}
+
 .commitbtn {
 	width:100%;
     background-color: #337ab7; 

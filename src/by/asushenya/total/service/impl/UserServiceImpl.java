@@ -1,6 +1,7 @@
 package by.asushenya.total.service.impl;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,10 +59,6 @@ public class UserServiceImpl implements UserService{
 		int noOfRecords = 0;
 	
 		List<Game> gamesList = null;
-		
-		if(local == null){
-			local = RequestParameterName.SESSION_LOCAL_RU;
-		}		
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();

@@ -37,15 +37,39 @@
 
 		<c:if test="${user != null }">   			
  			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
- 			 	    <input type="hidden" name="command" value="log_out_command"/>
- 			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
+ 			 	    <input type="hidden" name="command" value="AUTHORIZATION_USER_SIGN_OUT_COMMAND"/>
+ 			 	    	<button data-toggle="modal" data-target="#myModal" type="button" class="button infobutton form-control">${user.email} <span class="badge">${user.cash}</span></button>
+ 			  	
+						
+							
+							  <!-- Modal -->
+							  <div class="modal fade" id="myModal" role="dialog">
+							    <div class="modal-dialog">
+							    
+							      <!-- Modal content-->
+							      <div class="modal-content">
+							        <div class="modal-header">
+							          <button type="button" class="close" data-dismiss="modal">&times;</button>
+							          <h4 class="modal-title">Modal Header</h4>
+							        </div>
+							        <div class="modal-body">
+							          <p>Some text in the modal.</p>
+							        </div>
+							        <div class="modal-footer">
+							          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        </div>
+							      </div>
+							      
+							    </div>
+							  </div>
+ 			  			
  			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
  			  	<div class="form-group">
 		 	       <div class="dropdown">
 			           <button class="button dropbtn">${language}</button>
 			           <div class="dropdown-content">		           		
-			                <a href="#" onclick="setLanguage('redirectToIndexPage','ru');">${russianLanguage}</a>
-			                <a href="#" onclick="setLanguage('redirectToIndexPage','en');">${englishLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToAdminPage','ru');">${russianLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToAdminPage','en');">${englishLanguage}</a>
 			          </div>
 				 </div>  
 	  		  </div>  
@@ -120,10 +144,10 @@
 				  </td>
 
 				  <td>
-				  	 	<button onclick="commitChanges(this);" id="saveButton-${user.id}" type="submit" class="button signinbutton">Сохранить</button>
+				  	 	<button onclick="commitChanges(this);" id="saveButton-${user.id}" type="submit" class="button signinbutton">${commit}</button>
 				  </td>
 				  <td>
-				  	 	<button onclick="removeTableRowWithGame(this);" id="saveButton-${user.id}" type="submit" class="button signupbutton">Удалить</button>
+				  	 	<button onclick="removeTableRowWithGame(this);" id="saveButton-${user.id}" type="submit" class="button signupbutton">${remove}</button>
 				  </td>
 				</tr>			
 		</c:forEach>
@@ -246,20 +270,8 @@
 				});
 			}
 		}
-		
-		function setLanguage(goToPage,local){		
-			$.get(
-				    "Controller",
-				    {
-				    	 command : "CHANGE_LOCALIZATION_COMMAND",			    
-					     go_to_page : goToPage,
-					     local:local			    
-				    },
-				    function(data) {
-				       window.location.replace(goToPage);
-				    }
-				);
-		}
+
 	</script>
+	    <script src="bootstrap-3.3.7-dist/js/myScripts.js"></script>    
   </body>
 </html>
