@@ -17,6 +17,7 @@ public final class PrintWriteHelper {
 	public static void printToPrintWriter(HttpServletResponse response,
 										  String writedMessage)
 											throws AJAXCommandException{
+		response.setCharacterEncoding("utf-8");
 		PrintWriter writer = null;
 		try{
 			writer = response.getWriter();

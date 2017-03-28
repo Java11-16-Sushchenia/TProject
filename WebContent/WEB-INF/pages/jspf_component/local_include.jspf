@@ -76,5 +76,18 @@
 	<fmt:message bundle="${loc}" key="local.adminpage.role" var="role"/>
 	<fmt:message bundle="${loc}" key="local.adminpage.cash" var="cash"/>
 
+	<%-- registrationPage --%>
+	<fmt:message bundle="${loc}" key="local.userregistration.registrationerror" var="registrationerror"/>
+	<fmt:message bundle="${loc}" key="local.userregistration.loginalreadyexists" var="loginalreadyexists"/>
+	<fmt:message bundle="${loc}" key="local.userregistration.emailalreadyexists" var="emailalreadyexists"/>
+	
+	<%-- user page rates table --%>
+	
+	<fmt:message bundle="${loc}" key="local.userpage.ratedate" var="ratedate"/>
+	<fmt:message bundle="${loc}" key="local.userpage.ratemoney" var="ratemoney"/>
+	<fmt:message bundle="${loc}" key="local.userpage.choice" var="choice"/>
+	<fmt:message bundle="${loc}" key="local.userpage.coefficient" var="coefficient"/>
+	<fmt:message bundle="${loc}" key="local.userpage.ratepofit" var="ratepofit"/>
+	<fmt:message bundle="${loc}" key="local.userpage.ratestatus" var="ratestatus"/>
   
   

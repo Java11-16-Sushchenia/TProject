@@ -165,7 +165,7 @@ function setLanguage(goToPage,local){
 	$.get(
 		    "Controller",
 		    {
-		    	 command : "LOCALIZATION_COMMAND",			    
+		    	 command : "CHANGE_LOCALIZATION_COMMAND",			    
 			     go_to_page : goToPage,
 			     local:local			    
 		    },
@@ -178,3 +178,4 @@ function setLanguage(goToPage,local){
 function redirectToUserPersonalPage(){
 	  window.location.replace("redirectToPersonalPage");
 }
+

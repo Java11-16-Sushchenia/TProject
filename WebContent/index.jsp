@@ -47,8 +47,7 @@
 	    </div>
    	
 	     <c:if test="${user == null }">
-		    <form class="navbar-form navbar-right authorize-user-form">
-		     <input type="hidden" name="command" value="AUTHORIZATION_SIGN_IN_AJAX_COMMAND"/>	     
+		    <form class="navbar-form navbar-right authorize-user-form">	     
 		     <input name="login" required type="text" placeholder="${login}" class="form-control">	      
 		 	 <input name="password" required type="password" placeholder="${password}" class="form-control">	
 		    
@@ -71,9 +70,9 @@
 		    </form>
 		   </c:if>
 		<c:if test="${user != null }">   			
- 			  <form action="Controller" method="get" class="navbar-form navbar-right authorize-user-form"> 
+ 			  <form action="Controller" method="get" class="navbar-form navbar-right"> 
  			 	    <input type="hidden" name="command" value="AUTHORIZATION_USER_SIGN_OUT_COMMAND"/>
- 			 	    	<button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
+ 			 	    <button type="button" class="button btn-primary form-control" onclick="redirectToUserPersonalPage();">${user.email} <span class="badge">${user.cash}</span></button>
  			  		<input class="button signupbutton form-control" type="submit" value="${signoutbutton}" /> 
  			  	<div class="form-group">
 		 	       <div class="dropdown">
@@ -328,14 +327,13 @@
 
 
 $(".authorize-user-form").submit(function(event){		
-	var command  = event.currentTarget['command'].value;
 	var login    = event.currentTarget['login'].value;
 	var password = event.currentTarget['password'].value;
 	
 	$.ajax({
 		type:"POST",
 		data:{
-			command:command,
+			command:"AUTHORIZATION_SIGN_IN_AJAX_COMMAND",
 			login:login,
 			password:password
 		},
@@ -483,24 +481,10 @@ $(".sendRateToController").submit(function(event) {
 		event.preventDefault();		
 });	
 
-function setLanguage(goToPage,local){		
-	$.get(
-		    "Controller",
-		    {
-		    	 command : "CHANGE_LOCALIZATION_COMMAND",			    
-			     go_to_page : goToPage,
-			     local:local			    
-		    },
-		    function(data) {
-		       window.location.replace(goToPage);
-		    }
-		);
-}
-
 function redirectToUserPersonalPage(){
 	  window.location.replace("redirectToPersonalPage");
 }
 </script>
-
+    <script src="bootstrap-3.3.7-dist/js/myScripts.js"></script>    
 </body>
 </html>

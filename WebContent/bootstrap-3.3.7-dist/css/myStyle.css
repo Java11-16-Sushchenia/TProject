@@ -257,7 +257,9 @@ input[type=number]:focus {
 .success-modal{
 	display:none;
 }
-
+.error-modal{
+	display:none;
+}
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 880px) {

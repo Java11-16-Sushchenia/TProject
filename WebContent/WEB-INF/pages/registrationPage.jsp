@@ -10,9 +10,23 @@
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/myStyle.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/validationStyles.css">
+  
+  	 <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
+  	
   </head>
-
   <body>
+       <div class="error-modal">
+		<div class="alert alert-danger fade in">
+		    <a href="#" class="close" data-dismiss="alert">x</a>
+		    <strong class="registrationErrorType"></strong>: <span class="registrationErrorMessage"></span>
+	   </div>
+	</div>	
+	<div class="success-modal">
+		<div class="alert alert-danger fade in">
+		    <a href="#" class="close" data-dismiss="alert">x</a>
+		    <strong class="authorizationErrorType"></strong>: <span class="authorizationErrorMessage"></span>
+	   </div>
+	</div>	
 
     <nav class="navbar navbar-default">
 	  	<div class="container-fluid">
@@ -80,7 +94,6 @@
 			  </form>
 			</div>
 	    </div>
-
 	  </div>
 	</div>
 
@@ -109,14 +122,40 @@
 					url:"AJAXController",
 					success:function(data){
 			               var json = JSON.parse(data);
-			            	debugger;
 			               var errorType = json["errorType"];
 			               var errorMessage = json["errorMessage"];
 			               
 			               if(errorType === "registrationerror"){
-			            	   alert(errorMessage);
+			            	   errorType = "${registrationerror}";
+			            	   
+			            	   if(errorMessage === "userexists"){
+			            		   errorMessage = "${loginalreadyexists}";	
+			            		   
+			                   	$(".registrationErrorType").text(errorType);
+			                	$(".registrationErrorMessage").text(errorMessage);	
+			            		   
+			            		   $(".error-modal").css("display","block");
+			            		   $("#login").val("");
+			                   	
+			                   	setTimeout(function() {
+			                   		  $(".error-modal").css("display","none");
+			                   		}, 3000);
+			            		   
+			            	   } else if(errorMessage === "emailexists"){
+			            		   errorMessage = "${emailalreadyexists}";
+			            		   
+				                   	$(".registrationErrorType").text(errorType);
+				                	$(".registrationErrorMessage").text(errorMessage);	
+				            		   
+				            		   $(".error-modal").css("display","block");
+				            		   $("#email").val("");
+				                   	setTimeout(function() {
+				                   		  $(".error-modal").css("display","none");
+				                   		}, 3000);				            		   
+			            	   }			            	   
 			               }
 			               else if (errorType === "success"){
+			            	   $(".success-modal").css("display","block");
 				            	setTimeout(function() {
 				            		  window.location.replace("redirectToIndexPage");
 				            		}, 3000);		
