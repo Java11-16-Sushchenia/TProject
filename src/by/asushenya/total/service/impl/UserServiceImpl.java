@@ -16,6 +16,7 @@ import by.asushenya.total.bean.Rate;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.RateChoice;
+import by.asushenya.total.bean.util.RatesPage;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.controller.SessionParameterName;
@@ -265,4 +266,38 @@ public class UserServiceImpl implements UserService{
 		return jsonWithRegistrationInfo.toString();
 	}
 
+
+	@Override
+	public RatesPage getRatesPage(User user,
+								  int page, 
+								  int ratesPerPage,
+								  String local) 
+										  throws ServiceException {
+		int noOfRecords = 0;
+		
+		List<Rate> ratesList = null;
+
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO userDAO = daoFactory.getUserDAO();
+		
+		try{
+			 ratesList = userDAO.getRatesForPage(user, 
+					 							(page-1)*ratesPerPage,
+					 							 ratesPerPage,
+					 							 local);
+			 
+			 noOfRecords = userDAO.getRatesRecordsCountOfUser(user);
+		} catch(DAOException e){
+			log.error("can't get rates page form dao",e);
+			throw new ServiceException("Can't get rates from dao",e);
+		}
+
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / ratesPerPage);
+		
+		RatesPage ratesPage = new RatesPage();
+		ratesPage.setRatesList(ratesList);
+		ratesPage.setNumberOfPages(noOfPages);
+		
+		return ratesPage;
+	}
 }

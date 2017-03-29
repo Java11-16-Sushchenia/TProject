@@ -112,7 +112,63 @@
 					  </td>					
 					</tr>			
 			</c:forEach>
-			</table> 
+			</table>
+			
+			<nav>
+		  <ul class="pagination ul-pagination">  
+		  	 <c:if test="${currentPage != 1}">
+   				<li>
+					<form action="Controller">
+						<input type="hidden" name="command" value="GET_PAGE_WITH_RATES_COMMAND"/>
+						<input type="hidden" name="go_to_page" value="userPage"/>		
+						<input type="hidden" name="pageNumber" value="${currentPage - 1}"/>
+						<a href="#" onclick="$(this).closest('form').submit();">Previous</a>
+					</form>
+				</li>
+			</c:if>
+		    <c:if test="${currentPage == 1}">
+   				<li class="disabled">
+					<a href="#">Previous</a>
+				</li>
+			</c:if>
+				
+				<c:forEach begin="1" end="${noOfPages}" var="i">
+					 <c:choose>
+						<c:when test="${currentPage eq i}">
+							 <li class="active"><a href="#">${i}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<form action="Controller">
+									<input type="hidden" name="command" value="GET_PAGE_WITH_RATES_COMMAND"/>
+									<input type="hidden" name="pageNumber" value="${i}"/>	
+									<input type="hidden" name="go_to_page" value="userPage"/>							
+									<a href="#" onclick="$(this).closest('form').submit();">${i}</a>
+								</form>
+							</li>
+						</c:otherwise>
+					</c:choose> 	
+				</c:forEach>
+			    	
+			  <c:if test="${currentPage != noOfPages}">		    
+   				<li>
+					<form action="Controller">
+						<input type="hidden" name="command" value="GET_PAGE_WITH_RATES_COMMAND"/>	
+						<input type="hidden" name="go_to_page" value="userPage"/>	
+						<input type="hidden" name="pageNumber" value="${currentPage + 1}"/>
+						<a href="#" onclick="$(this).closest('form').submit();">Next</a>
+					</form>
+				</li>
+				</c:if>
+			  <c:if test="${currentPage == noOfPages}">		    
+   				<li class="disabled">
+						<a href="#">Next</a>
+				</li>
+				</c:if>
+		  </ul>
+		</nav>
+			
+			 
 		</div>	
       </div>
       </c:if> 

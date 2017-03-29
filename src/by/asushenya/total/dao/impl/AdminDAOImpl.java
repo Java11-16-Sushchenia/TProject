@@ -155,11 +155,6 @@ public class AdminDAOImpl implements AdminDAO{
 				user.setCash(rs.getFloat("cash"));
 				list.add(user);
 			}
-			rs.close();
-			
-			/*rs = st.executeQuery("SELECT FOUND_ROWS()");
-			if(rs.next())
-				noOfRecords = rs.getInt(1);*/
 		} catch (SQLException e) {
 			log.error("can't get users for page",e);
 		}finally {

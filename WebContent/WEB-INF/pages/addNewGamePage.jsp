@@ -24,124 +24,10 @@
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> 
  
  	   <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf" %>
- <style type="text/css">
 
- </style>
   </head> 
 
   <body>   
-  
-    <!--  New navigation bar testing -->
-  
-    
-  <%-- this in nav bar
-    <c:if test="${add_game_error == 'firstequalstwo'}">          
- 		<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${firstequalstwo}
-		    </div>
-		</div>		    
-   </c:if> 
-    <c:if test="${add_game_error == 'badtime'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${badtime}
-		    </div>
-		</div>   
-  </c:if>
-  <c:if test="${add_game_error == 'k1isstring'}">          
-		 <div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k1isstring}
-		    </div>
-		</div>      
- </c:if> 
- <c:if test="${add_game_error == 'k1islittle'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k1islittle}
-		    </div>
-		</div>   
- </c:if> 
-   <c:if test="${add_game_error == 'k2isstring'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k2isstring}
-		    </div>
-		</div>     
- </c:if> 
- <c:if test="${add_game_error == 'k2islittle'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k2islittle}
-		    </div>
-		</div>     
- </c:if> 
-   <c:if test="${add_game_error == 'k3isstring'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k3isstring}
-		    </div>
-		</div>   
- </c:if> 
- <c:if test="${add_game_error == 'k3islittle'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k3islittle}
-		    </div>
-		</div>   
- </c:if> 
-  <c:if test="${add_game_error == 'k1isempty'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k1isempty}
-		    </div>
-		</div>     
- </c:if> 
-   <c:if test="${add_game_error == 'kxisempty'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${kxisempty}
-		    </div>
-		</div>   
- </c:if> 
-   <c:if test="${add_game_error == 'k2isempty'}">          
-	  	<div class="bs-example">
-		    <div class="alert alert-danger fade in">
-		        <a href="#" class="close" data-dismiss="alert">×</a>
-		        <strong>${addgameerror}!</strong> ${k2isempty}
-		    </div>
-		</div>    
- </c:if> 
-	    
-	    <c:if test="${add_game_error != null}">
-	    	 <c:remove var="add_game_error" scope="session" />		
-	    </c:if>
-	    
-	    
-  <div class="container-fluid">
-    
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="redirectToIndexPage">${title}</a>
-    </div>
- 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> --%>
 
 
   <nav class="navbar navbar-default">
@@ -166,8 +52,8 @@
 		 	       <div class="dropdown">
 			           <button class="button dropbtn">${language}</button>
 			           <div class="dropdown-content">		           		
-			                <a href="#" onclick="setLanguage('redirectToIndexPage','ru');">${russianLanguage}</a>
-			                <a href="#" onclick="setLanguage('redirectToIndexPage','en');">${englishLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToAddNewGamePage','ru');">${russianLanguage}</a>
+			                <a href="#" onclick="setLanguage('redirectToAddNewGamePage','en');">${englishLanguage}</a>
 			          </div>
 				 </div>  
 	  		  </div>  
@@ -340,10 +226,10 @@
 	        		}            	
 	            }
 			});
-
     	});
     	    		
     	
     </script>
+     <script src="bootstrap-3.3.7-dist/js/myScripts.js"></script>   
 </body>
 </html>

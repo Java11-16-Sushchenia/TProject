@@ -11,7 +11,8 @@
 </head>
 <body>
 	<c:redirect url="/Controller">
-		<c:param name="command" value="GET_ALL_USER_RATES_COMMAND"/>		
+		<c:param name="command" value="GET_PAGE_WITH_RATES_COMMAND"/>	
+		<c:param name="go_to_page" value="userPage"/>		
 	</c:redirect>
 </body>
 </html>

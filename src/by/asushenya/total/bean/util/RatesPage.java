@@ -2,20 +2,20 @@ package by.asushenya.total.bean.util;
 
 import java.util.List;
 
-import by.asushenya.total.bean.User;
+import by.asushenya.total.bean.Rate;
 
-public class UsersPage {
-	private List<User> usersList;
+public class RatesPage {
+	private List<Rate> ratesList;
 	private int numberOfPages;
 	
-	public UsersPage(){}
-
-	public List<User> getUsersList() {
-		return usersList;
+	public RatesPage(){}
+	
+	public List<Rate> getRatesList() {
+		return ratesList;
 	}
 
-	public void setUsersList(List<User> usersList) {
-		this.usersList = usersList;
+	public void setRatesList(List<Rate> ratesList) {
+		this.ratesList = ratesList;
 	}
 
 	public int getNumberOfPages() {

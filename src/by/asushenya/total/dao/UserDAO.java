@@ -20,8 +20,11 @@ public interface UserDAO {
 	List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind, String local) throws DAOException;
 	int getGamesRecordsByGameKindCount(GameKind gameKind)throws DAOException;
 	List<Team> getTeamsByGameKind(GameKind gameKind, String local)throws DAOException;
-	List<Rate> getRatesForPage(int page,
-							   int ratesPerPage) 
+	List<Rate> getRatesForPage(User user,
+							   int page,
+							   int ratesPerPage,
+							   String local) 
 									   throws DAOException;
+	int getRatesRecordsCountOfUser(User user)throws DAOException;
 
 }

@@ -33,16 +33,18 @@ public class UserDAOImpl implements UserDAO{
 	private static final String insertIntoUser = "insert into user ( login, password,email,role,cash) values(?,?,?,?,?);";
 	private static final String findUserByLogin = "select id, login,email, password , role, cash from user where login = '";
 	private static final String findUserByEmail = "select id, login,email, password , role, cash from user where email = '";
-	private static final String getAllUserRateQuerry = "select rate.id, (select name from team where team.id = game.team_1) `team_1`, (select name from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = '";
+	private static final String getAllUserRateRuQuerry = "select rate.id, (select name from team where team.id = game.team_1) `team_1`, (select name from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = '";
+	private static final String getAllUserRateEnQuerry = "select rate.id, (select name_en from team where team.id = game.team_1) `team_1`, (select name_en from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = '";
 	private static final String getGamesByTypeQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String getGamesByTypeEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String makeRateQuerry = "insert into rate (user_id, game_id, money, choice, game_coefficient) values(?,?,?,?,?)";
 	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game where is_visible = true";
+	private static final String getRatesCountQuerry = "select count(*) `rates_count` from rate where user_id = ?"; // where game_rate > now();
 	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	private static final String getAllGamesEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 	
-	private static final String getAllTeamsQuerry = "select id, name as `name` from team";
-	private static final String getAllTeamsEnQuerry = "select id, name_en `name` from team";
+	private static final String getAllTeamsRuQuerry = "select id, name as `name` from team where game_kind = ?";
+	private static final String getAllTeamsEnQuerry = "select id, name_en `name` from team where game_kind = ?";
 	
 	public User findUserByEmail(String email) throws DAOException{
 		Connection con = null;
@@ -153,7 +155,7 @@ public class UserDAOImpl implements UserDAO{
 	    try {  	    	    	  	
 	        con = ConnectionManager.getDBTotalizatorConnection();
 	        st = con.createStatement();
-	        rs = st.executeQuery(getAllUserRateQuerry + user.getId()+"'");
+	        rs = st.executeQuery(user.getId()+"'");
 	            	
 	        while (rs.next()) {
 	            Rate rate = new Rate();
@@ -359,27 +361,21 @@ public class UserDAOImpl implements UserDAO{
 													throws DAOException {
 		
 		 Connection con = null;
-		 Statement st = null;
+		 PreparedStatement ps = null;
 		 ResultSet rs = null;
 		 List<Team> teamsOfSomeGameKind = new ArrayList<Team>();
-		 StringBuilder executedQuerry = new StringBuilder();
-		 
-		 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
-			 executedQuerry.append(getAllTeamsQuerry);
-		 } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
-			 executedQuerry.append(getAllTeamsEnQuerry);
-		 }
-		 
-		 if(gameKind != null){
-			 executedQuerry.append(" where game_kind = '")
-			 			   .append(gameKind.toString().toLowerCase())
-			 			   .append("'");
-		 }
 		 
 			try {
 				con = ConnectionManager.getDBTotalizatorConnection();
-				st = con.createStatement();
-				rs = st.executeQuery(executedQuerry.toString());
+				
+				 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
+					 ps = con.prepareStatement(getAllTeamsRuQuerry);
+				 } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
+					 ps = con.prepareStatement(getAllTeamsEnQuerry);
+				 }
+				 
+				 ps.setString(1, gameKind.toString().toLowerCase());
+				rs = ps.executeQuery();
 				
 				while (rs.next()) {					
 					Team team = new Team();
@@ -395,14 +391,91 @@ public class UserDAOImpl implements UserDAO{
 				
 			}finally
 			{
-				ConnectionManager.disconnectFromDB(rs,st ,con);
+				ConnectionManager.disconnectFromDB(rs,ps ,con);
 			}
 			return teamsOfSomeGameKind;	
 	}
 
-	@Override
-	public List<Rate> getRatesForPage(int page,
-									  int ratesPerPage) throws DAOException {
-		return null;
+	
+	public List<Rate> getRatesForPage(User user,
+								      int page,
+									  int ratesPerPage,
+									  String local) 
+											  throws DAOException {
+		 Connection con = null;
+		 Statement st = null;
+		 ResultSet rs = null;
+		 StringBuilder getPartOfRatesQuerry = new StringBuilder();
+		 
+		 if(local.equals(RequestParameterName.SESSION_LOCAL_RU)){
+			 getPartOfRatesQuerry.append(getAllUserRateRuQuerry);
+		 } else if(local.equals(RequestParameterName.SESSION_LOCAL_EN)){
+			 getPartOfRatesQuerry.append(getAllUserRateEnQuerry);
+		 }	
+		 
+		 getPartOfRatesQuerry.append(user.getId()).append("'");
+		 
+		 getPartOfRatesQuerry.append(" limit "+ page + ", " + ratesPerPage);
+		 
+		List<Rate> list = new ArrayList<Rate>();		
+		
+		try {
+			con = ConnectionManager.getDBTotalizatorConnection();
+			st = con.createStatement();
+			 rs = st.executeQuery(getPartOfRatesQuerry.toString());
+			while (rs.next()) {
+				Rate rate = new Rate();
+	            
+	            rate.setId(rs.getInt("id"));
+	            
+	            Game game = new Game();
+	            game.setFirstTeam(rs.getString("team_1"));
+	            game.setSecondTeam(rs.getString("team_2"));	            
+	            rate.setGame(game);
+	         
+	            rate.setDate(rs.getTimestamp("date"));
+	            
+	            rate.setMoney(rs.getDouble("money"));
+	            rate.setChoice(RateChoice.valueOf(rs.getString("choice")));
+	            rate.setGameCoefficient(rs.getDouble("game_coefficient"));
+	            rate.setProfit(rs.getDouble("profit"));
+	            rate.setisSuccess(rs.getBoolean("is_success"));
+				
+				list.add(rate);
+			}
+		} catch (SQLException e) {
+			log.error("can't get rates for page",e);
+		}finally {
+			ConnectionManager.disconnectFromDB(rs,st ,con);
+		}
+		return list;
+	}
+
+	
+	public int getRatesRecordsCountOfUser(User user) throws DAOException {
+		 Connection con = null;
+		 PreparedStatement ps = null;
+		 ResultSet rs = null;
+		
+		 int ratesCount =0;
+		 
+			try {
+				con = ConnectionManager.getDBTotalizatorConnection();
+				
+				ps = con.prepareStatement(getRatesCountQuerry);
+				ps.setInt(1, user.getId());
+				
+				rs = ps.executeQuery();
+				
+				while (rs.next()) {					
+					ratesCount = rs.getInt("rates_count");
+				}
+			} catch (SQLException e) {
+				log.error("can't get rates count",e);
+				throw new DAOException("can't get rates count",e);				
+			}finally {
+				ConnectionManager.disconnectFromDB(rs,ps ,con);
+			}
+			return ratesCount;	
 	}
 }
