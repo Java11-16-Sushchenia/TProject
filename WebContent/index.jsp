@@ -370,6 +370,9 @@
 												if (errorMessage === "invalidpassword") {
 													errorMessage = "${invalidpassword}";
 												}
+												if (errorMessage === "invalidlogin") {
+													errorMessage = "${invalidlogin}";
+												}
 
 												$(".authorizationErrorType")
 														.text(errorType);

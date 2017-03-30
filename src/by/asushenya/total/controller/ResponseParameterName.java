@@ -5,8 +5,7 @@ public class ResponseParameterName {
 	public final static String ERROR_TYPE = "errorType";
 	public final static String ERROR_MSSAGE = "errorMessage";
 	public final static String SUCCESS = "success";
-	public final static String SUCCESS_MESSAGE = "successMessage";
-	
+	public final static String SUCCESS_MESSAGE = "successMessage";	
 	
 	// make rate ajax command
 	public final static String MAKE_RATE_ERROR = "makerateerror";
@@ -32,11 +31,16 @@ public class ResponseParameterName {
 	public final static String REGISTRATION_ERROR = "registrationerror";
 	public final static String USER_EXISTS = "userexists";
 	public final static String USER_EMAIL_EXISTS = "emailexists";
-	
+	public final static String INVALID_EMAIL = "invalidemail";
 	public final static String GAME_KIND = "gameKind";
 	
 	// GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND
-	public final static String TEAMS_ARRAY = "teamsArray";	
+	public final static String TEAMS_ARRAY = "teamsArray";
+	
+	// add new game command
+	public final static String ADD_NEW_GAME_ERROR = "addnewgameerror";
+	public final static String INVALID_TEAM_NAME = "invalidteamname";
+	public final static String INVALID_СOEFFICIENT = "invalidcoefficient";
 	
 	
 	

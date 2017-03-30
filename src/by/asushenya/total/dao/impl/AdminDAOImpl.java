@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.Game;
+import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.UserRole;
@@ -28,6 +29,8 @@ public class AdminDAOImpl implements AdminDAO {
 	private static final String getTeamIdByNameRuQuerry = "select team.id from team where team.name = ?";
 	private static final String getTeamIdByNameEnQuerry = "select team.id from team where team.name_en = ?";
 	private static final String getAllUsersCountQuerry = "select count(*) `users_count` from user";
+	private static final String getAllTeamsRuQuerry = "select id, name as `name` from team where game_kind = ?";
+	private static final String getAllTeamsEnQuerry = "select id, name_en `name` from team where game_kind = ?";
 
 	public void addGame(Game game, String local) throws DAOException {
 		Connection con = null;
@@ -160,7 +163,7 @@ public class AdminDAOImpl implements AdminDAO {
 		try {
 			con = ConnectionManager.getDBTotalizatorConnection();
 			ps = con.prepareStatement(getAllUsersCountQuerry);
-			
+
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -174,5 +177,42 @@ public class AdminDAOImpl implements AdminDAO {
 			ConnectionManager.disconnectFromDB(rs, ps, con);
 		}
 		return usersCount;
+	}
+
+	public List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Team> teamsOfSomeGameKind = new ArrayList<Team>();
+
+		try {
+			con = ConnectionManager.getDBTotalizatorConnection();
+
+			if (local.equals(RequestParameterName.SESSION_LOCAL_RU)) {
+				ps = con.prepareStatement(getAllTeamsRuQuerry);
+			} else if (local.equals(RequestParameterName.SESSION_LOCAL_EN)) {
+				ps = con.prepareStatement(getAllTeamsEnQuerry);
+			}
+
+			ps.setString(1, gameKind.toString().toLowerCase());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Team team = new Team();
+
+				team.setId(rs.getInt("id"));
+				team.setName(rs.getString("name"));
+
+				teamsOfSomeGameKind.add(team);
+			}
+		} catch (SQLException e) {
+			log.error("can't get teams by game kind", e);
+			throw new DAOException("can't get teams", e);
+
+		} finally {
+			ConnectionManager.disconnectFromDB(rs, ps, con);
+		}
+		return teamsOfSomeGameKind;
 	}
 }

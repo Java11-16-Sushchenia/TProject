@@ -1,4 +1,4 @@
-package by.asushenya.total.service.util;
+package by.asushenya.total.controller.ajax_controller.ajax_command.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

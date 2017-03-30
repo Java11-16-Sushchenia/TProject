@@ -1,11 +1,9 @@
 package by.asushenya.total.dao;
 
 import java.util.List;
-import java.util.Locale;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Rate;
-import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.dao.exception.DAOException;
@@ -27,7 +25,6 @@ public interface UserDAO {
 
 	int getGamesRecordsByGameKindCount(GameKind gameKind) throws DAOException;
 
-	List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException;
 
 	List<Rate> getRatesForPage(User user, int page, int ratesPerPage, String local) throws DAOException;
 

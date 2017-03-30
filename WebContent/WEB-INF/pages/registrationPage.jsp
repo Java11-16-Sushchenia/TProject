@@ -29,9 +29,9 @@
 	   </div>
 	</div>	
 	<div class="success-modal">
-		<div class="alert alert-danger fade in">
+		<div class="alert alert-success fade in">
 		    <a href="#" class="close" data-dismiss="alert">x</a>
-		    <strong class="authorizationErrorType"></strong>: <span class="authorizationErrorMessage"></span>
+		    <strong class="authorizationErrorType">${registrationsuccess}</strong>: <span class="authorizationErrorMessage"></span>
 	   </div>
 	</div>	
 
@@ -128,6 +128,7 @@
 					},
 					url:"AJAXController",
 					success:function(data){
+						debugger;
 			               var json = JSON.parse(data);
 			               var errorType = json["errorType"];
 			               var errorMessage = json["errorMessage"];

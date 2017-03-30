@@ -20,7 +20,6 @@ import by.asushenya.total.controller.ajax_controller.ajax_command.impl.MakeGameI
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.MakeRateAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SetNewGameCoefficientsAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SignInAJAXCommand;
-import by.asushenya.total.controller.command.impl.GetPageWithGamesCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.RegistrationUserAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.AddNewGameAJAXCommand;
 

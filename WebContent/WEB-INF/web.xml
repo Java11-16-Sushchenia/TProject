@@ -176,4 +176,14 @@
     <servlet-name>Controller</servlet-name>
     <url-pattern>/Controller</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AJAXController</servlet-name>
+    <servlet-class>by.asushenya.total.controller.ajax_controller.AJAXController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AJAXController</servlet-name>
+    <url-pattern>/AJAXController</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

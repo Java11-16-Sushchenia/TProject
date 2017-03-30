@@ -71,6 +71,7 @@
   
 	<fmt:message bundle="${loc}" key="local.authorization.error" var="authorizationerror"/>
 	<fmt:message bundle="${loc}" key="local.authorization.invalidpassword" var="invalidpassword"/>
+	<fmt:message bundle="${loc}" key="local.authorization.invalidlogin" var="invalidlogin"/>
 	<fmt:message bundle="${loc}" key="local.authorization.notregistred" var="notregistred"/>
    
 	<fmt:message bundle="${loc}" key="local.adminpage.id" var="id"/>
@@ -82,6 +83,7 @@
 	<fmt:message bundle="${loc}" key="local.userregistration.registrationerror" var="registrationerror"/>
 	<fmt:message bundle="${loc}" key="local.userregistration.loginalreadyexists" var="loginalreadyexists"/>
 	<fmt:message bundle="${loc}" key="local.userregistration.emailalreadyexists" var="emailalreadyexists"/>
+	<fmt:message bundle="${loc}" key="local.userregistration.registrationsuccess" var="registrationsuccess"/>
 	
 	<%-- user page rates table --%>
 	

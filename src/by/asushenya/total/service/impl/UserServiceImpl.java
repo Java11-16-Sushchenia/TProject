@@ -18,28 +18,27 @@ import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
+import by.asushenya.total.service.util.Validator;
 
 public class UserServiceImpl implements UserService {
 
 	private static final Logger log = Logger.getLogger(UserServiceImpl.class);
 
-/*	public List<Rate> getAllUserRates(User user) throws ServiceException {
-
-		List<Rate> userRates = null;
-
-		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO userDAO = daoFactory.getUserDAO();
-
-		try {
-			userRates = userDAO.getAllUserRates(user);
-
-		} catch (DAOException e) {
-			log.error("can't get user rates form dao", e);
-			throw new ServiceException("can't get user rates", e);
-		}
-
-		return userRates;
-	}*/
+	/*
+	 * public List<Rate> getAllUserRates(User user) throws ServiceException {
+	 * 
+	 * List<Rate> userRates = null;
+	 * 
+	 * DAOFactory daoFactory = DAOFactory.getInstance(); UserDAO userDAO =
+	 * daoFactory.getUserDAO();
+	 * 
+	 * try { userRates = userDAO.getAllUserRates(user);
+	 * 
+	 * } catch (DAOException e) { log.error("can't get user rates form dao", e);
+	 * throw new ServiceException("can't get user rates", e); }
+	 * 
+	 * return userRates; }
+	 */
 
 	public GamesPage getGamesPage(int page, int gamesPerPage, GameKind gameKind, String local) throws ServiceException {
 
@@ -181,18 +180,36 @@ public class UserServiceImpl implements UserService {
 
 	public String registrationUser(String login, String email, String password) throws ServiceException {
 
-		JSONObject jsonWithRegistrationInfo = new JSONObject();
+		JSONObject registrationInfo = new JSONObject();
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
 
+		if (!Validator.validateLogin(login)) {
+			registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
+
+			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_LOGIN);
+			return registrationInfo.toString();
+		}
+		if (!Validator.validateEmail(email)) {
+			registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
+
+			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_EMAIL);
+			return registrationInfo.toString();
+		}
+		/*if (!Validator.validatePassword(password)) {
+			registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
+
+			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_PASSWORD);
+			return registrationInfo.toString();
+		}*/
+
 		try {
 			if (userDAO.findUserByLogin(login) != null) {
-				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_TYPE,
-						ResponseParameterName.REGISTRATION_ERROR);
+				registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
 
-				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.USER_EXISTS);
-				return jsonWithRegistrationInfo.toString();
+				registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.USER_EXISTS);
+				return registrationInfo.toString();
 			}
 		} catch (DAOException e) {
 			log.error("can't find user by login", e);
@@ -201,12 +218,10 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			if (userDAO.findUserByEmail(email) != null) {
-				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_TYPE,
-						ResponseParameterName.REGISTRATION_ERROR);
+				registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
 
-				jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_MSSAGE,
-						ResponseParameterName.USER_EMAIL_EXISTS);
-				return jsonWithRegistrationInfo.toString();
+				registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.USER_EMAIL_EXISTS);
+				return registrationInfo.toString();
 			}
 		} catch (DAOException e) {
 			log.error("can't find user by email", e);
@@ -225,9 +240,9 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("can't register user", e);
 		}
 
-		jsonWithRegistrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
+		registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
 
-		return jsonWithRegistrationInfo.toString();
+		return registrationInfo.toString();
 	}
 
 	@Override

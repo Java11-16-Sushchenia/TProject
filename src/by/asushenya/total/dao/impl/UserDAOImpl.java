@@ -62,8 +62,7 @@ public class UserDAOImpl implements UserDAO {
 	private static final String getAllGamesForPageQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
 	//private static final String getAllGamesForPageEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
 
-	private static final String getAllTeamsRuQuerry = "select id, name as `name` from team where game_kind = ?";
-	private static final String getAllTeamsEnQuerry = "select id, name_en `name` from team where game_kind = ?";
+
 
 	public User findUserByEmail(String email) throws DAOException {
 		Connection con = null;
@@ -339,42 +338,7 @@ public class UserDAOImpl implements UserDAO {
 		return gamesCount;
 	}
 
-	public List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		List<Team> teamsOfSomeGameKind = new ArrayList<Team>();
-
-		try {
-			con = ConnectionManager.getDBTotalizatorConnection();
-
-			if (local.equals(RequestParameterName.SESSION_LOCAL_RU)) {
-				ps = con.prepareStatement(getAllTeamsRuQuerry);
-			} else if (local.equals(RequestParameterName.SESSION_LOCAL_EN)) {
-				ps = con.prepareStatement(getAllTeamsEnQuerry);
-			}
-
-			ps.setString(1, gameKind.toString().toLowerCase());
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Team team = new Team();
-
-				team.setId(rs.getInt("id"));
-				team.setName(rs.getString("name"));
-
-				teamsOfSomeGameKind.add(team);
-			}
-		} catch (SQLException e) {
-			log.error("can't get teams by game kind", e);
-			throw new DAOException("can't get teams", e);
-
-		} finally {
-			ConnectionManager.disconnectFromDB(rs, ps, con);
-		}
-		return teamsOfSomeGameKind;
-	}
+	
 
 	public List<Rate> getRatesForPage(User user, int page, int ratesPerPage, String local) throws DAOException {
 		Connection con = null;

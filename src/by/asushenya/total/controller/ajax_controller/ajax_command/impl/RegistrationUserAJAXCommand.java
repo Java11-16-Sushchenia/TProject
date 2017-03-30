@@ -8,11 +8,11 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
+import by.asushenya.total.controller.ajax_controller.ajax_command.util.Encryptor;
 import by.asushenya.total.controller.ajax_controller.ajax_command.util.PrintWriteHelper;
 import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
-import by.asushenya.total.service.util.Encryptor;
 
 public class RegistrationUserAJAXCommand implements IAJAXCommand {
 
@@ -23,14 +23,14 @@ public class RegistrationUserAJAXCommand implements IAJAXCommand {
 
 		String login = request.getParameter(RequestParameterName.LOGIN);
 		String email = request.getParameter(RequestParameterName.USER_EMAIL);
-		String password = request.getParameter(RequestParameterName.PASSWORD);// encription
+		String password = Encryptor.getMD5Hash(request.getParameter(RequestParameterName.PASSWORD));
 
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		UserService userService = serviceFactory.getUserService();
 		String serviceResponse = null;
 
 		try {
-			serviceResponse = userService.registrationUser(login, email, Encryptor.getMD5Hash(password));
+			serviceResponse = userService.registrationUser(login, email, password);
 
 		} catch (ServiceException e) {
 			log.error("can't register user", e);

@@ -1,7 +1,6 @@
 package by.asushenya.total.controller.ajax_controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,15 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
-import by.asushenya.total.service.exception.ServiceException;;
 
-@WebServlet("/AJAXController")// перененсти в web.xml
 public class AJAXController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
