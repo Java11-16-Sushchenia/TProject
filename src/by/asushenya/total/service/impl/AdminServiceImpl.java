@@ -82,7 +82,7 @@ public class AdminServiceImpl implements AdminService {
 		Game newGame = new Game();
 
 		if (!Validator.validateTeam(firstTeamName)) {
-			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
+ 			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
 			return json.toString();
 		}
 		if (!Validator.validateTeam(secondTeamName)) {

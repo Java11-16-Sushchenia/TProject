@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 
 public final class Validator {
 
-	private static final String LOGIN_PATTERN = "^[a-zA-Z][a-z0-9_]{5,15}$";
+	private static final String LOGIN_PATTERN = "^[a-zA-Z][a-zA-Z0-9_]{5,15}$";
 	private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})";
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	private static final String TEAM_NAME_PATTERN = "^[a-zA-Z\\s]{4,30}$";
+	private static final String TEAM_NAME_PATTERN = "^[A-ZА-Я][A-ZА-Яa-zа-я\\s]{4,30}$";
 	
 	private Validator() {
 	}
@@ -21,7 +21,7 @@ public final class Validator {
 	 * @return true valid username, false invalid username
 	 */
 	public static boolean validateСoefficient(final double coefficient) {
-		if (coefficient <= 1.1D) {
+		if (coefficient < 1.1D) {
 			return false;
 		}
 		if (coefficient >= 50.1D) {
