@@ -1,11 +1,7 @@
 package by.asushenya.total.service.impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -24,71 +20,56 @@ import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.exception.ServiceException;
 
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
 
-	private static final Logger log = Logger.getLogger(
-										AdminServiceImpl.class);
+	private static final Logger log = Logger.getLogger(AdminServiceImpl.class);
+
 	@Override
-	public UsersPage getUsersPage(int page,
-								  int usersPerPage) 
-										  throws ServiceException {
-		
+	public UsersPage getUsersPage(int page, int usersPerPage) throws ServiceException {
+
 		int noOfRecords = 0;
-		
-		List<User> usersList = null;		
+
+		List<User> usersList = null;
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		AdminDAO adminDAO = daoFactory.getAdminDAO();
-		
-		try{
-			usersList = adminDAO.getUsersForPage((page-1)*usersPerPage, 
-												usersPerPage);
 
-			 noOfRecords = adminDAO.getUsersRecordsCount();
-		} catch(DAOException e){
-			log.error("can't get games page form dao",e);
-			throw new ServiceException("Can't get games from dao",e);
+		try {
+			usersList = adminDAO.getUsersForPage((page - 1) * usersPerPage, usersPerPage);
+
+			noOfRecords = adminDAO.getUsersRecordsCount();
+		} catch (DAOException e) {
+			log.error("can't get games page form dao", e);
+			throw new ServiceException("Can't get games from dao", e);
 		}
 
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / usersPerPage);
-		
+
 		UsersPage usersPage = new UsersPage();
 		usersPage.setUsersList(usersList);
 		usersPage.setNumberOfPages(noOfPages);
-		
+
 		return usersPage;
 	}
-	
-	
-	public List<Team> getTeamsByGameKind(GameKind gameKind, 
-										 String local) 
-												throws ServiceException {
+
+	public List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws ServiceException {
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
 		List<Team> listOfTeams = null;
-		
-		try{
+
+		try {
 			listOfTeams = userDAO.getTeamsByGameKind(gameKind, local);
-			
-		} catch(DAOException e){
-			log.error("can't get list of teams",e);
-			throw new ServiceException("can't get list of teams",e);
+
+		} catch (DAOException e) {
+			log.error("can't get list of teams", e);
+			throw new ServiceException("can't get list of teams", e);
 		}
-		
+
 		return listOfTeams;
 	}
 
-
-	
-	public String addNewGame(GameKind gameKind, 
-							 String firstTeamName, 
-							 String secondTeamName,
-							 Timestamp gameDate, 
-							 double k1, 
-							 double kx,
-							 double k2,
-							 String local) 
-									 throws ServiceException {
+	public String addNewGame(GameKind gameKind, String firstTeamName, String secondTeamName, Timestamp gameDate,
+			double k1, double kx, double k2, String local) throws ServiceException {
 		Game newGame = new Game();
 		newGame.setGameKind(gameKind);
 		newGame.setFirstTeam(firstTeamName);
@@ -97,27 +78,25 @@ public class AdminServiceImpl implements AdminService{
 		newGame.setK1(k1);
 		newGame.setKx(kx);
 		newGame.setK2(k2);
-		
-		if(local == null){
+
+		if (local == null) {
 			local = RequestParameterName.SESSION_LOCAL_RU;
 		}
-		
-		
+
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		AdminDAO adminDAO = daoFactory.getAdminDAO();
-		
-		try{
+
+		try {
 			adminDAO.addGame(newGame, local);
-		} catch(DAOException e){
-			log.error("can't add new game",e);
-			throw new ServiceException("can't add new game",e);
-		}		
-		
+		} catch (DAOException e) {
+			log.error("can't add new game", e);
+			throw new ServiceException("can't add new game", e);
+		}
+
 		JSONObject json = new JSONObject();
-		json.put(ResponseParameterName.SUCCESS, 
-				 ResponseParameterName.OK);	
-			
-	    return json.toString();		
+		json.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
+
+		return json.toString();
 	}
 
 }

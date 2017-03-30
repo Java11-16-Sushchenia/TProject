@@ -18,41 +18,29 @@ import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 import by.asushenya.total.service.impl.UserServiceImpl;
 
-public class MakeRateAJAXCommand implements IAJAXCommand{
-	
-	private static final Logger log = Logger.getLogger(
-									MakeRateAJAXCommand.class);
+public class MakeRateAJAXCommand implements IAJAXCommand {
 
-	@Override
-	public void execute(HttpServletRequest request, 
-						HttpServletResponse response) 
-									throws AJAXCommandException {
-		
-		int gameId =Integer.parseInt(request.getParameter(
-										RequestParameterName.GAME_ID));
-		User user = (User)request.getSession(true).getAttribute(
-										SessionParameterName.SESSION_USER);		
-		RateChoice choice = RateChoice.valueOf(request.getParameter(
-										RequestParameterName.CHOICE));
-		double rateCoefficient = Double.parseDouble(request.getParameter(
-										RequestParameterName.RATE_COEFFICIENT));
-		double rateMoney = Double.parseDouble(request.getParameter(
-										RequestParameterName.RATE_MONEY));
+	private static final Logger log = Logger.getLogger(MakeRateAJAXCommand.class);
+
+	
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
+
+		int gameId = Integer.parseInt(request.getParameter(RequestParameterName.GAME_ID));
+		User user = (User) request.getSession(true).getAttribute(SessionParameterName.SESSION_USER);
+		RateChoice choice = RateChoice.valueOf(request.getParameter(RequestParameterName.CHOICE));
+		double rateCoefficient = Double.parseDouble(request.getParameter(RequestParameterName.RATE_COEFFICIENT));
+		double rateMoney = Double.parseDouble(request.getParameter(RequestParameterName.RATE_MONEY));
 
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		UserService userService = serviceFactory.getUserService();
 		String serviceResponse = null;
-		
-		try{
-			serviceResponse = userService.makeRate(gameId, 
-													 user,
-													 choice,
-													 rateCoefficient,
-													 rateMoney);
-		} catch(ServiceException e){
-			log.error("can't make rate",e);
+
+		try {
+			serviceResponse = userService.makeRate(gameId, user, choice, rateCoefficient, rateMoney);
+		} catch (ServiceException e) {
+			log.error("can't make rate", e);
 		}
-		
+
 		PrintWriteHelper.printToPrintWriter(response, serviceResponse);
 	}
 

@@ -1,5 +1,3 @@
-
-
 $(".go-to-registration-page").click(function(){
 	 window.location.replace("registrationPage");
 });
@@ -86,80 +84,6 @@ $(".init-form").submit(function(event) {
   event.preventDefault(); 
  });
 
-$(".sendRateToController").submit(function(event) {
-	
-	var showErrorAtView = function(errorType, errorMessage){
-     	$(".error-modal").show();
-    	$(".errorType").text(errorType);
-    	$(".errorMessage").text(errorMessage);
-	}
-	
-     var rateMoney		 = event.currentTarget[0].value;
-   	 var command  		 = event.currentTarget[1].value;
-	 var choice   		 = event.currentTarget[2].value;
-	 var gameId    		 = event.currentTarget[3].value;
-	 var rateCoefficient = event.currentTarget[4].value;
-	 
-	
-	if("${user.id}".length === 0){
-		errorType = "${makerateerror}";
-    	errorMessage = "${emptyuser}";
-    	
-    	showErrorAtView(errorType, errorMessage);
-		
-	} else if(isNaN(parseFloat(rateMoney)) === true){	
-		errorType = "${makerateerror}";
-    	errorMessage = "${ratenotanumber}";
-    	
-    	showErrorAtView(errorType, errorMessage);
-    	
-	} else if(rateMoney < 0 ){			 
-		 errorType = "${makerateerror}";
-		 errorMessage = "${lessthanzero}";
-		 
-		 showErrorAtView(errorType, errorMessage);
-    	
-	} else{				 
-		$.ajax({
-			type:"POST",
-			data:{command:"MAKE_RATE_COMMAND",
-				  choice:choice,
-				  gameId:gameId,
-				  rateCoefficient:rateCoefficient,
-				  rateMoney:rateMoney
-				 },
-			url:"AJAXController",
-            success : function(data) {
-               var json = JSON.parse(data);
-            	
-               var errorType = json["errorType"];
-               var errorMessage = json["errorMessage"];  				
-				 
-               if(errorType === "makerateerror"){
-            	   errorType = "${makerateerror}";
-            	   
-	           if(errorMessage === "nomoney"){
-	            		errorMessage = "${nomoney}";
-	           }
-	            	
-	            	showErrorAtView(errorType, errorMessage);
-	            	
-               } else if(errorType === "ok"){	      
-            		$(".error-modal").hide();
-            		$(".success-modal").show();
-            		
-            		errorType = "${makeratesuccess}";	            		
-	            	$(".errorType").text(errorType);     		            	
-	            	
-	            	setTimeout(function() {
-	            		  $(".hidden-make-rate").css("visibility","hidden");
-	            		}, 5000);
-            	}
-            }					 
-		});
-	 }
-		event.preventDefault();		
-});	
 
 function setLanguage(goToPage,local){		
 	$.get(
@@ -178,4 +102,3 @@ function setLanguage(goToPage,local){
 function redirectToUserPersonalPage(){
 	  window.location.replace("redirectToPersonalPage");
 }
-

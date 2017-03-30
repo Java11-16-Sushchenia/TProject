@@ -11,55 +11,51 @@ import javax.servlet.http.HttpServletResponse;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
-
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public Controller() {
-        super();
-    }
-
-	protected void doGet(HttpServletRequest request, 
-						 HttpServletResponse response) 
-								 	throws ServletException, IOException {
-
-		doPost(request,response);
+	public Controller() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, 
-						  HttpServletResponse response) 
-								  	throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		String commandName = request.getParameter(
-									RequestParameterName.COMMAND_NAME);
-		
-		System.out.println("Имя команды: "+commandName);
-		
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
+
+		System.out.println("Имя команды: " + commandName);
+
 		ICommand command = CommandHelper.getInstance().getCommand(commandName);
-		System.out.println("имя команды"+command.toString());
-		
+		System.out.println("имя команды" + command.toString());
+
 		String page = null;
-		
-		try{
-			page = command.execute(request,response);
-		} catch(CommandException e){
+
+		try {
+			page = command.execute(request, response);
+		} catch (CommandException e) {
 			page = JspPageName.ERROR_PAGE;
 			e.printStackTrace();
-		} catch(Exception e){
+		} catch (Exception e) {
 			page = JspPageName.ERROR_PAGE;
 			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 
-		if(dispatcher != null){
+		if (dispatcher != null) {
 			dispatcher.forward(request, response);
-		} else{
-			
-		}		
+		} else {
+
+		}
 	}
-	private void errorMessageDireclyFromresponse(HttpServletResponse response) 
-														throws IOException{
+
+	private void errorMessageDireclyFromresponse(HttpServletResponse response) throws IOException {
 		response.setContentType("text/html");
 		response.getWriter().println("ERROR");
 	}

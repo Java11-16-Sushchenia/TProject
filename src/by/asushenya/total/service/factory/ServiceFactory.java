@@ -1,6 +1,5 @@
 package by.asushenya.total.service.factory;
 
-import by.asushenya.total.dao.impl.AdminDAOImpl;
 import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.AuthorizationService;
 import by.asushenya.total.service.BookMakerService;
