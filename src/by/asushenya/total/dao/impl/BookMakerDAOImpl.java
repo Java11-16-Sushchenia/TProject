@@ -33,6 +33,7 @@ public class BookMakerDAOImpl implements BookMakerDAO{
 	
 
 	
+	
 	public List<Game> getAllGames(String local) throws DAOException {
 		
 	    Connection con = null;

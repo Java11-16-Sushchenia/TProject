@@ -18,7 +18,7 @@ public interface UserService {
 							String password) 
 										  throws ServiceException;
 	
-	List<Rate> getAllUserRates(User user) throws ServiceException;
+	//List<Rate> getAllUserRates(User user) throws ServiceException;
 	
 	GamesPage getGamesPage(int page,
 						   int recordsPerPage,

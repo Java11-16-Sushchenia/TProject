@@ -49,18 +49,18 @@ public class UserDAOImpl implements UserDAO {
 	// `games_count` from game where is_visible = true and date > now()";
 	private static final String getRatesCountQuerry = "select count(*) `rates_count` from rate where user_id = ?"; // where
 
-	private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
+	//private static final String getAllGamesQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
 	private static final String getAllGamesEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";// game_rate
 
 	private static final String getAllGamesByGameKindRuQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ? limit ?,?";
 	private static final String getAllGamesByGameKindEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ? limit ?,?";
 	// >
 	// now();
-	private static final String getGamesForPageByGameKindQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ? limit ?,?";
-	private static final String getGamesForPageByGameKindEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ? limit ?,?";
+	//private static final String getGamesForPageByGameKindQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ? limit ?,?";
+	//private static final String getGamesForPageByGameKindEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ? limit ?,?";
 
 	private static final String getAllGamesForPageQuerry = "select id, game_kind, date, (select team.name from team  where team.id = game.team_1) as `team_1`, (select team.name from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
-	private static final String getAllGamesForPageEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
+	//private static final String getAllGamesForPageEnQuerry = "select id, game_kind, date, (select team.name_en from team  where team.id = game.team_1) as `team_1`, (select team.name_en from team where team.id = game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
 
 	private static final String getAllTeamsRuQuerry = "select id, name as `name` from team where game_kind = ?";
 	private static final String getAllTeamsEnQuerry = "select id, name_en `name` from team where game_kind = ?";
@@ -155,10 +155,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	@Override
+	/*@Override
 	public List<Rate> getAllUserRates(User user) throws DAOException {
-		/* depricated */
-		/*
+		
 		 * Connection con = null; Statement st = null; ResultSet rs = null;
 		 * List<Rate> rates = new ArrayList<Rate>();
 		 * 
@@ -185,15 +184,14 @@ public class UserDAOImpl implements UserDAO {
 		 * } catch (SQLException e) { log.error("can't get all user rates", e);
 		 * throw new DAOException("can't get all user rates", e); } finally {
 		 * ConnectionManager.disconnectFromDB(rs, st, con); } return rates;
-		 */
+		 
 		return null;
 
-	}
+	}*/
 
-	public List<Game> getGamesByType(GameKind gameKind) throws DAOException {
+/*	public List<Game> getGamesByType(GameKind gameKind) throws DAOException {
 		return null;
-		/* Depricated */
-		/*
+		
 		 * Connection con = null; Statement st = null; ResultSet rs = null;
 		 * List<Game> games = new ArrayList<Game>(); StringBuilder
 		 * executedQuerry = new StringBuilder();
@@ -222,8 +220,8 @@ public class UserDAOImpl implements UserDAO {
 		 * 
 		 * } finally { ConnectionManager.disconnectFromDB(rs, st, con); }
 		 * System.out.println(games.size()); return games;
-		 */
-	}
+		 
+	}*/
 
 	@Override
 	public boolean makeRate(Rate rate) throws DAOException {
@@ -383,12 +381,11 @@ public class UserDAOImpl implements UserDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-
 		List<Rate> list = new ArrayList<Rate>();
 
 		try {
 			con = ConnectionManager.getDBTotalizatorConnection();
-			
+
 			if (local.equals(RequestParameterName.SESSION_LOCAL_RU)) {
 				ps = con.prepareStatement(getAllUserRateRuQuerry);
 			} else if (local.equals(RequestParameterName.SESSION_LOCAL_EN)) {
@@ -398,9 +395,9 @@ public class UserDAOImpl implements UserDAO {
 			ps.setInt(1, user.getId());
 			ps.setInt(2, page);
 			ps.setInt(3, ratesPerPage);
-			
+
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				Rate rate = new Rate();
 

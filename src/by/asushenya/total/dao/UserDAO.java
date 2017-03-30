@@ -17,9 +17,9 @@ public interface UserDAO {
 
 	User findUserByEmail(String email) throws DAOException;
 
-	List<Rate> getAllUserRates(User user) throws DAOException;
+	//List<Rate> getAllUserRates(User user) throws DAOException;
 
-	List<Game> getGamesByType(GameKind game_type) throws DAOException;
+	//List<Game> getGamesByType(GameKind game_type) throws DAOException;
 
 	boolean makeRate(Rate rate) throws DAOException;
 

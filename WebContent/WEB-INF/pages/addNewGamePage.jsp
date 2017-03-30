@@ -162,6 +162,10 @@
     		var kx = event.currentTarget['kx'].value;
     		var k2 = event.currentTarget['k2'].value;
     		
+    		if(gameKind === "basketball"){    			
+    			kx = 1.1;
+    		}
+    		
     		var timeStampGameDate = gameDate.concat(":00").replace("T"," ");
     		
     		if(firstTeam === secondTeam){
@@ -203,6 +207,8 @@
     		if(gameKind === "basketball"){
     			$("#game-koefficient-kx").hide();
     			$("#game-koefficient-kx-label").hide();
+    			$("#koefficient-kx").val(1.1);
+
     		} else{
     			$("#game-koefficient-kx").show();
     			$("#game-koefficient-kx-label").show();

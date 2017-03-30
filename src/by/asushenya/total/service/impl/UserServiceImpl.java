@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
 
 	private static final Logger log = Logger.getLogger(UserServiceImpl.class);
 
-	public List<Rate> getAllUserRates(User user) throws ServiceException {
+/*	public List<Rate> getAllUserRates(User user) throws ServiceException {
 
-		List<Rate> userRates;
+		List<Rate> userRates = null;
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return userRates;
-	}
+	}*/
 
 	public GamesPage getGamesPage(int page, int gamesPerPage, GameKind gameKind, String local) throws ServiceException {
 
