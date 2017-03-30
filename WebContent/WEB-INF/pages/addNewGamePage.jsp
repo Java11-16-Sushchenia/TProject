@@ -118,7 +118,7 @@
 			    <input id="game-koefficient-k1" name="k1" type="number" min="1.1" class="form-control" placeholder="k1">
 			  </div>
 			  <div class="col-xs-2">
-			   <label for="game-koefficient-kx">${draw}</label>
+			   <label id="game-koefficient-kx-label" for="game-koefficient-kx">${draw}</label>
 			    <input id="game-koefficient-kx" name="kx" type="number" min="1.1"  class="form-control" placeholder="kx">
 			  </div>
 			  <div class="col-xs-2">
@@ -199,7 +199,14 @@
     	
     	$("#gameKindSelect").change(function(element){
     		var gameKind = $("#gameKindSelect").val();
-
+			
+    		if(gameKind === "basketball"){
+    			$("#game-koefficient-kx").hide();
+    			$("#game-koefficient-kx-label").hide();
+    		} else{
+    			$("#game-koefficient-kx").show();
+    			$("#game-koefficient-kx-label").show();
+    		}
     		
     		$.ajax({
 				type:"POST",
