@@ -40,10 +40,9 @@ public class Controller extends HttpServlet {
 			page = command.execute(request, response);
 		} catch (CommandException e) {
 			page = JspPageName.ERROR_PAGE;
-			e.printStackTrace();
 		} catch (Exception e) {
-			page = JspPageName.ERROR_PAGE;
 			e.printStackTrace();
+			page = JspPageName.ERROR_PAGE;
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);

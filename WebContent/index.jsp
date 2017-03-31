@@ -163,11 +163,13 @@
 				<div>
 					<table class="table table-striped table-hover table-bordered">
 						<thead>
+						<tr>
 							<td>${time }</td>
 							<td>${event}</td>
 							<td>${home }</td>
 							<td>${draw }</td>
 							<td>${away }</td>
+								</tr>
 						</thead>
 						<c:forEach var="game" items="${games}">
 							<tr class="tr-hover">

@@ -186,4 +186,7 @@
     <url-pattern>/AJAXController</url-pattern>
   </servlet-mapping>
   
+  	<listener>
+ 		<listener-class>by.asushenya.total.controller.listener.InitializationSourceListener</listener-class>
+ 	</listener>  
 </web-app>

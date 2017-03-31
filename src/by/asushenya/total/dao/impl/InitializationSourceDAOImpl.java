@@ -2,11 +2,12 @@ package by.asushenya.total.dao.impl;
 
 import java.io.IOException;
 
+import by.asushenya.total.dao.InitializationSourceDAO;
 import by.asushenya.total.dao.exception.ConnectionPoolException;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.util.connection_pool.ConnectionPool;
 
-public class InitializationDAOImpl {
+public class InitializationSourceDAOImpl implements InitializationSourceDAO{
 
 	public void initSource() throws DAOException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();

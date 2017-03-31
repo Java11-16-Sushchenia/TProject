@@ -1,6 +1,9 @@
 package by.asushenya.total.controller;
 
 public enum CommandName {
+	INITIALIZATION_SOURCE_COMMAND,
+	DESTROY_SOURCE_COMMAND,
+	
 	AUTHORIZATION_USER_SIGN_OUT_COMMAND,
 	GET_ALL_USER_RATES_COMMAND,
 	

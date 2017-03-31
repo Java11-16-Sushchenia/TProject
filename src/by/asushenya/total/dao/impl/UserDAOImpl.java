@@ -279,7 +279,6 @@ public class UserDAOImpl implements UserDAO {
 		List<Game> list = new ArrayList<Game>();
 
 		try {
-			pool.init();
 			con = pool.take();
 
 

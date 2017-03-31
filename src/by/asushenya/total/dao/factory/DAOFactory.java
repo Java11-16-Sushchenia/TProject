@@ -4,11 +4,14 @@ import org.apache.log4j.Logger;
 
 import by.asushenya.total.dao.AdminDAO;
 import by.asushenya.total.dao.BookMakerDAO;
+import by.asushenya.total.dao.InitializationSourceDAO;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.impl.AdminDAOImpl;
 import by.asushenya.total.dao.impl.BookMakerDAOImpl;
+import by.asushenya.total.dao.impl.InitializationSourceDAOImpl;
 import by.asushenya.total.dao.impl.UserDAOImpl;
+import by.asushenya.total.service.impl.InitializationSourceServiceImpl;
 
 public class DAOFactory {
 	
@@ -31,6 +34,7 @@ public class DAOFactory {
 	private UserDAO userDAO = new UserDAOImpl();
 	private BookMakerDAO bookMakerDAO = new BookMakerDAOImpl();
 	private AdminDAO adminDAO = new AdminDAOImpl();
+	private InitializationSourceDAO initializationSourceDAO = new InitializationSourceDAOImpl();
 	
 	
 	public UserDAO getUserDAO(){
@@ -41,6 +45,9 @@ public class DAOFactory {
 	}
 	public AdminDAO getAdminDAO(){
 		return adminDAO;
+	}
+	public InitializationSourceDAO getInitializationSourceDAO(){
+		return initializationSourceDAO;
 	}
 	
 	public static DAOFactory getInstance(){
