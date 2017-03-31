@@ -98,32 +98,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return teamId;
 	}
 
-	public List<User> getAllUsers() throws DAOException {
-		return null;
-		/* depricated */
-		/*
-		 * Connection con = null; Statement st = null; ResultSet rs = null;
-		 * List<User> users = new ArrayList<User>();
-		 * 
-		 * try {
-		 * 
-		 * con = ConnectionManager.getDBTotalizatorConnection(); st =
-		 * con.createStatement(); rs = st.executeQuery(getAllUsersQuerry);
-		 * 
-		 * while (rs.next()) { User user = new User();
-		 * 
-		 * user.setId(rs.getInt("id")); user.setLogin(rs.getString("login"));
-		 * user.setPassword(rs.getString("password"));
-		 * user.setEmail(rs.getString("email"));
-		 * user.setRole(UserRole.valueOf(rs.getString("role").toUpperCase()));
-		 * user.setCash(rs.getFloat("cash"));
-		 * 
-		 * users.add(user); }
-		 * 
-		 * } catch (SQLException e) { // log.error(e); } finally {
-		 * ConnectionManager.disconnectFromDB(rs, st, con); } return users;
-		 */
-	}
 
 	public List<User> getUsersForPage(int page, int usersPerPage) throws DAOException {
 		Connection con = null;
