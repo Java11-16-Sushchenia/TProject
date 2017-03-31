@@ -42,6 +42,12 @@ public class UserServiceImpl implements UserService {
 
 	public GamesPage getGamesPage(int page, int gamesPerPage, GameKind gameKind, String local) throws ServiceException {
 
+		if(!Validator.validatePageNumber(page)){
+			return null;
+		}
+		if(!Validator.validatePageNumber(gamesPerPage)){
+			return null;
+		}
 		int noOfRecords = 0;
 
 		List<Game> gamesList = null;
@@ -69,6 +75,31 @@ public class UserServiceImpl implements UserService {
 
 	public String makeRate(int gameId, User user, RateChoice choice, double rateCoefficient, double rateMoney)
 			throws ServiceException {
+		
+		if(!Validator.validateId(gameId)){
+			JSONObject makeRateError = new JSONObject();
+			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+			return makeRateError.toString();
+		}
+		if(!Validator.validateId(user.getId())){
+			JSONObject makeRateError = new JSONObject();
+			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+			return makeRateError.toString();
+		}
+		if(!Validator.validateСoefficient(rateCoefficient)){
+			JSONObject makeRateError = new JSONObject();
+			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_СOEFFICIENT);
+			return makeRateError.toString();
+		}
+		if(!Validator.validateMoney(rateMoney)){
+			JSONObject makeRateError = new JSONObject();
+			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_MONEY);
+			return makeRateError.toString();
+		}
 
 		if (user.getCash() < rateMoney) {
 			JSONObject makeRateError = new JSONObject();
@@ -248,6 +279,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public RatesPage getRatesPage(User user, int page, int ratesPerPage, String local) throws ServiceException {
 		int noOfRecords = 0;
+		
+		if(!Validator.validateId(user.getId())){
+			return null;
+		}
+		if(!Validator.validatePageNumber(page)){
+			return null;
+		}
+		if(!Validator.validatePageNumber(ratesPerPage)){
+			return null;
+		}
 
 		List<Rate> ratesList = null;
 

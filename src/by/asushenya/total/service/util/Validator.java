@@ -9,7 +9,7 @@ public final class Validator {
 	private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})";
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String TEAM_NAME_PATTERN = "^[A-ZА-Я][A-ZА-Яa-zа-я\\s]{4,30}$";
-	
+
 	private Validator() {
 	}
 
@@ -37,6 +37,20 @@ public final class Validator {
 		}
 		return true;
 	}
+	
+	public static boolean validateMoney(final double money) {
+		if (money < 0) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean validateId(final int id) {
+		if (id < 0) {
+			return false;
+		}
+		return true;
+	}
 
 	public static boolean validateLogin(final String login) {
 		Pattern pattern = Pattern.compile(LOGIN_PATTERN);
@@ -55,6 +69,7 @@ public final class Validator {
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
+
 	public static boolean validateTeam(final String teamName) {
 		Pattern pattern = Pattern.compile(TEAM_NAME_PATTERN);
 		Matcher matcher = pattern.matcher(teamName);

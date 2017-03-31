@@ -16,6 +16,8 @@ public class ResponseParameterName {
 	public final static String OK = "ok";
 	public final static String EMPTY_GAME = "emptygame";
 	public final static String UNKNOWN_ERROR = "unknownerror";
+	public final static String INVALID_ID = "invalidid";
+	public final static String INVALID_MONEY = "invalidmoney";
 	
 	//authorize ajax command
 	public final static String AUTHORIZATION_ERROR = "authorizationerror";
@@ -42,7 +44,10 @@ public class ResponseParameterName {
 	public final static String INVALID_TEAM_NAME = "invalidteamname";
 	public final static String INVALID_СOEFFICIENT = "invalidcoefficient";
 	
+	// change game errors
+	public final static String CHANGE_GAME_ERROR = "changegameerror";
 	
-	
+	// change game errors
+	public final static String MAKE_GAME_INVISIBLE_ERROR = "makegameinvisibleerror";
 	
 }
