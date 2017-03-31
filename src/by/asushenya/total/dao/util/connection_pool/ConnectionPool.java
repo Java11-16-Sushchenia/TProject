@@ -157,7 +157,7 @@ public class ConnectionPool implements Closeable {
 		}
 	}
 
-	public void closeConnection(Connection con, PreparedStatement preSt) {
+	public void closeConnection(Connection con, PreparedStatement ps) {
 		if (con != null) {
 			try {
 				free(con);
@@ -166,9 +166,9 @@ public class ConnectionPool implements Closeable {
 			}
 		}
 
-		if (preSt != null) {
+		if (ps != null) {
 			try {
-				preSt.close();
+				ps.close();
 			} catch (SQLException e) {
 				LOGGER.error("PrepareStatement ins't closed", e);
 			}
