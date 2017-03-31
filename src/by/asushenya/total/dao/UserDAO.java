@@ -15,16 +15,11 @@ public interface UserDAO {
 
 	User findUserByEmail(String email) throws DAOException;
 
-	//List<Rate> getAllUserRates(User user) throws DAOException;
-
-	//List<Game> getGamesByType(GameKind game_type) throws DAOException;
-
 	boolean makeRate(Rate rate) throws DAOException;
 
 	List<Game> getGamesForPage(int offset, int noOfRecords, GameKind gameKind, String local) throws DAOException;
 
 	int getGamesRecordsByGameKindCount(GameKind gameKind) throws DAOException;
-
 
 	List<Rate> getRatesForPage(User user, int page, int ratesPerPage, String local) throws DAOException;
 
