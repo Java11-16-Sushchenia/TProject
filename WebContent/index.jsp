@@ -81,7 +81,7 @@
 						value="AUTHORIZATION_USER_SIGN_OUT_COMMAND" />
 					<button type="button" class="button btn-primary form-control"
 						onclick="redirectToUserPersonalPage();">${user.email}
-						<span class="badge">${user.cash}</span>
+						<span class="badge" id="usercash">${user.cash}</span>
 					</button>
 					<input class="button signupbutton form-control" type="submit"
 						value="${signoutbutton}" />
@@ -163,18 +163,18 @@
 				<div>
 					<table class="table table-striped table-hover table-bordered">
 						<thead>
-						<tr>
-							<td>${time }</td>
-							<td>${event}</td>
-							<td>${home }</td>
-							<td>${draw }</td>
-							<td>${away }</td>
-								</tr>
+							<tr>
+								<td>${time }</td>
+								<td>${event}</td>
+								<td>${home }</td>
+								<td>${draw }</td>
+								<td>${away }</td>
+							</tr>
 						</thead>
 						<c:forEach var="game" items="${games}">
 							<tr class="tr-hover">
 								<td>${game.date}</td>
-								<td>${game.firstTeam} - ${game.secondTeam}</td>
+								<td>${game.firstTeam}- ${game.secondTeam}</td>
 								<td>
 									<form class="init-form">
 										<input type="hidden" name="command"
@@ -252,11 +252,11 @@
 										<li>
 											<form action="Controller">
 												<input type="hidden" name="command"
-													value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
-													name="pageNumber" value="${i}" /> <input type="hidden"
-													name="go_to_page" value="index" /> <input type="hidden"
-													name="gameKind" value="${gameKind}" /> <a href="#"
-													onclick="$(this).closest('form').submit();">${i}</a>
+													value="GET_PAGE_WITH_GAMES_COMMAND" /> <input
+													type="hidden" name="pageNumber" value="${i}" /> <input
+													type="hidden" name="go_to_page" value="index" /> <input
+													type="hidden" name="gameKind" value="${gameKind}" /> <a
+													href="#" onclick="$(this).closest('form').submit();">${i}</a>
 											</form>
 										</li>
 									</c:otherwise>
@@ -315,8 +315,8 @@
 								class="form-control input-sm" />
 						</p>
 
-						<input type="hidden" name="command" value="MAKE_RATE_AJAX_COMMAND" /> <input
-							type="hidden" name="choice" class="gameChoice" /> <input
+						<input type="hidden" name="command" value="MAKE_RATE_AJAX_COMMAND" />
+						<input type="hidden" name="choice" class="gameChoice" /> <input
 							type="hidden" name="game_id" class="gameId" /> <input
 							type="hidden" name="rate_koefficient" class="rateCoefficient" />
 						<input type="hidden" name="game_kind" value="${game_kind}" />
@@ -358,7 +358,7 @@
 										url : "AJAXController",
 										success : function(data) {
 											var json = JSON.parse(data);
-
+											debugger;
 											var errorType = json["errorType"];
 											var errorMessage = json["errorMessage"];
 											debugger;
@@ -438,94 +438,93 @@
 
 							event.preventDefault();
 						});
-		
-		$(".sendRateToController").submit(function(event) {
-			
-			var showErrorAtView = function(errorType, errorMessage){
-		     	$(".error-modal").show();
-		    	$(".errorType").text(errorType);
-		    	$(".errorMessage").text(errorMessage);
-			}
-			
-		     var rateMoney		 = event.currentTarget[0].value;
-		   	 var command  		 = event.currentTarget[1].value;
-			 var choice   		 = event.currentTarget[2].value;
-			 var gameId    		 = event.currentTarget[3].value;
-			 var rateCoefficient = event.currentTarget[4].value;
-			 
-			
-			if("${user.id}".length === 0){
-				errorType = "${makerateerror}";
-		    	errorMessage = "${emptyuser}";
-		    	
-		    	showErrorAtView(errorType, errorMessage);
-				
-			} else if(isNaN(parseFloat(rateMoney)) === true){	
-				errorType = "${makerateerror}";
-		    	errorMessage = "${ratenotanumber}";
-		    	
-		    	showErrorAtView(errorType, errorMessage);
-		    	
-			} else if(rateMoney < 0 ){			 
-				 errorType = "${makerateerror}";
-				 errorMessage = "${lessthanzero}";
-				 
-				 showErrorAtView(errorType, errorMessage);
-		    	
-			} else{				 
-				$.ajax({
-					type:"POST",
-					data:{command:"MAKE_RATE_AJAX_COMMAND",
-						  choice:choice,
-						  gameId:gameId,
-						  rateCoefficient:rateCoefficient,
-						  rateMoney:rateMoney
-						 },
-					url:"AJAXController",
-		            success : function(data) {
-		               var json = JSON.parse(data);
-		            	
-		               var errorType = json["errorType"];
-		               var errorMessage = json["errorMessage"];  				
-						 
-		               if(errorType === "makerateerror"){
-		            	   errorType = "${makerateerror}";
-		            	   
-			           if(errorMessage === "nomoney"){
-			            		errorMessage = "${nomoney}";
-			           }
-			            	
-			            	showErrorAtView(errorType, errorMessage);
-			            	
-		               } else if(errorType === "ok"){	      
-		            		$(".error-modal").hide();
-		            		$(".success-modal").show();
-		            		
-		            		errorType = "${makeratesuccess}";	            		
-			            	$(".errorType").text(errorType);     		            	
-			            	
-			            	setTimeout(function() {
-			            		  $(".hidden-make-rate").css("visibility","hidden");
-			            		}, 5000);
-		            	}
-		            }					 
-				});
-			 }
-				event.preventDefault();		
-		});	
 
-		function setLanguage(goToPage,local){		
-			$.get(
-				    "Controller",
-				    {
-				    	 command : "CHANGE_LOCALIZATION_COMMAND",			    
-					     go_to_page : goToPage,
-					     local:local			    
-				    },
-				    function(data) {
-				       window.location.replace(goToPage);
-				    }
-				);
+		$(".sendRateToController").submit(
+				function(event) {
+
+					var showErrorAtView = function(errorType, errorMessage) {
+						$(".error-modal").show();
+						$(".errorType").text(errorType);
+						$(".errorMessage").text(errorMessage);
+					}
+
+					var rateMoney = event.currentTarget[0].value;
+					var command = event.currentTarget[1].value;
+					var choice = event.currentTarget[2].value;
+					var gameId = event.currentTarget[3].value;
+					var rateCoefficient = event.currentTarget[4].value;
+
+					if ("${user.id}".length === 0) {
+						errorType = "${makerateerror}";
+						errorMessage = "${emptyuser}";
+
+						showErrorAtView(errorType, errorMessage);
+
+					} else if (isNaN(parseFloat(rateMoney)) === true) {
+						errorType = "${makerateerror}";
+						errorMessage = "${ratenotanumber}";
+
+						showErrorAtView(errorType, errorMessage);
+
+					} else if (rateMoney < 0) {
+						errorType = "${makerateerror}";
+						errorMessage = "${lessthanzero}";
+
+						showErrorAtView(errorType, errorMessage);
+
+					} else {
+						$.ajax({
+							type : "POST",
+							data : {
+								command : "MAKE_RATE_AJAX_COMMAND",
+								choice : choice,
+								gameId : gameId,
+								rateCoefficient : rateCoefficient,
+								rateMoney : rateMoney
+							},
+							url : "AJAXController",
+							success : function(data) {
+								var json = JSON.parse(data);
+
+								var errorType = json["errorType"];
+								var errorMessage = json["errorMessage"];
+
+								if (errorType === "makerateerror") {
+									errorType = "${makerateerror}";
+
+									if (errorMessage === "nomoney") {
+										errorMessage = "${nomoney}";
+									}
+
+									showErrorAtView(errorType, errorMessage);
+
+								} else if (errorType === "ok") {
+									$("#usercash").text(json["usercash"]);
+									$(".error-modal").hide();
+									$(".success-modal").show();
+
+									errorType = "${makeratesuccess}";
+									$(".errorType").text(errorType);
+
+									setTimeout(function() {
+										$(".hidden-make-rate").css(
+												"visibility", "hidden");
+									}, 5000);
+								}
+							}
+						});
+					}
+					event.preventDefault();
+				});
+
+		function setLanguage(goToPage, local) {
+			$.get("Controller", {
+				command : "CHANGE_LOCALIZATION_COMMAND",
+				go_to_page : goToPage,
+				local : local
+			}, function(data) {
+				window.location.replace(goToPage);
+			});
 		}
 		function redirectToUserPersonalPage() {
 			window.location.replace("redirectToPersonalPage");

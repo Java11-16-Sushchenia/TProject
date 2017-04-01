@@ -1,5 +1,7 @@
 package by.asushenya.total.service.impl;
 
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
@@ -19,18 +21,18 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	private static final Logger log = Logger.getLogger(AuthorizationServiceImpl.class);
 
 	public UserServiceObject singIn(String login, String password) throws ServiceException {
-
 		User user = null;
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
+		HashMap<String, Object> authInfo = new HashMap<String, Object>();
 
 		UserServiceObject userServiceObject = new UserServiceObject();
-		JSONObject jsonWithAuthorizationInfo = new JSONObject();
 
 		if (!Validator.validateLogin(login)) {
-			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
-			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_LOGIN);
-			userServiceObject.setJsonWithErrors(jsonWithAuthorizationInfo.toString());
+			authInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
+			authInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_LOGIN);
+			JSONObject authorizationError = new JSONObject(authInfo);
+			userServiceObject.setJsonWithErrors(authorizationError.toString());
 			return userServiceObject;
 		}
 
@@ -41,26 +43,58 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		}
 
 		if (user == null) {
-			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
-			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.NOT_REGISTRED);
-			userServiceObject.setJsonWithErrors(jsonWithAuthorizationInfo.toString());
+			authInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
+			authInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.NOT_REGISTRED);
+			JSONObject authorizationError = new JSONObject(authInfo);
+			userServiceObject.setJsonWithErrors(authorizationError.toString());
 			return userServiceObject;
 		}
 
 		String enteredPasswordHash = Encryptor.getMD5Hash(password);
 
 		if (!user.getPassword().equals(enteredPasswordHash)) {
-			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
-			jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_PASSWORD);
-			userServiceObject.setJsonWithErrors(jsonWithAuthorizationInfo.toString());
+			authInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
+			authInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_PASSWORD);
+			JSONObject authorizationError = new JSONObject(authInfo);
+			userServiceObject.setJsonWithErrors(authorizationError.toString());
 			return userServiceObject;
 		}
 
 		userServiceObject.setUser(user);
-		jsonWithAuthorizationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
-		jsonWithAuthorizationInfo.put(ResponseParameterName.USER_ROLE, user.getRole().toString());
-		userServiceObject.setJsonWithSuccess(jsonWithAuthorizationInfo.toString());
+
+		authInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
+		authInfo.put(ResponseParameterName.USER_ROLE, user.getRole().toString());
+		JSONObject authorizationError = new JSONObject(authInfo);
+		userServiceObject.setJsonWithSuccess(authorizationError.toString());
 		return userServiceObject;
+	}
+
+	@Override
+	public User refreshUserData(User user) throws ServiceException {
+
+		User refreshedUser = null;
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO userDAO = daoFactory.getUserDAO();
+
+		if (!Validator.validateLogin(user.getLogin())) {
+			throw new ServiceException("invalid user login");
+		}
+
+		try {
+			refreshedUser = userDAO.findUserByLogin(user.getLogin());
+		} catch (DAOException e) {
+			log.error("error by getting user by login", e);
+		}
+
+		if (refreshedUser == null) {
+				throw new ServiceException("can't get user from dao");
+		}
+
+		if (!user.getPassword().equals(refreshedUser.getPassword())) {
+			throw new ServiceException("зasswords do not match");
+		}
+
+		return refreshedUser;
 	}
 
 }

@@ -18,6 +18,7 @@ public class ResponseParameterName {
 	public final static String UNKNOWN_ERROR = "unknownerror";
 	public final static String INVALID_ID = "invalidid";
 	public final static String INVALID_MONEY = "invalidmoney";
+	public final static String USER_CASH = "usercash";
 	
 	//authorize ajax command
 	public final static String AUTHORIZATION_ERROR = "authorizationerror";

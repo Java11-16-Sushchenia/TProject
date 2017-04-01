@@ -1,5 +1,6 @@
 package by.asushenya.total.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -24,28 +25,12 @@ public class UserServiceImpl implements UserService {
 
 	private static final Logger log = Logger.getLogger(UserServiceImpl.class);
 
-	/*
-	 * public List<Rate> getAllUserRates(User user) throws ServiceException {
-	 * 
-	 * List<Rate> userRates = null;
-	 * 
-	 * DAOFactory daoFactory = DAOFactory.getInstance(); UserDAO userDAO =
-	 * daoFactory.getUserDAO();
-	 * 
-	 * try { userRates = userDAO.getAllUserRates(user);
-	 * 
-	 * } catch (DAOException e) { log.error("can't get user rates form dao", e);
-	 * throw new ServiceException("can't get user rates", e); }
-	 * 
-	 * return userRates; }
-	 */
-
 	public GamesPage getGamesPage(int page, int gamesPerPage, GameKind gameKind, String local) throws ServiceException {
 
-		if(!Validator.validatePageNumber(page)){
+		if (!Validator.validatePageNumber(page)) {
 			return null;
 		}
-		if(!Validator.validatePageNumber(gamesPerPage)){
+		if (!Validator.validatePageNumber(gamesPerPage)) {
 			return null;
 		}
 		int noOfRecords = 0;
@@ -76,35 +61,40 @@ public class UserServiceImpl implements UserService {
 	public String makeRate(int gameId, User user, RateChoice choice, double rateCoefficient, double rateMoney)
 			throws ServiceException {
 		
-		if(!Validator.validateId(gameId)){
-			JSONObject makeRateError = new JSONObject();
-			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
-			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
+		if (!Validator.validateId(gameId)) {
+			
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
-		if(!Validator.validateId(user.getId())){
-			JSONObject makeRateError = new JSONObject();
-			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
-			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+		if (!Validator.validateId(user.getId())) {			
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
-		if(!Validator.validateСoefficient(rateCoefficient)){
-			JSONObject makeRateError = new JSONObject();
-			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
-			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_СOEFFICIENT);
+		if (!Validator.validateСoefficient(rateCoefficient)) {
+			
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_СOEFFICIENT);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
-		if(!Validator.validateMoney(rateMoney)){
-			JSONObject makeRateError = new JSONObject();
-			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
-			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_MONEY);
+		if (!Validator.validateMoney(rateMoney)) {
+			
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_MONEY);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
 
 		if (user.getCash() < rateMoney) {
-			JSONObject makeRateError = new JSONObject();
-			makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
-			makeRateError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.NO_MONEY);
+			
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.NO_MONEY);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
 		Rate rate;
@@ -123,8 +113,12 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("can't make rate: some DAO problems", e);
 		}
 
-		JSONObject makeRateError = new JSONObject();
-		makeRateError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.OK);
+		
+		jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.OK);
+		double cashAfterRate = user.getCash() - rateMoney;
+		String cashString = String.format("%.1f", cashAfterRate);
+		jsonInfo.put(ResponseParameterName.USER_CASH, cashString);
+		JSONObject makeRateError = new JSONObject(jsonInfo);
 		return makeRateError.toString();
 
 	}
@@ -228,12 +222,15 @@ public class UserServiceImpl implements UserService {
 			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_EMAIL);
 			return registrationInfo.toString();
 		}
-		/*if (!Validator.validatePassword(password)) {
-			registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
-
-			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_PASSWORD);
-			return registrationInfo.toString();
-		}*/
+		/*
+		 * if (!Validator.validatePassword(password)) {
+		 * registrationInfo.put(ResponseParameterName.ERROR_TYPE,
+		 * ResponseParameterName.REGISTRATION_ERROR);
+		 * 
+		 * registrationInfo.put(ResponseParameterName.ERROR_MSSAGE,
+		 * ResponseParameterName.INVALID_PASSWORD); return
+		 * registrationInfo.toString(); }
+		 */
 
 		try {
 			if (userDAO.findUserByLogin(login) != null) {
@@ -279,14 +276,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public RatesPage getRatesPage(User user, int page, int ratesPerPage, String local) throws ServiceException {
 		int noOfRecords = 0;
-		
-		if(!Validator.validateId(user.getId())){
+
+		if (!Validator.validateId(user.getId())) {
 			return null;
 		}
-		if(!Validator.validatePageNumber(page)){
+		if (!Validator.validatePageNumber(page)) {
 			return null;
 		}
-		if(!Validator.validatePageNumber(ratesPerPage)){
+		if (!Validator.validatePageNumber(ratesPerPage)) {
 			return null;
 		}
 
