@@ -8,4 +8,5 @@ public class AdminQuery {
 	public static final String GET_ALL_USERS_COUNT = "select count(*) `users_count` from user";
 	public static final String GET_TEAMS_BY_GAME_KIND_RU = "select id, name as `name` from team where game_kind = ?";
 	public static final String GET_TEAMS_BY_GAME_KIND_EN = "select id, name_en `name` from team where game_kind = ?";
+	
 }

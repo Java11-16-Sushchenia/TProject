@@ -9,7 +9,6 @@ import by.asushenya.total.controller.CommandHelper;
 import by.asushenya.total.controller.CommandName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
-import by.asushenya.total.dao.impl.UserDAOImpl;
 
 public class InitializationSourceListener implements ServletContextListener {
 
