@@ -1,7 +1,6 @@
 package by.asushenya.total.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import by.asushenya.total.bean.Game;
 import by.asushenya.total.bean.Rate;
-import by.asushenya.total.bean.Team;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.RateChoice;
@@ -21,7 +19,6 @@ import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.ConnectionPoolException;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.sql_query.UserQuery;
-import by.asushenya.total.dao.util.ConnectionManager;
 import by.asushenya.total.dao.util.connection_pool.ConnectionPool;
 
 import org.apache.log4j.Logger;
@@ -41,8 +38,6 @@ public class UserDAOImpl implements UserDAO {
 	// game.team_1) as `team_1`, (select team.name_en from team where team.id =
 	// game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
 
-	private static final String getAllGamesCountQuerry = "select count(*) `games_count` from game where is_visible = true";
-	private static final String getAllGamesByGameKindCountQuerry = "select count(*) `games_count` from game where is_visible = true and game_kind = ?";
 	// private static final String getAllGamesCountByGameKindQuerry = "select
 	// count(*) `games_count` from game where is_visible = true and date > now()
 	// and game_kind = ?";
@@ -278,16 +273,16 @@ public class UserDAOImpl implements UserDAO {
 			con = pool.take();
 
 			if (gameKind != null) {
-				ps = con.prepareStatement(getAllGamesByGameKindCountQuerry);
+				ps = con.prepareStatement(UserQuery.getAllGamesByGameKindCount);
 				ps.setString(1, gameKind.toString().toLowerCase());
 			} else {
-				ps = con.prepareStatement(getAllGamesCountQuerry);
+				ps = con.prepareStatement(UserQuery.getAllGamesCount);
 			}
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				gamesCount = rs.getInt("games_count");
+				gamesCount = rs.getInt(CollumnName.GAMES_COUNT);
 			}
 		} catch (ConnectionPoolException e) {
 			throw new DAOException(e);
@@ -296,12 +291,13 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("can't get games count", e);
 
 		} finally {
-			pool.closeConnection(con,ps,rs);
+			pool.closeConnection(con, ps, rs);
 		}
 		return gamesCount;
 	}
 
 	public List<Rate> getRatesForPage(User user, int page, int ratesPerPage, String local) throws DAOException {
+		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -309,7 +305,7 @@ public class UserDAOImpl implements UserDAO {
 		List<Rate> list = new ArrayList<Rate>();
 
 		try {
-			con = ConnectionManager.getDBTotalizatorConnection();
+			con = pool.take();
 
 			if (local.equals(RequestParameterName.SESSION_LOCAL_RU)) {
 				ps = con.prepareStatement(getAllUserRateRuQuerry);
@@ -329,29 +325,32 @@ public class UserDAOImpl implements UserDAO {
 				rate.setId(rs.getInt("id"));
 
 				Game game = new Game();
-				game.setFirstTeam(rs.getString("team_1"));
-				game.setSecondTeam(rs.getString("team_2"));
+				game.setFirstTeam(rs.getString(CollumnName.TEAM_1));
+				game.setSecondTeam(rs.getString(CollumnName.TEAM_2));
 				rate.setGame(game);
 
-				rate.setDate(rs.getTimestamp("date"));
+				rate.setDate(rs.getTimestamp(CollumnName.DATE));
 
-				rate.setMoney(rs.getDouble("money"));
-				rate.setChoice(RateChoice.valueOf(rs.getString("choice")));
-				rate.setGameCoefficient(rs.getDouble("game_coefficient"));
-				rate.setProfit(rs.getDouble("profit"));
-				rate.setisSuccess(rs.getBoolean("is_success"));
+				rate.setMoney(rs.getDouble(CollumnName.MONEY));
+				rate.setChoice(RateChoice.valueOf(rs.getString(CollumnName.CHOICE)));
+				rate.setGameCoefficient(rs.getDouble(CollumnName.GAME_COEFFICIENT));
+				rate.setProfit(rs.getDouble(CollumnName.PROFIT));
+				rate.setisSuccess(rs.getBoolean(CollumnName.IS_SUCCESS));
 
 				list.add(rate);
 			}
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
 		} catch (SQLException e) {
 			log.error("can't get rates for page", e);
 		} finally {
-			ConnectionManager.disconnectFromDB(rs, ps, con);
+			pool.closeConnection(con, ps, rs);
 		}
 		return list;
 	}
 
 	public int getRatesRecordsCountOfUser(User user) throws DAOException {
+		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -359,7 +358,7 @@ public class UserDAOImpl implements UserDAO {
 		int ratesCount = 0;
 
 		try {
-			con = ConnectionManager.getDBTotalizatorConnection();
+			con = pool.take();
 
 			ps = con.prepareStatement(getRatesCountQuerry);
 			ps.setInt(1, user.getId());
@@ -367,13 +366,15 @@ public class UserDAOImpl implements UserDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ratesCount = rs.getInt("rates_count");
+				ratesCount = rs.getInt(CollumnName.RATES_COUNT);
 			}
+		} catch (ConnectionPoolException e) {
+			throw new DAOException(e);
 		} catch (SQLException e) {
 			log.error("can't get rates count", e);
 			throw new DAOException("can't get rates count", e);
 		} finally {
-			ConnectionManager.disconnectFromDB(rs, ps, con);
+			pool.closeConnection(con, ps, rs);
 		}
 		return ratesCount;
 	}
