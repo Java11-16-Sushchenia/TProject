@@ -27,48 +27,6 @@ public class UserDAOImpl implements UserDAO {
 
 	private static final Logger log = Logger.getLogger(UserDAOImpl.class);
 
-	private static final String getAllUserRateRuQuerry = "select rate.id, (select name from team where team.id = game.team_1) `team_1`, (select name from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = ? limit ?,?";
-	private static final String getAllUserRateEnQuerry = "select rate.id, (select name_en from team where team.id = game.team_1) `team_1`, (select name_en from team where team.id = game.team_2) `team_2`, rate.date, money, choice, game_coefficient, profit, is_success from rate inner join game on rate.game_id = game.id where user_id = ? limit ?,?";
-	// private static final String getGamesByTypeQuerry = "select id, game_kind,
-	// date, (select team.name from team where team.id = game.team_1) as
-	// `team_1`, (select team.name from team where team.id = game.team_2) as
-	// `team_2`, k1, kx, k2 from game where is_visible = true";
-	// private static final String getGamesByTypeEnQuerry = "select id,
-	// game_kind, date, (select team.name_en from team where team.id =
-	// game.team_1) as `team_1`, (select team.name_en from team where team.id =
-	// game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true";
-
-	// private static final String getAllGamesCountByGameKindQuerry = "select
-	// count(*) `games_count` from game where is_visible = true and date > now()
-	// and game_kind = ?";
-	// private static final String getAllGamesCountQuerry = "select count(*)
-	// `games_count` from game where is_visible = true and date > now()";
-	private static final String getRatesCountQuerry = "select count(*) `rates_count` from rate where user_id = ?"; // where
-
-	// private static final String getAllGamesQuerry = "select id, game_kind,
-	// date, (select team.name from team where team.id = game.team_1) as
-	// `team_1`, (select team.name from team where team.id = game.team_2) as
-	// `team_2`, k1, kx, k2 from game where is_visible = true limit ?,?";
-
-	// >
-	// now();
-	// private static final String getGamesForPageByGameKindQuerry = "select id,
-	// game_kind, date, (select team.name from team where team.id = game.team_1)
-	// as `team_1`, (select team.name from team where team.id = game.team_2) as
-	// `team_2`, k1, kx, k2 from game where is_visible = true and game_kind = ?
-	// limit ?,?";
-	// private static final String getGamesForPageByGameKindEnQuerry = "select
-	// id, game_kind, date, (select team.name_en from team where team.id =
-	// game.team_1) as `team_1`, (select team.name_en from team where team.id =
-	// game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true
-	// and game_kind = ? limit ?,?";
-
-	// private static final String getAllGamesForPageEnQuerry = "select id,
-	// game_kind, date, (select team.name_en from team where team.id =
-	// game.team_1) as `team_1`, (select team.name_en from team where team.id =
-	// game.team_2) as `team_2`, k1, kx, k2 from game where is_visible = true
-	// limit ?,?";
-
 	public User findUserByEmail(String email) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -309,9 +267,9 @@ public class UserDAOImpl implements UserDAO {
 			con = pool.take();
 
 			if (local.equals(RequestParameterName.SESSION_LOCAL_RU)) {
-				ps = con.prepareStatement(getAllUserRateRuQuerry);
+				ps = con.prepareStatement(UserQuery.GET_ALL_USER_RATES_RU);
 			} else if (local.equals(RequestParameterName.SESSION_LOCAL_EN)) {
-				ps = con.prepareStatement(getAllUserRateEnQuerry);
+				ps = con.prepareStatement(UserQuery.GET_ALL_USER_RATES_EN);
 			}
 
 			ps.setInt(1, user.getId());
@@ -361,7 +319,7 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			con = pool.take();
 
-			ps = con.prepareStatement(getRatesCountQuerry);
+			ps = con.prepareStatement(UserQuery.GET_USER_RATES_COUNT);
 			ps.setInt(1, user.getId());
 
 			rs = ps.executeQuery();

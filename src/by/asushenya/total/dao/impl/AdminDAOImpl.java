@@ -221,7 +221,7 @@ public class AdminDAOImpl implements AdminDAO {
 			throw new DAOException("DAOException addNewGame: " + e.getMessage());
 		} finally {
 			pool.closeConnection(con, ps);
-		}		
+		}
 	}
 
 	@Override
