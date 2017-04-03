@@ -173,8 +173,9 @@
 						</thead>
 						<c:forEach var="game" items="${games}">
 							<tr class="tr-hover">
-								<td>${game.date}</td>
-								<td>${game.firstTeam}- ${game.secondTeam}</td>
+								<td><fmt:formatDate type="both" dateStyle="long"
+										timeStyle="short" value="${game.date}" /></td>
+								<td>${game.firstTeam}-${game.secondTeam}</td>
 								<td>
 									<form class="init-form">
 										<input type="hidden" name="command"
@@ -375,7 +376,7 @@
 												if (errorMessage === "invalidlogin") {
 													errorMessage = "${invalidlogin}";
 												}
-												if(errorMessage === "userunblockingerror"){
+												if (errorMessage === "userunblockingerror") {
 													errorMessage = "${userunblockingerror}";
 												}
 

@@ -147,13 +147,15 @@
 							<td>${user.cash}</td>
 
 							<td><c:if test="${user.isVisible == 0}">
-									<button onclick="unblockUser(this);" id="unblockButton-${user.id}"
-										type="submit" class="button signinbutton">Разблокировать</button></td>
+									<button onclick="unblockUser(this);"
+										id="unblockButton-${user.id}" type="submit"
+										class="button signinbutton">Разблокировать</button>
 							</c:if>
 							<c:if test="${user.isVisible == 1}">
 								<button onclick="blockUser(this);" id="blockButton-${user.id}"
 									type="submit" class="button signupbutton">Блокировать</button>
 							</c:if>
+							</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -224,7 +226,6 @@
 	</footer>
 
 	<script>
-
 		function blockUser(buttonObject) {
 			var blockUserId = buttonObject.id.split("-")[1];
 

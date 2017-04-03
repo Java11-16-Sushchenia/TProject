@@ -33,7 +33,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 		try {
 			con = pool.take();
-			ps = con.prepareStatement(AdminQuery.addNewGameQuerry);
+			ps = con.prepareStatement(AdminQuery.ADD_NEW_GAME);
 
 			ps.setString(1, game.getGameKind().toString().toLowerCase());
 			ps.setInt(2, getTeamIdByName(game.getFirstTeam(), local));

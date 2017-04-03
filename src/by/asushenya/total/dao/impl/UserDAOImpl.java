@@ -232,10 +232,10 @@ public class UserDAOImpl implements UserDAO {
 			con = pool.take();
 
 			if (gameKind != null) {
-				ps = con.prepareStatement(UserQuery.getAllGamesByGameKindCount);
+				ps = con.prepareStatement(UserQuery.GET_ALL_GAMES_BY_GAME_KIND_COUNT);
 				ps.setString(1, gameKind.toString().toLowerCase());
 			} else {
-				ps = con.prepareStatement(UserQuery.getAllGamesCount);
+				ps = con.prepareStatement(UserQuery.GET_ALL_GAMES_COUNT);
 			}
 
 			rs = ps.executeQuery();

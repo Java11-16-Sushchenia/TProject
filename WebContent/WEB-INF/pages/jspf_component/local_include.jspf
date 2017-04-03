@@ -106,7 +106,8 @@
 <fmt:message bundle="${loc}" key="local.authorization.notregistred"
 	var="notregistred" />
 
-<fmt:message bundle="${loc}" key="local.userregistration.userunblockingerror"
+<fmt:message bundle="${loc}"
+	key="local.userregistration.userunblockingerror"
 	var="userunblockingerror" />
 
 <fmt:message bundle="${loc}" key="local.adminpage.id" var="id" />
