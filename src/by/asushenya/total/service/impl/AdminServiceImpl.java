@@ -1,6 +1,7 @@
 package by.asushenya.total.service.impl;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -82,7 +83,7 @@ public class AdminServiceImpl implements AdminService {
 		Game newGame = new Game();
 
 		if (!Validator.validateTeam(firstTeamName)) {
- 			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
+			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
 			return json.toString();
 		}
 		if (!Validator.validateTeam(secondTeamName)) {
@@ -127,6 +128,65 @@ public class AdminServiceImpl implements AdminService {
 		json.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
 
 		return json.toString();
+	}
+
+	@Override
+	public String blockUser(int userId) throws ServiceException {
+
+		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
+		if (!Validator.validateId(userId)) {
+
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.USER_BLOCKING_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
+			return makeRateError.toString();
+		}
+
+		User blockingUser = new User();
+		blockingUser.setId(userId);
+
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		AdminDAO adminDAO = daoFactory.getAdminDAO();
+
+		try {
+			adminDAO.blockUser(blockingUser);
+		} catch (DAOException e) {
+			log.error("can't block user", e);
+			throw new ServiceException("can't block user", e);
+		}
+
+		jsonInfo.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
+		JSONObject makeRateError = new JSONObject(jsonInfo);
+		return makeRateError.toString();
+	}
+
+	
+	public String unblockUser(int userId) throws ServiceException {
+		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
+		if (!Validator.validateId(userId)) {
+
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.USER_UNBLOCKING_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+			JSONObject makeRateError = new JSONObject(jsonInfo);
+			return makeRateError.toString();
+		}
+
+		User blockingUser = new User();
+		blockingUser.setId(userId);
+
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		AdminDAO adminDAO = daoFactory.getAdminDAO();
+
+		try {
+			adminDAO.unblockUser(blockingUser);
+		} catch (DAOException e) {
+			log.error("can't unblock user", e);
+			throw new ServiceException("can't unblock user", e);
+		}
+
+		jsonInfo.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
+		JSONObject makeRateError = new JSONObject(jsonInfo);
+		return makeRateError.toString();
 	}
 
 }

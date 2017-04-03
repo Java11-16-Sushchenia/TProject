@@ -333,7 +333,7 @@
 		</div>
 	</div>
 
-	<footer class="container-fluid text-center">
+	<footer class="container-fluid text-center footer">
 		<p>Footer Text</p>
 	</footer>
 	<!-- Main jumbotron for a primary marketing message or call to action -->
@@ -374,6 +374,9 @@
 												}
 												if (errorMessage === "invalidlogin") {
 													errorMessage = "${invalidlogin}";
+												}
+												if(errorMessage === "userunblockingerror"){
+													errorMessage = "${userunblockingerror}";
 												}
 
 												$(".authorizationErrorType")

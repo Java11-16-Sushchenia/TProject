@@ -15,12 +15,15 @@
     }
     
     /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-      bottom: 0;
-    }
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #c0c0c0;
+  text-align: center;
+}
 
     
 .ul-nav {

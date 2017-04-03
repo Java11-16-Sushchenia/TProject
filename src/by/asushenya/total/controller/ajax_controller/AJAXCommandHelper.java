@@ -20,8 +20,10 @@ import by.asushenya.total.controller.ajax_controller.ajax_command.impl.MakeGameI
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.MakeRateAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SetNewGameCoefficientsAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.SignInAJAXCommand;
+import by.asushenya.total.controller.ajax_controller.ajax_command.impl.UnblockUserAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.RegistrationUserAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.AddNewGameAJAXCommand;
+import by.asushenya.total.controller.ajax_controller.ajax_command.impl.BlockUserAJAXCommand;
 
 public final class AJAXCommandHelper {
 	private static final AJAXCommandHelper instance = new AJAXCommandHelper();
@@ -36,6 +38,8 @@ public final class AJAXCommandHelper {
 		commands.put(AJAXCommandName.MAKE_GAME_INVISIBLE_AJAX_COMMAND, new MakeGameInvisibleAJAXCommand());
 		commands.put(AJAXCommandName.GET_TEAMS_BY_GAME_KIND_AJAX_COMMAND, new GetTeamsByGameKindAJAXCommand());
 		commands.put(AJAXCommandName.ADD_NEW_GAME_AJAX_COMMAND, new AddNewGameAJAXCommand());
+		commands.put(AJAXCommandName.BLOCK_USER_AJAX_COMMAND, new BlockUserAJAXCommand());
+		commands.put(AJAXCommandName.UNBLOCK_USER_AJAX_COMMAND, new UnblockUserAJAXCommand());
 	}
 
 	public static AJAXCommandHelper getInstance() {

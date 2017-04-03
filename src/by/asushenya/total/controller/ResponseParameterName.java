@@ -37,6 +37,12 @@ public class ResponseParameterName {
 	public final static String INVALID_EMAIL = "invalidemail";
 	public final static String GAME_KIND = "gameKind";
 	
+	//USER BLOCK COMMAND
+	public final static String USER_BLOCKING_ERROR = "userblockingerror";
+	public final static String USER_UNBLOCKING_ERROR = "userunblockingerror";
+	public final static String USER_BLOCKED = "userunblockingerror";
+
+	
 	// GET_TEAMS_OF_SOME_GAME_KIND_AJAX_COMMAND
 	public final static String TEAMS_ARRAY = "teamsArray";
 	

@@ -117,6 +117,7 @@ public class AdminDAOImpl implements AdminDAO {
 				user.setEmail(rs.getString(CollumnName.EMAIL));
 				user.setRole(UserRole.valueOf(rs.getString(CollumnName.ROLE).toUpperCase()));
 				user.setCash(rs.getFloat(CollumnName.CASH));
+				user.setIsVisible(rs.getInt("is_visible"));
 				list.add(user);
 			}
 		} catch (ConnectionPoolException e) {
@@ -198,5 +199,51 @@ public class AdminDAOImpl implements AdminDAO {
 			pool.closeConnection(con, ps, rs);
 		}
 		return teamsOfSomeGameKind;
+	}
+
+	@Override
+	public void blockUser(User user) throws DAOException {
+		ConnectionPool pool = ConnectionPool.getInstance();
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = pool.take();
+			ps = con.prepareStatement(AdminQuery.BLOCK_USER);
+
+			ps.setInt(1, user.getId());
+
+			ps.executeUpdate();
+		} catch (ConnectionPoolException e) {
+			log.error("connection pool problem", e);
+			throw new DAOException("connection pool problem", e);
+		} catch (SQLException e) {
+			throw new DAOException("DAOException addNewGame: " + e.getMessage());
+		} finally {
+			pool.closeConnection(con, ps);
+		}		
+	}
+
+	@Override
+	public void unblockUser(User user) throws DAOException {
+		ConnectionPool pool = ConnectionPool.getInstance();
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = pool.take();
+			ps = con.prepareStatement(AdminQuery.UNBLOCK_USER);
+
+			ps.setInt(1, user.getId());
+
+			ps.executeUpdate();
+		} catch (ConnectionPoolException e) {
+			log.error("connection pool problem", e);
+			throw new DAOException("connection pool problem", e);
+		} catch (SQLException e) {
+			throw new DAOException("DAOException addNewGame: " + e.getMessage());
+		} finally {
+			pool.closeConnection(con, ps);
+		}
 	}
 }

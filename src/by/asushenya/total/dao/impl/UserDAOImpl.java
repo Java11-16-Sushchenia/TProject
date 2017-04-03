@@ -127,6 +127,7 @@ public class UserDAOImpl implements UserDAO {
 				user.setPassword(rs.getString(CollumnName.PASSWORD));
 				user.setRole(UserRole.valueOf(rs.getString(CollumnName.ROLE).toUpperCase()));
 				user.setCash(rs.getFloat(CollumnName.CASH));
+				user.setIsVisible(rs.getInt("is_visible"));
 			}
 		} catch (ConnectionPoolException e) {
 			log.error("connection pool problem", e);

@@ -17,4 +17,8 @@ public interface AdminDAO {
 	int getUsersRecordsCount() throws DAOException;
 
 	List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException;
+	
+	void blockUser(User user) throws DAOException;
+	
+	void unblockUser(User user) throws DAOException;
 }

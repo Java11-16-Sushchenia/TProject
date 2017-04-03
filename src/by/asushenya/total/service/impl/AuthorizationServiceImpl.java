@@ -59,6 +59,13 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 			userServiceObject.setJsonWithErrors(authorizationError.toString());
 			return userServiceObject;
 		}
+		if (user.getIsVisible() == 0) {
+			authInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.AUTHORIZATION_ERROR);
+			authInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.USER_BLOCKED);
+			JSONObject authorizationError = new JSONObject(authInfo);
+			userServiceObject.setJsonWithErrors(authorizationError.toString());
+			return userServiceObject;
+		}
 
 		userServiceObject.setUser(user);
 
