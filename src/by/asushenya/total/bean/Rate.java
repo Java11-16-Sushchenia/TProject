@@ -3,6 +3,7 @@ package by.asushenya.total.bean;
 import java.sql.Timestamp;
 
 import by.asushenya.total.bean.util.RateChoice;
+
 public class Rate {
 
 	private int id;
@@ -14,8 +15,9 @@ public class Rate {
 	private double gameCoefficient;
 	private double profit;
 	private byte state;
-	
-	public Rate(){}
+
+	public Rate() {
+	}
 
 	public int getId() {
 		return id;
@@ -87,5 +89,5 @@ public class Rate {
 
 	public void setState(byte isSuccess) {
 		this.state = isSuccess;
-	}	
+	}
 }

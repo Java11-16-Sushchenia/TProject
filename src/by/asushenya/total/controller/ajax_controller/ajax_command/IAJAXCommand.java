@@ -5,10 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
 
-
-
 public interface IAJAXCommand {
-	public void execute(HttpServletRequest  request, 
-						HttpServletResponse response) 
-								throws AJAXCommandException;
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException;
 }

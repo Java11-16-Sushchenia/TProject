@@ -1,5 +1,7 @@
 package by.asushenya.total.controller.ajax_controller.ajax_command.impl;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,26 +27,29 @@ public class SetNewGameCoefficientsAJAXCommand implements IAJAXCommand {
 		double k1 = 0;
 		double kx = 0;
 		double k2 = 0;
-		JSONObject changeGameError = new JSONObject();
-		try{
+		HashMap<String, Object> setCoefficientsError = new HashMap<String, Object>();
+		try {
 			gameId = Integer.parseInt(request.getParameter(RequestParameterName.GAME_ID));
-		} catch(NullPointerException e){
-			log.error("invalid game id",e);
-			
-			changeGameError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.CHANGE_GAME_ERROR);
-			changeGameError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+		} catch (NullPointerException e) {
+			log.error("invalid game id", e);
+
+			setCoefficientsError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.CHANGE_GAME_ERROR);
+			setCoefficientsError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
+
+			JSONObject changeGameError = new JSONObject(setCoefficientsError);
 			PrintWriteHelper.printToPrintWriter(response, changeGameError.toString());
 			return;
 		}
-		
+
 		try {
 			k1 = Double.parseDouble(request.getParameter(RequestParameterName.K1));
 			kx = Double.parseDouble(request.getParameter(RequestParameterName.KX));
 			k2 = Double.parseDouble(request.getParameter(RequestParameterName.K2));
 		} catch (NullPointerException e) {
-			log.error("new game coefficients is empty", e);			
-			changeGameError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.CHANGE_GAME_ERROR);
-			changeGameError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_СOEFFICIENT);
+			log.error("new game coefficients is empty", e);
+			setCoefficientsError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.CHANGE_GAME_ERROR);
+			setCoefficientsError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_СOEFFICIENT);
+			JSONObject changeGameError = new JSONObject(setCoefficientsError);
 			PrintWriteHelper.printToPrintWriter(response, changeGameError.toString());
 			return;
 		}
@@ -58,8 +63,9 @@ public class SetNewGameCoefficientsAJAXCommand implements IAJAXCommand {
 			log.error("can't set new game coefficients at command", e);
 			throw new AJAXCommandException("can't set game coefficients", e);
 		}
-		
-		changeGameError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
+
+		setCoefficientsError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
+		JSONObject changeGameError = new JSONObject(setCoefficientsError);
 		PrintWriteHelper.printToPrintWriter(response, changeGameError.toString());
 	}
 

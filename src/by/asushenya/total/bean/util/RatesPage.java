@@ -7,9 +7,10 @@ import by.asushenya.total.bean.Rate;
 public class RatesPage {
 	private List<Rate> ratesList;
 	private int numberOfPages;
-	
-	public RatesPage(){}
-	
+
+	public RatesPage() {
+	}
+
 	public List<Rate> getRatesList() {
 		return ratesList;
 	}

@@ -123,10 +123,10 @@
 							<td><c:if test="${user.isVisible == 0}">
 									<button onclick="unblockUser(this);"
 										id="unblockButton-${user.id}" type="submit"
-										class="button signinbutton">Разблокировать</button>
+										class="button signinbutton">${unblock}</button>
 								</c:if> <c:if test="${user.isVisible == 1}">
 									<button onclick="blockUser(this);" id="blockButton-${user.id}"
-										type="submit" class="button signupbutton">Блокировать</button>
+										type="submit" class="button signupbutton">${block}</button>
 								</c:if></td>
 							</tr>
 						</c:forEach>
@@ -183,8 +183,7 @@
 							</c:if>
 						</ul>
 						<button class="button signinbutton"
-							onclick="window.location.replace('redirectToAddNewGamePage');">add
-							new game</button>
+							onclick="window.location.replace('redirectToAddNewGamePage');">${addnewgame}</button>
 					</nav>
 				</div>
 			</div>

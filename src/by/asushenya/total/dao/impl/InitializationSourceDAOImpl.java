@@ -7,7 +7,7 @@ import by.asushenya.total.dao.exception.ConnectionPoolException;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.util.connection_pool.ConnectionPool;
 
-public class InitializationSourceDAOImpl implements InitializationSourceDAO{
+public class InitializationSourceDAOImpl implements InitializationSourceDAO {
 
 	public void initSource() throws DAOException {
 		ConnectionPool connectionPool = ConnectionPool.getInstance();

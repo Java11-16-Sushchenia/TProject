@@ -7,8 +7,9 @@ import by.asushenya.total.bean.User;
 public class UsersPage {
 	private List<User> usersList;
 	private int numberOfPages;
-	
-	public UsersPage(){}
+
+	public UsersPage() {
+	}
 
 	public List<User> getUsersList() {
 		return usersList;

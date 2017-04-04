@@ -29,17 +29,18 @@ public class AddNewGameAJAXCommand implements IAJAXCommand {
 		String firstTeamName = request.getParameter(RequestParameterName.FIRST_TEAM);
 		String secondTeamName = request.getParameter(RequestParameterName.SECOND_TEAM);
 		Timestamp gameDate = null;
-		try{
+		try {
 			gameDate = Timestamp.valueOf(request.getParameter(RequestParameterName.GAME_DATE));
-		} catch(IllegalArgumentException e){
-			log.error("date have bad format",e);	HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
+		} catch (IllegalArgumentException e) {
+			log.error("date have bad format", e);
+			HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.ADD_NEW_GAME_ERROR);
 			JSONObject json = new JSONObject(jsonInfo);
 
 			PrintWriteHelper.printToPrintWriter(response, json.toString());
-			
+
 		}
-		
+
 		double k1 = Double.parseDouble(request.getParameter(RequestParameterName.K1));
 		double kx = Double.parseDouble(request.getParameter(RequestParameterName.KX));
 		double k2 = Double.parseDouble(request.getParameter(RequestParameterName.K2));

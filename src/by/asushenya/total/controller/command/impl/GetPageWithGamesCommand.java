@@ -49,8 +49,8 @@ public class GetPageWithGamesCommand implements ICommand {
 		try {
 			pageWithGames = userService.getGamesPage(page, recordsPerPage, gameKind, local);
 		} catch (ServiceException e) {
-			log.error("can't get page with games",e);
-			throw new CommandException("can't get page with games",e);
+			log.error("can't get page with games", e);
+			throw new CommandException("can't get page with games", e);
 		}
 
 		request.setAttribute("games", pageWithGames.getGamesList());

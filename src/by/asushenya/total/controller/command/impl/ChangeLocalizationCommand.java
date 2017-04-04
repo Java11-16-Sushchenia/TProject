@@ -7,16 +7,12 @@ import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
-public class ChangeLocalizationCommand implements ICommand{
+public class ChangeLocalizationCommand implements ICommand {
 
-	
-	public String execute(HttpServletRequest request, 
-						  HttpServletResponse response) 	
-								  	throws CommandException {	
-		
-		request.getSession(true).setAttribute("local", 
-												request.getParameter("local"));	
-		
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+
+		request.getSession(true).setAttribute("local", request.getParameter("local"));
+
 		return request.getParameter(RequestParameterName.GO_TO_PAGE);
 	}
 

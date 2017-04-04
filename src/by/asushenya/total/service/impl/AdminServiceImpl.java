@@ -25,7 +25,6 @@ public class AdminServiceImpl implements AdminService {
 
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class);
 
-	@Override
 	public UsersPage getUsersPage(int page, int usersPerPage) throws ServiceException {
 
 		if (!Validator.validatePageNumber(page)) {

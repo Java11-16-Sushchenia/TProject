@@ -10,9 +10,9 @@ public class User {
 	private UserRole role;
 	private float cash;
 	private int isVisible;
-	
 
-	public User(){}
+	public User() {
+	}
 
 	public int getId() {
 		return id;
@@ -61,7 +61,7 @@ public class User {
 	public void setCash(float cash) {
 		this.cash = cash;
 	}
-	
+
 	public int getIsVisible() {
 		return isVisible;
 	}
@@ -70,5 +70,4 @@ public class User {
 		this.isVisible = isVisible;
 	}
 
-	
 }

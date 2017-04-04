@@ -1,5 +1,7 @@
 package by.asushenya.total.controller.ajax_controller.ajax_command.impl;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +24,7 @@ public class MakeGameInvisibleAJAXCommand implements IAJAXCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
 
-		JSONObject changeGameError = new JSONObject();
+		HashMap<String, Object> changeGameError = new HashMap<String, Object>();
 		int gameId = 0;
 		try {
 			gameId = Integer.parseInt(request.getParameter(RequestParameterName.GAME_ID));
@@ -30,7 +32,8 @@ public class MakeGameInvisibleAJAXCommand implements IAJAXCommand {
 			log.error("invalid game id", e);
 			changeGameError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_GAME_INVISIBLE_ERROR);
 			changeGameError.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
-			PrintWriteHelper.printToPrintWriter(response, changeGameError.toString());
+			JSONObject jsonInfo = new JSONObject(changeGameError);
+			PrintWriteHelper.printToPrintWriter(response, jsonInfo.toString());
 			return;
 		}
 

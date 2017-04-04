@@ -114,6 +114,8 @@
 <fmt:message bundle="${loc}" key="local.adminpage.email" var="email" />
 <fmt:message bundle="${loc}" key="local.adminpage.role" var="role" />
 <fmt:message bundle="${loc}" key="local.adminpage.cash" var="cash" />
+<fmt:message bundle="${loc}" key="local.adminpage.block" var="block" />
+<fmt:message bundle="${loc}" key="local.adminpage.unblock" var="unblock" />
 
 <%-- registrationPage --%>
 <fmt:message bundle="${loc}"

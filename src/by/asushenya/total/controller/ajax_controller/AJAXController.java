@@ -14,32 +14,32 @@ import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAX
 public class AJAXController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AJAXController() {
-        super();
-    }
+	public AJAXController() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-											throws ServletException, IOException {
-		doPost(request,response);
+			throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-												throws ServletException, IOException {
+			throws ServletException, IOException {
 
 		String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
 
 		IAJAXCommand command = AJAXCommandHelper.getInstance().getCommand(commandName);
 
-		try{
-			 command.execute(request,response);
-		} catch(AJAXCommandException e){
-			
+		try {
+			command.execute(request, response);
+		} catch (AJAXCommandException e) {
+
 			e.printStackTrace();
-		} catch(Exception e){
-			
+		} catch (Exception e) {
+
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
