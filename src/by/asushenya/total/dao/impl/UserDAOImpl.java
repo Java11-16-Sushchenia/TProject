@@ -294,7 +294,7 @@ public class UserDAOImpl implements UserDAO {
 				rate.setChoice(RateChoice.valueOf(rs.getString(CollumnName.CHOICE)));
 				rate.setGameCoefficient(rs.getDouble(CollumnName.GAME_COEFFICIENT));
 				rate.setProfit(rs.getDouble(CollumnName.PROFIT));
-				rate.setisSuccess(rs.getBoolean(CollumnName.IS_SUCCESS));
+				rate.setState(rs.getByte(CollumnName.IS_SUCCESS));
 
 				list.add(rate);
 			}

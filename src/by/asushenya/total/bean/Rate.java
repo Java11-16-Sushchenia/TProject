@@ -13,7 +13,7 @@ public class Rate {
 	private RateChoice choice;
 	private double gameCoefficient;
 	private double profit;
-	private boolean isSuccess;
+	private byte state;
 	
 	public Rate(){}
 
@@ -81,11 +81,11 @@ public class Rate {
 		this.profit = profit;
 	}
 
-	public boolean getisSuccess() {
-		return isSuccess;
+	public byte getState() {
+		return state;
 	}
 
-	public void setisSuccess(boolean isSuccess) {
-		this.isSuccess = isSuccess;
+	public void setState(byte isSuccess) {
+		this.state = isSuccess;
 	}	
 }

@@ -2,14 +2,12 @@ package by.asushenya.total.controller.ajax_controller.ajax_command.impl;
 
 import java.util.HashMap;
 
-import javax.print.attribute.standard.RequestingUserName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
-import by.asushenya.total.bean.User;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;

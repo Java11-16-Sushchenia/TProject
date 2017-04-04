@@ -1,7 +1,5 @@
 package by.asushenya.total.controller.command.impl;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +13,6 @@ public class ChangeLocalizationCommand implements ICommand{
 	public String execute(HttpServletRequest request, 
 						  HttpServletResponse response) 	
 								  	throws CommandException {	
-		
-		//Locale newLocale = new Locale(request.getParameter("local"));
 		
 		request.getSession(true).setAttribute("local", 
 												request.getParameter("local"));	

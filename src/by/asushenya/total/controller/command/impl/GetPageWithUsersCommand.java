@@ -10,36 +10,30 @@ import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.service.AdminService;
-import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
-public class GetPageWithUsersCommand implements ICommand{
+public class GetPageWithUsersCommand implements ICommand {
 
-	private static final Logger log = Logger.getLogger(
-								GetPageWithUsersCommand.class);
+	private static final Logger log = Logger.getLogger(GetPageWithUsersCommand.class);
 
-	public String execute(HttpServletRequest request, 
-						  HttpServletResponse response) 
-								  	throws CommandException {
-		
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+
 		int page = 1;
-		int recordsPerPage = 5;	
+		int recordsPerPage = 5;
 		UsersPage pageWithUsers = new UsersPage();
 
-		if(request.getParameter(RequestParameterName.PAGE_NUMBER) != null){
-			page = Integer.parseInt(request.getParameter(
-						RequestParameterName.PAGE_NUMBER));
+		if (request.getParameter(RequestParameterName.PAGE_NUMBER) != null) {
+			page = Integer.parseInt(request.getParameter(RequestParameterName.PAGE_NUMBER));
 		}
 
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		AdminService adminService = serviceFactory.getAdminService();
-		
-		try{			
-			pageWithUsers = adminService.getUsersPage(page, 
-													 recordsPerPage);
-		} catch(ServiceException e){
-			log.error("can't get page with users",e);
+
+		try {
+			pageWithUsers = adminService.getUsersPage(page, recordsPerPage);
+		} catch (ServiceException e) {
+			log.error("can't get page with users", e);
 		}
 
 		request.setAttribute("users", pageWithUsers.getUsersList());

@@ -43,7 +43,6 @@
 						value="AUTHORIZATION_USER_SIGN_OUT_COMMAND" />
 					<button data-toggle="modal" data-target="#myModal" type="button"
 						class="button infobutton form-control">${user.email}
-						<span class="badge">${user.cash}</span>
 					</button>
 
 
@@ -56,10 +55,10 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Modal Header</h4>
+									<h4 class="modal-title">Актив Тотализатора</h4>
 								</div>
 								<div class="modal-body">
-									<p>Some text in the modal.</p>
+									<p>$${user.cash}</p>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default"
@@ -90,32 +89,7 @@
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-2 sidenav">
-				<ul class="pagination ul-nav">
-					<li>
-						<form action="Controller" method="get">
-
-							<a href="#">${allgames}</a>
-						</form>
-					</li>
-					<li>
-						<form action="Controller" method="get">
-
-							<a href="#">${football}</a>
-						</form>
-					</li>
-					<li>
-						<form action="Controller" method="get">
-
-							<a href="#">${basketball}</a>
-						</form>
-					</li>
-					<li>
-						<form action="Controller" method="get">
-
-							<a href="#">${hockey}</a>
-						</form>
-					</li>
-				</ul>
+				<p>empty space</p>
 			</div>
 
 			<div class="col-sm-8 text-left">
@@ -150,12 +124,10 @@
 									<button onclick="unblockUser(this);"
 										id="unblockButton-${user.id}" type="submit"
 										class="button signinbutton">Разблокировать</button>
-							</c:if>
-							<c:if test="${user.isVisible == 1}">
-								<button onclick="blockUser(this);" id="blockButton-${user.id}"
-									type="submit" class="button signupbutton">Блокировать</button>
-							</c:if>
-							</td>
+								</c:if> <c:if test="${user.isVisible == 1}">
+									<button onclick="blockUser(this);" id="blockButton-${user.id}"
+										type="submit" class="button signupbutton">Блокировать</button>
+								</c:if></td>
 							</tr>
 						</c:forEach>
 					</table>

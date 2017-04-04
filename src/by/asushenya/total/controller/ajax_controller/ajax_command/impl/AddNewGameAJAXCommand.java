@@ -1,14 +1,17 @@
 package by.asushenya.total.controller.ajax_controller.ajax_command.impl;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.controller.RequestParameterName;
+import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
 import by.asushenya.total.controller.ajax_controller.ajax_command.util.PrintWriteHelper;
@@ -25,7 +28,18 @@ public class AddNewGameAJAXCommand implements IAJAXCommand {
 		GameKind gameKind = GameKind.valueOf(request.getParameter(RequestParameterName.GAME_KIND).toUpperCase());
 		String firstTeamName = request.getParameter(RequestParameterName.FIRST_TEAM);
 		String secondTeamName = request.getParameter(RequestParameterName.SECOND_TEAM);
-		Timestamp gameDate = Timestamp.valueOf(request.getParameter(RequestParameterName.GAME_DATE));
+		Timestamp gameDate = null;
+		try{
+			gameDate = Timestamp.valueOf(request.getParameter(RequestParameterName.GAME_DATE));
+		} catch(IllegalArgumentException e){
+			log.error("date have bad format",e);	HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.ADD_NEW_GAME_ERROR);
+			JSONObject json = new JSONObject(jsonInfo);
+
+			PrintWriteHelper.printToPrintWriter(response, json.toString());
+			
+		}
+		
 		double k1 = Double.parseDouble(request.getParameter(RequestParameterName.K1));
 		double kx = Double.parseDouble(request.getParameter(RequestParameterName.KX));
 		double k2 = Double.parseDouble(request.getParameter(RequestParameterName.K2));

@@ -141,4 +141,10 @@
 	var="ratepofit" />
 <fmt:message bundle="${loc}" key="local.userpage.ratestatus"
 	var="ratestatus" />
+	<fmt:message bundle="${loc}" key="local.userpage.notplayed"
+	var="notplayed" />
+<fmt:message bundle="${loc}" key="local.userpage.victory"
+	var="victory" />
+<fmt:message bundle="${loc}" key="local.userpage.defeat"
+	var="defeat" />
 
