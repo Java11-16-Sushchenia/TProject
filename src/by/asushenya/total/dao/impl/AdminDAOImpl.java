@@ -48,7 +48,8 @@ public class AdminDAOImpl implements AdminDAO {
 			log.error("connection pool problem", e);
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
-			throw new DAOException("DAOException addNewGame: " + e.getMessage());
+			log.error("DAOException adding new game error", e);
+			throw new DAOException("DAOException adding new game error", e);
 
 		} finally {
 			pool.closeConnection(con, ps);
@@ -85,6 +86,7 @@ public class AdminDAOImpl implements AdminDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get gameId by Name", e);
+			throw new DAOException("can't get gameId by Name", e);
 		} finally {
 			pool.closeConnection(con, ps, rs);
 		}
@@ -125,6 +127,7 @@ public class AdminDAOImpl implements AdminDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get users for page", e);
+			throw new DAOException("can't get users for page", e);
 		} finally {
 			pool.closeConnection(con, ps, rs);
 		}
@@ -193,7 +196,7 @@ public class AdminDAOImpl implements AdminDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get teams by game kind", e);
-			throw new DAOException("can't get teams", e);
+			throw new DAOException("can't get teams by game kind", e);
 
 		} finally {
 			pool.closeConnection(con, ps, rs);
@@ -201,7 +204,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return teamsOfSomeGameKind;
 	}
 
-	@Override
 	public void blockUser(User user) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -218,13 +220,13 @@ public class AdminDAOImpl implements AdminDAO {
 			log.error("connection pool problem", e);
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
-			throw new DAOException("DAOException addNewGame: " + e.getMessage());
+			log.error("DAOException blocking user error", e);
+			throw new DAOException("DAOException blocking user error", e);
 		} finally {
 			pool.closeConnection(con, ps);
 		}
 	}
 
-	@Override
 	public void unblockUser(User user) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -241,7 +243,8 @@ public class AdminDAOImpl implements AdminDAO {
 			log.error("connection pool problem", e);
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
-			throw new DAOException("DAOException addNewGame: " + e.getMessage());
+			log.error("DAOException blocking user error", e);
+			throw new DAOException("DAOException blocking user error", e);
 		} finally {
 			pool.closeConnection(con, ps);
 		}

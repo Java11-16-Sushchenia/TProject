@@ -57,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't find user by email", e);
-			throw new DAOException("user finding problem", e);
+			throw new DAOException("user finding by email problem", e);
 		} finally {
 			pool.closeConnection(con, ps, rs);
 		}
@@ -92,7 +92,7 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't find user by login", e);
-			throw new DAOException("user finding problem", e);
+			throw new DAOException("user finding by login problem", e);
 		} finally {
 			pool.closeConnection(con, ps, rs);
 		}
@@ -122,7 +122,7 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't register new user", e);
-			throw new DAOException("DAOException registeredNewUser: " + e.getMessage());
+			throw new DAOException("user registration problem",e);
 
 		} finally {
 			pool.closeConnection(con, ps);
@@ -153,7 +153,7 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't make rate", e);
-			throw new DAOException("DAOException cant make rate: " + e.getMessage());
+			throw new DAOException("DAOException cant make rate: ",e);
 		} finally {
 			pool.closeConnection(con, ps);
 		}
@@ -211,9 +211,11 @@ public class UserDAOImpl implements UserDAO {
 			}
 
 		} catch (ConnectionPoolException e) {
-			throw new DAOException(e);
+			log.error("connection pool problem", e);
+			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get games for page", e);
+			throw new DAOException("geting games for page error",e);
 		} finally {
 			pool.closeConnection(con, ps, rs);
 		}
@@ -244,7 +246,8 @@ public class UserDAOImpl implements UserDAO {
 				gamesCount = rs.getInt(CollumnName.GAMES_COUNT);
 			}
 		} catch (ConnectionPoolException e) {
-			throw new DAOException(e);
+			log.error("connection pool problem", e);
+			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get games count by game kind", e);
 			throw new DAOException("can't get games count", e);
@@ -299,9 +302,11 @@ public class UserDAOImpl implements UserDAO {
 				list.add(rate);
 			}
 		} catch (ConnectionPoolException e) {
-			throw new DAOException(e);
+			log.error("connection pool problem", e);
+			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get rates for page", e);
+			throw new DAOException("can't get rates for page", e);
 		} finally {
 			pool.closeConnection(con, ps, rs);
 		}
@@ -328,7 +333,8 @@ public class UserDAOImpl implements UserDAO {
 				ratesCount = rs.getInt(CollumnName.RATES_COUNT);
 			}
 		} catch (ConnectionPoolException e) {
-			throw new DAOException(e);
+			log.error("connection pool problem", e);
+			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
 			log.error("can't get rates count", e);
 			throw new DAOException("can't get rates count", e);

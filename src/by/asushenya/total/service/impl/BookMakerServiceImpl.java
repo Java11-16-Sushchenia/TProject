@@ -33,7 +33,7 @@ public class BookMakerServiceImpl implements BookMakerService {
 		BookMakerDAO bookMakerDAO = daoFactory.getBookMakerDAO();
 
 		try {
-			bookMakerDAO.setNewGameRates(gameId, k1, kx, k2);
+			bookMakerDAO.setNewGameCoefficients(gameId, k1, kx, k2);
 		} catch (DAOException e) {
 			log.error("can't set new game coefficients", e);
 			throw new ServiceException("can't set new game coefficients", e);
