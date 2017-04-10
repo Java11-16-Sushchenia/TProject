@@ -1,7 +1,6 @@
 package by.asushenya.total.controller.ajax_controller.ajax_command.impl;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import by.asushenya.total.bean.Team;
@@ -30,6 +28,7 @@ public class GetTeamsByGameKindAJAXCommand implements IAJAXCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
 
 		List<Team> listOfTeams = null;
+		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 		String gameKindAtString = request.getParameter(RequestParameterName.GAME_KIND);
 		String local = (String) request.getSession(true).getAttribute("local");
 		GameKind gameKind = null;
@@ -51,12 +50,11 @@ public class GetTeamsByGameKindAJAXCommand implements IAJAXCommand {
 			log.error("can't get page with users", e);
 		}
 
-		JSONArray teamsArray = new JSONArray();
+		List<String> teamsArray = new ArrayList<String>();
 		for (Team team : listOfTeams) {
 			teamsArray.add(team.getName());
 		}
 
-		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 		jsonInfo.put(ResponseParameterName.TEAMS_ARRAY, teamsArray);
 		JSONObject json = new JSONObject(jsonInfo);
 

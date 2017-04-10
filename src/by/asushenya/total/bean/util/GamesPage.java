@@ -1,6 +1,8 @@
-package by.asushenya.total.bean;
+package by.asushenya.total.bean.util;
 
 import java.util.List;
+
+import by.asushenya.total.bean.Game;
 
 public class GamesPage {
 
@@ -25,5 +27,4 @@ public class GamesPage {
 	public void setNumberOfPages(int numberOfGameRecords) {
 		this.numberOfPages = numberOfGameRecords;
 	}
-
 }

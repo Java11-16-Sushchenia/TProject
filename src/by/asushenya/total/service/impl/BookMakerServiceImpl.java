@@ -2,7 +2,6 @@ package by.asushenya.total.service.impl;
 
 import org.apache.log4j.Logger;
 
-import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.dao.BookMakerDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
