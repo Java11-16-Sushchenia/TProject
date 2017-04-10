@@ -19,7 +19,7 @@ public class CollumnName {
 	public static final String GAME_COEFFICIENT = "game_coefficient";
 	public static final String PROFIT = "profit";
 	public static final String IS_SUCCESS = "is_success";
-
+	public static final String IS_VISIBLE = "is_visible";
 	/* extra query names */
 	public static final String USERS_COUNT = "users_count";
 	public static final String GAMES_COUNT = "games_count";

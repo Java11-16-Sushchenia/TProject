@@ -4,10 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+
 import by.asushenya.total.bean.GamesPage;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.controller.RequestParameterName;
+import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
@@ -23,7 +25,7 @@ public class GetPageWithGamesCommand implements ICommand {
 		int recordsPerPage = 5;
 		GameKind gameKind = null;
 
-		String local = (String) request.getSession(true).getAttribute("local");
+		String local = (String) request.getSession(true).getAttribute(SessionAttributeName.LOCAL);
 
 		GamesPage pageWithGames = new GamesPage();
 

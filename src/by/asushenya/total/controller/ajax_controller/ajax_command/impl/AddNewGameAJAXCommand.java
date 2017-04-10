@@ -25,7 +25,7 @@ public class AddNewGameAJAXCommand implements IAJAXCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
 
-		GameKind gameKind = GameKind.valueOf(request.getParameter(RequestParameterName.GAME_KIND).toUpperCase());
+		GameKind gameKind = GameKind.valueOf(request.getParameter(RequestParameterName.GAME_KIND).toUpperCase());		
 		String firstTeamName = request.getParameter(RequestParameterName.FIRST_TEAM);
 		String secondTeamName = request.getParameter(RequestParameterName.SECOND_TEAM);
 		Timestamp gameDate = null;

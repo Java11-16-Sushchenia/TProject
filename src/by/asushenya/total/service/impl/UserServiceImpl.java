@@ -60,30 +60,30 @@ public class UserServiceImpl implements UserService {
 
 	public String makeRate(int gameId, User user, RateChoice choice, double rateCoefficient, double rateMoney)
 			throws ServiceException {
-		
+
 		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 		if (!Validator.validateId(gameId)) {
-			
+
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
-		if (!Validator.validateId(user.getId())) {			
+		if (!Validator.validateId(user.getId())) {
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
 		if (!Validator.validateСoefficient(rateCoefficient)) {
-			
+
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_СOEFFICIENT);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
 		if (!Validator.validateMoney(rateMoney)) {
-			
+
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_MONEY);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		if (user.getCash() < rateMoney) {
-			
+
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.NO_MONEY);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
@@ -113,7 +113,6 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("can't make rate: some DAO problems", e);
 		}
 
-		
 		jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.OK);
 		double cashAfterRate = user.getCash() - rateMoney;
 		String cashString = String.format("%.1f", cashAfterRate);
@@ -205,7 +204,8 @@ public class UserServiceImpl implements UserService {
 
 	public String registrationUser(String login, String email, String password) throws ServiceException {
 
-		JSONObject registrationInfo = new JSONObject();
+		HashMap<String, Object> registrationInfo = new HashMap<String, Object>();
+		
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
@@ -214,30 +214,21 @@ public class UserServiceImpl implements UserService {
 			registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
 
 			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_LOGIN);
-			return registrationInfo.toString();
+			return new JSONObject(registrationInfo).toString();
 		}
 		if (!Validator.validateEmail(email)) {
 			registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
 
 			registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_EMAIL);
-			return registrationInfo.toString();
+			return new JSONObject(registrationInfo).toString();
 		}
-		/*
-		 * if (!Validator.validatePassword(password)) {
-		 * registrationInfo.put(ResponseParameterName.ERROR_TYPE,
-		 * ResponseParameterName.REGISTRATION_ERROR);
-		 * 
-		 * registrationInfo.put(ResponseParameterName.ERROR_MSSAGE,
-		 * ResponseParameterName.INVALID_PASSWORD); return
-		 * registrationInfo.toString(); }
-		 */
 
 		try {
 			if (userDAO.findUserByLogin(login) != null) {
 				registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
 
 				registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.USER_EXISTS);
-				return registrationInfo.toString();
+				return new JSONObject(registrationInfo).toString();
 			}
 		} catch (DAOException e) {
 			log.error("can't find user by login", e);
@@ -249,7 +240,7 @@ public class UserServiceImpl implements UserService {
 				registrationInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.REGISTRATION_ERROR);
 
 				registrationInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.USER_EMAIL_EXISTS);
-				return registrationInfo.toString();
+				return new JSONObject(registrationInfo).toString();
 			}
 		} catch (DAOException e) {
 			log.error("can't find user by email", e);

@@ -10,23 +10,21 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
 
 public final class PrintWriteHelper {
-	
-	private static final Logger log = Logger.getLogger(
-										PrintWriteHelper.class);
-	
-	public static void printToPrintWriter(HttpServletResponse response,
-										  String writedMessage)
-											throws AJAXCommandException{
+
+	private static final Logger log = Logger.getLogger(PrintWriteHelper.class);
+
+	public static void printToPrintWriter(HttpServletResponse response, String writedMessage)
+			throws AJAXCommandException {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter writer = null;
-		try{
+		try {
 			writer = response.getWriter();
 			writer.println(writedMessage);
-		}catch(IOException e){
-			log.error("can't write to PrintWriter",e);
-		}finally{
+		} catch (IOException e) {
+			log.error("can't write to PrintWriter", e);
+		} finally {
 			writer.close();
 		}
-		
+
 	}
 }

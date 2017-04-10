@@ -132,108 +132,112 @@
 				</c:if>
 
 				<div class="container">
-					<table class="table table-striped table-hover table-bordered">
-						<thead>
-							<tr>
-								<td class="success">${gameid}</td>
-								<td>${event}</td>
-								<td>${time}</td>
-								<td>${home}</td>
-								<td>${draw}</td>
-								<td>${away}</td>
-							</tr>
-						</thead>
-						<c:forEach var="game" items="${games}">
-							<tr id="gameRow-${game.id}">
-								<td class="success">
-									<div class="col-md-2">${game.id}</div>
-								</td>
-								<td>${game.firstTeam}-${game.secondTeam}</td>
-								<td>${game.date}</td>
-								<td class="col-sm-2">
-									<div>
-										<input id="k1-${game.id}"
-											onchange="changeButtonColorCommitable(this);" type="number"
-											min="1.1" value="${game.k1}">
-									</div>
-								</td>
-								<td class="col-sm-2"><input id="kx-${game.id}"
-									onchange="changeButtonColorCommitable(this);" type="number"
-									min="1.1" value="${game.kx}"></td>
-								<td class="col-sm-2"><input id="k2-${game.id}"
-									onchange="changeButtonColorCommitable(this);" type="number"
-									min="1.1" value="${game.k2}"></td>
-								<td>
-									<button onclick="commitChanges(this);"
-										id="saveButton-${game.id}" type="submit"
-										class="button signinbutton">Сохранить</button>
-								</td>
-								<td>
-									<button onclick="removeTableRowWithGame(this);"
-										id="saveButton-${game.id}" type="submit"
-										class="button signupbutton">Удалить</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<nav>
-						<ul class="pagination ul-pagination">
-							<c:if test="${currentPage != 1}">
-								<li>
-									<form action="Controller">
-										<input type="hidden" name="command"
-											value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
-											name="gameKind" value="${gameKind}" /> <input type="hidden"
-											name="go_to_page" value="bookmakerPage" /> <input
-											type="hidden" name="pageNumber" value="${currentPage - 1}" />
-										<a href="#" onclick="$(this).closest('form').submit();">Previous</a>
-									</form>
-								</li>
-							</c:if>
-							<c:if test="${currentPage == 1}">
-								<li class="disabled"><a href="#">Previous</a></li>
-							</c:if>
+					<c:if test="${empty games}">
+						<h3>${nogames}</h3>
+					</c:if>
+					<c:if test="${not empty games}">
 
-							<c:forEach begin="1" end="${noOfPages}" var="i">
-								<c:choose>
-									<c:when test="${currentPage eq i}">
-										<li class="active"><a href="#">${i}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li>
-											<form action="Controller">
-												<input type="hidden" name="command"
-													value="GET_PAGE_WITH_GAMES_COMMAND" /> <input
-													type="hidden" name="pageNumber" value="${i}" /> <input
-													type="hidden" name="go_to_page" value="bookmakerPage" /> <input
-													type="hidden" name="gameKind" value="${gameKind}" /> <a
-													href="#" onclick="$(this).closest('form').submit();">${i}</a>
-											</form>
-										</li>
-									</c:otherwise>
-								</c:choose>
+						<table class="table table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<td class="success">${gameid}</td>
+									<td>${event}</td>
+									<td>${time}</td>
+									<td>${home}</td>
+									<td>${draw}</td>
+									<td>${away}</td>
+								</tr>
+							</thead>
+							<c:forEach var="game" items="${games}">
+								<tr id="gameRow-${game.id}">
+									<td class="success">
+										<div class="col-md-2">${game.id}</div>
+									</td>
+									<td>${game.firstTeam}-${game.secondTeam}</td>
+									<td>${game.date}</td>
+									<td class="col-sm-2">
+										<div>
+											<input id="k1-${game.id}"
+												onchange="changeButtonColorCommitable(this);" type="number"
+												min="1.1" value="${game.k1}">
+										</div>
+									</td>
+									<td class="col-sm-2"><input id="kx-${game.id}"
+										onchange="changeButtonColorCommitable(this);" type="number"
+										min="1.1" value="${game.kx}"></td>
+									<td class="col-sm-2"><input id="k2-${game.id}"
+										onchange="changeButtonColorCommitable(this);" type="number"
+										min="1.1" value="${game.k2}"></td>
+									<td>
+										<button onclick="commitChanges(this);"
+											id="saveButton-${game.id}" type="submit"
+											class="button signinbutton">Сохранить</button>
+									</td>
+									<td>
+										<button onclick="removeTableRowWithGame(this);"
+											id="saveButton-${game.id}" type="submit"
+											class="button signupbutton">Удалить</button>
+									</td>
+								</tr>
 							</c:forEach>
+						</table>
+						<nav>
+							<ul class="pagination ul-pagination">
+								<c:if test="${currentPage != 1}">
+									<li>
+										<form action="Controller">
+											<input type="hidden" name="command"
+												value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
+												name="gameKind" value="${gameKind}" /> <input type="hidden"
+												name="go_to_page" value="bookmakerPage" /> <input
+												type="hidden" name="pageNumber" value="${currentPage - 1}" />
+											<a href="#" onclick="$(this).closest('form').submit();">${previous}</a>
+										</form>
+									</li>
+								</c:if>
+								<c:if test="${currentPage == 1}">
+									<li class="disabled"><a href="#">${previous}</a></li>
+								</c:if>
 
-							<c:if test="${currentPage != noOfPages}">
-								<li>
-									<form action="Controller">
-										<input type="hidden" name="command"
-											value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
-											name="go_to_page" value="bookmakerPage" /> <input
-											type="hidden" name="pageNumber" value="${currentPage + 1}" />
-										<input type="hidden" name="gameKind" value="${gameKind}" /> <a
-											href="#" onclick="$(this).closest('form').submit();">Next</a>
-									</form>
-								</li>
-							</c:if>
-							<c:if test="${currentPage == noOfPages}">
-								<li class="disabled"><a href="#">Next</a></li>
-							</c:if>
-						</ul>
-					</nav>
+								<c:forEach begin="1" end="${noOfPages}" var="i">
+									<c:choose>
+										<c:when test="${currentPage eq i}">
+											<li class="active"><a href="#">${i}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<form action="Controller">
+													<input type="hidden" name="command"
+														value="GET_PAGE_WITH_GAMES_COMMAND" /> <input
+														type="hidden" name="pageNumber" value="${i}" /> <input
+														type="hidden" name="go_to_page" value="bookmakerPage" />
+													<input type="hidden" name="gameKind" value="${gameKind}" />
+													<a href="#" onclick="$(this).closest('form').submit();">${i}</a>
+												</form>
+											</li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:if test="${currentPage != noOfPages}">
+									<li>
+										<form action="Controller">
+											<input type="hidden" name="command"
+												value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
+												name="go_to_page" value="bookmakerPage" /> <input
+												type="hidden" name="pageNumber" value="${currentPage + 1}" />
+											<input type="hidden" name="gameKind" value="${gameKind}" />
+											<a href="#" onclick="$(this).closest('form').submit();">${next}</a>
+										</form>
+									</li>
+								</c:if>
+								<c:if test="${currentPage == noOfPages}">
+									<li class="disabled"><a href="#">${next}</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</c:if>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -312,11 +316,11 @@
 						var json = JSON.parse(data);
 
 						var errorType = json["errorType"];
-						
-						if(errorType === "success"){
-							$("#gameRow-" + changedGameId).hide();
+
+						if (errorType === "success") {
+							$("#gameRow-" + changedGameId).hide("fast");
 						}
-						
+
 					}
 				});
 			}

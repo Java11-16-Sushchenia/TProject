@@ -98,7 +98,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		}
 
 		if (!user.getPassword().equals(refreshedUser.getPassword())) {
-			throw new ServiceException("зasswords do not match");
+			throw new ServiceException("passwords do not match");
 		}
 
 		return refreshedUser;

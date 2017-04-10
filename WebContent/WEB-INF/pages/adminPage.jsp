@@ -42,8 +42,7 @@
 					<input type="hidden" name="command"
 						value="AUTHORIZATION_USER_SIGN_OUT_COMMAND" />
 					<button data-toggle="modal" data-target="#myModal" type="button"
-						class="button infobutton form-control">${user.email}
-					</button>
+						class="button infobutton form-control">${user.email}</button>
 
 
 
@@ -88,9 +87,7 @@
 	<!-- Content -->
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">
-				<p>empty space</p>
-			</div>
+			<div class="col-sm-2 sidenav"></div>
 
 			<div class="col-sm-8 text-left">
 
@@ -113,7 +110,7 @@
 								<tr id="userRow-${user.id}">
 							</c:if>
 							<td>
-								<div>${user.isVisible}</div>
+								<div>${user.id}</div>
 							</td>
 							<td>${user.login}</td>
 							<td>${user.email}</td>
@@ -127,9 +124,9 @@
 								</c:if> <c:if test="${user.isVisible == 1}">
 									<button onclick="blockUser(this);" id="blockButton-${user.id}"
 										type="submit" class="button signupbutton">${block}</button>
-								</c:if></td>
-							</tr>
+								</c:if></td>						
 						</c:forEach>
+						
 					</table>
 					<nav>
 						<ul class="pagination ul-pagination">
@@ -140,12 +137,12 @@
 											value="GET_PAGE_WITH_USERS_COMMAND" /> <input type="hidden"
 											name="go_to_page" value="adminPage" /> <input type="hidden"
 											name="pageNumber" value="${currentPage - 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">Previous</a>
+											onclick="$(this).closest('form').submit();">${previous}</a>
 									</form>
 								</li>
 							</c:if>
 							<c:if test="${currentPage == 1}">
-								<li class="disabled"><a href="#">Previous</a></li>
+								<li class="disabled"><a href="#">${previous}</a></li>
 							</c:if>
 
 							<c:forEach begin="1" end="${noOfPages}" var="i">
@@ -174,12 +171,12 @@
 											value="GET_PAGE_WITH_USERS_COMMAND" /> <input type="hidden"
 											name="go_to_page" value="adminPage" /> <input type="hidden"
 											name="pageNumber" value="${currentPage + 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">Next</a>
+											onclick="$(this).closest('form').submit();">${next}</a>
 									</form>
 								</li>
 							</c:if>
 							<c:if test="${currentPage == noOfPages}">
-								<li class="disabled"><a href="#">Next</a></li>
+								<li class="disabled"><a href="#">${next}</a></li>
 							</c:if>
 						</ul>
 						<button class="button signinbutton"

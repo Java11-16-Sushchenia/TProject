@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.RateChoice;
 import by.asushenya.total.controller.RequestParameterName;
-import by.asushenya.total.controller.SessionParameterName;
+import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
 import by.asushenya.total.controller.ajax_controller.ajax_command.util.PrintWriteHelper;
@@ -24,7 +24,7 @@ public class MakeRateAJAXCommand implements IAJAXCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
 
 		int gameId = Integer.parseInt(request.getParameter(RequestParameterName.GAME_ID));
-		User user = (User) request.getSession(true).getAttribute(SessionParameterName.SESSION_USER);
+		User user = (User) request.getSession(true).getAttribute(SessionAttributeName.SESSION_USER);
 		RateChoice choice = RateChoice.valueOf(request.getParameter(RequestParameterName.CHOICE));
 		double rateCoefficient = Double.parseDouble(request.getParameter(RequestParameterName.RATE_COEFFICIENT));
 		double rateMoney = Double.parseDouble(request.getParameter(RequestParameterName.RATE_MONEY));

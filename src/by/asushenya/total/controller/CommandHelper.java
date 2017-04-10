@@ -14,13 +14,12 @@ import by.asushenya.total.controller.command.impl.initialization.DestroySourceCo
 import by.asushenya.total.controller.command.impl.initialization.InitializationSourceCommand;
 import by.asushenya.total.controller.command.ICommand;
 
-
 public final class CommandHelper {
 	private static final CommandHelper instance = new CommandHelper();
-	
+
 	private Map<CommandName, ICommand> commands = new HashMap<>();
-	
-	public CommandHelper(){		
+
+	public CommandHelper() {
 		commands.put(CommandName.INITIALIZATION_SOURCE_COMMAND, new InitializationSourceCommand());
 		commands.put(CommandName.DESTROY_SOURCE_COMMAND, new DestroySourceCommand());
 		commands.put(CommandName.GET_PAGE_WITH_GAMES_COMMAND, new GetPageWithGamesCommand());
@@ -31,21 +30,21 @@ public final class CommandHelper {
 		commands.put(CommandName.GET_PAGE_WITH_RATES_COMMAND, new GetPageWithRatesCommand());
 		commands.put(CommandName.INITIALIZE_ADD_NEW_GAME_PAGE_COMMAND, new InitializeAddNewGamePageCommand());
 	}
-	
-	public static CommandHelper getInstance(){
+
+	public static CommandHelper getInstance() {
 		return instance;
 	}
-	
-	public ICommand getCommand(String commandName){		
+
+	public ICommand getCommand(String commandName) {
 
 		CommandName name = CommandName.valueOf(commandName.toUpperCase());
 		ICommand command;
-		if(null != name){
+		if (null != name) {
 			command = commands.get(name);
-		} else{
+		} else {
 			command = commands.get(CommandName.NO_SUCH_COMMAND);
 		}
-		
+
 		return command;
 	}
 }

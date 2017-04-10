@@ -78,28 +78,28 @@ public class AdminServiceImpl implements AdminService {
 	public String addNewGame(GameKind gameKind, String firstTeamName, String secondTeamName, Timestamp gameDate,
 			double k1, double kx, double k2, String local) throws ServiceException {
 
-		JSONObject json = new JSONObject();
+		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 		Game newGame = new Game();
 
 		if (!Validator.validateTeam(firstTeamName)) {
-			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
-			return json.toString();
+			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
+			return new JSONObject(jsonInfo).toString();
 		}
 		if (!Validator.validateTeam(secondTeamName)) {
-			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
-			return json.toString();
+			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
+			return new JSONObject(jsonInfo).toString();
 		}
 		if (!Validator.validateСoefficient(k1)) {
-			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
-			return json.toString();
+			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
+			return new JSONObject(jsonInfo).toString();
 		}
 		if (!Validator.validateСoefficient(kx)) {
-			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
-			return json.toString();
+			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
+			return new JSONObject(jsonInfo).toString();
 		}
 		if (!Validator.validateСoefficient(k2)) {
-			json.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
-			return json.toString();
+			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
+			return new JSONObject(jsonInfo).toString();
 		}
 
 		newGame.setGameKind(gameKind);
@@ -124,9 +124,9 @@ public class AdminServiceImpl implements AdminService {
 			throw new ServiceException("can't add new game", e);
 		}
 
-		json.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
+		jsonInfo.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
 
-		return json.toString();
+		return new JSONObject(jsonInfo).toString();
 	}
 
 	@Override

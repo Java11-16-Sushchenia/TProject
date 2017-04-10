@@ -114,12 +114,12 @@
 											value="GET_PAGE_WITH_RATES_COMMAND" /> <input type="hidden"
 											name="go_to_page" value="userPage" /> <input type="hidden"
 											name="pageNumber" value="${currentPage - 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">Previous</a>
+											onclick="$(this).closest('form').submit();">${previous}</a>
 									</form>
 								</li>
 							</c:if>
 							<c:if test="${currentPage == 1}">
-								<li class="disabled"><a href="#">Previous</a></li>
+								<li class="disabled"><a href="#">${previous}</a></li>
 							</c:if>
 
 							<c:forEach begin="1" end="${noOfPages}" var="i">
@@ -148,12 +148,12 @@
 											value="GET_PAGE_WITH_RATES_COMMAND" /> <input type="hidden"
 											name="go_to_page" value="userPage" /> <input type="hidden"
 											name="pageNumber" value="${currentPage + 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">Next</a>
+											onclick="$(this).closest('form').submit();">${next}</a>
 									</form>
 								</li>
 							</c:if>
 							<c:if test="${currentPage == noOfPages}">
-								<li class="disabled"><a href="#">Next</a></li>
+								<li class="disabled"><a href="#">${next}</a></li>
 							</c:if>
 						</ul>
 					</nav>

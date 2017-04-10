@@ -26,7 +26,7 @@ public class RequestParameterName {
 	public static final String USER_EMAIL = "email";
 
 	// session local
-
+	
 	public static final String SESSION_LOCAL_RU = "ru";
 	public static final String SESSION_LOCAL_EN = "en";
 

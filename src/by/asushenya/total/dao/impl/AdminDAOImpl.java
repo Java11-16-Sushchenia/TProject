@@ -119,7 +119,7 @@ public class AdminDAOImpl implements AdminDAO {
 				user.setEmail(rs.getString(CollumnName.EMAIL));
 				user.setRole(UserRole.valueOf(rs.getString(CollumnName.ROLE).toUpperCase()));
 				user.setCash(rs.getFloat(CollumnName.CASH));
-				user.setIsVisible(rs.getInt("is_visible"));
+				user.setIsVisible(rs.getInt(CollumnName.IS_VISIBLE));
 				list.add(user);
 			}
 		} catch (ConnectionPoolException e) {

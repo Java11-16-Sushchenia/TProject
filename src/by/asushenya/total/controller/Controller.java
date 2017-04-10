@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger log = Logger.getLogger(Controller.class);
 
 	public Controller() {
 		super();
@@ -32,16 +35,16 @@ public class Controller extends HttpServlet {
 		System.out.println("Имя команды: " + commandName);
 
 		ICommand command = CommandHelper.getInstance().getCommand(commandName);
-		System.out.println("имя команды" + command.toString());
 
 		String page = null;
 
 		try {
 			page = command.execute(request, response);
 		} catch (CommandException e) {
+			log.error("command executing error", e);
 			page = JspPageName.ERROR_PAGE;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("command executing error", e);
 			page = JspPageName.ERROR_PAGE;
 		}
 
@@ -50,8 +53,7 @@ public class Controller extends HttpServlet {
 		if (dispatcher != null) {
 			dispatcher.forward(request, response);
 		} else {
-
+			log.info("requestDispatcher is null");
 		}
 	}
-
 }

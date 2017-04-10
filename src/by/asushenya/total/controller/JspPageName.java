@@ -8,7 +8,7 @@ public final class JspPageName {
 	public static final String ADMIN_PAGE = "jsp/adminPage.jsp";
 	public static final String BOOKMAKER_PAGE = "jsp/bookmakerPage.jsp";
 	public static final String INDEX_PAGE = "index.jsp";
-	public static final String ERROR_PAGE = "404.jsp";
+	public static final String ERROR_PAGE = "errorPage";
 
 	public static final String REDIRECT_TO_INDEX_PAGE = "redirectToIndexPage";
 	public static final String REGISTRATION_PAGE = "registrationPage";

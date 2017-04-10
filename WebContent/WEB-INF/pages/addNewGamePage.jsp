@@ -28,9 +28,52 @@
 
 </head>
 
+<style>
+#gameKindSelect {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-first-team {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-second-team {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-date {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-koefficient-k1 {
+	margin: 10px 0px 40px 20px;
+}
+
+#game-koefficient-kx {
+	margin: 10px 0px 40px 20px;
+}
+
+#game-koefficient-k2 {
+	margin: 10px 0px 40px 20px;
+}
+
+h1 {
+	margin: 10px 0px 50px 30px;
+}
+
+.game-parameter-label {
+	margin: 10px 0px 10px 20px;
+}
+</style>
+
 <body>
-
-
+	<div class="addgame-error-modal">
+		<div class="alert alert-danger fade in">
+			<a href="#" class="close" data-dismiss="alert">x</a> <strong
+				class="addgameErrorType"></strong>: <span
+				class="addgameErrorMessage"></span>
+		</div>
+	</div>
 	<nav class="navbar navbar-default">
 		<div class="success-modal">
 			<div class="alert alert-success fade in">
@@ -73,7 +116,7 @@
 	<!--  Content -->
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav">empty space</div>
+			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8 text-left">
 				<h1>${newgameadding}</h1>
 
@@ -81,8 +124,9 @@
 					<form method="get" class="addNewGameForm">
 						<div class="row">
 							<div class="col-xs-4">
-								<label for="game-kind-select">${gamekind}</label> <select
-									id="gameKindSelect" class="form-control" name="game_kind">
+								<label class="game-parameter-label" for="game-kind-select">${gamekind}</label>
+								<select id="gameKindSelect" class="form-control"
+									name="game_kind">
 									<option value="football">${football}</option>
 									<option value="basketball">${basketball}</option>
 									<option value="hockey">${hockey}</option>
@@ -90,18 +134,18 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-4">
-								<label for="game-first-team">${firstteam}</label> <select
-									id="game-first-team" name="team_1" class="form-control">
+							<div class="col-xs-2">
+								<label class="game-parameter-label" for="game-first-team">${firstteam}</label>
+								<select id="game-first-team" name="team_1" class="form-control">
 									<c:forEach var="team" items="${teams}">
 										<option>${team.name}</option>
 									</c:forEach>
 								</select>
 							</div>
 
-							<div class="col-xs-4">
-								<label for="game-second-team">${secondteam}</label> <select
-									id="game-second-team" name="team_2" class="form-control">
+							<div class="col-xs-2">
+								<label class="game-parameter-label" for="game-second-team">${secondteam}</label>
+								<select id="game-second-team" name="team_2" class="form-control">
 									<c:forEach var="team" items="${teams}">
 										<option>${team.name}</option>
 									</c:forEach>
@@ -111,26 +155,28 @@
 
 						<div class="row">
 							<div class="col-xs-4">
-								<label for="game-second-team">${time}</label> <input name="date"
-									type="datetime-local" class="form-control">
+								<label class="game-parameter-label" for="game-second-team">${time}</label>
+								<input name="date" id="game-date" type="datetime-local"
+									class="form-control">
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-xs-2">
-								<label for="game-koefficient-k1">${home}</label> <input
-									id="game-koefficient-k1" name="k1" type="number" min="1.1"
-									class="form-control" placeholder="k1">
+								<label class="game-parameter-label" for="game-koefficient-k1">${home}</label>
+								<input id="game-koefficient-k1" name="k1" type="number"
+									min="1.1" class="form-control" placeholder="k1">
 							</div>
 							<div class="col-xs-2">
-								<label id="game-koefficient-kx-label" for="game-koefficient-kx">${draw}</label>
+								<label class="game-parameter-label"
+									id="game-koefficient-kx-label" for="game-koefficient-kx">${draw}</label>
 								<input id="game-koefficient-kx" name="kx" type="number"
 									min="1.1" class="form-control" placeholder="kx">
 							</div>
 							<div class="col-xs-2">
-								<label for="game-koefficient-k2">${away}</label> <input
-									id="game-koefficient-k2" name="k2" type="number" min="1.1"
-									class="form-control" placeholder="k2">
+								<label class="game-parameter-label" for="game-koefficient-k2">${away}</label>
+								<input id="game-koefficient-k2" name="k2" type="number"
+									min="1.1" class="form-control" placeholder="k2">
 							</div>
 						</div>
 						<div>
@@ -143,10 +189,6 @@
 				<hr>
 			</div>
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p>Empty</p>
-				</div>
-				<div class="well"></div>
 			</div>
 		</div>
 	</div>
@@ -157,64 +199,108 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 
 	<script>
-		$(".addNewGameForm").submit(function(event) {
+		$(".addNewGameForm")
+				.submit(
+						function(event) {
 
-			var command = event.currentTarget['command'].value;
-			var gameKind = event.currentTarget['game_kind'].value;
-			var firstTeam = event.currentTarget['team_1'].value;
-			var secondTeam = event.currentTarget['team_2'].value;
-			var gameDate = event.currentTarget['date'].value;
-			var k1 = event.currentTarget['k1'].value;
-			var kx = event.currentTarget['kx'].value;
-			var k2 = event.currentTarget['k2'].value;
+							var command = event.currentTarget['command'].value;
+							var gameKind = event.currentTarget['game_kind'].value;
+							var firstTeam = event.currentTarget['team_1'].value;
+							var secondTeam = event.currentTarget['team_2'].value;
+							var gameDate = event.currentTarget['date'].value;
 
-			if (gameKind === "basketball") {
-				kx = 1.1;
-			}
+							var k1 = event.currentTarget['k1'].value;
+							var kx = event.currentTarget['kx'].value;
+							var k2 = event.currentTarget['k2'].value;
 
-			var timeStampGameDate = gameDate.concat(":00").replace("T", " ");
+							if (gameKind === "basketball") {
+								kx = 1.1;
+							}
+							debugger;
 
-			if (firstTeam === secondTeam) {
-				alert("first and second teams equals")
-			} else {
-				$.ajax({
-					type : "POST",
-					data : {
-						command : "ADD_NEW_GAME_AJAX_COMMAND",
-						gameKind : gameKind,
-						firstTeam : firstTeam,
-						secondTeam : secondTeam,
-						gameDate : timeStampGameDate,
-						k1 : k1,
-						kx : kx,
-						k2 : k2
-					},
-					url : "AJAXController",
-					success : function(data) {
-		debugger;
-						var json = JSON.parse(data);
+							if (k1.length === 0) {
+								$(".addgameErrorType").text("${addgameerror}");
+								$(".addgameErrorMessage").text("${k1isempty}");
+								$(".addgame-error-modal").css("display",
+										"block");
+								setTimeout(function() {
+									$(".addgame-error-modal").css("display",
+											"none");
+								}, 3000);
+							}
 
-						var errorType = json["errorType"];
-						var errorMessage = json["errorMessage"];
-						var successMessage = json["success"];
+							else if (kx.length === 0) {
+								$(".addgameErrorType").text("${addgameerror}");
+								$(".addgameErrorMessage").text("${kxisempty}");
+								$(".addgame-error-modal").css("display",
+										"block");
+								setTimeout(function() {
+									$(".addgame-error-modal").css("display",
+											"none");
+								}, 3000);
+							} else if (k2.length === 0) {
+								$(".addgameErrorType").text("${addgameerror}");
+								$(".addgameErrorMessage").text("${k2isempty}");
+								$(".addgame-error-modal").css("display",
+										"block");
+								setTimeout(function() {
+									$(".addgame-error-modal").css("display",
+											"none");
+								}, 3000);
+							} else {
 
-						if (successMessage === "ok") {// пока что валидируется при парсинге  на серваке только дата, но коэффициенты на сервисах проверяются
-							$(".successType").text("Game is added");
-							$(".success-modal").css("display", "block");
-							setTimeout(function() {
-								window.location.replace("redirectToIndexPage");
-							}, 3000);
-						}
-						
-						if(errorType === "addnewgameerror"){
-							alert("bad parameters");
-						}
+								var timeStampGameDate = gameDate.concat(":00")
+										.replace("T", " ");
 
-					}
-				});
-			}
-			event.preventDefault();
-		});
+								if (firstTeam === secondTeam) {
+									alert("first and second teams equals")
+								} else {
+									$
+											.ajax({
+												type : "POST",
+												data : {
+													command : "ADD_NEW_GAME_AJAX_COMMAND",
+													gameKind : gameKind,
+													firstTeam : firstTeam,
+													secondTeam : secondTeam,
+													gameDate : timeStampGameDate,
+													k1 : k1,
+													kx : kx,
+													k2 : k2
+												},
+												url : "AJAXController",
+												success : function(data) {
+													debugger;
+													var json = JSON.parse(data);
+
+													/*	var errorType = json["errorType"];
+														var errorMessage = json["errorMessage"];*/
+													var successMessage = json["success"];
+
+													if (successMessage === "ok") {// пока что валидируется при парсинге  на серваке только дата, но коэффициенты на сервисах проверяются
+														$(".successType")
+																.text(
+																		"${addgamesuccess}");
+														$(".success-modal")
+																.css("display",
+																		"block");
+														setTimeout(
+																function() {
+																	window.location
+																			.replace("redirectToIndexPage");
+																}, 3000);
+													}
+
+													if (errorType === "addnewgameerror") {
+														alert("bad parameters");
+													}
+
+												}
+											});
+								}
+							}
+							event.preventDefault();
+						});
 
 		$("#gameKindSelect").change(
 				function(element) {

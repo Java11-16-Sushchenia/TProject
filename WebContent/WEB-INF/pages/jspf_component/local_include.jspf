@@ -19,13 +19,17 @@
 <fmt:message bundle="${loc}" key="local.placeholder.login" var="login" />
 <fmt:message bundle="${loc}" key="local.placeholder.password"
 	var="password" />
+<fmt:message bundle="${loc}" key="local.placeholder.confirmpassword"
+	var="confirmpassword" />
+	<fmt:message bundle="${loc}" key="local.userregistration"
+	var="userregistration" />
 
 <fmt:message bundle="${loc}" key="local.game.football" var="soccer" />
 <fmt:message bundle="${loc}" key="local.game.basketball"
 	var="basketball" />
 <fmt:message bundle="${loc}" key="local.game.hockey" var="hockey" />
 <fmt:message bundle="${loc}" key="local.game.allgames" var="allgames" />
-
+<fmt:message bundle="${loc}" key="local.game.nogames" var="nogames" />
 
 <fmt:message bundle="${loc}" key="local.table.game.time" var="time" />
 <fmt:message bundle="${loc}" key="local.table.game.event" var="event" />
@@ -57,6 +61,8 @@
 <%-- addNewGamePage --%>
 
 <fmt:message bundle="${loc}" key="local.addgameerror" var="addgameerror" />
+<fmt:message bundle="${loc}" key="local.addgamesuccess"
+	var="addgamesuccess" />
 <fmt:message bundle="${loc}" key="local.addgameerror.firstequalstwo"
 	var="firstequalstwo" />
 <fmt:message bundle="${loc}" key="local.addgameerror.badtime"
@@ -143,10 +149,10 @@
 	var="ratepofit" />
 <fmt:message bundle="${loc}" key="local.userpage.ratestatus"
 	var="ratestatus" />
-	<fmt:message bundle="${loc}" key="local.userpage.notplayed"
+<fmt:message bundle="${loc}" key="local.userpage.notplayed"
 	var="notplayed" />
-<fmt:message bundle="${loc}" key="local.userpage.victory"
-	var="victory" />
-<fmt:message bundle="${loc}" key="local.userpage.defeat"
-	var="defeat" />
-
+<fmt:message bundle="${loc}" key="local.userpage.victory" var="victory" />
+<fmt:message bundle="${loc}" key="local.userpage.defeat" var="defeat" />
+<fmt:message bundle="${loc}" key="local.pagination.next" var="next" />
+<fmt:message bundle="${loc}" key="local.pagination.previous"
+	var="previous" />

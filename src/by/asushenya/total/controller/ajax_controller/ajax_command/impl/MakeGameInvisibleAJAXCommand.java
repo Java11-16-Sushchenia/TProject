@@ -48,7 +48,7 @@ public class MakeGameInvisibleAJAXCommand implements IAJAXCommand {
 		}
 
 		changeGameError.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.SUCCESS);
-		PrintWriteHelper.printToPrintWriter(response, changeGameError.toString());
+		PrintWriteHelper.printToPrintWriter(response, new JSONObject(changeGameError).toString());
 	}
 
 }

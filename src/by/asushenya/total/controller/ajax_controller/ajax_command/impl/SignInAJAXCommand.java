@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.util.UserServiceObject;
 import by.asushenya.total.controller.RequestParameterName;
-import by.asushenya.total.controller.SessionParameterName;
+import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
 import by.asushenya.total.controller.ajax_controller.ajax_command.util.PrintWriteHelper;
@@ -34,7 +34,7 @@ public class SignInAJAXCommand implements IAJAXCommand {
 		}
 
 		if (userServiceObject.getUser() != null) {
-			request.getSession(true).setAttribute(SessionParameterName.SESSION_USER, userServiceObject.getUser());
+			request.getSession(true).setAttribute(SessionAttributeName.SESSION_USER, userServiceObject.getUser());
 			PrintWriteHelper.printToPrintWriter(response, userServiceObject.getJsonWithSuccess());
 
 		} else {

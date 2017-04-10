@@ -33,7 +33,6 @@
 </head>
 
 <body>
-	<!--  New navigation bar testing -->
 	<div class="authorization-error-modal">
 		<div class="alert alert-danger fade in">
 			<a href="#" class="close" data-dismiss="alert">x</a> <strong
@@ -160,42 +159,28 @@
 					<h2>${allgames}</h2>
 				</c:if>
 
-				<div>
-					<table class="table table-striped table-hover table-bordered">
-						<thead>
-							<tr>
-								<td>${time }</td>
-								<td>${event}</td>
-								<td>${home }</td>
-								<td>${draw }</td>
-								<td>${away }</td>
-							</tr>
-						</thead>
-						<c:forEach var="game" items="${games}">
-							<tr class="tr-hover">
-								<td><fmt:formatDate type="both" dateStyle="long"
-										timeStyle="short" value="${game.date}" /></td>
-								<td>${game.firstTeam}-${game.secondTeam}</td>
-								<td>
-									<form class="init-form">
-										<input type="hidden" name="command"
-											value="MAKE_RATE_INIT_COMMAND" /> <input type="hidden"
-											name="game_id" value="${game.id}" /> <input type="hidden"
-											name="first_team" value="${game.firstTeam}" /> <input
-											type="hidden" name="second_team" value="${game.secondTeam}" />
-										<input type="hidden" name="game_kind" value="${game.gameKind}" />
-										<input type="hidden" name="rate_coefficient"
-											value="${game.k1 }" /> <input type="hidden" name="choice"
-											value="t1" />
-										<button type="submit" class="btn btn-link">${game.k1}</button>
-									</form>
-								</td>
-								<td><c:set var="currentGameKind">${game.gameKind}</c:set> <c:if
-										test="${currentGameKind == 'BASKETBALL'}">
-										<form>
-											<button type="button" class="btn btn-link">-</button>
-										</form>
-									</c:if> <c:if test="${currentGameKind != 'BASKETBALL'}">
+				<c:if test="${empty games}">
+					<h3>${nogames}</h3>
+				</c:if>
+				
+				<c:if test="${not empty games}">
+					<div>
+						<table class="table table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<td>${time }</td>
+									<td>${event}</td>
+									<td>${home }</td>
+									<td>${draw }</td>
+									<td>${away }</td>
+								</tr>
+							</thead>
+							<c:forEach var="game" items="${games}">
+								<tr class="tr-hover">
+									<td><fmt:formatDate type="both" dateStyle="long"
+											timeStyle="short" value="${game.date}" /></td>
+									<td>${game.firstTeam}-${game.secondTeam}</td>
+									<td>
 										<form class="init-form">
 											<input type="hidden" name="command"
 												value="MAKE_RATE_INIT_COMMAND" /> <input type="hidden"
@@ -204,88 +189,105 @@
 												type="hidden" name="second_team" value="${game.secondTeam}" />
 											<input type="hidden" name="game_kind"
 												value="${game.gameKind}" /> <input type="hidden"
-												name="rate_coefficient" value="${game.kx }" /> <input
-												type="hidden" name="choice" value="x" />
-											<button type="submit" class="btn btn-link">${game.kx}</button>
+												name="rate_coefficient" value="${game.k1 }" /> <input
+												type="hidden" name="choice" value="t1" />
+											<button type="submit" class="btn btn-link">${game.k1}</button>
 										</form>
-									</c:if> <c:remove var="currentGameKind" /></td>
-								<td>
-									<form class="init-form">
-										<input type="hidden" name="command"
-											value="MAKE_RATE_INIT_COMMAND" /> <input type="hidden"
-											name="game_id" value="${game.id}" /> <input type="hidden"
-											name="first_team" value="${game.firstTeam}" /> <input
-											type="hidden" name="second_team" value="${game.secondTeam}" />
-										<input type="hidden" name="game_kind" value="${game.gameKind}" />
-										<input type="hidden" name="rate_coefficient"
-											value="${game.k2 }" /> <input type="hidden" name="choice"
-											value="t2" />
-										<button type="submit" class="btn btn-link">${game.k2}</button>
-									</form>
-								</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<nav>
-						<ul class="pagination ul-pagination">
-							<c:if test="${currentPage != 1}">
-								<li>
-									<form action="Controller">
-										<input type="hidden" name="command"
-											value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
-											name="gameKind" value="${gameKind}" /> <input type="hidden"
-											name="go_to_page" value="index" /> <input type="hidden"
-											name="pageNumber" value="${currentPage - 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">Previous</a>
-									</form>
-								</li>
-							</c:if>
-							<c:if test="${currentPage == 1}">
-								<li class="disabled"><a href="#">Previous</a></li>
-							</c:if>
-
-							<c:forEach begin="1" end="${noOfPages}" var="i">
-								<c:choose>
-									<c:when test="${currentPage eq i}">
-										<li class="active"><a href="#">${i}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li>
-											<form action="Controller">
-												<input type="hidden" name="command"
-													value="GET_PAGE_WITH_GAMES_COMMAND" /> <input
-													type="hidden" name="pageNumber" value="${i}" /> <input
-													type="hidden" name="go_to_page" value="index" /> <input
-													type="hidden" name="gameKind" value="${gameKind}" /> <a
-													href="#" onclick="$(this).closest('form').submit();">${i}</a>
+									</td>
+									<td><c:set var="currentGameKind">${game.gameKind}</c:set>
+										<c:if test="${currentGameKind == 'BASKETBALL'}">
+											<form>
+												<button type="button" class="btn btn-link">-</button>
 											</form>
-										</li>
-									</c:otherwise>
-								</c:choose>
+										</c:if> <c:if test="${currentGameKind != 'BASKETBALL'}">
+											<form class="init-form">
+												<input type="hidden" name="command"
+													value="MAKE_RATE_INIT_COMMAND" /> <input type="hidden"
+													name="game_id" value="${game.id}" /> <input type="hidden"
+													name="first_team" value="${game.firstTeam}" /> <input
+													type="hidden" name="second_team" value="${game.secondTeam}" />
+												<input type="hidden" name="game_kind"
+													value="${game.gameKind}" /> <input type="hidden"
+													name="rate_coefficient" value="${game.kx }" /> <input
+													type="hidden" name="choice" value="x" />
+												<button type="submit" class="btn btn-link">${game.kx}</button>
+											</form>
+										</c:if> <c:remove var="currentGameKind" /></td>
+									<td>
+										<form class="init-form">
+											<input type="hidden" name="command"
+												value="MAKE_RATE_INIT_COMMAND" /> <input type="hidden"
+												name="game_id" value="${game.id}" /> <input type="hidden"
+												name="first_team" value="${game.firstTeam}" /> <input
+												type="hidden" name="second_team" value="${game.secondTeam}" />
+											<input type="hidden" name="game_kind"
+												value="${game.gameKind}" /> <input type="hidden"
+												name="rate_coefficient" value="${game.k2 }" /> <input
+												type="hidden" name="choice" value="t2" />
+											<button type="submit" class="btn btn-link">${game.k2}</button>
+										</form>
+									</td>
+								</tr>
 							</c:forEach>
+						</table>
+						<nav>
+							<ul class="pagination ul-pagination">
+								<c:if test="${currentPage != 1}">
+									<li>
+										<form action="Controller">
+											<input type="hidden" name="command"
+												value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
+												name="gameKind" value="${gameKind}" /> <input type="hidden"
+												name="go_to_page" value="index" /> <input type="hidden"
+												name="pageNumber" value="${currentPage - 1}" /> <a href="#"
+												onclick="$(this).closest('form').submit();">${previous}</a>
+										</form>
+									</li>
+								</c:if>
+								<c:if test="${currentPage == 1}">
+									<li class="disabled"><a href="#">${previous}</a></li>
+								</c:if>
 
-							<c:if test="${currentPage != noOfPages}">
-								<li>
-									<form action="Controller">
-										<input type="hidden" name="command"
-											value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
-											name="go_to_page" value="index" /> <input type="hidden"
-											name="pageNumber" value="${currentPage + 1}" /> <input
-											type="hidden" name="gameKind" value="${gameKind}" /> <a
-											href="#" onclick="$(this).closest('form').submit();">Next</a>
-									</form>
-								</li>
-							</c:if>
-							<c:if test="${currentPage == noOfPages}">
-								<li class="disabled"><a href="#">Next</a></li>
-							</c:if>
-						</ul>
-					</nav>
-				</div>
+								<c:forEach begin="1" end="${noOfPages}" var="i">
+									<c:choose>
+										<c:when test="${currentPage eq i}">
+											<li class="active"><a href="#">${i}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<form action="Controller">
+													<input type="hidden" name="command"
+														value="GET_PAGE_WITH_GAMES_COMMAND" /> <input
+														type="hidden" name="pageNumber" value="${i}" /> <input
+														type="hidden" name="go_to_page" value="index" /> <input
+														type="hidden" name="gameKind" value="${gameKind}" /> <a
+														href="#" onclick="$(this).closest('form').submit();">${i}</a>
+												</form>
+											</li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 
-				<hr>
-				<h3>Test</h3>
-				<p>Lorem ipsum...</p>
+								<c:if test="${currentPage != noOfPages}">
+									<li>
+										<form action="Controller">
+											<input type="hidden" name="command"
+												value="GET_PAGE_WITH_GAMES_COMMAND" /> <input type="hidden"
+												name="go_to_page" value="index" /> <input type="hidden"
+												name="pageNumber" value="${currentPage + 1}" /> <input
+												type="hidden" name="gameKind" value="${gameKind}" /> <a
+												href="#" onclick="$(this).closest('form').submit();">${next}</a>
+										</form>
+									</li>
+								</c:if>
+								<c:if test="${currentPage == noOfPages}">
+									<li class="disabled"><a href="#">${next}</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</div>
+					</c:if>
+
 			</div>
 			<div class="col-sm-2 sidenav hidden-make-rate">
 				<div class="well">
