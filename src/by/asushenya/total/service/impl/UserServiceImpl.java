@@ -97,11 +97,17 @@ public class UserServiceImpl implements UserService {
 			JSONObject makeRateError = new JSONObject(jsonInfo);
 			return makeRateError.toString();
 		}
-		Rate rate;
-		Director director = new Director();
-		RealRateBuilder builder = new RealRateBuilder(gameId, user, choice, rateCoefficient, rateMoney);
-		director.setBuilder(builder);
-		rate = director.buildRate();
+
+		Rate rate = new Rate();
+		Game game = new Game();
+		
+		game.setId(gameId);
+		rate.setGame(game);
+		
+		rate.setUser(user);
+		rate.setChoice(choice);
+		rate.setGameCoefficient(rateCoefficient);
+		rate.setMoney(rateMoney);
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
@@ -119,93 +125,11 @@ public class UserServiceImpl implements UserService {
 		jsonInfo.put(ResponseParameterName.USER_CASH, cashString);
 		JSONObject makeRateError = new JSONObject(jsonInfo);
 		return makeRateError.toString();
-
-	}
-
-	abstract class AbstractRateBuilder {
-		Rate rate;
-
-		void createRate() {
-			rate = new Rate();
-		}
-
-		abstract void buildUser();
-
-		abstract void buildGame();
-
-		abstract void buildMoney();
-
-		abstract void buildChoice();
-
-		abstract void buildGameCoefficient();
-
-		Rate getRate() {
-			return rate;
-		}
-	}
-
-	class RealRateBuilder extends AbstractRateBuilder {
-		int gameId;
-		User user;
-		RateChoice choice;
-		double rateCoefficient;
-		double rateMoney;
-
-		public RealRateBuilder(int gameId, User user, RateChoice choice, double rateCoefficient, double rateMoney) {
-
-			this.gameId = gameId;
-			this.user = user;
-			this.choice = choice;
-			this.rateCoefficient = rateCoefficient;
-			this.rateMoney = rateMoney;
-		}
-
-		void buildGame() {
-			Game game = new Game();
-			game.setId(gameId);
-			this.rate.setGame(game);
-		}
-
-		void buildUser() {
-			this.rate.setUser(user);
-		}
-
-		void buildChoice() {
-			this.rate.setChoice(choice);
-		}
-
-		void buildMoney() {
-			this.rate.setMoney(rateMoney);
-		}
-
-		void buildGameCoefficient() {
-			this.rate.setGameCoefficient(rateCoefficient);
-		}
-	}
-
-	class Director {
-		AbstractRateBuilder builder;
-
-		void setBuilder(AbstractRateBuilder builder) {
-			this.builder = builder;
-		}
-
-		Rate buildRate() {
-			builder.createRate();
-			builder.buildUser();
-			builder.buildGame();
-			builder.buildGameCoefficient();
-			builder.buildChoice();
-			builder.buildMoney();
-			Rate rate = builder.getRate();
-			return rate;
-		}
 	}
 
 	public String registrationUser(String login, String email, String password) throws ServiceException {
 
 		HashMap<String, Object> registrationInfo = new HashMap<String, Object>();
-		
 
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO userDAO = daoFactory.getUserDAO();
