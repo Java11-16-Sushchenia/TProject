@@ -19,6 +19,7 @@ import by.asushenya.total.service.util.Validator;
 public class AuthorizationServiceImpl implements AuthorizationService {
 
 	private static final Logger log = Logger.getLogger(AuthorizationServiceImpl.class);
+	
 
 	public UserServiceObject singIn(String login, String password) throws ServiceException {
 		User user = null;

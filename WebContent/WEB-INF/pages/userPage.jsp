@@ -164,7 +164,7 @@
 		</c:if>
 	</div>
 
-	<footer class="container-fluid text-center">
+	<footer class="container-fluid text-center footer">
 		<p>Epam 2017</p>
 	</footer>
 	<script src="bootstrap-3.3.7-dist/js/myScripts.js"></script>

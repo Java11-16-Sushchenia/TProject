@@ -14,6 +14,11 @@ import by.asushenya.total.controller.command.impl.initialization.DestroySourceCo
 import by.asushenya.total.controller.command.impl.initialization.InitializationSourceCommand;
 import by.asushenya.total.controller.command.ICommand;
 
+/**
+ * This class provide controller the necessary command by name
+ * 
+ * @author Atryom Suschenya
+ */
 public final class CommandHelper {
 	private static final CommandHelper instance = new CommandHelper();
 
@@ -31,10 +36,22 @@ public final class CommandHelper {
 		commands.put(CommandName.INITIALIZE_ADD_NEW_GAME_PAGE_COMMAND, new InitializeAddNewGamePageCommand());
 	}
 
+	/**
+	 * return single instance of class
+	 * 
+	 * @return return's instance of CommandHelper сlass
+	 */
+
 	public static CommandHelper getInstance() {
 		return instance;
 	}
 
+	/**
+	 * 
+	 * @param commandName
+	 *            name of the command at String
+	 * @return ICommand object, that realize some command
+	 */
 	public ICommand getCommand(String commandName) {
 
 		CommandName name = CommandName.valueOf(commandName.toUpperCase());

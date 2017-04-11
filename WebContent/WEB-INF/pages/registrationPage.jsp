@@ -128,10 +128,10 @@
 		</div>
 	</div>
 
-	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
+	<footer class="container-fluid text-center footer">
+		<p>Epam 2017</p>
 	</footer>
-
+	
 	<script type="text/javascript"
 		src="bootstrap-3.3.7-dist/js/validation.js"></script>
 	<script>

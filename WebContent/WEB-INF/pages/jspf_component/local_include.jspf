@@ -122,7 +122,7 @@
 <fmt:message bundle="${loc}" key="local.adminpage.cash" var="cash" />
 <fmt:message bundle="${loc}" key="local.adminpage.block" var="block" />
 <fmt:message bundle="${loc}" key="local.adminpage.unblock" var="unblock" />
-
+<fmt:message bundle="${loc}" key="local.adminpage.totalcash" var="totalcash" />
 <%-- registrationPage --%>
 <fmt:message bundle="${loc}"
 	key="local.userregistration.registrationerror" var="registrationerror" />

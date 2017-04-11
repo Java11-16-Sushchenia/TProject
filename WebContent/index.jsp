@@ -337,7 +337,7 @@
 	</div>
 
 	<footer class="container-fluid text-center footer">
-		<p>Footer Text</p>
+		<p>Epam 2017</p>
 	</footer>
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<script type="text/javascript">

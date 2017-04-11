@@ -1,0 +1,35 @@
+#gameKindSelect {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-first-team {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-second-team {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-date {
+	margin: 10px 0px 10px 20px;
+}
+
+#game-koefficient-k1 {
+	margin: 10px 0px 40px 20px;
+}
+
+#game-koefficient-kx {
+	margin: 10px 0px 40px 20px;
+}
+
+#game-koefficient-k2 {
+	margin: 10px 0px 40px 20px;
+}
+
+h1 {
+	margin: 10px 0px 50px 30px;
+}
+
+.game-parameter-label {
+	margin: 10px 0px 10px 20px;
+}

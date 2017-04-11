@@ -9,5 +9,6 @@
 <body>
 	<h1>404</h1>	
     <img src="images/cat.jpg" width="1024" height="720">
+    
 </body>
 </html>

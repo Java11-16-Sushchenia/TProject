@@ -36,6 +36,9 @@ public class RequestParameterName {
 
 	public static final String PAGE_NUMBER = "pageNumber";
 	public static final String GAME_KIND = "gameKind";
+	public static final String GAMES = "games";
+	public static final String NUMBER_OF_PAGES = "noOfPages";
+	public static final String CURRENT_PAGE = "currentPage";
 
 	public static final String GO_TO_PAGE = "go_to_page";
 

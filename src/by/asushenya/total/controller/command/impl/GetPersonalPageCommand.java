@@ -15,23 +15,25 @@ import by.asushenya.total.service.factory.ServiceFactory;
 import by.asushenya.total.service.util.PersonalPagesHelper;
 
 public class GetPersonalPageCommand implements ICommand {
-	
+
 	private static final Logger log = Logger.getLogger(GetPersonalPageCommand.class);
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		User user = (User) request.getSession(true).getAttribute(SessionAttributeName.SESSION_USER);
-		
+
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		AuthorizationService authService = serviceFactory.getAuthorizationService();
-		
+
 		try {
-			authService.refreshUserData(user);
+			User refreshedUser;
+			refreshedUser = authService.refreshUserData(user);
+			request.getSession(true).setAttribute(SessionAttributeName.SESSION_USER, refreshedUser);
 		} catch (ServiceException e) {
-			log.error("can't refresh user data",e);
-			throw new CommandException("can't refresh user data",e);
+			log.error("can't refresh user data", e);
+			throw new CommandException("can't refresh user data", e);
 		}
-		
+
 		return PersonalPagesHelper.getInstance().getPersonalPage(user.getRole());
 	}
 

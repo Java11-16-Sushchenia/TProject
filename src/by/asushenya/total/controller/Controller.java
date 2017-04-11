@@ -12,6 +12,12 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
+/**
+ * 
+ * Accept requests from client, extract and execute commands
+ *
+ */
+
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,8 +38,6 @@ public class Controller extends HttpServlet {
 
 		String commandName = request.getParameter(RequestParameterName.COMMAND_NAME);
 
-		System.out.println("Имя команды: " + commandName);
-
 		ICommand command = CommandHelper.getInstance().getCommand(commandName);
 
 		String page = null;
@@ -53,7 +57,7 @@ public class Controller extends HttpServlet {
 		if (dispatcher != null) {
 			dispatcher.forward(request, response);
 		} else {
-			log.info("requestDispatcher is null");
+			log.info("can't go over to another page");
 		}
 	}
 }

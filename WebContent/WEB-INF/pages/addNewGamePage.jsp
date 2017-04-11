@@ -22,49 +22,14 @@
 	href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css"
 	href="bootstrap-3.3.7-dist/css/myStyle.css">
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-3.3.7-dist/css/addGamePage.css">
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf"%>
 
 </head>
 
-<style>
-#gameKindSelect {
-	margin: 10px 0px 10px 20px;
-}
-
-#game-first-team {
-	margin: 10px 0px 10px 20px;
-}
-
-#game-second-team {
-	margin: 10px 0px 10px 20px;
-}
-
-#game-date {
-	margin: 10px 0px 10px 20px;
-}
-
-#game-koefficient-k1 {
-	margin: 10px 0px 40px 20px;
-}
-
-#game-koefficient-kx {
-	margin: 10px 0px 40px 20px;
-}
-
-#game-koefficient-k2 {
-	margin: 10px 0px 40px 20px;
-}
-
-h1 {
-	margin: 10px 0px 50px 30px;
-}
-
-.game-parameter-label {
-	margin: 10px 0px 10px 20px;
-}
-</style>
 
 <body>
 	<div class="addgame-error-modal">
@@ -90,10 +55,11 @@ h1 {
 			<c:if test="${user != null }">
 				<form action="Controller" method="get"
 					class="navbar-form navbar-right authorize-user-form">
-					<input type="hidden" name="command" value="log_out_command" />
+					<input type="hidden" name="command"
+						value="AUTHORIZATION_USER_SIGN_OUT_COMMAND" />
 					<button type="button" class="button btn-primary form-control"
 						onclick="redirectToUserPersonalPage();">${user.email}
-						<span class="badge">totalizator cash:${user.cash}</span>
+						<span class="badge">${totalcash}:$${user.cash}</span>
 					</button>
 					<input class="button signupbutton form-control" type="submit"
 						value="${signoutbutton}" />
@@ -165,18 +131,18 @@ h1 {
 							<div class="col-xs-2">
 								<label class="game-parameter-label" for="game-koefficient-k1">${home}</label>
 								<input id="game-koefficient-k1" name="k1" type="number"
-									min="1.1" class="form-control" placeholder="k1">
+									min="1" step="0.1" class="form-control" placeholder="k1">
 							</div>
 							<div class="col-xs-2">
 								<label class="game-parameter-label"
 									id="game-koefficient-kx-label" for="game-koefficient-kx">${draw}</label>
 								<input id="game-koefficient-kx" name="kx" type="number"
-									min="1.1" class="form-control" placeholder="kx">
+									min="1" step="0.1" class="form-control" placeholder="kx">
 							</div>
 							<div class="col-xs-2">
 								<label class="game-parameter-label" for="game-koefficient-k2">${away}</label>
 								<input id="game-koefficient-k2" name="k2" type="number"
-									min="1.1" class="form-control" placeholder="k2">
+									min="1" step="0.1" class="form-control" placeholder="k2">
 							</div>
 						</div>
 						<div>
@@ -188,12 +154,11 @@ h1 {
 				</div>
 				<hr>
 			</div>
-			<div class="col-sm-2 sidenav">
-			</div>
+			<div class="col-sm-2 sidenav"></div>
 		</div>
 	</div>
 
-	<footer class="container-fluid text-center">
+	<footer class="container-fluid text-center footer">
 		<p>Epam 2017</p>
 	</footer>
 	<!-- Main jumbotron for a primary marketing message or call to action -->

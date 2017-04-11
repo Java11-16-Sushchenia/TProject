@@ -42,7 +42,6 @@ public class GetPageWithGamesCommand implements ICommand {
 
 			String gameKindInString = request.getParameter(RequestParameterName.GAME_KIND);
 			gameKind = GameKind.valueOf(gameKindInString.toUpperCase());
-			System.out.println(gameKind);
 		}
 
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -55,9 +54,9 @@ public class GetPageWithGamesCommand implements ICommand {
 			throw new CommandException("can't get page with games", e);
 		}
 
-		request.setAttribute("games", pageWithGames.getGamesList());
-		request.setAttribute("noOfPages", pageWithGames.getNumberOfGamePages());
-		request.setAttribute("currentPage", page);
+		request.setAttribute(RequestParameterName.GAMES, pageWithGames.getGamesList());
+		request.setAttribute(RequestParameterName.NUMBER_OF_PAGES, pageWithGames.getNumberOfGamePages());
+		request.setAttribute(RequestParameterName.CURRENT_PAGE, page);
 
 		if (gameKind == null) {
 			request.setAttribute(RequestParameterName.GAME_KIND, null);

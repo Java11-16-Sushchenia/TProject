@@ -241,7 +241,7 @@
 			</div>
 		</div>
 	</div>
-	<footer class="container-fluid text-center">
+	<footer class="container-fluid text-center footer">
 		<p>Epam 2017</p>
 	</footer>
 

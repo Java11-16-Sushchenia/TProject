@@ -54,7 +54,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Актив Тотализатора</h4>
+									<h4 class="modal-title">${totalcash}</h4>
 								</div>
 								<div class="modal-body">
 									<p>$${user.cash}</p>
@@ -189,7 +189,7 @@
 	</div>
 
 
-	<footer class="container-fluid text-center">
+	<footer class="container-fluid text-center footer">
 		<p>Epam 2017</p>
 	</footer>
 

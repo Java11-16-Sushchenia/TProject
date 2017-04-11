@@ -7,12 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.exception.AJAXCommandException;
 
+/**
+ * Class that responds to ajax requests
+ * 
+ * @author Artyom Asyshenya
+ *
+ */
+
 public class AJAXController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger log = Logger.getLogger(AJAXController.class);
 
 	public AJAXController() {
 		super();
@@ -33,13 +43,9 @@ public class AJAXController extends HttpServlet {
 		try {
 			command.execute(request, response);
 		} catch (AJAXCommandException e) {
-
-			e.printStackTrace();
+			log.error("can't execute ajax command", e);
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			log.error("AJAXController exception", e);
 		}
-
 	}
-
 }

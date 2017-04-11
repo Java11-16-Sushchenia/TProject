@@ -9,17 +9,23 @@ import by.asushenya.total.dao.impl.BookMakerDAOImpl;
 import by.asushenya.total.dao.impl.InitializationSourceDAOImpl;
 import by.asushenya.total.dao.impl.UserDAOImpl;
 
+
+/**
+ * 
+ * Represents instance of data source
+ *
+ */
 public class DAOFactory {
 	private static final DAOFactory daoFactory = new DAOFactory();
 
 	private DAOFactory() {
 	}
-
 	private UserDAO userDAO = new UserDAOImpl();
 	private BookMakerDAO bookMakerDAO = new BookMakerDAOImpl();
 	private AdminDAO adminDAO = new AdminDAOImpl();
 	private InitializationSourceDAO initializationSourceDAO = new InitializationSourceDAOImpl();
 
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
