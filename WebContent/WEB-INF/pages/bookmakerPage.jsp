@@ -57,7 +57,7 @@
 						value="${signoutbutton}" />
 					<div class="form-group">
 						<div class="dropdown">
-							<button class="button dropbtn">${language}</button>
+							<input type="button" class="button dropbtn" value="${language}"/>
 							<div class="dropdown-content">
 								<a href="#"
 									onclick="setLanguage('redirectToBookmakerPage','ru');">${russianLanguage}</a>
@@ -159,24 +159,24 @@
 										<div>
 											<input id="k1-${game.id}"
 												onchange="changeButtonColorCommitable(this);" type="number"
-												min="1.1" value="${game.k1}">
+												min="1.1" step="0.1" value="${game.k1}">
 										</div>
 									</td>
 									<td class="col-sm-2"><input id="kx-${game.id}"
 										onchange="changeButtonColorCommitable(this);" type="number"
-										min="1.1" value="${game.kx}"></td>
+										min="1.1" step="0.1" value="${game.kx}"></td>
 									<td class="col-sm-2"><input id="k2-${game.id}"
 										onchange="changeButtonColorCommitable(this);" type="number"
-										min="1.1" value="${game.k2}"></td>
+										min="1.1" step="0.1" value="${game.k2}"></td>
 									<td>
 										<button onclick="commitChanges(this);"
 											id="saveButton-${game.id}" type="submit"
-											class="button signinbutton">Сохранить</button>
+											class="button signinbutton">${commit}</button>
 									</td>
 									<td>
 										<button onclick="removeTableRowWithGame(this);"
 											id="saveButton-${game.id}" type="submit"
-											class="button signupbutton">Удалить</button>
+											class="button signupbutton">${remove}</button>
 									</td>
 								</tr>
 							</c:forEach>

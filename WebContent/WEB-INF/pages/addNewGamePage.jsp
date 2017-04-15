@@ -65,7 +65,7 @@
 						value="${signoutbutton}" />
 					<div class="form-group">
 						<div class="dropdown">
-							<button class="button dropbtn">${language}</button>
+							<input type="button" class="button dropbtn" value="${language}"/>
 							<div class="dropdown-content">
 								<a href="#"
 									onclick="setLanguage('redirectToAddNewGamePage','ru');">${russianLanguage}</a>

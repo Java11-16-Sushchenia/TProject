@@ -72,7 +72,7 @@
 						value="${signoutbutton}" />
 					<div class="form-group">
 						<div class="dropdown">
-							<button class="button dropbtn">${language}</button>
+							<input type="button" class="button dropbtn" value="${language}"/>
 							<div class="dropdown-content">
 								<a href="#" onclick="setLanguage('redirectToAdminPage','ru');">${russianLanguage}</a>
 								<a href="#" onclick="setLanguage('redirectToAdminPage','en');">${englishLanguage}</a>
@@ -124,9 +124,9 @@
 								</c:if> <c:if test="${user.isVisible == 1}">
 									<button onclick="blockUser(this);" id="blockButton-${user.id}"
 										type="submit" class="button signupbutton">${block}</button>
-								</c:if></td>						
+								</c:if></td>
 						</c:forEach>
-						
+
 					</table>
 					<nav>
 						<ul class="pagination ul-pagination">
@@ -179,8 +179,10 @@
 								<li class="disabled"><a href="#">${next}</a></li>
 							</c:if>
 						</ul>
-						<button class="button signinbutton"
-							onclick="window.location.replace('redirectToAddNewGamePage');">${addnewgame}</button>
+						<div>
+							<button class="button signinbutton addgamebutton"
+								onclick="window.location.replace('redirectToAddNewGamePage');">${addnewgame}</button>
+						</div>
 					</nav>
 				</div>
 			</div>

@@ -48,7 +48,7 @@
 				class="navbar-form navbar-right">
 				<div class="form-group">
 					<div class="dropdown">
-						<button class="button dropbtn">${language}</button>
+						<input type="button" class="button dropbtn" value="${language}"/>
 						<div class="dropdown-content">
 							<a href="#" onclick="setLanguage('registrationPage','ru');">${russianLanguage}</a>
 							<a href="#" onclick="setLanguage('registrationPage','en');">${englishLanguage}</a>
@@ -72,7 +72,7 @@
 						name="registrationForm">
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="login">${login}:</label>
-							<div class="col-sm-10">
+							<div class="col-sm-4">
 								<input type="text" name="login" class="form-control" id="login"
 									placeholder="${login}" pattern="^[a-zA-Z][a-z0-9_]{5,15}$"
 									title="More than 6 symbols (Letters, numbers or _)" required>
@@ -81,23 +81,17 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="email">${email}:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-4">
 								<input type="email" name="email" class="form-control" id="email"
 									placeholder="${email}"
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"
 									required> <span id="myForm"></span>
 							</div>
-							<div class="col-sm-1">
-								<button type="button" class="button signinbutton"
-									onclick="addEmailFunction();">
-									<span class="glyphicon glyphicon-plus"></span>
-								</button>
-							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="pwd">${password}:</label>
-							<div class="col-sm-10">
+							<div class="col-sm-4">
 								<input type="password" name="password" class="form-control"
 									id="pwd" placeholder="${password}"
 									pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"
@@ -106,7 +100,7 @@
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="confirmpwd">${confirmpassword}:</label>
-							<div class="col-sm-10">
+							<div class="col-sm-4">
 								<input type="password" name="confirmPassword"
 									class="form-control" id="confirmpwd"
 									placeholder="${confirmpassword}"
@@ -118,8 +112,8 @@
 
 
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-8">
-								<button type="submit" class="btn btn-default">${userregistration}</button>
+							<div class="col-sm-offset-2 col-sm-4">
+								<button type="submit" class="btn signinbutton">${userregistration}</button>
 							</div>
 						</div>
 					</form>

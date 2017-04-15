@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>404</h1>	
+	${error}
     <img src="images/cat.jpg" width="1024" height="720">
     
 </body>

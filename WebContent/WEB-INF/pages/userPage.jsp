@@ -49,7 +49,7 @@
 						value="${signoutbutton}" />
 					<div class="form-group">
 						<div class="dropdown">
-							<button class="button dropbtn">${language}</button>
+							<input type="button" class="button dropbtn" value="${language}"/>
 							<div class="dropdown-content">
 								<a href="#" onclick="setLanguage('redirectToUserPage','ru');">${russianLanguage}</a>
 								<a href="#" onclick="setLanguage('redirectToUserPage','en');">${englishLanguage}</a>
@@ -64,11 +64,11 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 
-		<c:if test="${rates == null}">
+		<c:if test="${empty rates}">
 			<h1>${norates}</h1>
 		</c:if>
 
-		<c:if test="${rates != null}">
+		<c:if test="${not empty rates}">
 			<div class="container">
 				<h2>${yourrates}</h2>
 

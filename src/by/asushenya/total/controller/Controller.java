@@ -44,11 +44,10 @@ public class Controller extends HttpServlet {
 
 		try {
 			page = command.execute(request, response);
-		} catch (CommandException e) {
-			log.error("command executing error", e);
+		} catch (CommandException e) {		
 			page = JspPageName.ERROR_PAGE;
 		} catch (Exception e) {
-			log.error("command executing error", e);
+
 			page = JspPageName.ERROR_PAGE;
 		}
 

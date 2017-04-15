@@ -361,10 +361,9 @@
 										url : "AJAXController",
 										success : function(data) {
 											var json = JSON.parse(data);
-											debugger;
 											var errorType = json["errorType"];
 											var errorMessage = json["errorMessage"];
-											debugger;
+											
 											if (errorType === "authorizationerror") {
 
 												errorType = "${authorizationerror}";

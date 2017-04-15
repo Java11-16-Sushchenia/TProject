@@ -46,7 +46,6 @@ public class AdminServiceImpl implements AdminService {
 
 			noOfRecords = adminDAO.getUsersRecordsCount();
 		} catch (DAOException e) {
-			log.error("can't get games page form dao", e);
 			throw new ServiceException("Can't get games from dao", e);
 		}
 
@@ -68,7 +67,6 @@ public class AdminServiceImpl implements AdminService {
 			listOfTeams = adminDAO.getTeamsByGameKind(gameKind, local);
 
 		} catch (DAOException e) {
-			log.error("can't get list of teams", e);
 			throw new ServiceException("can't get list of teams", e);
 		}
 
@@ -120,7 +118,6 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			adminDAO.addGame(newGame, local);
 		} catch (DAOException e) {
-			log.error("can't add new game", e);
 			throw new ServiceException("can't add new game", e);
 		}
 
@@ -150,7 +147,6 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			adminDAO.blockUser(blockingUser);
 		} catch (DAOException e) {
-			log.error("can't block user", e);
 			throw new ServiceException("can't block user", e);
 		}
 
@@ -179,12 +175,12 @@ public class AdminServiceImpl implements AdminService {
 		try {
 			adminDAO.unblockUser(blockingUser);
 		} catch (DAOException e) {
-			log.error("can't unblock user", e);
 			throw new ServiceException("can't unblock user", e);
 		}
 
 		jsonInfo.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
 		JSONObject makeRateError = new JSONObject(jsonInfo);
+		
 		return makeRateError.toString();
 	}
 

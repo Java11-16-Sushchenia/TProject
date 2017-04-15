@@ -40,7 +40,6 @@
     padding: 14px 10px;
     text-decoration: none;
     text-align: center;
-    font-family: 'MV Boli', cursive;
     transition-duration: 0.5s;
 }
 
@@ -128,6 +127,20 @@
 }
 
 .infobutton:hover {
+    background-color: #c60da2;
+    color: white;
+}
+
+.addgamebutton {
+	width:40%;
+	position:absolute;
+	margin:auto;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #c60da2;    
+}
+
+.addgamebutton:hover {
     background-color: #c60da2;
     color: white;
 }
