@@ -11,6 +11,14 @@ import by.asushenya.total.service.impl.BookMakerServiceImpl;
 import by.asushenya.total.service.impl.InitializationSourceServiceImpl;
 import by.asushenya.total.service.impl.UserServiceImpl;
 
+/**
+ * 
+ * Provides access to instances of service objects. Contain static field through
+ * you can access to service interfaces.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class ServiceFactory {
 	private static final ServiceFactory serviceFactory = new ServiceFactory();
 

@@ -2,6 +2,11 @@ package by.asushenya.total.bean.util;
 
 import by.asushenya.total.bean.User;
 
+/**
+ * Contain {@link User} object and success message in json format if user authorization was successful, else if user is not authorized contains the reason for refusal
+ * @author Artyom Suschenya
+ *
+ */
 public class UserServiceObject {
 	private User user;
 	private String jsonWithErrors;

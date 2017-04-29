@@ -36,11 +36,16 @@
 				<a class="navbar-brand" href="redirectToIndexPage">${title}</a>
 			</div>
 
+
 			<c:if test="${user != null }">
 				<form action="Controller" method="get"
 					class="navbar-form navbar-right authorize-user-form">
+
+
+
 					<input type="hidden" name="command"
 						value="AUTHORIZATION_USER_SIGN_OUT_COMMAND" />
+
 					<button data-toggle="modal" data-target="#myModal" type="button"
 						class="button infobutton form-control">${user.email}</button>
 
@@ -72,7 +77,7 @@
 						value="${signoutbutton}" />
 					<div class="form-group">
 						<div class="dropdown">
-							<input type="button" class="button dropbtn" value="${language}"/>
+							<input type="button" class="button dropbtn" value="${language}" />
 							<div class="dropdown-content">
 								<a href="#" onclick="setLanguage('redirectToAdminPage','ru');">${russianLanguage}</a>
 								<a href="#" onclick="setLanguage('redirectToAdminPage','en');">${englishLanguage}</a>
@@ -91,99 +96,101 @@
 
 			<div class="col-sm-8 text-left">
 
-				<div class="container">
-					<table class="table table-striped table-hover table-bordered">
-						<thead>
-							<tr>
-								<td>${id}</td>
-								<td>${login}</td>
-								<td>${email}</td>
-								<td>${role}</td>
-								<td>${cash}</td>
-							</tr>
-						</thead>
-						<c:forEach var="user" items="${users}">
-							<c:if test="${user.isVisible == 0}">
-								<tr id="userRow-${user.id}" class="danger">
-							</c:if>
-							<c:if test="${user.isVisible != 0}">
-								<tr id="userRow-${user.id}">
-							</c:if>
-							<td>
-								<div>${user.id}</div>
-							</td>
-							<td>${user.login}</td>
-							<td>${user.email}</td>
-							<td>${user.role}</td>
-							<td>${user.cash}</td>
+				<div class="row">
+					<div class="container">
+						<table class="table table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+									<td>${id}</td>
+									<td>${login}</td>
+									<td>${email}</td>
+									<td>${role}</td>
+									<td>${cash}</td>
+								</tr>
+							</thead>
+							<c:forEach var="user" items="${users}">
+								<c:if test="${user.isVisible == 0}">
+									<tr id="userRow-${user.id}" class="danger">
+								</c:if>
+								<c:if test="${user.isVisible != 0}">
+									<tr id="userRow-${user.id}">
+								</c:if>
+								<td>
+									<div>${user.id}</div>
+								</td>
+								<td>${user.login}</td>
+								<td>${user.email}</td>
+								<td>${user.role}</td>
+								<td>${user.cash}</td>
 
-							<td><c:if test="${user.isVisible == 0}">
-									<button onclick="unblockUser(this);"
-										id="unblockButton-${user.id}" type="submit"
-										class="button signinbutton">${unblock}</button>
-								</c:if> <c:if test="${user.isVisible == 1}">
-									<button onclick="blockUser(this);" id="blockButton-${user.id}"
-										type="submit" class="button signupbutton">${block}</button>
-								</c:if></td>
-						</c:forEach>
-
-					</table>
-					<nav>
-						<ul class="pagination ul-pagination">
-							<c:if test="${currentPage != 1}">
-								<li>
-									<form action="Controller">
-										<input type="hidden" name="command"
-											value="GET_PAGE_WITH_USERS_COMMAND" /> <input type="hidden"
-											name="go_to_page" value="adminPage" /> <input type="hidden"
-											name="pageNumber" value="${currentPage - 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">${previous}</a>
-									</form>
-								</li>
-							</c:if>
-							<c:if test="${currentPage == 1}">
-								<li class="disabled"><a href="#">${previous}</a></li>
-							</c:if>
-
-							<c:forEach begin="1" end="${noOfPages}" var="i">
-								<c:choose>
-									<c:when test="${currentPage eq i}">
-										<li class="active"><a href="#">${i}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li>
-											<form action="Controller">
-												<input type="hidden" name="command"
-													value="GET_PAGE_WITH_USERS_COMMAND" /> <input
-													type="hidden" name="pageNumber" value="${i}" /> <input
-													type="hidden" name="go_to_page" value="adminPage" /> <a
-													href="#" onclick="$(this).closest('form').submit();">${i}</a>
-											</form>
-										</li>
-									</c:otherwise>
-								</c:choose>
+								<td><c:if test="${user.isVisible == 0}">
+										<button onclick="unblockUser(this);"
+											id="unblockButton-${user.id}" type="submit"
+											class="button signinbutton">${unblock}</button>
+									</c:if> <c:if test="${user.isVisible == 1}">
+										<button onclick="blockUser(this);" id="blockButton-${user.id}"
+											type="submit" class="button signupbutton">${block}</button>
+									</c:if></td>
 							</c:forEach>
 
-							<c:if test="${currentPage != noOfPages}">
-								<li>
-									<form action="Controller">
-										<input type="hidden" name="command"
-											value="GET_PAGE_WITH_USERS_COMMAND" /> <input type="hidden"
-											name="go_to_page" value="adminPage" /> <input type="hidden"
-											name="pageNumber" value="${currentPage + 1}" /> <a href="#"
-											onclick="$(this).closest('form').submit();">${next}</a>
-									</form>
-								</li>
-							</c:if>
-							<c:if test="${currentPage == noOfPages}">
-								<li class="disabled"><a href="#">${next}</a></li>
-							</c:if>
-						</ul>
-						<div>
-							<button class="button signinbutton addgamebutton"
-								onclick="window.location.replace('redirectToAddNewGamePage');">${addnewgame}</button>
-						</div>
-					</nav>
+						</table>
+						<nav>
+							<ul class="pagination ul-pagination">
+								<c:if test="${currentPage != 1}">
+									<li>
+										<form action="Controller">
+											<input type="hidden" name="command"
+												value="GET_PAGE_WITH_USERS_COMMAND" /> <input type="hidden"
+												name="go_to_page" value="adminPage" /> <input type="hidden"
+												name="pageNumber" value="${currentPage - 1}" /> <a href="#"
+												onclick="$(this).closest('form').submit();">${previous}</a>
+										</form>
+									</li>
+								</c:if>
+								<c:if test="${currentPage == 1}">
+									<li class="disabled"><a href="#">${previous}</a></li>
+								</c:if>
+
+								<c:forEach begin="1" end="${noOfPages}" var="i">
+									<c:choose>
+										<c:when test="${currentPage eq i}">
+											<li class="active"><a href="#">${i}</a></li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<form action="Controller">
+													<input type="hidden" name="command"
+														value="GET_PAGE_WITH_USERS_COMMAND" /> <input
+														type="hidden" name="pageNumber" value="${i}" /> <input
+														type="hidden" name="go_to_page" value="adminPage" /> <a
+														href="#" onclick="$(this).closest('form').submit();">${i}</a>
+												</form>
+											</li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:if test="${currentPage != noOfPages}">
+									<li>
+										<form action="Controller">
+											<input type="hidden" name="command"
+												value="GET_PAGE_WITH_USERS_COMMAND" /> <input type="hidden"
+												name="go_to_page" value="adminPage" /> <input type="hidden"
+												name="pageNumber" value="${currentPage + 1}" /> <a href="#"
+												onclick="$(this).closest('form').submit();">${next}</a>
+										</form>
+									</li>
+								</c:if>
+								<c:if test="${currentPage == noOfPages}">
+									<li class="disabled"><a href="#">${next}</a></li>
+								</c:if>
+							</ul>
+							<div>
+								<button class="button signinbutton addgamebutton"
+									onclick="window.location.replace('redirectToAddNewGamePage');">${addnewgame}</button>
+							</div>
+						</nav>
+					</div>
 				</div>
 			</div>
 

@@ -13,10 +13,17 @@ import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command put list {@link User} and list size at request.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class GetPageWithUsersCommand implements ICommand {
 
 	private static final Logger log = Logger.getLogger(GetPageWithUsersCommand.class);
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		int page = 1;

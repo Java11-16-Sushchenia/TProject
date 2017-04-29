@@ -17,6 +17,13 @@ import by.asushenya.total.service.BookMakerService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract {@link Game} coefficients from ajax request and change
+ * game according with coefficients
+ * 
+ * @author Artyom Asushenya
+ *
+ */
 public class SetNewGameCoefficientsAJAXCommand implements IAJAXCommand {
 
 	private static final Logger log = Logger.getLogger(SetNewGameCoefficientsAJAXCommand.class);

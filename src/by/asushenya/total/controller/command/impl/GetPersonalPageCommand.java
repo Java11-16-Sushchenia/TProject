@@ -14,10 +14,18 @@ import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 import by.asushenya.total.service.util.PersonalPagesHelper;
 
+/**
+ * If user click to "Go to personal page" this command refresh user data form
+ * data source and return user page url.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class GetPersonalPageCommand implements ICommand {
 
 	private static final Logger log = Logger.getLogger(GetPersonalPageCommand.class);
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		User user = (User) request.getSession(true).getAttribute(SessionAttributeName.SESSION_USER);

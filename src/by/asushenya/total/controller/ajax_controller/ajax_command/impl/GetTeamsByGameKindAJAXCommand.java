@@ -21,6 +21,12 @@ import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command put at ajax response {@link Team}s of some {@link GameKind}
+ * 
+ * @author Artyom Asushenya
+ *
+ */
 public class GetTeamsByGameKindAJAXCommand implements IAJAXCommand {
 
 	private static final Logger log = Logger.getLogger(GetTeamsByGameKindAJAXCommand.class);

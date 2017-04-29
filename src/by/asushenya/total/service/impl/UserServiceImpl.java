@@ -18,20 +18,30 @@ import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.UserService;
+import by.asushenya.total.service.exception.InvalidArgumentServiceException;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.util.Validator;
 
+/**
+ * Implements {@link UserService} interface.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class UserServiceImpl implements UserService {
 
 	private static final Logger log = Logger.getLogger(UserServiceImpl.class);
 
+	@Override
 	public GamesPage getGamesPage(int page, int gamesPerPage, GameKind gameKind, String local) throws ServiceException {
 
 		if (!Validator.validatePageNumber(page)) {
-			return null;
+			log.info("invalid page number");
+			throw new InvalidArgumentServiceException("invalid page number");
 		}
 		if (!Validator.validatePageNumber(gamesPerPage)) {
-			return null;
+			log.info("invalid games per page number");
+			throw new InvalidArgumentServiceException("invalid games per page number");
 		}
 		int noOfRecords = 0;
 
@@ -58,6 +68,7 @@ public class UserServiceImpl implements UserService {
 		return gamesPage;
 	}
 
+	@Override
 	public String makeRate(int gameId, User user, RateChoice choice, double rateCoefficient, double rateMoney)
 			throws ServiceException {
 
@@ -100,10 +111,10 @@ public class UserServiceImpl implements UserService {
 
 		Rate rate = new Rate();
 		Game game = new Game();
-		
+
 		game.setId(gameId);
 		rate.setGame(game);
-		
+
 		rate.setUser(user);
 		rate.setChoice(choice);
 		rate.setGameCoefficient(rateCoefficient);
@@ -127,6 +138,7 @@ public class UserServiceImpl implements UserService {
 		return makeRateError.toString();
 	}
 
+	@Override
 	public String registrationUser(String login, String email, String password) throws ServiceException {
 
 		HashMap<String, Object> registrationInfo = new HashMap<String, Object>();

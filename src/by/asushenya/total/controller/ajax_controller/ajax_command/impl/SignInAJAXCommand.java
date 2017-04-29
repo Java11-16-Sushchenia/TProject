@@ -15,6 +15,13 @@ import by.asushenya.total.service.AuthorizationService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract {@link User} data from ajax request. If user already
+ * registered commands write at session info about user
+ * 
+ * @author Artyom Asushenya
+ *
+ */
 public class SignInAJAXCommand implements IAJAXCommand {
 
 	private static final Logger log = Logger.getLogger(SignInAJAXCommand.class);

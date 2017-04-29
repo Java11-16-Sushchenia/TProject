@@ -1,5 +1,11 @@
 package by.asushenya.total.dao;
 
+/**
+ * Contains all column names from database tables.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class CollumnName {
 	public static final String ID = "id";
 

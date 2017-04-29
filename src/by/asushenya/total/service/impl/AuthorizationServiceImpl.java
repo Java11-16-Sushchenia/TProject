@@ -13,14 +13,20 @@ import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.AuthorizationService;
+import by.asushenya.total.service.exception.InvalidArgumentServiceException;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.util.Validator;
-
+/**
+ * Implements {@link AuthorizationService} interface.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class AuthorizationServiceImpl implements AuthorizationService {
 
 	private static final Logger log = Logger.getLogger(AuthorizationServiceImpl.class);
-	
 
+	@Override
 	public UserServiceObject singIn(String login, String password) throws ServiceException {
 		User user = null;
 		DAOFactory daoFactory = DAOFactory.getInstance();
@@ -85,7 +91,8 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		UserDAO userDAO = daoFactory.getUserDAO();
 
 		if (!Validator.validateLogin(user.getLogin())) {
-			throw new ServiceException("invalid user login");
+			log.info("invalid login");
+			throw new InvalidArgumentServiceException("invalid user login");
 		}
 
 		try {
@@ -95,10 +102,11 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		}
 
 		if (refreshedUser == null) {
-				throw new ServiceException("can't get user from dao");
+			throw new ServiceException("can't get user from dao");
 		}
 
 		if (!user.getPassword().equals(refreshedUser.getPassword())) {
+			log.info("user passwords do not match");
 			throw new ServiceException("passwords do not match");
 		}
 

@@ -15,6 +15,7 @@ public class BookMakerDAOImpl implements BookMakerDAO {
 
 	private static final Logger log = Logger.getLogger(BookMakerDAOImpl.class);
 
+	@Override
 	public void setNewGameCoefficients(int gameId, double k1, double kx, double k2) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -42,6 +43,7 @@ public class BookMakerDAOImpl implements BookMakerDAO {
 		}
 	}
 
+	@Override
 	public void makeGameInvisible(int gameId) throws DAOException {
 
 		ConnectionPool pool = ConnectionPool.getInstance();
@@ -59,8 +61,8 @@ public class BookMakerDAOImpl implements BookMakerDAO {
 			log.error("connection pool problem", e);
 			throw new DAOException("connection pool problem", e);
 		} catch (SQLException e) {
-			log.error("making game invisible error: " ,e);
-			throw new DAOException("making game invisible error: " ,e);
+			log.error("making game invisible error: ", e);
+			throw new DAOException("making game invisible error: ", e);
 
 		} finally {
 			pool.closeConnection(con, ps);

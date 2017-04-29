@@ -1,5 +1,11 @@
 package by.asushenya.total.controller;
 
+/**
+ * 
+ * Contains all parameters names that can be writed at response
+ * 
+ * @author Artyom Suschenya
+ */
 public class ResponseParameterName {
 
 	public final static String ERROR_TYPE = "errorType";

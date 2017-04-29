@@ -17,6 +17,13 @@ import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract {@link User} id from ajax request and unlocks his
+ * account. After this operation user can log in.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class UnblockUserAJAXCommand implements IAJAXCommand {
 	private static final Logger log = Logger.getLogger(UnblockUserAJAXCommand.class);
 

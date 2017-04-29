@@ -1,5 +1,12 @@
 package by.asushenya.total.controller;
 
+/**
+ * Contain all names of .jsp pages
+ * 
+ * @author Artyom Suschenya
+ *
+ */
+
 public final class JspPageName {
 	private JspPageName() {
 	};
@@ -15,4 +22,8 @@ public final class JspPageName {
 	public static final String REDIRECT_TO_INDEX_WITH_FOOTBALL_GAME = "redirectToIndexWithFootballGame";
 	public static final String REDIRECT_TO_INDEX_WITH_BASKETBALL_GAME = "redirectToIndexWithBasketballGame";
 	public static final String REDIRECT_TO_INDEX_WITH_HOCKEY_GAME = "redirectToIndexWithHockeyGame";
+
+	public static final String REDIRECT_TO_ADMIN_PAGE = "redirectToAdminPage";
+	public static final String REDIRECT_TO_BOOKMAKER_PAGE = "redirectToBookmakerPage";
+	public static final String REDIRECT_TO_USER_PAGE = "redirectToUserPage";
 }

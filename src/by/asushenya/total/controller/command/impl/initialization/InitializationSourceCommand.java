@@ -11,6 +11,12 @@ import by.asushenya.total.service.InitializationSourceService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command initialize data source when servlet context is initialized.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class InitializationSourceCommand implements ICommand {
 	private static final Logger log = Logger.getLogger(InitializationSourceCommand.class);
 

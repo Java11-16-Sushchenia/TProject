@@ -17,24 +17,29 @@ import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract user id from ajax request and block user by extracted id
+ * 
+ * @author Artyom Asushenya
+ *
+ */
 public class BlockUserAJAXCommand implements IAJAXCommand {
 	private static final Logger log = Logger.getLogger(BlockUserAJAXCommand.class);
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws AJAXCommandException {
 
 		int blockingUserId = 0;
-		try{
+		try {
 			blockingUserId = Integer.parseInt(request.getParameter(RequestParameterName.USER));
-		} catch(NumberFormatException e){
-			log.error("bad blocking user id",e);
+		} catch (NumberFormatException e) {
+			log.error("bad blocking user id", e);
 			HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
 			PrintWriteHelper.printToPrintWriter(response, makeRateError.toString());
-			return;			
+			return;
 		}
-		
 
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		AdminService adminService = serviceFactory.getAdminService();

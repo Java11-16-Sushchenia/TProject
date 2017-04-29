@@ -1,5 +1,11 @@
 package by.asushenya.total.dao.util.connection_pool;
 
+/**
+ * Parameters for connection and get access to database.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class DBParameter {
 	private DBParameter() {
 	}

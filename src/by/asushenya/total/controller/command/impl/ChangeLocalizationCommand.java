@@ -8,8 +8,15 @@ import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
+/**
+ * This command extract information from request about required language, and
+ * change language according to extracted information.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class ChangeLocalizationCommand implements ICommand {
-
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		request.getSession(true).setAttribute(SessionAttributeName.LOCAL,

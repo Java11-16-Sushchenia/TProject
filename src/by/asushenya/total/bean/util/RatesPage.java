@@ -4,6 +4,12 @@ import java.util.List;
 
 import by.asushenya.total.bean.Rate;
 
+/** 
+ * 
+ * Transfer list with {@link Rate} and number of {@link Rate} at page from services to command
+ *
+ * @author Artyom Suschenya
+ */
 public class RatesPage {
 	private List<Rate> ratesList;
 	private int numberOfPages;

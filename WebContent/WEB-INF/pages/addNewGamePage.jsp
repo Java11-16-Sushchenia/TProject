@@ -100,7 +100,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-2">
+							<div class="col-xs-4">
 								<label class="game-parameter-label" for="game-first-team">${firstteam}</label>
 								<select id="game-first-team" name="team_1" class="form-control">
 									<c:forEach var="team" items="${teams}">
@@ -109,7 +109,7 @@
 								</select>
 							</div>
 
-							<div class="col-xs-2">
+							<div class="col-xs-4">
 								<label class="game-parameter-label" for="game-second-team">${secondteam}</label>
 								<select id="game-second-team" name="team_2" class="form-control">
 									<c:forEach var="team" items="${teams}">
@@ -120,7 +120,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-xs-5">
 								<label class="game-parameter-label" for="game-second-team">${time}</label>
 								<input name="date" id="game-date" type="datetime-local"
 									class="form-control">
@@ -128,18 +128,18 @@
 						</div>
 
 						<div class="row">
-							<div class="col-xs-2">
+							<div class="col-xs-3">
 								<label class="game-parameter-label" for="game-koefficient-k1">${home}</label>
 								<input id="game-koefficient-k1" name="k1" type="number"
 									min="1" step="0.1" class="form-control" placeholder="k1">
 							</div>
-							<div class="col-xs-2">
+							<div class="col-xs-3">
 								<label class="game-parameter-label"
 									id="game-koefficient-kx-label" for="game-koefficient-kx">${draw}</label>
 								<input id="game-koefficient-kx" name="kx" type="number"
 									min="1" step="0.1" class="form-control" placeholder="kx">
 							</div>
-							<div class="col-xs-2">
+							<div class="col-xs-3">
 								<label class="game-parameter-label" for="game-koefficient-k2">${away}</label>
 								<input id="game-koefficient-k2" name="k2" type="number"
 									min="1" step="0.1" class="form-control" placeholder="k2">

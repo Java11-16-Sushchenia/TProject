@@ -6,8 +6,14 @@ import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.InitializationSourceService;
 import by.asushenya.total.service.exception.ServiceException;
 
+/**
+ * Implements {@link InitializationSourceService} interface.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class InitializationSourceServiceImpl implements InitializationSourceService {
-
+	@Override
 	public void initSource() throws ServiceException {
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		InitializationSourceDAO initializationDAO = daoFactory.getInitializationSourceDAO();
@@ -20,6 +26,7 @@ public class InitializationSourceServiceImpl implements InitializationSourceServ
 
 	}
 
+	@Override
 	public void destroySource() throws ServiceException {
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		InitializationSourceDAO initializationDAO = daoFactory.getInitializationSourceDAO();

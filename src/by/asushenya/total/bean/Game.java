@@ -5,6 +5,12 @@ import java.sql.Timestamp;
 
 import by.asushenya.total.bean.util.GameKind;
 
+/**
+ * 
+ * Some sport event. Type of event is {@link GameKind}. Contain two {@link Team} objects and event coefficients.
+ *
+ */
+
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;

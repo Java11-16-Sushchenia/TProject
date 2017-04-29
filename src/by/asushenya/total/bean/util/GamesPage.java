@@ -4,6 +4,13 @@ import java.util.List;
 
 import by.asushenya.total.bean.Game;
 
+/** 
+ * 
+ * Transfer list with {@link Game} and number of {@link Game} at page from services to command
+ *
+ * @author Artyom Suschenya
+ */
+
 public class GamesPage {
 
 	private List<Game> gamesList;

@@ -1,11 +1,20 @@
 package by.asushenya.total.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import by.asushenya.total.bean.util.RateChoice;
 
-public class Rate {
+/**
+ * 
+ * Contain information about rate that user make.
+ *
+ */
 
+public class Rate implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private User user;
 	private Game game;

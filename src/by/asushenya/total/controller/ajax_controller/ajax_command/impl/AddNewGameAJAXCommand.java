@@ -16,6 +16,14 @@ import by.asushenya.total.service.AdminService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract new game data from ajax request and send data to services to
+ * add new game
+ * 
+ * @author Artyom Asushenya
+ *
+ */
+
 public class AddNewGameAJAXCommand implements IAJAXCommand {
 	private static final Logger log = Logger.getLogger(AddNewGameAJAXCommand.class);
 
@@ -26,7 +34,6 @@ public class AddNewGameAJAXCommand implements IAJAXCommand {
 		String firstTeamName = request.getParameter(RequestParameterName.FIRST_TEAM);
 		String secondTeamName = request.getParameter(RequestParameterName.SECOND_TEAM);
 		Timestamp gameDate = Timestamp.valueOf(request.getParameter(RequestParameterName.GAME_DATE));
-		
 
 		double k1 = Double.parseDouble(request.getParameter(RequestParameterName.K1));
 		double kx = Double.parseDouble(request.getParameter(RequestParameterName.KX));

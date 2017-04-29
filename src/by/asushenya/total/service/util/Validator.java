@@ -6,20 +6,13 @@ import java.util.regex.Pattern;
 public final class Validator {
 
 	private static final String LOGIN_PATTERN = "^[a-zA-Z][a-zA-Z0-9_]{5,15}$";
-	private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})";
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private static final String TEAM_NAME_PATTERN = "^[A-ZА-Я][A-ZА-Яa-zа-я\\s]{4,30}$";
 
 	private Validator() {
 	}
 
-	/**
-	 * Validate login with regular expression
-	 * 
-	 * @param username
-	 *            username for validation
-	 * @return true valid username, false invalid username
-	 */
+
 	public static boolean validateСoefficient(final double coefficient) {
 		if (coefficient < 1.1D) {
 			return false;
@@ -51,6 +44,14 @@ public final class Validator {
 		}
 		return true;
 	}
+	
+	/**
+	 * Validate login with regular expression
+	 * 
+	 * @param login
+	 *            login for validation
+	 * @return true valid username, false invalid username
+	 */
 
 	public static boolean validateLogin(final String login) {
 		Pattern pattern = Pattern.compile(LOGIN_PATTERN);
@@ -58,11 +59,6 @@ public final class Validator {
 		return matcher.matches();
 	}
 
-	public static boolean validatePassword(final String password) {
-		Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-		Matcher matcher = pattern.matcher(password);
-		return matcher.matches();
-	}
 
 	public static boolean validateEmail(final String email) {
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN);

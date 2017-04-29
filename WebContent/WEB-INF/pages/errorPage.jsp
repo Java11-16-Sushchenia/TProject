@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding='UTF-8'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content='text/html; charset=UTF-8'>
 <title>404</title>
 </head>
 <body>
-	<h1>404</h1>	
+	<h1>404</h1>
 	${error}
-    <img src="images/cat.jpg" width="1024" height="720">
-    
+	<img src='images/cat.jpg' width="1024" height='720'>
+
 </body>
 </html>

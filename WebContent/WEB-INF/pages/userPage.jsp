@@ -49,7 +49,7 @@
 						value="${signoutbutton}" />
 					<div class="form-group">
 						<div class="dropdown">
-							<input type="button" class="button dropbtn" value="${language}"/>
+							<input type="button" class="button dropbtn" value="${language}" />
 							<div class="dropdown-content">
 								<a href="#" onclick="setLanguage('redirectToUserPage','ru');">${russianLanguage}</a>
 								<a href="#" onclick="setLanguage('redirectToUserPage','en');">${englishLanguage}</a>

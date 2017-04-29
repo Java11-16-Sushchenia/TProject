@@ -10,7 +10,12 @@ import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.service.InitializationSourceService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
-
+/**
+ * This command destroy data source when servlet context is destroyed.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class DestroySourceCommand implements ICommand {
 	private static final Logger log = Logger.getLogger(DestroySourceCommand.class);
 

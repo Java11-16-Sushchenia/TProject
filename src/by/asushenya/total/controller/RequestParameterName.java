@@ -1,5 +1,12 @@
 package by.asushenya.total.controller;
 
+/**
+ * 
+ * Contains all parameters names that can be extracted from request
+ * 
+ * @author Artyom Suschenya
+ */
+
 public class RequestParameterName {
 	private RequestParameterName() {
 	}
@@ -26,7 +33,7 @@ public class RequestParameterName {
 	public static final String USER_EMAIL = "email";
 
 	// session local
-	
+
 	public static final String SESSION_LOCAL_RU = "ru";
 	public static final String SESSION_LOCAL_EN = "en";
 
@@ -41,5 +48,8 @@ public class RequestParameterName {
 	public static final String CURRENT_PAGE = "currentPage";
 
 	public static final String GO_TO_PAGE = "go_to_page";
+
+	public static final String RATES = "rates";
+	public static final String TEAMS = "teams";
 
 }

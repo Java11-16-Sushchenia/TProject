@@ -8,22 +8,30 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.bean.User;
 import by.asushenya.total.bean.util.RatesPage;
 import by.asushenya.total.controller.RequestParameterName;
+import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command put list {@link Rate} and list size at request.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class GetPageWithRatesCommand implements ICommand {
 
 	private static final Logger log = Logger.getLogger(GetPageWithRatesCommand.class);
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		int page = 1;
 		int recordsPerPage = 5;
-		User user = (User) request.getSession(true).getAttribute("user");
-		String local = (String) request.getSession(true).getAttribute("local");
+		User user = (User) request.getSession(true).getAttribute(SessionAttributeName.SESSION_USER);
+		String local = (String) request.getSession(true).getAttribute(SessionAttributeName.LOCAL);
 
 		RatesPage pageWithUsers = new RatesPage();
 
@@ -44,9 +52,9 @@ public class GetPageWithRatesCommand implements ICommand {
 			log.error("can't get page with rates", e);
 		}
 
-		request.setAttribute("rates", pageWithUsers.getRatesList());
-		request.setAttribute("noOfPages", pageWithUsers.getNumberOfPages());
-		request.setAttribute("currentPage", page);
+		request.setAttribute(RequestParameterName.RATES, pageWithUsers.getRatesList());
+		request.setAttribute(RequestParameterName.NUMBER_OF_PAGES, pageWithUsers.getNumberOfPages());
+		request.setAttribute(RequestParameterName.CURRENT_PAGE, page);
 
 		return request.getParameter(RequestParameterName.GO_TO_PAGE);
 	}

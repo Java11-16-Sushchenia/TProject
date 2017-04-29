@@ -1,5 +1,11 @@
 package by.asushenya.total.dao.sql_query;
 
+/**
+ * Contains all SQL queries that user use.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class UserQuery {
 	public static final String FIND_USER_BY_EMAIL = "select id, login,email, password , role, cash from user where email = ?";
 	public static final String FIND_USER_BY_LOGIN = "select id, login,email, password , role, cash,is_visible from user where login = ?";

@@ -4,6 +4,13 @@ import java.util.List;
 
 import by.asushenya.total.bean.User;
 
+/**
+ * 
+ * Transfer list with {@link User} and number of {@link User} at page from
+ * services to command
+ *
+ * @author Artyom Suschenya
+ */
 public class UsersPage {
 	private List<User> usersList;
 	private int numberOfPages;

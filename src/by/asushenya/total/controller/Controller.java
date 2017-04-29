@@ -14,8 +14,8 @@ import by.asushenya.total.controller.command.ICommand;
 
 /**
  * 
- * Accept requests from client, extract and execute commands
- *
+ * Accept requests from client, extract and execute commands, that implements {@link ICommand}
+ *@author Artyom Suschenya
  */
 
 public class Controller extends HttpServlet {

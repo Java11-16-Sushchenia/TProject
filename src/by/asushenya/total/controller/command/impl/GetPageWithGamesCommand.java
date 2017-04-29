@@ -15,10 +15,18 @@ import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command put list {@link Game} of some kind at request depending on
+ * localization.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class GetPageWithGamesCommand implements ICommand {
 
 	private static final Logger log = Logger.getLogger(GetPageWithGamesCommand.class);
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
 		int page = 1;

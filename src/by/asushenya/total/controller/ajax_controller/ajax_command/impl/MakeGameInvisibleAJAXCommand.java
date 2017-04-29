@@ -17,6 +17,13 @@ import by.asushenya.total.service.BookMakerService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract {@link Game} id from ajax request and make game with this id
+ * invisible for users
+ * 
+ * @author Artyom Asushenya
+ *
+ */
 public class MakeGameInvisibleAJAXCommand implements IAJAXCommand {
 
 	private static final Logger log = Logger.getLogger(MakeGameInvisibleAJAXCommand.class);

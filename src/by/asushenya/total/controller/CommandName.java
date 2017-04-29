@@ -1,5 +1,11 @@
 package by.asushenya.total.controller;
 
+/**
+ * 
+ * Contains all controller commands names
+ *
+ */
+
 public enum CommandName {
 	INITIALIZATION_SOURCE_COMMAND,
 	DESTROY_SOURCE_COMMAND,

@@ -18,9 +18,16 @@ import by.asushenya.total.dao.AdminDAO;
 import by.asushenya.total.dao.exception.DAOException;
 import by.asushenya.total.dao.factory.DAOFactory;
 import by.asushenya.total.service.AdminService;
+import by.asushenya.total.service.exception.InvalidArgumentServiceException;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.util.Validator;
 
+/**
+ * Implements {@link AdminService} interface.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class AdminServiceImpl implements AdminService {
 
 	private static final Logger log = Logger.getLogger(AdminServiceImpl.class);
@@ -28,10 +35,12 @@ public class AdminServiceImpl implements AdminService {
 	public UsersPage getUsersPage(int page, int usersPerPage) throws ServiceException {
 
 		if (!Validator.validatePageNumber(page)) {
-			return null;
+			log.error("users page value is invalid");
+			throw new InvalidArgumentServiceException("users page value is invalid");
 		}
 		if (!Validator.validatePageNumber(usersPerPage)) {
-			return null;
+			log.error("invalid user count per page value");
+			throw new InvalidArgumentServiceException("invalid user count per page value");
 		}
 
 		int noOfRecords = 0;
@@ -77,7 +86,6 @@ public class AdminServiceImpl implements AdminService {
 			double k1, double kx, double k2, String local) throws ServiceException {
 
 		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
-		Game newGame = new Game();
 
 		if (!Validator.validateTeam(firstTeamName)) {
 			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_TEAM_NAME);
@@ -99,6 +107,7 @@ public class AdminServiceImpl implements AdminService {
 			jsonInfo.put(ResponseParameterName.ADD_NEW_GAME_ERROR, ResponseParameterName.INVALID_СOEFFICIENT);
 			return new JSONObject(jsonInfo).toString();
 		}
+		Game newGame = new Game();
 
 		newGame.setGameKind(gameKind);
 		newGame.setFirstTeam(firstTeamName);
@@ -126,12 +135,11 @@ public class AdminServiceImpl implements AdminService {
 		return new JSONObject(jsonInfo).toString();
 	}
 
-	@Override
 	public String blockUser(int userId) throws ServiceException {
 
 		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 		if (!Validator.validateId(userId)) {
-
+			log.error("user invalid id");
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.USER_BLOCKING_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
@@ -152,14 +160,14 @@ public class AdminServiceImpl implements AdminService {
 
 		jsonInfo.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
 		JSONObject makeRateError = new JSONObject(jsonInfo);
+		log.info("user with id " + blockingUser.getId() + " blocked");
 		return makeRateError.toString();
 	}
 
-	
 	public String unblockUser(int userId) throws ServiceException {
 		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
 		if (!Validator.validateId(userId)) {
-
+			log.error("user invalid id");
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.USER_UNBLOCKING_ERROR);
 			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.INVALID_ID);
 			JSONObject makeRateError = new JSONObject(jsonInfo);
@@ -180,7 +188,9 @@ public class AdminServiceImpl implements AdminService {
 
 		jsonInfo.put(ResponseParameterName.SUCCESS, ResponseParameterName.OK);
 		JSONObject makeRateError = new JSONObject(jsonInfo);
-		
+
+		log.info("user with id " + blockingUser.getId() + " unblocked");
+
 		return makeRateError.toString();
 	}
 

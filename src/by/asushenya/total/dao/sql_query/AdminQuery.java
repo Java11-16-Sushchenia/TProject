@@ -1,5 +1,11 @@
 package by.asushenya.total.dao.sql_query;
 
+/**
+ * Contains all SQL queries that administrator use.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class AdminQuery {
 	public static final String ADD_NEW_GAME = "insert into game (game_kind, team_1, team_2, date, k1,kx,k2) values(?,?,?,?,?,?,?)";
 	public static final String GET_TEAM_ID_BY_NAME_RU = "select team.id from team where team.name = ?";

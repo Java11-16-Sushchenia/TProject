@@ -26,6 +26,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	private static final Logger log = Logger.getLogger(AdminDAOImpl.class);
 
+	@Override
 	public void addGame(Game game, String local) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -93,6 +94,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return teamId;
 	}
 
+	@Override
 	public List<User> getUsersForPage(int page, int usersPerPage) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -134,6 +136,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return list;
 	}
 
+	@Override
 	public int getUsersRecordsCount() throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -164,6 +167,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return usersCount;
 	}
 
+	@Override
 	public List<Team> getTeamsByGameKind(GameKind gameKind, String local) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -204,6 +208,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return teamsOfSomeGameKind;
 	}
 
+	@Override
 	public void blockUser(User user) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;
@@ -227,6 +232,7 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 	}
 
+	@Override
 	public void unblockUser(User user) throws DAOException {
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection con = null;

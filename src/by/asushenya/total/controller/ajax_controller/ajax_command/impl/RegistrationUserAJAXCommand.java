@@ -14,6 +14,13 @@ import by.asushenya.total.service.UserService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
+/**
+ * This command extract {@link User} data from ajax request and register new
+ * {@link User} at system
+ * 
+ * @author Artyom Asushenya
+ *
+ */
 public class RegistrationUserAJAXCommand implements IAJAXCommand {
 
 	private static final Logger log = Logger.getLogger(RegistrationUserAJAXCommand.class);

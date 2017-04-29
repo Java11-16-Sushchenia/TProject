@@ -18,6 +18,12 @@ import org.apache.log4j.Logger;
 import by.asushenya.total.dao.exception.ConnectionPoolException;
 import by.asushenya.total.dao.exception.DAOException;
 
+/**
+ * Database connection pool.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class ConnectionPool implements Closeable {
 	private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
 

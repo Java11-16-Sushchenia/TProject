@@ -1,11 +1,22 @@
 package by.asushenya.total.bean;
 
-public class Team {
+import java.io.Serializable;
+
+/**
+ * 
+ * Represents team, that play the {@link Game}
+ *
+ */
+
+public class Team implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 	private String name;
 
 	public Team() {
+
 	}
 
 	public int getId() {

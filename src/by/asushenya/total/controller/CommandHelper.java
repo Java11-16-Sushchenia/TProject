@@ -21,8 +21,11 @@ import by.asushenya.total.controller.command.ICommand;
  */
 public final class CommandHelper {
 	private static final CommandHelper instance = new CommandHelper();
+	/**
+	 * Contains all commands that {@link Controller} can execute
+	 */
 
-	private Map<CommandName, ICommand> commands = new HashMap<>();
+	private Map<CommandName, ICommand> commands = new HashMap<CommandName,ICommand>();
 
 	public CommandHelper() {
 		commands.put(CommandName.INITIALIZATION_SOURCE_COMMAND, new InitializationSourceCommand());
@@ -37,7 +40,7 @@ public final class CommandHelper {
 	}
 
 	/**
-	 * return single instance of class
+	 * return single instance of {@link CommandHelper}
 	 * 
 	 * @return return's instance of CommandHelper сlass
 	 */

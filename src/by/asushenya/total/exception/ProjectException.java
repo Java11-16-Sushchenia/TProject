@@ -1,27 +1,29 @@
 package by.asushenya.total.exception;
 
-public class ProjectException extends Exception{
+/**
+ * Class {@link ProjectException} is the root of the exception classes
+ * hierarchy. Every exception class has {@link ProjectException} as a superclass
+ * 
+ * @author Artyom Suschenya
+ *
+ */
+public class ProjectException extends Exception {
 	private static final long serialVersionUID = 1L;
-	private Exception hiddenException;
-	
-	public ProjectException(){
+
+	public ProjectException() {
 		super();
 	}
-	
-	public ProjectException(String message){
+
+	public ProjectException(String message) {
 		super(message);
 	}
-	
-	public ProjectException(Exception e){
+
+	public ProjectException(Exception e) {
 		super(e);
 	}
-	
-	public ProjectException(String message, Exception e){
-		super (message, e);
-		hiddenException = e;
+
+	public ProjectException(String message, Exception e) {
+		super(message, e);
 	}
-	
-	public Exception getHiddenException(){
-		return hiddenException;
-	}
+
 }

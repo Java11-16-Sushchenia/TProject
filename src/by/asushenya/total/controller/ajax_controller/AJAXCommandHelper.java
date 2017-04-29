@@ -3,16 +3,6 @@ package by.asushenya.total.controller.ajax_controller;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
-import by.asushenya.total.service.ajax_command.impl.MakeRateAJAXCommand;
-import by.asushenya.total.service.ajax_command.impl.RegistrateUserAJAXCommand;
-import by.asushenya.total.service.ajax_command.impl.SetNewGameRatesAJAXCommand;
-
-import by.asushenya.total.service.ajax_command.impl.AddNewGameAJAXCommand;
-import by.asushenya.total.service.ajax_command.impl.AuthorizationUserAJAXCommand;
-import by.asushenya.total.service.ajax_command.impl.GetTeamsOfSomeGameKindAJAXCommand;
-import by.asushenya.total.service.ajax_command.impl.MakeGameInvisibleAJAXCommand;*/
-
 import by.asushenya.total.controller.ajax_controller.ajax_command.IAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.AJAXCommandName;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.GetTeamsByGameKindAJAXCommand;
@@ -25,9 +15,16 @@ import by.asushenya.total.controller.ajax_controller.ajax_command.impl.Registrat
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.AddNewGameAJAXCommand;
 import by.asushenya.total.controller.ajax_controller.ajax_command.impl.BlockUserAJAXCommand;
 
+/**
+ * This class provide {@link AJAXController} the necessary command by name
+ * 
+ * @author Atryom Suschenya
+ */
 public final class AJAXCommandHelper {
 	private static final AJAXCommandHelper instance = new AJAXCommandHelper();
-
+	/**
+	 * Contains all commands that {@link AJAXController} can execute
+	 */
 	private Map<AJAXCommandName, IAJAXCommand> commands = new HashMap<AJAXCommandName, IAJAXCommand>();
 
 	public AJAXCommandHelper() {
@@ -45,7 +42,12 @@ public final class AJAXCommandHelper {
 	public static AJAXCommandHelper getInstance() {
 		return instance;
 	}
-
+	/**
+	 * Transform String form of command at {@link IAJAXCommand} 
+	 * @param commandName
+	 *            name of the command at String
+	 * @return ICommand object, that realize some command
+	 */
 	public IAJAXCommand getCommand(String commandName) {
 		AJAXCommandName name = AJAXCommandName.valueOf(commandName.toUpperCase());
 		IAJAXCommand command;

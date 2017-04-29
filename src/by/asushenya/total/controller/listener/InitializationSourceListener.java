@@ -10,6 +10,12 @@ import by.asushenya.total.controller.CommandName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
+/**
+ * Performs actions for initialization and destroy data source.
+ * 
+ * @author Artyom Sushenya
+ *
+ */
 public class InitializationSourceListener implements ServletContextListener {
 
 	private static final Logger log = Logger.getLogger(InitializationSourceListener.class);

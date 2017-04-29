@@ -1,5 +1,11 @@
 package by.asushenya.total.controller.ajax_controller.ajax_command;
 
+
+/**
+ * Contains all commands that {@link AJAXController} can execute
+ * @author Artyom Asushenya 
+ *
+ */
 public enum AJAXCommandName {
 	REGISTRATION_USER_AJAX_COMMAND,
 	AUTHORIZATION_SIGN_IN_AJAX_COMMAND,

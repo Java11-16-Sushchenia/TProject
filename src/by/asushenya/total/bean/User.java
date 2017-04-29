@@ -1,8 +1,19 @@
 package by.asushenya.total.bean;
 
+import java.io.Serializable;
+
 import by.asushenya.total.bean.util.UserRole;
 
-public class User {
+/**
+ * 
+ * Represents user, that use system
+ *
+ */
+
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	private String login;
 	private String password;
