@@ -241,8 +241,8 @@
 													/*	var errorType = json["errorType"];
 														var errorMessage = json["errorMessage"];*/
 													var successMessage = json["success"];
-
-													if (successMessage === "ok") {// пока что валидируется при парсинге  на серваке только дата, но коэффициенты на сервисах проверяются
+													var errorType = json["errorType"];
+													if (successMessage === "ok") {
 														$(".successType")
 																.text(
 																		"${addgamesuccess}");

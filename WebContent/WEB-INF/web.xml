@@ -169,6 +169,15 @@
 		<url-pattern>/pageWithGames</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>forbiddenPage</servlet-name>
+		<jsp-file>/WEB-INF/pages/forbiddenPage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>forbiddenPage</servlet-name>
+		<url-pattern>/forbiddenPage</url-pattern>
+	</servlet-mapping>
+
 
 
 	<servlet>
@@ -192,4 +201,49 @@
 	<listener>
 		<listener-class>by.asushenya.total.controller.listener.InitializationSourceListener</listener-class>
 	</listener>
+
+	<!-- Filters -->
+	<filter>
+		<filter-name>AddNewGameFilter</filter-name>
+		<filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AddNewGameFilter</filter-name>
+		<url-pattern>/addNewGamePage</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>AdminPageFilter</filter-name>
+		<filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdminPageFilter</filter-name>
+		<url-pattern>/adminPage</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>BookmakerPageFilter</filter-name>
+		<filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.BookmakerFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BookmakerPageFilter</filter-name>
+		<url-pattern>/bookmakerPage</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>UserPageFilter</filter-name>
+		<filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.UserFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BookmakerPageFilter</filter-name>
+		<url-pattern>/userPage</url-pattern>
+	</filter-mapping>
 </web-app>

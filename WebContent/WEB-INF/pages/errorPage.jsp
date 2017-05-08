@@ -7,9 +7,9 @@
 <title>404</title>
 </head>
 <body>
-	<h1>404</h1>
+	<h1 align="center">404</h1>
 	${error}
-	<img src='images/cat.jpg' width="1024" height='720'>
+	<img src='bootstrap-3.3.7-dist/images/cat.jpg' width="1024" height='720'>
 
 </body>
 </html>
