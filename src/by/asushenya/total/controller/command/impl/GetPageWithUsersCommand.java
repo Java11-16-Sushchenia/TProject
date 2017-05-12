@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import by.asushenya.total.bean.util.UsersPage;
+import by.asushenya.total.bean.page.UsersPage;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;

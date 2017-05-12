@@ -1,7 +1,5 @@
 package by.asushenya.total.dao.exception;
 
-import by.asushenya.total.exception.ProjectException;
-
 /**
  * Exception of this type can throws at dao layer and signal about problems at
  * connection pool.
@@ -9,7 +7,7 @@ import by.asushenya.total.exception.ProjectException;
  * @author Artyom Suschenya
  *
  */
-public class ConnectionPoolException extends ProjectException {
+public class ConnectionPoolException extends DAOException {
 
 	private static final long serialVersionUID = 1L;
 

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.User;
-import by.asushenya.total.bean.util.RatesPage;
+import by.asushenya.total.bean.page.RatesPage;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.command.CommandException;

@@ -18,25 +18,25 @@ public class AdminDAOImplTest {
 	public void testBlockUser() {
 		int blockingUserId = 3;
 		String changedUserLogin = "dima";
-		
+
 		AdminDAOImpl test = new AdminDAOImpl();
 		UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-		
-		User blockingUser = new User();		
+
+		User blockingUser = new User();
 		blockingUser.setId(blockingUserId);
-		
+
 		User changedUser = null;
-		
+
 		try {
 			ConnectionPool.getInstance().init();
 			test.blockUser(blockingUser);
-			
+
 			changedUser = userDAO.findUserByLogin(changedUserLogin);
-			
-		} catch (DAOException e) {
+
+		} catch (ConnectionPoolException e) {
 
 			e.printStackTrace();
-		} catch (ConnectionPoolException e) {
+		} catch (DAOException e) {
 			e.printStackTrace();
 		}
 
@@ -47,25 +47,25 @@ public class AdminDAOImplTest {
 	public void testUnblockUser() {
 		int unblockingUserId = 3;
 		String changedUserLogin = "dima";
-		
+
 		AdminDAOImpl test = new AdminDAOImpl();
 		UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
-		
-		User unblockingUser = new User();		
+
+		User unblockingUser = new User();
 		unblockingUser.setId(unblockingUserId);
-		
+
 		User changedUser = null;
-		
+
 		try {
 			ConnectionPool.getInstance().init();
 			test.unblockUser(unblockingUser);
-			
+
 			changedUser = userDAO.findUserByLogin(changedUserLogin);
-			
-		} catch (DAOException e) {
+
+		} catch (ConnectionPoolException e) {
 
 			e.printStackTrace();
-		} catch (ConnectionPoolException e) {
+		} catch (DAOException e) {
 			e.printStackTrace();
 		}
 

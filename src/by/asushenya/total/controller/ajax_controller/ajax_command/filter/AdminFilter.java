@@ -15,6 +15,12 @@ import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
 
+/**
+ * Filter requests to admin pages and allow access only admins.
+ * 
+ * @author Artyom Suschenya
+ *
+ */
 public class AdminFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {

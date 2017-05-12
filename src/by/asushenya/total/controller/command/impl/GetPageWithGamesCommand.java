@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import by.asushenya.total.bean.page.GamesPage;
 import by.asushenya.total.bean.util.GameKind;
-import by.asushenya.total.bean.util.GamesPage;
 import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.SessionAttributeName;

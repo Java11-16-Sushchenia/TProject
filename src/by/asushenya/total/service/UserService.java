@@ -1,10 +1,10 @@
 package by.asushenya.total.service;
 
 import by.asushenya.total.bean.User;
+import by.asushenya.total.bean.page.GamesPage;
+import by.asushenya.total.bean.page.RatesPage;
 import by.asushenya.total.bean.util.GameKind;
-import by.asushenya.total.bean.util.GamesPage;
 import by.asushenya.total.bean.util.RateChoice;
-import by.asushenya.total.bean.util.RatesPage;
 import by.asushenya.total.service.exception.ServiceException;
 
 /**

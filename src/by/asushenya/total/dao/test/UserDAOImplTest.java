@@ -44,9 +44,9 @@ public class UserDAOImplTest {
 			ConnectionPool.getInstance().init();
 			selectedUser = test.findUserByLogin(userLogin);
 
-		} catch (DAOException e) {
-			e.printStackTrace();
 		} catch (ConnectionPoolException e) {
+			e.printStackTrace();
+		} catch (DAOException e) {
 			e.printStackTrace();
 		}
 

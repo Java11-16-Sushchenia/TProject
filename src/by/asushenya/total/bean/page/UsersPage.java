@@ -1,4 +1,4 @@
-package by.asushenya.total.bean.util;
+package by.asushenya.total.bean.page;
 
 import java.util.List;
 

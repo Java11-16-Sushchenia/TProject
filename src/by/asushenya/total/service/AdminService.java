@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import by.asushenya.total.bean.Team;
+import by.asushenya.total.bean.page.UsersPage;
 import by.asushenya.total.bean.util.GameKind;
-import by.asushenya.total.bean.util.UsersPage;
 import by.asushenya.total.service.exception.ServiceException;
 
 /**

@@ -14,7 +14,12 @@ import by.asushenya.total.bean.util.UserRole;
 import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
-
+/**
+ * Filter requests to bookmaker pages and allow access only bookmakers.
+ * 
+ * @author Artyom Suschenya
+ *
+ */
 public class BookmakerFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {

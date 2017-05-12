@@ -15,6 +15,12 @@ import by.asushenya.total.controller.JspPageName;
 import by.asushenya.total.controller.RequestParameterName;
 import by.asushenya.total.controller.ResponseParameterName;
 
+/**
+ * Filter requests to user page and allow access only users.
+ * 
+ * @author Artyom Suschenya
+ *
+ */
 public class UserFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
