@@ -1,216 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="by.asushenya.total.controller.SessionAttributeName" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/SessionAttributeName.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="152" x="170" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="by.asushenya.total.controller.RequestParameterName" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/RequestParameterName.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="567" width="165" x="362" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="by.asushenya.total.controller.JspPageName" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/JspPageName.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="333" width="304" x="1235" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="by.asushenya.total.controller.listener.InitializationSourceListener" 
+  <class id="1" language="java" name="by.asushenya.total.controller.listener.InitializationSourceListener" 
     project="TProject" file="/TProject/src/by/asushenya/total/controller/listener/InitializationSourceListener.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="241" x="1579" y="-130"/>    
+    <position height="-1" width="-1" x="135" y="-13"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="by.asushenya.total.dao.test.UserDAOImplTest" project="TProject" 
-    file="/TProject/src/by/asushenya/total/dao/test/UserDAOImplTest.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="157" x="1860" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter" 
+  <class id="2" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter" 
     project="TProject" 
     file="/TProject/src/by/asushenya/total/controller/ajax_controller/ajax_command/filter/AdminFilter.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="305" x="2057" y="-130"/>    
+    <position height="-1" width="-1" x="429" y="-26"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.filter.BookmakerFilter" 
+  <class id="3" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.filter.BookmakerFilter" 
     project="TProject" 
     file="/TProject/src/by/asushenya/total/controller/ajax_controller/ajax_command/filter/BookmakerFilter.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="305" x="2402" y="-130"/>    
+    <position height="-1" width="-1" x="774" y="-26"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="by.asushenya.total.dao.sql_query.AdminQuery" project="TProject" 
-    file="/TProject/src/by/asushenya/total/dao/sql_query/AdminQuery.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="227" x="2747" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.filter.UserFilter" 
+  <class id="4" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.filter.UserFilter" 
     project="TProject" 
     file="/TProject/src/by/asushenya/total/controller/ajax_controller/ajax_command/filter/UserFilter.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="305" x="3014" y="-130"/>    
+    <position height="-1" width="-1" x="1151" y="-25"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="by.asushenya.total.service.util.Validator" project="TProject" 
-    file="/TProject/src/by/asushenya/total/service/util/Validator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="196" x="3359" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="by.asushenya.total.controller.ResponseParameterName" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/ResponseParameterName.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="747" width="219" x="3595" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="12" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.AJAXCommandName" 
-    project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/ajax_controller/ajax_command/AJAXCommandName.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="261" width="386" x="3854" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <enumeration id="13" language="java" name="by.asushenya.total.controller.CommandName" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/CommandName.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="333" width="339" x="4280" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="14" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.util.Encryptor" 
-    project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/ajax_controller/ajax_command/util/Encryptor.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="117" width="275" x="4659" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="by.asushenya.total.service.util.PersonalPagesHelper" project="TProject" 
-    file="/TProject/src/by/asushenya/total/service/util/PersonalPagesHelper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="196" x="4974" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="by.asushenya.total.controller.Controller" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="288" x="5220" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="by.asushenya.total.controller.ajax_controller.ajax_command.util.PrintWriteHelper" 
-    project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/ajax_controller/ajax_command/util/PrintWriteHelper.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="275" x="5746" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="by.asushenya.total.dao.util.connection_pool.ConnectionPool" project="TProject" 
-    file="/TProject/src/by/asushenya/total/dao/util/connection_pool/ConnectionPool.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="441" width="386" x="6061" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="19" language="java" name="by.asushenya.total.controller.ajax_controller.AJAXController" project="TProject" 
-    file="/TProject/src/by/asushenya/total/controller/ajax_controller/AJAXController.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="153" width="288" x="6497" y="-130"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="20">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="21" name="instance">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="23">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="24" name="instance">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

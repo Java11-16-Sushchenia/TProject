@@ -1,10 +1,9 @@
-package by.asushenya.total.service.util;
+package by.asushenya.total.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import by.asushenya.total.bean.util.UserRole;
-import by.asushenya.total.controller.JspPageName;
 
 public class PersonalPagesHelper {
 	private static final PersonalPagesHelper instance = new PersonalPagesHelper();

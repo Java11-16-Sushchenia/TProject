@@ -6,13 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import by.asushenya.total.bean.User;
+import by.asushenya.total.controller.PersonalPagesHelper;
 import by.asushenya.total.controller.SessionAttributeName;
 import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 import by.asushenya.total.service.AuthorizationService;
 import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
-import by.asushenya.total.service.util.PersonalPagesHelper;
 
 /**
  * If user click to "Go to personal page" this command refresh user data form
