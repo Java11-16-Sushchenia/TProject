@@ -32,7 +32,7 @@ public final class Validator {
 	}
 	
 	public static boolean validateMoney(final double money) {
-		if (money < 0) {
+		if (money <= 0) {
 			return false;
 		}
 		return true;

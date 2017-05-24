@@ -21,7 +21,7 @@
 	var="password" />
 <fmt:message bundle="${loc}" key="local.placeholder.confirmpassword"
 	var="confirmpassword" />
-	<fmt:message bundle="${loc}" key="local.userregistration"
+<fmt:message bundle="${loc}" key="local.userregistration"
 	var="userregistration" />
 
 <fmt:message bundle="${loc}" key="local.game.football" var="soccer" />
@@ -56,10 +56,11 @@
 	var="emptygame" />
 <fmt:message bundle="${loc}" key="local.makerate.ratenotanumber"
 	var="ratenotanumber" />
-	<fmt:message bundle="${loc}" key="local.norates"
-	var="norates" />
+<fmt:message bundle="${loc}" key="local.norates" var="norates" />
 
-
+<fmt:message bundle="${loc}" key="local.makerate.notuser" var="notuser" />
+<fmt:message bundle="${loc}" key="local.makerate.invalidmoney"
+	var="invalidmoney" />
 <%-- addNewGamePage --%>
 
 <fmt:message bundle="${loc}" key="local.addgameerror" var="addgameerror" />
@@ -124,7 +125,8 @@
 <fmt:message bundle="${loc}" key="local.adminpage.cash" var="cash" />
 <fmt:message bundle="${loc}" key="local.adminpage.block" var="block" />
 <fmt:message bundle="${loc}" key="local.adminpage.unblock" var="unblock" />
-<fmt:message bundle="${loc}" key="local.adminpage.totalcash" var="totalcash" />
+<fmt:message bundle="${loc}" key="local.adminpage.totalcash"
+	var="totalcash" />
 <%-- registrationPage --%>
 <fmt:message bundle="${loc}"
 	key="local.userregistration.registrationerror" var="registrationerror" />
@@ -158,3 +160,10 @@
 <fmt:message bundle="${loc}" key="local.pagination.next" var="next" />
 <fmt:message bundle="${loc}" key="local.pagination.previous"
 	var="previous" />
+
+<%-- Error messages --%>
+<fmt:message bundle="${loc}" key="local.atmain" var="atmain" />
+<fmt:message bundle="${loc}" key="local.forbidden" var="forbidden" />
+<fmt:message bundle="${loc}" key="local.methodnotalowed"
+	var="methodnotalowed" />
+<fmt:message bundle="${loc}" key="local.notfound" var="notfound" />

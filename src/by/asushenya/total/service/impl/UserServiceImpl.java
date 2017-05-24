@@ -13,6 +13,7 @@ import by.asushenya.total.bean.page.GamesPage;
 import by.asushenya.total.bean.page.RatesPage;
 import by.asushenya.total.bean.util.GameKind;
 import by.asushenya.total.bean.util.RateChoice;
+import by.asushenya.total.bean.util.UserRole;
 import by.asushenya.total.controller.ResponseParameterName;
 import by.asushenya.total.dao.UserDAO;
 import by.asushenya.total.dao.exception.DAOException;
@@ -73,6 +74,14 @@ public class UserServiceImpl implements UserService {
 			throws ServiceException {
 
 		HashMap<String, Object> jsonInfo = new HashMap<String, Object>();
+
+		if (user.getRole() != UserRole.USER) {
+			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);
+			jsonInfo.put(ResponseParameterName.ERROR_MSSAGE, ResponseParameterName.NOT_USER);
+			JSONObject responseMessage = new JSONObject(jsonInfo);
+			return responseMessage.toString();
+		}
+
 		if (!Validator.validateId(gameId)) {
 
 			jsonInfo.put(ResponseParameterName.ERROR_TYPE, ResponseParameterName.MAKE_RATE_ERROR);

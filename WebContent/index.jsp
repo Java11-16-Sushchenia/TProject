@@ -162,7 +162,7 @@
 				<c:if test="${empty games}">
 					<h3>${nogames}</h3>
 				</c:if>
-				
+
 				<c:if test="${not empty games}">
 					<div>
 						<table class="table table-striped table-hover table-bordered">
@@ -286,7 +286,7 @@
 							</ul>
 						</nav>
 					</div>
-					</c:if>
+				</c:if>
 
 			</div>
 			<div class="col-sm-2 sidenav hidden-make-rate">
@@ -363,7 +363,7 @@
 											var json = JSON.parse(data);
 											var errorType = json["errorType"];
 											var errorMessage = json["errorMessage"];
-											
+
 											if (errorType === "authorizationerror") {
 
 												errorType = "${authorizationerror}";
@@ -499,6 +499,14 @@
 
 									if (errorMessage === "nomoney") {
 										errorMessage = "${nomoney}";
+									}
+
+									if (errorMessage === "notuser") {
+										errorMessage = "${notuser}";
+									}
+
+									if (errorMessage === "invalidmoney") {
+										errorMessage = "${invalidmoney}";
 									}
 
 									showErrorAtView(errorType, errorMessage);

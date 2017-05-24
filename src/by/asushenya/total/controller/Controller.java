@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import by.asushenya.total.controller.command.CommandException;
 import by.asushenya.total.controller.command.ICommand;
 
 /**
  * 
- * Accept requests from client, extract and execute commands, that implements {@link ICommand}
- *@author Artyom Suschenya
+ * Accept requests from client, extract and execute commands, that implements
+ * {@link ICommand}
+ * 
+ * @author Artyom Suschenya
  */
 
 public class Controller extends HttpServlet {
@@ -44,11 +45,10 @@ public class Controller extends HttpServlet {
 
 		try {
 			page = command.execute(request, response);
-		} catch (CommandException e) {		
-			page = JspPageName.ERROR_PAGE;
+		} catch (NullPointerException e) {
+			page = JspPageName.NOT_ALLOWED_PAGE;
 		} catch (Exception e) {
-
-			page = JspPageName.ERROR_PAGE;
+			page = JspPageName.NOT_FOUND_PAGE;
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);

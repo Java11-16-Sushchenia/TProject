@@ -48,14 +48,6 @@
 		<url-pattern>/addNewGamePage</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>errorPage</servlet-name>
-		<jsp-file>/WEB-INF/pages/errorPage.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>errorPage</servlet-name>
-		<url-pattern>/errorPage</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>registrationPage</servlet-name>
 		<jsp-file>/WEB-INF/pages/registrationPage.jsp</jsp-file>
 	</servlet>
@@ -169,16 +161,32 @@
 		<url-pattern>/pageWithGames</url-pattern>
 	</servlet-mapping>
 
+	<!-- Error Pages -->
 	<servlet>
 		<servlet-name>forbiddenPage</servlet-name>
-		<jsp-file>/WEB-INF/pages/forbiddenPage.jsp</jsp-file>
+		<jsp-file>/WEB-INF/pages/error_pages/forbiddenPage.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>forbiddenPage</servlet-name>
 		<url-pattern>/forbiddenPage</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>notAllowedPage</servlet-name>
+		<jsp-file>/WEB-INF/pages/error_pages/notAllowedPage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>notAllowedPage</servlet-name>
+		<url-pattern>/notAllowedPage</url-pattern>
+	</servlet-mapping>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/pages/error_pages/notFoundPage.jsp</location>
+	</error-page>
+
+
+	<!-- Controllers -->
 
 	<servlet>
 		<servlet-name>Controller</servlet-name>
@@ -206,8 +214,7 @@
 	<filter>
 		<filter-name>AddNewGameFilter</filter-name>
 		<filter-class>
-			by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter
-		</filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AddNewGameFilter</filter-name>
@@ -217,8 +224,7 @@
 	<filter>
 		<filter-name>AdminPageFilter</filter-name>
 		<filter-class>
-			by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter
-		</filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.AdminFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AdminPageFilter</filter-name>
@@ -228,8 +234,7 @@
 	<filter>
 		<filter-name>BookmakerPageFilter</filter-name>
 		<filter-class>
-			by.asushenya.total.controller.ajax_controller.ajax_command.filter.BookmakerFilter
-		</filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.BookmakerFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>BookmakerPageFilter</filter-name>
@@ -239,8 +244,7 @@
 	<filter>
 		<filter-name>UserPageFilter</filter-name>
 		<filter-class>
-			by.asushenya.total.controller.ajax_controller.ajax_command.filter.UserFilter
-		</filter-class>
+			by.asushenya.total.controller.ajax_controller.ajax_command.filter.UserFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>BookmakerPageFilter</filter-name>

@@ -1,312 +1,317 @@
-   /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #c0c0c0;
-  text-align: center;
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
 }
 
-    
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+	height: 450px
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+	padding-top: 20px;
+	background-color: #f1f1f1;
+	height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+.footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #c0c0c0;
+	text-align: center;
+}
+
 .ul-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: #f1f1f1;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background-color: #f1f1f1;
 }
 
 .ul-nav li a {
-    display: block;
-    color: #000;
-    padding: 14px 10px;
-    text-decoration: none;
-    text-align: center;
-    transition-duration: 0.5s;
+	display: block;
+	color: #000;
+	padding: 14px 10px;
+	text-decoration: none;
+	text-align: center;
+	transition-duration: 0.5s;
 }
 
 .ul-nav li a:hover {
-    background-color: #45a049;
-    color: white;
-    transition-duration: 0.1s;
-    border-radius:8px;
+	background-color: #45a049;
+	color: white;
+	transition-duration: 0.1s;
+	border-radius: 8px;
 }
 
 .ul-nav li+li a:hover {
-    background-color: #bc1339;
-    color: #fff;
-    transition-duration: 0.1s;
+	background-color: #bc1339;
+	color: #fff;
+	transition-duration: 0.1s;
 }
 
 .ul-nav li+li+li a:hover {
-    background-color: #5166cc;
-    color: #fff;
-    transition-duration: 0.1s;
+	background-color: #5166cc;
+	color: #fff;
+	transition-duration: 0.1s;
 }
+
 .ul-nav li+li+li+li a:hover {
-    background-color: #b3bc20;
-    color: #fff;
-    transition-duration: 0.1s;
+	background-color: #b3bc20;
+	color: #fff;
+	transition-duration: 0.1s;
 }
 
-
-.hidden-make-rate{
+.hidden-make-rate {
 	visibility: hidden;
 }
 
-.authorization-error-modal{
-	display: none;	
+.authorization-error-modal {
+	display: none;
 	text-align: center;
 }
-.authorization-success-modal{
-	display: none;	
+
+.authorization-success-modal {
+	display: none;
 }
 
 .button {
-    width: 100%;
-    background-color: #45a049; 
-    border: none;
-    border-radius: 10px;
-    color: white;
-    padding: 4px 8px;
-    text-align: center;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 4px;
-    transition-duration: 0.2s;
-    cursor: pointer;
+	width: 100%;
+	background-color: #45a049;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	padding: 4px 8px;
+	text-align: center;
+	display: inline-block;
+	font-size: 14px;
+	margin: 4px 4px;
+	transition-duration: 0.2s;
+	cursor: pointer;
 }
 
 .signinbutton {
 	width: 100%;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #45a049;
+	background-color: white;
+	color: black;
+	border: 2px solid #45a049;
 }
 
 .signinbutton:hover {
-    background-color: #45a049;
-    color: white;
+	background-color: #45a049;
+	color: white;
 }
 
 .signupbutton {
-	width:100%;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #f00;
+	width: 100%;
+	background-color: white;
+	color: black;
+	border: 2px solid #f00;
 }
 
 .signupbutton:hover {
-    background-color: #f00;
-    color: white;
+	background-color: #f00;
+	color: white;
 }
 
 .infobutton {
-	width:100%;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #c60da2;    
+	width: 100%;
+	background-color: white;
+	color: black;
+	border: 2px solid #c60da2;
 }
 
 .infobutton:hover {
-    background-color: #c60da2;
-    color: white;
+	background-color: #c60da2;
+	color: white;
 }
 
 .addgamebutton {
-	width:40%;
-	position:absolute;
-	margin:auto;
-    background-color: white; 
-    color: black; 
-    border: 2px solid #c60da2;    
+	width: 40%;
+	position: absolute;
+	margin: auto;
+	background-color: white;
+	color: black;
+	border: 2px solid #c60da2;
 }
 
 .addgamebutton:hover {
-    background-color: #c60da2;
-    color: white;
+	background-color: #c60da2;
+	color: white;
 }
 
 .commitbtn {
-	width:100%;
-    background-color: #337ab7; 
-    color: black; 
-    border: 2px solid #337ab7;
-     color: white;
+	width: 100%;
+	background-color: #337ab7;
+	color: black;
+	border: 2px solid #337ab7;
+	color: white;
 }
 
 .commitbtn:hover {
-    background-color: #fff;
-     color: black;
-   
+	background-color: #fff;
+	color: black;
 }
 
 .dropbtn {
-    width: 100%;
-    border: 2px solid #ffa500;
-    background-color: #fff;
-    color:#000; 
+	width: 100%;
+	border: 2px solid #ffa500;
+	background-color: #fff;
+	color: #000;
 }
 
 .dropbtn:hover {
-      background-color: #ffa500;
-      color:#000; 
-  }
+	background-color: #ffa500;
+	color: #000;
+}
 
 .dropdown {
-    width: 100%;
-    position: relative;
-    display: inline-block;
+	width: 100%;
+	position: relative;
+	display: inline-block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 96px;
-    box-shadow: 0px 5px 5px 0px #ffa500;
-    border-radius: 10px;
-    text-align: center;
-    z-index: 10;
-    width:100%;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 96px;
+	box-shadow: 0px 5px 5px 0px #ffa500;
+	border-radius: 10px;
+	text-align: center;
+	z-index: 10;
+	width: 100%;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
 .dropdown-content a:hover {
-
-  background-color: #ffa500;
-  border-radius: 10px;
+	background-color: #ffa500;
+	border-radius: 10px;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+	display: block;
 }
 
 input[type=text] {
-    width: 100%;
-    padding: 8px 8px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-family: 'Inconsolata', monospace;
+	width: 100%;
+	padding: 8px 8px;
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	box-sizing: border-box;
+	font-family: 'Inconsolata', monospace;
 }
 
 input[type=text]:focus {
-    border: 1px solid #45a049;
+	border: 1px solid #45a049;
 }
 
 input[type=password] {
-    width: 100%;
-    padding: 8px 8px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-family: 'Inconsolata', monospace;
+	width: 100%;
+	padding: 8px 8px;
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	box-sizing: border-box;
+	font-family: 'Inconsolata', monospace;
 }
 
 input[type=password]:focus {
-    border: 1px solid #ff0000;
+	border: 1px solid #ff0000;
 }
 
 input[type=email] {
-    width: 100%;
-    padding: 8px 8px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-family: 'Inconsolata', monospace;
+	width: 100%;
+	padding: 8px 8px;
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	box-sizing: border-box;
+	font-family: 'Inconsolata', monospace;
 }
+
 input[type=email]:focus {
-    border: 1px solid #45a049;
+	border: 1px solid #45a049;
 }
 
 input[type=number] {
-    width: 100%;
-    padding: 7px 1xpx;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-family: 'Inconsolata', monospace;
-    text-align: center;
+	width: 100%;
+	padding: 7px 1xpx;
+	border: 1px solid #ccc;
+	border-radius: 7px;
+	font-family: 'Inconsolata', monospace;
+	text-align: center;
 }
+
 input[type=number]:focus {
-    border: 1px solid #45a049;
+	border: 1px solid #45a049;
 }
 
 .ul-pagination {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #999;
-    border-radius:10px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #999;
+	border-radius: 10px;
 }
 
 .ul-pagination li {
-    float: left;
+	float: left;
 }
 
 .ul-pagination li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    border-radius:5px;
-    text-decoration: none;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	text-decoration: none;
 }
 
 .ul-pagination li a:hover {
-    background-color: #747474;
-    border-radius:2px;
+	background-color: #747474;
+	border-radius: 2px;
 }
 
-.success-modal{
-	display:none;
-}
-.error-modal{
-	display:none;
+.success-modal {
+	display: none;
 }
 
-.changegame-error-modal{
-	display:none;
+.error-modal {
+	display: none;
 }
 
-.addgame-error-modal{
-	display:none;
+.changegame-error-modal {
+	display: none;
 }
 
+.addgame-error-modal {
+	display: none;
+}
 
+.at-main {
+	text-align: center;
+}
 
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 880px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-    
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 880px) {
+	.sidenav {
+		height: auto;
+		padding: 15px;
+	}
+	.row.content {
+		height: auto;
+	}
+}

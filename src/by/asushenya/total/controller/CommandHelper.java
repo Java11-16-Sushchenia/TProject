@@ -3,6 +3,8 @@ package by.asushenya.total.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import by.asushenya.total.controller.command.impl.ChangeLocalizationCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithGamesCommand;
 import by.asushenya.total.controller.command.impl.GetPageWithRatesCommand;
@@ -25,7 +27,9 @@ public final class CommandHelper {
 	 * Contains all commands that {@link Controller} can execute
 	 */
 
-	private Map<CommandName, ICommand> commands = new HashMap<CommandName,ICommand>();
+	private static final Logger log = Logger.getLogger(CommandHelper.class);
+
+	private Map<CommandName, ICommand> commands = new HashMap<CommandName, ICommand>();
 
 	public CommandHelper() {
 		commands.put(CommandName.INITIALIZATION_SOURCE_COMMAND, new InitializationSourceCommand());
@@ -57,8 +61,15 @@ public final class CommandHelper {
 	 */
 	public ICommand getCommand(String commandName) {
 
-		CommandName name = CommandName.valueOf(commandName.toUpperCase());
+		CommandName name = null;
 		ICommand command;
+
+		try {
+			name = CommandName.valueOf(commandName.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			log.error("no such command", e);
+		}
+
 		if (null != name) {
 			command = commands.get(name);
 		} else {

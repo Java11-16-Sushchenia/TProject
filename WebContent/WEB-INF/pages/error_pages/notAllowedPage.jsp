@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>403</title>
+<title>405</title>
 
 <script src="bootstrap-3.3.7-dist/jquery/jquery-3.1.1.js"></script>
 <link rel="stylesheet" type="text/css"
@@ -20,15 +20,18 @@
 <%@ include file="/WEB-INF/pages/jspf_component/local_include.jspf"%>
 </head>
 <body>
-	<h1 align="center">403 Forbidden</h1>
+	<h1 align="center">405 ${methodnotalowed}</h1>
 	<hr>
-	<h3 align="center">${errorMessage}</h3>
+	<div class="at-main">
+		<a href="redirectToIndexPage">
+			${atmain}
+		</a>
+	</div>
 	<br>
-
 
 	<div class="text-center">
 		<a href="redirectToIndexPage"> <img
-			src="bootstrap-3.3.7-dist/images/cat2.jpg" class="img-responsive"
+			src="bootstrap-3.3.7-dist/images/cat3.jpg" class="img-responsive"
 			alt="Index page"></a>
 	</div>
 </body>

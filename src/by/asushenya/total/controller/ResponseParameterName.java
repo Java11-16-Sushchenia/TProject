@@ -25,7 +25,8 @@ public class ResponseParameterName {
 	public final static String INVALID_ID = "invalidid";
 	public final static String INVALID_MONEY = "invalidmoney";
 	public final static String USER_CASH = "usercash";
-
+	public final static String NOT_USER = "notuser";
+	
 	// authorize ajax command
 	public final static String AUTHORIZATION_ERROR = "authorizationerror";
 	public final static String INVALID_LOGIN = "invalidlogin";

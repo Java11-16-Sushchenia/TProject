@@ -1,5 +1,7 @@
 package by.asushenya.total.controller.ajax_controller.ajax_command.impl;
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +21,8 @@ import by.asushenya.total.service.exception.ServiceException;
 import by.asushenya.total.service.factory.ServiceFactory;
 
 /**
- * This command extract {@link Rate} data from ajax request and add new {@link Game} at system
+ * This command extract {@link Rate} data from ajax request and add new
+ * {@link Game} at system
  * 
  * @author Artyom Asushenya
  *

@@ -55,16 +55,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="7" language="java" name="by.asushenya.total.bean.util.UsersPage" project="TProject" 
-    file="/TProject/src/by/asushenya/total/bean/page/UsersPage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="309" y="328"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="8" language="java" name="by.asushenya.total.bean.util.RateChoice" project="TProject" 
+  <enumeration id="7" language="java" name="by.asushenya.total.bean.util.RateChoice" project="TProject" 
     file="/TProject/src/by/asushenya/total/bean/util/RateChoice.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="762" y="117"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,27 +64,36 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="by.asushenya.total.bean.util.GamesPage" project="TProject" 
-    file="/TProject/src/by/asushenya/total/bean/page/GamesPage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="517" y="320"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="by.asushenya.total.bean.util.RatesPage" project="TProject" 
-    file="/TProject/src/by/asushenya/total/bean/page/RatesPage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="742" y="46"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="by.asushenya.total.bean.Team" project="TProject" 
+  <class id="8" language="java" name="by.asushenya.total.bean.Team" project="TProject" 
     file="/TProject/src/by/asushenya/total/bean/Team.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="510" y="403"/>    
+    <position height="-1" width="-1" x="507" y="447"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="by.asushenya.total.bean.page.GamesPage" project="TProject" 
+    file="/TProject/src/by/asushenya/total/bean/page/GamesPage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="508" y="355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="by.asushenya.total.bean.page.RatesPage" project="TProject" 
+    file="/TProject/src/by/asushenya/total/bean/page/RatesPage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="308" y="51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="by.asushenya.total.bean.page.UsersPage" project="TProject" 
+    file="/TProject/src/by/asushenya/total/bean/page/UsersPage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="265" y="349"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -101,7 +101,7 @@
     </display>  
   </class>  
   <association id="12">    
-    <end type="SOURCE" refId="1" navigable="false">      
+    <end type="SOURCE" refId="5" navigable="false">      
       <attribute id="13" name="user">        
         <position height="0" width="0" x="-219" y="-1134"/>      
       </attribute>      
@@ -113,99 +113,87 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="15">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="16" name="role">        
-        <position height="0" width="0" x="-377" y="-1518"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="16" name="game">        
+        <position height="0" width="0" x="-459" y="-1174"/>      
       </attribute>      
       <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-459" y="-1174"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="choice">        
+        <position height="0" width="0" x="-459" y="-1050"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-459" y="-1050"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="22" name="gameKind">        
+        <position height="0" width="0" x="-227" y="-1480"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-227" y="-1480"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="25" name="usersList"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="28" name="role">        
+        <position height="0" width="0" x="-377" y="-1518"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
         <position height="0" width="0" x="-377" y="-1518"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="19" name="game">        
-        <position height="0" width="0" x="-459" y="-1174"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-459" y="-1174"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="21">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="22" name="user">        
-        <position height="0" width="0" x="-219" y="-1134"/>      
-      </attribute>      
-      <multiplicity id="23" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-219" y="-1134"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="24">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="25" name="usersList">        
-        <position height="0" width="0" x="-219" y="-1134"/>      
-      </attribute>      
-      <multiplicity id="26" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-219" y="-1134"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="27">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="28" name="gamesList">        
-        <position height="0" width="0" x="-459" y="-1174"/>      
-      </attribute>      
-      <multiplicity id="29" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-459" y="-1174"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="30">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="31" name="ratesList">        
-        <position height="0" width="0" x="-740" y="-748"/>      
-      </attribute>      
-      <multiplicity id="32" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-740" y="-748"/>      
-      </multiplicity>    
+      <attribute id="31" name="ratesList"/>      
+      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="33">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="34" name="choice">        
-        <position height="0" width="0" x="-459" y="-1050"/>      
-      </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-459" y="-1050"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="34" name="gamesList"/>      
+      <multiplicity id="35" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="36">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="37" name="gameKind">        
-        <position height="0" width="0" x="-227" y="-1480"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="37" name="user">        
+        <position height="0" width="0" x="-219" y="-1134"/>      
       </attribute>      
       <multiplicity id="38" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-227" y="-1480"/>      
+        <position height="0" width="0" x="-219" y="-1134"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
