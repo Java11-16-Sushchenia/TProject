@@ -46,8 +46,10 @@ public class Controller extends HttpServlet {
 		try {
 			page = command.execute(request, response);
 		} catch (NullPointerException e) {
+			log.error("command '"+commandName+"' not found",e);
 			page = JspPageName.NOT_ALLOWED_PAGE;
 		} catch (Exception e) {
+			log.error("command executing error",e);
 			page = JspPageName.NOT_FOUND_PAGE;
 		}
 
